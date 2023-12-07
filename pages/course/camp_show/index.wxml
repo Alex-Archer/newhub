@@ -1,0 +1,142 @@
+<wxs src="/wxs/utils.wxs" module="utils"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<import src="index.skeleton.wxml"/> 
+<template is="skeleton" wx:if="{{loading}}" />
+<view class="container"  wx:if="{{!loading}}">
+  <view class="tui-content-box_he">
+    <!--banner-->
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" indicator-color="rgba(255, 255, 255, 0.8)" indicator-active-color="#fff">
+      <swiper-item  wx:for="{{campInfo.picture}}" wx:for-item="posterItem"  wx:key="index">
+        <image src="{{posterItem.poster}}" class="tui-slide-image" mode="widthFix" />
+      </swiper-item>
+    </swiper>
+    <!--banner END-->
+    <view class="trainingCamp-data">
+      <view class="trainingCamp-data_time">
+        <text style="font-size: 34rpx; font-weight: bold;">{{campInfo.title}}</text>
+        <view class="trainingCamp-data-l">
+        <text class="lesson">{{campInfo.total}}课时</text>
+
+        <block wx:if="{{campInfo.peoplenummin>campInfo.user.count&&!utils.validateDateExpires(campInfo.startdate)}}">
+            <text class="lesson-leave">仅剩 {{campInfo.peoplenummin-campInfo.user.count}} 人开班</text>
+        </block>
+        
+        <block wx:if="{{!utils.validateDateExpires(campInfo.startdate)}}">
+            <tui-tag plain="{{false}}" padding="4px 4px" margin="0 20rpx 0 20rpx" size="22rpx" type="green">报名中</tui-tag>
+        </block>
+        <block wx:else>
+            <tui-tag plain="{{false}}" padding="4px 4px" margin="0 20rpx 0 20rpx" size="22rpx" type="gray">进行中</tui-tag>
+        </block>
+
+        </view>
+        
+      </view>
+      <view class="trainingCamp-data_price">¥{{utils.formatRMB(campInfo.price)}}</view>
+    </view>
+    <view class="tui-box_he">
+
+      <view class="coach" wx:if="{{campInfo.coachName}}">
+        <image src="{{campInfo.coachHeadimgurl}}" class="tui-avatar"  />
+        <text>{{campInfo.coachName}}</text>
+        <!-- <text class="border">咨询TA</text> -->
+      </view>
+
+      <view class="coach">
+        <text class="coach-title">时间：</text>
+        <text class="coach-des">{{utils.secondToHm(campInfo.starttime)}}~{{utils.secondToHm(campInfo.endtime)}}</text>
+      </view>
+      <view class="coach">
+        <text class="coach-title">日期：</text>
+        <text class="coach-des">{{date.format(campInfo.startdate*1000,'yyyy.MM.dd')}} - {{date.format(campInfo.enddate*1000,'yyyy.MM.dd')}}</text>
+      </view>
+      <view class="coach" style="align-items: flex-start;" bind:tap="goLocation">
+        <text class="coach-title">地址：</text>
+        <view class="coach_address">
+          <view>
+            <text class="coach-des">{{campInfo.storefrontName}}</text>
+            <text class="coach-des coach-location">{{campInfo.storefrontAddress}}</text>
+          </view>
+          <view>
+            <ald-icon size="1.5" customClass="" unit="rem" name="map" color="#666" content="" contentsize="" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+          </view>
+        </view>
+      </view>
+      <view class="coach">
+        <text class="coach-title">教室：</text>
+        <text class="coach-des">{{campInfo.roomName}}</text>
+      </view>
+    </view>
+    <view class="tui-box_he">
+      <text class="title">课程介绍</text>
+      <!-- <text class="content">{{campInfo.content}}</text> -->
+        <!-- 介绍长文 -->
+        <tui-overflow-hidden type="{{2}}" height="200rpx" padding="10rpx 0 0 0" gradientColor="#f8f8f8" removeGradient="{{removeGradientContent}}">
+            <rich-text class="des-content" nodes="{{campInfo.content}}"></rich-text>
+        </tui-overflow-hidden>
+        <view class="tui-btn__box">
+            <tui-button wx:if="{{!removeGradientContent}}" size="{{22}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="40rpx auto" bindclick="readmoreContent">展开全部</tui-button>
+        </view>
+        <!-- 介绍长文END -->
+    </view>
+    <!-- <view class="tui-box_he">
+      <text class="title">注意事项</text>
+            <tui-overflow-hidden type="{{2}}" height="300rpx" padding="10rpx 0 0 0" gradientColor="#f8f8f8" removeGradient="{{removeGradient}}">
+                <rich-text class="des-content"  nodes="{{campInfo.rule}}"></rich-text>
+            </tui-overflow-hidden>
+            <view class="tui-btn__box">
+
+        <tui-button wx:if="{{!removeGradient}}" size="{{22}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="40rpx auto" bindclick="readmore">展开全部</tui-button>
+    </view> -->
+    <view class="tui-box_he">
+      <text class="title">退营须知</text>
+      <view class="box-des-box">
+        <view>1. 距离开营超过7天申请退营，支持全额退款:</view>
+        <view>2. 不足7天，将收取报名费30%的退营手续费。</view>
+        <view>3. 开营后退营，不支持退款和代金券。</view>
+      </view>
+    <!-- 介绍长文END -->
+    </view>
+  </view>
+  <!--tabbar
+  <view class="tui-tabbar" style="padding-bottom: env(safe-area-inset-bottom);">
+    <view class="tui-tabbar_pay">
+      <view class="clicked">
+        <view>
+          <ald-icon size="1.5" customClass="" unit="rem" name="star" color="#393939" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+          <text style="color: #666;">收藏</text>
+        </view>
+        <view>
+          <ald-icon size="1.5" customClass="" unit="rem" name="message" color="#393939" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+          <text style="color: #666;">咨询教练</text>
+        </view>
+      </view>
+      <tui-button shape="circle" type="warning" width="350rpx" height="80rpx" size="30" bindclick="detail">¥1600 购买</tui-button>
+    </view>
+  </view>
+  tabbar END-->
+
+<!--tabbar-->
+<view wx:if="{{!ISCOACH&&!buyed&&!utils.validateDateExpires(campInfo.startdate)}}" class="tui-tabbar" style="padding-bottom: env(safe-area-inset-bottom);">
+    <view class="tui-tabbar_pay">
+        <!-- <view class="clicked">
+            <view>
+                <ald-icon size="1.5" customClass="" unit="rem" name="star" color="#000000" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+                <text>收藏</text>
+            </view>
+        </view> -->
+        <tui-button disabled="{{subDisabled}}" class="buttom-this" flexdirection preventClick="{{true}}" shape="circle" type="warning" width="100%" height="80rpx" size="24" bindclick="detailBuy">
+            <block wx:if="{{campInfo.originalprice>campInfo.price}}">
+              <view class="buttom-price">立即购买集训营课程 ¥{{utils.formatRMB(campInfo.price)}}</view>
+              <view class="buttom-discount">原价 ¥{{utils.formatRMB(campInfo.originalprice)}}</view>
+            </block>
+            <block wx:else>
+              <view class="buttom-price-noop">¥{{utils.formatRMB(campInfo.price)}} 购买该课程 </view>
+            </block>
+
+        </tui-button>
+    </view>
+
+</view>
+<!--tabbar END-->
+</view>
+<tui-modal show="{{modalShow}}" bindclick="modalClick" bindcancel="modalhide" content="您有时间段冲突课程，无法购买!" button="{{button}}" maskClosable="{{false}}"></tui-modal>

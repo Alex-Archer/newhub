@@ -1,0 +1,14 @@
+
+  {
+    "usingComponents": {
+        "tui-list-cell":"/components/thorui/tui-list-cell/tui-list-cell",
+        "tui-digital-keyboard":"/components/thorui/tui-digital-keyboard/tui-digital-keyboard"
+    },
+   
+    "navigationBarTitleText": "提现",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationStyle": "default",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff"
+  }

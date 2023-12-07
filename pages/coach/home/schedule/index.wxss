@@ -1,0 +1,615 @@
+/* page{
+  background-color: #f4f4f4;
+} */
+.container {
+  padding: 0;
+  padding-bottom: 190rpx;
+  height: 100vh;
+  width: 100vw;
+  background-color: #fafafa;
+}
+
+/* ============日期选择模块===================== */
+.select-data{
+  height: 140rpx;
+  box-sizing: border-box;
+  width: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+  /* border-bottom: 1px solid #f6f6f6; */
+
+  background-color: #fff;
+
+  
+ 
+}
+.select-date-title{
+  height: 130rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 3% 40rpx 3%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f8f8f8;
+    margin-bottom: 15rpx;
+
+}
+.select-date-title .title-date{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title-date .date-day{
+  color: #4184db;
+  font-size:50rpx;
+  margin-right: 16rpx;
+}
+.title-date .date-all
+{
+  display: flex;
+  align-items:flex-start;
+  flex-direction: column;
+  font-size:26rpx;
+  margin-right: 10rpx;
+  color: #888;
+}
+ .date-all .day-week{
+   margin-bottom: 6rpx;
+ }
+.select-date-title .title-menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #888;
+}
+.title-menu .menu-thisdate,.title-menu .menu-addclass
+{
+  margin: 0 0 0 20rpx;
+}
+.title-menu .menu-addclass
+{
+  /* color: #f74d54; */
+}
+
+
+
+
+
+.select-data .tui-line-h {
+  position: relative;
+  background-color: rgb(243, 243, 243);
+  height: 1rpx;
+}
+.select-data .tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+}
+
+
+.select-data .tui-tab-item-active{
+  background-color: #319fa6;/*#cbfcff;*/
+  
+  border-radius: 12rpx;
+}
+
+
+.select-data .tui-badge-item {/* 角标 */
+
+  position: relative;
+  margin-top: 20rpx; /* 不然角标出不来 */
+}
+
+.select-data .tui-tab-item-week
+{
+  font-size: 12px;
+  color: #888;
+	height: 30rpx;
+	line-height: 30rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select-data .tui-tab-item-title {
+	color: #555;
+	font-size: 30rpx;
+  height: 60rpx;
+  width: 60rpx;
+	line-height: 60rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  font-weight: bold;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 0 0 0;
+
+}
+.select-data  .tui-tab-item-title-active {/* 选中是圆形 */
+  color: #fff;
+  
+  background: #319fa6;/*#ff7900;*/
+  border-radius: 50%;
+  /* border-bottom: 6rpx solid #fe8e61; 
+  box-sizing: border-box;
+  这是下划线*/
+}
+.tui-data-list {
+  width: 100%;
+  margin: 10rpx 0;
+  /* padding: 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+/* 日期选择模块 End*/
+
+
+.tui-content-box{
+  width: 100%;
+  padding: 0 30rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  
+}
+
+/* 
+.tui-scroll-h {
+  width: 100%;
+
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: row;
+	white-space: nowrap;
+} */
+
+.tui-line-h {
+  position: relative;
+  
+}
+.tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+}
+
+/* .tui-tab-item {
+	display: inline-block;
+	flex-wrap: nowrap;
+	padding:0 34rpx;
+} */
+
+/* .tui-tab-item-title {
+	color: #555;
+	font-size: 30rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tui-tab-item-title-active {
+	color: #fe8e61;
+	font-size: 36rpx;
+	font-weight: bold;
+	border-bottom: 6rpx solid #fe8e61;
+	box-sizing: border-box;
+	text-align: center;
+} */
+
+.tui-swiper-box {
+  flex: 1 !important;
+
+}
+
+.tui-swiper-item {
+	flex: 1 !important;
+	display: flex;
+	flex-direction: row;
+}
+
+.tui-scroll-v {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+  width: 100%;
+  /* height: 900px;
+  background-color: cornsilk; */
+}
+
+
+.tui-loading-more {
+	width: 100%;
+	padding-bottom: 1rpx;
+}
+
+
+.tui-coupon-week{
+
+
+  font-size: 22rpx;
+  line-height: 32rpx;
+
+  margin: 0 10rpx 0 20rpx;
+  background:chocolate;
+}
+.tui-coupon-btn{
+
+
+    font-size: 25rpx;
+    line-height: 32rpx;
+    width: 32rpx;
+    height: 32rpx;
+
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    border-radius: 6rpx;
+    margin: 0 10rpx 0 0;
+}
+.tui-coupon-btn.red{
+  background: #FFEBEB;
+  color: #e41f19;
+}
+.tui-coupon-btn.green{
+  background: #d7ffb7;
+  color: #377c00;
+}
+.tui-goods-title-l{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.tui-goods-date{
+  font-weight: bolder;
+}
+
+.tui-goods-address {
+	font-size: 24rpx;
+	color: #888888;
+	line-height: 32rpx;
+	padding-top: 10rpx;
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: flex;
+  align-items: center;
+
+}
+.tui-goods-address-title
+{
+   /* 文字太长...号 */
+   word-break: break-all;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 1;/* 行数 */
+}
+/*========================以上需清理===========================*/
+
+/* 日期2 */
+/* ============团课日期选择愉===================== */
+.tui-tabs {
+  /* flex: 1; */
+  width: 100%;
+  height: 180rpx;
+  box-sizing: border-box;
+  padding-top: 20rpx;
+
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+  background-color: #fff;
+  border-bottom: 1px solid #f8f8f8;
+
+  
+
+}
+
+.tui-scroll-h {
+	width: 100%;
+	height: 180rpx;
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: row;
+  white-space: nowrap;
+  padding: 0 3% 0 3%;
+  box-sizing: border-box;
+}
+
+.tui-line-h {
+  position: relative;
+  background-color: rgb(243, 243, 243);
+  height: 1rpx;
+}
+.tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+}
+
+.tui-tab-item {
+	display: inline-block;
+	flex-wrap: nowrap;
+  padding:0 20rpx;
+  
+}
+/* 角标 */
+
+
+.tui-swiper-box {
+ flex: 1 !important;
+ /* height: auto;  */
+min-height:680rpx;
+background-color: #fff;
+margin: 10rpx 3%;
+}
+
+
+/* 日期2 END */
+
+
+/* 日程区 */
+.schedule-list-box {
+  width: 96%;
+  /* background: rgb(248, 248, 248); */
+  overflow: hidden;
+  margin: 10rpx 2%;
+  box-sizing: border-box;
+  
+  
+}
+.schedule-list:not(:last-child)
+{
+  border-bottom: 1px solid #f6f6f6;
+}
+.schedule-list
+{
+  width:98%;
+  margin: 10rpx 1% 20rpx 1%;
+  padding: 0 0 20rpx 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.schedule-list-t
+{
+  height: 250rpx;
+  width: 100%;
+
+  display: flex;
+  box-sizing: border-box;
+}
+
+
+.color-a{
+  border-left: 2px solid #319fa6;
+}
+.color-b{
+  border-left: 2px solid #fe8e61;
+}
+
+.schedule-list-tl{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  justify-content:center;
+  width: 140rpx;
+  flex: 2;
+  
+}
+.list-tl-time{
+
+  height: 40rpx;
+  font-weight: bolder;
+  font-size: 28rpx;
+  margin: 4rpx 0;
+}
+.list-tl-split{
+  
+  height: 22rpx;
+  font-size: 16rpx;
+  color:#ccc;
+}
+.list-tl-state{
+  
+  height: 40rpx;
+  font-size: 24rpx;
+  color: #e0e0e0;
+}
+.schedule-list-tc{
+
+  width: 1px;
+  background-color: #efefef;
+  margin: 30rpx 20rpx 30rpx 0;
+  
+}
+
+.schedule-list-tr{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  flex: 7;
+}
+.list-tr-name,.list-tr-class,.list-tr-address{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.list-tr-name{
+  display: flex;
+  height: 50rpx;
+  margin: 0 0 10rpx 0;
+}
+.list-tr-name .name{
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.list-tr-name .tag{
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  background-color: #f1f1f0;
+  height: 30rpx;
+  line-height: 30rpx;
+  margin: 7rpx 0 0 15rpx;
+  padding: 5rpx 10rpx;
+}
+.list-tr-class{
+  font-size: 28rpx;
+  display: flex;
+  height: 40rpx;
+  margin: 0 0 10rpx 0;
+  color: #666;
+
+
+  
+}
+.list-tr-class .title{
+  font-size: 24rpx;
+  
+}
+.list-tr-class .section{
+  font-size: 24rpx;
+  padding: 0 20rpx;
+    /* 文字太长...号 */
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;/* 行数 */
+}
+.list-tr-address{
+  font-size: 24rpx;
+  display: flex;
+  color: #666;
+}
+.schedule-list-d{
+  display: flex;
+  align-items: center;
+  justify-content:flex-end;
+
+  height: 70rpx;
+  margin-top:10rpx;
+
+}
+.schedule-list-d .sign,.schedule-list-d .student-sign-code
+{
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #fe8e61;
+  background-color: #fff;
+  border: 1px solid #fe8e61;
+  border-radius: 20rpx;
+  padding: 6rpx 16rpx;
+}
+.schedule-list-d .student-sign-code
+{
+  margin-left: 20rpx;
+}
+.schedule-list-tel
+{
+  width:42rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 10rpx 0 ;
+  flex: 1;
+}
+/* 日程区END */
+
+.no-data
+{
+    color: #999;
+}
+
+.title-menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 28rpx;
+    color: #888;
+  }
+  
+  .title-menu .menu-addclass
+  {
+      margin: 0 0 0 20rpx;
+      display: flex;
+      align-items: center;
+  }
+  .title-menu .restToday
+  {
+      
+      line-height: 60rpx;
+      display: flex;
+      align-items: center;
+  }
+
+  .list-tl-type{
+  
+    height: 40rpx;
+    font-size: 24rpx;
+    padding:10rpx 0;
+  
+  }
+.tui-coupon-btn
+{
+  font-size: 28rpx;
+  line-height: 32rpx;
+  width: 45rpx;
+  height: 45rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  border-radius: 6rpx;
+  margin: 0 10rpx 0 0;
+}
+.tui-coupon-btn.tuan{
+background: rgb(69, 154, 0,1);
+color: #fff;
+}
+.tui-coupon-btn.shi{
+background: rgb(112,48,160,1);
+color: #fff;
+}
+.tui-coupon-btn.ji{
+background: rgb(0, 112, 192,1);
+color: #fff;
+}

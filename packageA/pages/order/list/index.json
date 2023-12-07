@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "tui-list-cell":"/components/thorui/tui-list-cell/tui-list-cell",
+    "tui-loadmore": "/components/thorui/tui-loadmore/tui-loadmore",
+    "tui-nomore": "/components/thorui/tui-nomore/tui-nomore",
+    "t-order-item":"/components/views/t-order-item/t-order-item",
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "tui-no-data":"/components/thorui/tui-no-data/tui-no-data",
+    "tui-tag": "/components/thorui/tui-tag/tui-tag"
+
+  },
+  "navigationBarTitleText": "我的订单",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff"
+}

@@ -1,0 +1,97 @@
+.panel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.title {
+  display: block;
+  color: #fff;
+
+  height: 30px;
+  position: absolute;
+  left: 16px;
+  bottom: 200rpx;
+  /* 
+  https://blog.csdn.net/weixin_46380993/article/details/104572253 
+弹性盒子
+inline-flex 虽然木有给父元素设置宽度，但是父元素默认会根据子元素的宽高去自适应。
+  */
+  display: inline-flex;
+  /*
+  上下分布： 每一行中的子元素上下对齐放式 
+  flex-start：起点对齐，即上对齐
+  center：中点对齐，即中线对齐
+  flex-end：终点对齐 即底部对齐
+  */
+  align-items: center;
+  /*
+ 水平分布 ：定义了主轴方向上子项的对齐方式
+ flex-start：默认值，左对齐
+ flex-end：右对齐
+flex-center：居中
+space-between：两端对齐，子项之间间隔相等
+space-around：每个子项两侧的间隔相等，即子项之间的间隔比子项与边框的间隔大一倍。
+space-evenly：每个子项之间间隔相等，且等于子项与边框的间隔
+ */
+  justify-content: center;
+  /* 
+当我们给一个容器设置了display:flex的时候，在宽高不写的情况下
+主轴为水平轴（flex-direction:row），宽度由内容决定，高度由父容器决定
+主轴为垂直轴（flex-direction:column），宽度由父容器决定，高度由内容决定
+ */
+  flex-direction: row
+}
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  bottom: 340rpx;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 320px);
+  right: 36rpx;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  align-self: center;
+  display: block;
+
+
+}
+
+.panel .forward-btn,.panel .praise-btn,.panel .message-btn,.panel .star-btn {
+  position: absolute;
+  bottom: 110px;
+  right: 40rpx;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: auto;
+
+  width: 70rpx;
+  height: 70rpx;
+  background-color: rgba(0, 0, 0, .4);
+  border-radius: 35rpx;
+}
+.panel .forward-btn{
+
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
+
+}
+.panel .praise-btn {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 260px);
+}
+.panel .message-btn {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 200px);
+}
+.panel .star-btn {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 140px);
+}

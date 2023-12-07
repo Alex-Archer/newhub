@@ -1,0 +1,107 @@
+<view class="container">
+  <scroller isBackBtn="{{false}}" id="page-scroller">
+  <view class="tui-box tui-order-box">
+    <!-- 日期选择===================== -->
+    <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
+      <view class="select-date-title">
+        <view class="title-date">
+          <view class="date-day">20</view>
+          <view class="date-all">
+            <view class="day-week">星期四</view>
+            <view class="day-date">2023年08月</view>
+          </view>
+          <!-- <view class="date-ico">
+            <ald-icon padding="0 0 0 0" size="28" unit="rpx" name="down" color="#333"></ald-icon>
+          </view> -->
+        </view>
+        <view class="title-menu">
+          <!-- <view class="menu-thisdate" bind:tap="jumpMonth">回到本月</view> -->
+          <view class="menu-addclass" bind:tap="cancelSelectedDates">可排三天档期</view>
+        </view>
+      </view>
+      <!-- 日历 ===================== -->
+      <!-- 日期选择===================== -->
+      <view class="tui-tabs">
+        <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{scrollInto}}">
+          <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
+            <!-- <view class="tui-tab-item-week" wx:if="{{index%2==0}}" >日</view> -->
+            <view class="tui-badge-item">
+              <view class="tui-tab-item-week">{{ tab.weekday }}</view>
+              <!-- margin="-10rpx 0 0 100rpx"  top="-6rpx" dot 不同时用，都可以上下定位  -->
+              <block wx:if="{{tab.number>0}}">
+                <tui-badge dot="{{true}}" margin="-10rpx 0 0 100rpx" translateX="50%" type="red" absolute scaleRatio="0.8"></tui-badge>
+              </block>
+              <block wx:else>
+                <tui-badge margin="-10rpx 0 0 100rpx" translateX="50%" type="gray" absolute scaleRatio="0.8">无</tui-badge>
+              </block>
+            </view>
+            <view class="tui-tab-item-title {{tabIndex == index?'tui-tab-item-title-active':''}}">{{ tab.name }}</view>
+          </view>
+        </scroll-view>
+      </view>
+      <!-- 日历 END ===================== -->
+      <!-- 日期选择END ===================== -->
+      <tui-list-cell hover="{{false}}" arrow="{{false}}" padding="0" lineLeft="{{false}}">
+        <view class="tui-cell-header">
+          <view class="tui-cell-title">选择时间段</view>
+          <view class="tui-cell-menu">
+            <view class="menu-select-all" bind:tap="test">测消</view>
+            <view class="menu-select-all" bind:tap="selectAllTime">全选时间</view>
+            <view class="menu-other" bind:tap="resetAllTime">取消全选</view>
+          </view>
+        </view>
+      </tui-list-cell>
+      <view class="swiper-box">
+        <!-- 团课列表 ===================== -->
+        <swiper current="{{tabIndex}}" class="tui-swiper-box" duration="300" bindchange="tabChange">
+          <swiper-item wx:for="{{groupList}}" wx:for-item="tab" wx:for-index="index1" wx:key="index1">
+            <!--原 <scroll-view class="tui-scroll-v" refresher-enabled refresher-triggered="{{tab.refreshing}}" refresher-background="#fafafa" enable-back-to-top refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" data-index="{{index1}}" bindrefresherrefresh="onrefresh"> -->
+            <!-- <scroll-view class="tui-scroll-v" 
+              refresher-enabled 开启自定义下拉刷新
+               refresher-triggered="{{tab.refreshing}}"  设置当前下拉刷新状态，true 表示下拉刷新已经被触发，false 表示下拉刷新未被触发
+               refresher-background="#fafafa" 
+               enable-back-to-top  仅 iOS 支持，其余同 WebView 同名组件
+               refresher-threshold="{{100}}"  设置自定义下拉刷新阈值
+               scroll-y 允许纵向滚动
+                bindscrolltolower="loadMore"  滚动到底部/右边时触发
+                data-index="{{index1}}" 
+                bindrefresherrefresh="onrefresh" 自定义下拉刷新被触发
+              > -->
+            <scroll-view  refresher-triggered="{{tab.refreshing}}" refresher-background="#fafafa" data-index="{{index1}}">
+              <!-- 时间选择 -->
+              <view class="tui-box tui-time-box">
+
+                <view class="time-box">
+                  <block wx:for="{{timeArray}}" wx:for-item="item" wx:key="index">
+                    <view class="time-box-li {{item.use?'li-active':''}}" data-index="{{index}}" bind:tap="clickThisTime">
+                      {{item.start}}
+                    </view>
+                  </block>
+                </view>
+              </view>
+              <!-- 时间选择END -->
+            </scroll-view>
+            
+          </swiper-item>
+        </swiper>
+        <!-- 团课列表END ===================== -->
+      </view>
+      <view class="des-box">
+        <view class="title">说明：</view>
+        <view class="des">1.只能预排三天档期</view>
+        <view class="des">2.为了合理按排您的时间，尽量只排每二天档期！</view>
+        <view class="des">3.排好的档期如果有人预约后是无法更改的。</view>
+        <view class="des">4.为了合理按排您的时间，尽量只排每二天档期！</view>
+        <view class="des">5.排好的档期如果有人预约后是无法更改的。</view>
+
+
+
+      </view>
+
+
+    </view>
+  </view>
+</scroller>
+</view>
+
+<coach-tabbar selectedColor="#ff7900" isFixed="{{true}}" tabBar="{{tabBar}}" hump="{{true}}" current="{{tabBarCurrent}}" bindclick="tabbarSwitch"></coach-tabbar>

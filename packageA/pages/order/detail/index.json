@@ -1,0 +1,19 @@
+{
+  "usingComponents": {
+    "tui-section":"/components/thorui/tui-section/tui-section",
+    "tui-banner-arc": "/components/thorui/tui-banner-arc/tui-banner-arc",
+    "tui-button": "/components/thorui/tui-button/tui-button",
+    "tui-tag": "/components/thorui/tui-tag/tui-tag"
+  },
+  "navigationBarBackgroundColor": "#569ca1",
+
+  "navigationBarTitleText": "订单详情",
+
+
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+
+
+  "navigationBarTextStyle": "black"
+}

@@ -1,0 +1,18 @@
+{
+
+  "navigationBarTitleText": "个人中心",
+  "navigationBarTextStyle": "white",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#68a9ad",
+  
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 100,
+  "navigationStyle": "custom",
+
+  "usingComponents": {
+    "tui-tabbar": "/components/thorui/tui-tabbar/tui-tabbar",
+    "refresh": "/components/coolui-scroller/refresh/index",
+    "scroller": "/components/coolui-scroller/scroller/index"
+
+  }
+}

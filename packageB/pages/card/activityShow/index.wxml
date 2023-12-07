@@ -1,0 +1,13 @@
+<view class="container">
+
+<tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="教练中心" backgroundColor="#fff" color="#333"></tui-navigation-bar>
+<view class="bg-box">
+  <view class="content-list">
+    
+   新人礼包介绍并购买
+
+
+  </view>
+</view>
+
+</view>

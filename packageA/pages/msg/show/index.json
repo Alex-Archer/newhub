@@ -1,0 +1,16 @@
+{
+
+  "navigationBarTitleText": "消息显示",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "tui-icon": "/components/thorui/tui-icon/tui-icon",
+    "tui-list-cell": "/components/thorui/tui-list-cell/tui-list-cell",
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "tui-button":"/components/thorui/tui-button/tui-button"
+  }
+}

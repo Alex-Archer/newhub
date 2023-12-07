@@ -1,0 +1,267 @@
+<wxs src="/wxs/utils.wxs" module="parseUtils"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+ <!-- 
+		"id": 172,
+		"uid": 31,
+		"orderno": "21722023092715277516",//订单号
+		"title": "体式提升",//标题
+		"poster": "https:\/\/temp-aoben-picture.oss-cn-shanghai.aliyuncs.com\/web-images\/2023\/09\/25\/20230925%5Cf3474bb9147ddd1c2a7a8ff020354efb.png",//封面
+		"paytype": 1, //paytype 0优惠卡兑换 1完全人民币支付 2余额瑜伽币扣除(瑜伽币完全大于等于应付) 3组合（现金+余额：瑜伽币少于应付）
+		"paytypetitle": "现金支付",//支付方式说明 
+		
+        "originalprice": 20000,//原价
+		"price": 2,//现价
+        "quantity": 1,//数量
+
+        "balance": 0,//瑜伽币支付多少
+
+
+        "cash": 1,//是系统计算出来最终要求支付 的现金  
+		"payprice": 1,//是微信通知接口传过来的支付的现金
+		
+		"paytime": 1695799676,//支付时间 
+		"state": 1, //0正常 1正在申请退款 2已完成退款 3已处理代表禁止退款，不显任何操作按钮  
+		"expirationtime": 1695799960,
+		"startdate": 1696003200,//课程开始日期
+		"starttime": 21600,//课程开始 时间
+		"endtime": 24300,//课程结束时间
+		"cardtitle": "",//支付卡名称
+		
+		
+		"addtime": 1695799660, //下单时间
+		"pay": true,//是否可以支付
+		"reason": "",//不可购买的原因
+		"refundreason": "",//退款说明
+		"refund": false //是否可以退款
+
+1.支付类型 orderInfo.paytype 0优惠卡兑换 1完全人民币支付 2余额瑜伽币扣除(瑜伽币完全大于等于应付) 3组合（现金+余额：瑜伽币少于应付）
+2.订单状态  orderInfo.state  0正常 1正在申请退款 2已完成退款 3已处理代表禁止退款，不显任何操作按钮  
+3.支付时间 orderInfo.paytime 0待支付 大于0已支付
+-->
+<view class="container" wx:if="{{!preventOnShow&&!pageErr}}">
+        <!-- 订单倒计时 -->
+		<view class="tui-order-header"  bindtap="switchStatus" wx:if="{{orderInfo.paytime<=0&&parse.getGapTime(orderInfo.expirationtime)>0}}">
+			<view class="tui-header-content">
+				<view>
+					<view class="tui-status-text">{{parse.getStatusText(orderInfo.state)}}</view>
+					<view class="tui-reason"><text class="tui-reason-text">{{parse.getReason(orderInfo.state)}}</text>
+						<!-- <tui-countdown time="{{1800}}" color="rgba(254,254,254,0.75)" colonColor="rgba(254,254,254,0.75)" borderColor="transparent"
+						 backgroundColor="transparent" wx:if="{{status===1}}"></tui-countdown> -->
+                         <tui-countdown time="{{parse.getGapTime(orderInfo.expirationtime)}}" color="rgba(254,254,254,0.75)" colonColor="rgba(254,254,254,0.75)" borderColor="transparent"
+						 backgroundColor="transparent" wx:if="{{orderInfo.state===0}}"></tui-countdown>
+					</view>
+				</view>
+                <ald-icon size="2" customClass="" unit="rem" name="safe-fill" content="" color="#fff"></ald-icon>
+
+			</view>
+		</view>
+        <!-- 订单倒计时END -->
+
+		<view class="tui-order-item">
+			<tui-list-cell hover="{{false}}" lineLeft="0">
+				<view class="tui-goods-title">
+					商品信息
+				</view>
+			</tui-list-cell>
+			
+				<tui-list-cell padding="0"  hover="{{false}}">
+					<view class="tui-goods-item">
+						<image src="{{orderInfo.poster}}" class="tui-goods-img"></image>
+						<view class="tui-goods-center">
+							<view class="tui-goods-name">{{orderInfo.title}}</view>
+							<view class="tui-goods-attr" style="text-decoration:line-through;">原价:￥{{parseUtils.formatRMB(orderInfo.originalprice)}}</view>
+						</view>
+						<view class="tui-price-right">
+							<view>￥{{parseUtils.formatRMB(orderInfo.price)}}</view>
+							<view>x{{orderInfo.quantity}}</view>
+						</view>
+					</view>
+				</tui-list-cell>
+			
+			<view class="tui-goods-info">
+				<view class="tui-price-flex tui-size24">
+					<view>商品总额</view>
+					<view>￥{{parseUtils.formatRMB(orderInfo.price*orderInfo.quantity)}}</view>
+				</view>
+               
+ 				<view class="tui-price-flex  tui-size24" wx:if="{{orderInfo.balance>0}}">
+					<view class="flex-title">瑜伽币抵扣</view>
+					<view>￥{{parseUtils.formatRMB(orderInfo.balance)}}</view>
+				</view>  
+
+				<view class="tui-price-flex  tui-size24" wx:if="{{orderInfo.cash>0}}">
+					<view class="flex-title">现金支付</view>
+					<view>￥{{parseUtils.formatRMB(orderInfo.cash)}}</view>
+				</view>
+                
+                <!-- 或 orderInfo.paytypetitle -->
+				<view class="tui-price-flex  tui-size24">
+					<view class="flex-title">支付类型</view>
+					<view>{{parse.getPayTypeTxt(orderInfo.paytype)}}</view>
+				</view>
+
+				<view class="tui-price-flex  tui-size24">
+					<view class="flex-title">平台优惠</view>
+					<view>￥{{parseUtils.formatRMB(orderInfo.price*orderInfo.quantity-orderInfo.payprice)}}</view>
+				</view>      
+                
+                          
+                <view class="tui-price-flex  tui-size24" wx:if="{{orderInfo.paytime<=0}}">
+					<view class="flex-title">支付截止</view>
+					<view>{{date.format(orderInfo.expirationtime*1000,'yyyy-MM-dd HH:mm:ss')}}</view>
+				</view>
+
+				<view class="tui-price-flex tui-size32">
+					<view class="tui-flex-shrink">实付款</view>
+					<view class="tui-goods-price tui-primary-color">
+						<view class="tui-size-24">￥</view>
+                        <block wx:for="{{parseUtils.formatDomRMB((orderInfo.payprice),'tui-price-large','tui-size-24')}}" wx:for-item="domItem" wx:for-index="indexDom" wx:key="indexDom">
+                            <view class="{{domItem.class}}">{{domItem.value}}</view>
+                        </block>
+
+
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="tui-order-info">
+			<tui-list-cell hover="{{false}}">
+				<view class="tui-order-title">
+					订单信息
+				</view>
+			</tui-list-cell>
+			<view class="tui-order-content">
+				<view class="tui-order-flex">
+					<view class="tui-item-title">订单号:</view>
+					<view class="tui-item-content">{{orderInfo.orderno}}</view>
+				</view>
+				<view class="tui-order-flex">
+					<view class="tui-item-title">创建时间:</view>
+					<view class="tui-item-content">{{date.format(orderInfo.addtime*1000,'yyyy-MM-dd HH:mm:ss')}}</view>
+				</view>
+	             
+				<view class="tui-order-flex" wx:if="{{orderInfo.paytime> 0}}">
+					<view class="tui-item-title">支付时间:</view>
+					<view class="tui-item-content">{{date.format(orderInfo.paytime*1000,'yyyy-MM-dd HH:mm:ss')}}</view>
+				</view>
+                <view class="tui-order-flex" wx:else >
+					<view class="tui-item-title">支付截止:</view>
+					<view class="tui-item-content">{{date.format(orderInfo.expirationtime*1000,'yyyy-MM-dd HH:mm:ss')}}</view>
+				</view>   
+
+                <block wx:if="{{orderInfo.state>0}}">
+                    <view class="tui-order-flex" >
+                        <view class="tui-item-title">退款申请时间:</view>
+                        <view class="tui-item-content">{{date.format(orderInfo.expirationtime*1000,'yyyy-MM-dd HH:mm:ss')}}</view>
+                    </view>
+                    <view class="tui-order-flex" >
+                        <view class="tui-item-title">退款原因:</view>
+                        <view class="tui-item-content">{{orderInfo.refundreason?orderInfo.refundreason:'个人申请'}}</view>
+                    </view>
+                </block>
+
+			</view>
+			<!-- <tui-list-view unlined="bottom">
+				<tui-list-cell unlined  hover="{{false}}">
+					<view class="tui-contact">
+						<image src="https://thorui.cn/images/mall/group/icon_order_contactmerchant.png"></image>
+						<text>联系商家</text>
+					</view>
+				</tui-list-cell>
+			</tui-list-view> -->
+		</view>
+		<view class="tui-safe-area"></view>
+        <!-- 订单状态  orderInfo.state  0正常 1正在申请退款 2已完成退款 3已处理代表禁止退款，不显任何操作按钮   -->
+		<view class="tui-tabbar tui-order-btn">
+
+            <!-- 按钮操作区 -->
+            <!-- 1. 售后中的订单 -->
+            <block wx:if="{{orderInfo.state==1}}">
+                <!-- 正在申请退款 暂无此功能
+                <view class="tui-btn-mr">
+                        <tui-button type="black" plain="{{true}}" width="200rpx" height="56rpx" size="26" shape="circle" bindclick="refund">撤销退款</tui-button>
+                </view> -->
+                <view class="tui-btn-mr">
+                    <tui-button type="gray" disabled plain="{{true}}" width="200rpx" height="56rpx" size="26" shape="circle">退款处理中...</tui-button>
+                </view>
+            </block>
+            <block wx:elif="{{orderInfo.state==2}}">
+                <!-- 2已完成退款 -->
+                <view class="tui-btn-mr">
+                    <tui-button type="gray" disabled plain="{{true}}" width="200rpx" height="56rpx" size="26" shape="circle">已完成退款</tui-button>
+                </view>
+                
+            </block>
+            <block wx:elif="{{orderInfo.state==3}}">
+                <!-- 3已处理代表禁止退款，不显任何操作按钮 -->
+                <tui-button type="gray" disabled plain="{{true}}" width="200rpx" height="56rpx" size="26" shape="circle">退款有误</tui-button>
+            </block>
+            <!-- 2. 正常的订单 -->
+            <block wx:else>
+                <!--2.1.未支付-->
+                <block wx:if="{{orderInfo.paytime<=0}}">
+                    <!--2.1.1未过支付时间-->
+                    <view class="tui-btn-mr" wx:if="{{parse.getGapTime(orderInfo.expirationtime)>0}}">
+                        <tui-button type="danger" plain="{{true}}" width="200rpx" height="56rpx" size="26" shape="circle"  data-index="{{index2}}"  data-id="{{orderInfo.orderno}}"  data-source="{{orderInfo.source}}" data-ac="1" bind:tap="actionButtons">立即支付</tui-button>
+                    </view>
+                    <!--2.1.2已过支付时间-->
+                    <view class="tui-btn-mr" wx:if="{{parse.getGapTime(orderInfo.expirationtime)<=0}}">
+                        <tui-button type="black" plain="{{true}}" width="200rpx" height="56rpx" size="26" shape="circle" data-index="{{index2}}"  data-id="{{orderInfo.orderno}}"  data-source="{{orderInfo.source}}" data-ac="0" bind:tap="actionButtons">删除订单</tui-button>
+                    </view>
+
+                </block>
+                <!--2.2.已支付 bindclick="refund" -->
+                <block wx:else>
+                    <view class="tui-btn-mr" wx:if="{{orderInfo.refund}}">
+                        <tui-button type="black" plain="{{true}}" width="200rpx" height="56rpx" size="26" shape="circle" data-index="{{index2}}"  data-id="{{orderInfo.orderno}}"  data-source="{{orderInfo.source}}" data-ac="2" bind:tap="actionButtons">申请退款</tui-button>
+                    </view>
+                </block>
+            </block>
+            <!-- 按钮操作区END -->
+
+
+
+		</view>
+		<t-pay-way show="{{show}}"  bindclose="popupClose"></t-pay-way>
+	</view>
+    <tui-actionsheet show="{{showActionSheet}}" tips="{{tips}}" item-list="{{actionItemList}}" mask-closable="{{maskClosable}}" color="{{color}}" size="{{size}}" is-cancel="{{isCancel}}" bindclick="actionItemClick" bindcancel="closeActionSheet"></tui-actionsheet>
+  <wxs module="parse">
+     module.exports={
+         //倒计时
+        getGapTime:function(timestamp)
+        {
+            //var date = getDate(timestamp * 1000);//时间戳为10位需*1000
+            var nowDateTimeStamp =  getDate().getTime();//当前时间戳
+            //var expDate =  getDate(timestamp * 1000);
+            
+            var expTimeStamp = timestamp * 1000;
+            if(expTimeStamp > nowDateTimeStamp)
+            {
+                return (expTimeStamp - nowDateTimeStamp)/1000;//转成秒
+            }else{
+                return 0;
+            }
+            
+            
+
+        },
+    //    getImg: function(status,webURL) {
+	// 			return webURL + ["img_order_payment3x.png", "img_order_send3x.png", "img_order_received3x.png",
+	// 				"img_order_signed3x.png", "img_order_closed3x.png"
+	// 			][status]
+    //         },
+            //我们自己的 state 0正 1正在申请退款 2已完成退款 3已处理代表禁止退款，不显任何操作按钮
+			getStatusText: function(status) {
+				return ["等待您付款", "正在申请退款", "已完成退款","交易关闭"][status]
+			},
+			getReason: function(status) {
+				return ["剩余时间", "等待卖家发货", "还剩X天XX小时自动确认", "", "超时未付款，订单自动取消"][status]
+            },
+            //支付类型
+            //支付方式 0优惠卡兑换 1完全人民币支付 2余额瑜伽币扣除(瑜伽币完全大于等于应付) 3组合（现金+余额：瑜伽币少于应付）
+            getPayTypeTxt: function(payType) {
+				return ["优惠兑换", "现金支付", "瑜伽币支付", "瑜伽币+现金"][payType]
+			}
+     }
+  </wxs>

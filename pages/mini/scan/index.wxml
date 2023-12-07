@@ -1,0 +1,135 @@
+
+<privacy-dialog fixedbottom="25vh" mask="true" bottomShowType="{{1}}" bind:agree="agree" bind:disagree="disagree"></privacy-dialog>
+<view class="container"  wx:if="{{!onHide}}">
+    <view class="gohome" style="padding: {{statusBar + 10}}px 0 5px 30px;" bind:tap="goHome">
+      <view class="gohome-ico">
+        <ald-icon size="1.2" customClass="" unit="rem" name="home-capsule" content="" color="#fff"></ald-icon>
+      </view>
+        <view class="gohome-txt">返回首页</view>
+    </view>
+
+    <view class="tui-box">
+        <tui-list-cell hover="{{false}}" unlined lineLeft="0" padding="0" backgroundColor="">
+            <view class="tui-goods-title" style="color:{{openDoorHtml=='开门成功'&&'blue'}}">{{openDoorHtml}}</view>
+        </tui-list-cell>
+
+
+        <view class="tui-bg-line">
+            <view class="tui-bg-line-l">
+                <image class="line-img" src="/static/img/radius15X30L.png"></image>
+            </view>
+            <view class="tui-bg-line-c">
+                <view class="line-line"></view>
+            </view>
+            <view class="tui-bg-line-r">
+                <image class="line-img" src="/static/img/radius15X30R.png"></image>
+            </view>
+
+        </view>
+
+        <tui-list-cell lineLeft="0" hover="{{false}}" unlined padding="0">
+            <view class="hidden-box" hidden="{{!true}}">
+                <view class="img-box">
+                    <image class="img-box-src" src="{{globalURL}}/miniprogram/url-img/camp/banner-1.png" mode="widthFix" />
+                </view>
+   
+                <view wx:if="{{openDoorHtml=='开门失败'&&openErrMessage}}" class="list-item" style="height: 90rpx;">
+                    <view class="item-tit">失败原因</view>
+                    <view class="item-con">
+                        <tui-badge type="warning" >{{openErrMessage}}</tui-badge>
+                    </view>
+                </view>
+
+
+                <!-- <view class="list-item-pass">
+                    <view class="item-pass">
+                        <text class="pass-title">可使用密码开门:</text>
+                        <text class="pass-msg">123456</text>
+                    </view>
+                </view> -->
+                <view class="list-item-pass">
+                    <view class="item-pass">
+                        <text class="pass-title" bindtap="lockCofig">点此配置开门密码</text>
+                    </view>
+                </view>
+
+                <view class="list-item">
+                    <view class="item-tit">当前门店</view>
+                    <view class="item-con">九方店</view>
+                </view>
+                <!-- <view class="code-tit">开门密码</view>
+                <view class="code-num">382596</view> -->
+                <!-- <view class="qrcode-box">
+          <view class="qrcode">
+            <canvas style="width:130px; height:130px;" canvas-id="couponQrcode0"></canvas>
+          </view>
+        </view> -->
+        <view class="list-item">
+                    <view class="item-tit">最近课程</view>
+                    <view class="item-con">课程名称</view>
+                </view>
+                <view class="list-item">
+                    <view class="item-tit">课程房间</view>
+                    <view class="item-con">菩提小房间</view>
+                </view>
+                <view class="list-item">
+                    <view class="item-tit">有效时间</view>
+                    <view class="item-con">19:30 - 22:10</view>
+                </view>
+                <view class="list-item">
+                    <view class="item-tit">有效日期</view>
+                    <view class="item-con">2019-07-01</view>
+                </view>
+
+
+
+                <!-- <view class="explain">使用说明</view>
+                <view class="explain-text">
+                    1、门禁上输入密码可开门
+                </view>
+                <view class="explain-text">
+                    2、有二维码功能门禁，扫二维码进入
+                </view>
+                <view class="explain-text">
+                    3、请在有效期内的有效时间范围使用
+                </view> -->
+                
+
+  <scroll-view scroll-y class="tui-select--scroll" style="height:300rpx;background-color: rgb(214, 214, 214);">
+<!-- 动作区 -->
+<view class="box-title">{{actionTitle}}</view>
+
+<view class="box-li">
+    <text class="li-text">动作: {{action}}</text>
+    <text class="li-text line-one">扫码用户: {{openID}}</text>
+    <text class="li-text line-one">透传参数为: {{form_param}}</text>
+    <text class="li-text line-one">参数: {{form_param}}</text>
+    <text class="li-text">扫描时间: {{param_scancodeTime}}</text>
+    <text wx:if="{{returnHtml}}" class="pass-box">{{returnHtml}}</text>
+</view>
+
+<view class="box-button">
+
+   <!-- <tui-button margin="0" type="default" width="100%" shape="circle" catchtap="handleClick" >去首页</tui-button> -->
+</view>
+
+
+<!-- 动作区END -->
+</scroll-view>
+
+            </view>
+        </tui-list-cell>
+
+
+
+
+    </view>
+
+
+    <!--背景图片-->
+    <view class="bgImage">
+        <image src="https://ss2.meipian.me/users/72673426/2de4ac14278fa5da109ba232363e8032.jpg?meipian-watermark/bucket/ivwen/key/dXNlcnMvNzI2NzM0MjYvMmRlNGFjMTQyNzhmYTVkYTEwOWJhMjMyMzYzZTgwMzIuanBn/nickname/5a6-57qz56aP/userid/NzI2NzM0MjY=/sign/ebff2df6ae94b57ac3892a583fae4779%7cimageView2/2/w/750/interlace/0/q/80" />
+    </view>
+</view>
+
+

@@ -1,0 +1,25 @@
+<view class="container" wx:if="{{!preventOnShow}}">
+  <form bindsubmit="formsubmit">
+		<tui-list-cell hover="{{false}}" lineLeft="0">
+			<view class="tui-cell-input">
+				<input name="nickname" type="nickname" value="{{nickname}}" placeholder="请输入您的收款微信号" placeholder-class="tui-phcolor"  maxlength="40" bindinput="inputNickname" bindfocus="bindFocus" bindblur="bindBlur" bindnicknamereview="bindNickNameReview" />
+			   <icon type="clear" size="14" color="#bfbfbf" hidden="{{!nickname}}" bindtap="clearInput"></icon>
+			</view>
+		</tui-list-cell>
+		<view class="tui-btn-box">
+			<!-- <tui-button shadow height="88rpx" shape="circle" type="default" bindclick="submitNickName">确定</tui-button> -->
+ 			<tui-button form-type="submit" type="default" shadow height="88rpx" shape="circle">确定</tui-button>     
+		</view>
+        <view class="formsubmit-des-box">
+            <view class="formsubmit-des">
+            1.
+            </view>
+            <view class="formsubmit-des">
+            2.
+            </view>
+            <view class="formsubmit-des">
+            3.
+            </view>
+        </view>
+    </form>
+	</view>

@@ -1,0 +1,61 @@
+.container {
+    padding: 0;
+    /* padding-bottom: 100rpx; */
+  
+    height: 100vh;
+    width: 100vw;
+  }
+.tui-scroll-v {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+  width: 100%;
+  /* height: 900px;
+  background-color: cornsilk; */
+}
+.tui-loading-more {
+	width: 100%;
+	padding-bottom: 1rpx; 
+}
+
+.tui-item-box
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.page-head
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.page-title
+{
+    font-size: 32rpx;
+    font-weight: bold;
+}
+
+.cell-left
+{
+    display: flex;
+    flex-direction: column;
+}
+.left-price,.left-date
+{
+    height: 30px;
+    line-height: 30px;
+}
+.left-price
+{
+    font-weight: bold;
+    font-size: 34rpx;
+}
+.left-date
+{
+    font-size: 28rpx;
+    color: #999;
+    padding-left:6rpx;
+}

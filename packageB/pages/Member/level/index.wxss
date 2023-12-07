@@ -1,0 +1,81 @@
+/* 不显示滚动条
+https://www.cnblogs.com/xiaolinye/p/17337067.html
+*/
+/* .container {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll; 
+  }
+   
+  
+  .container::-webkit-scrollbar {
+    display: none;
+  } */
+  /* 不显示滚动条END */
+  
+  image{height:auto}
+
+
+::-webkit-scrollbar { 
+    display:none;
+    width:0;
+    height:0;
+    color:transparent;
+  }
+  .img-box
+  {
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: auto;
+  
+  }
+  .img-box-li
+  {
+      width: 100%;
+      display: flex;
+
+      flex: 1;
+      margin: 0;
+  }
+  .img-center
+  {
+    justify-content: center;
+  }
+  .qy-center
+  {
+    justify-content: center;
+    margin-top: 40rpx;
+  }
+  .qy-split
+  {
+    margin: 0 20rpx;
+  }
+  .qy-title
+  {
+    font-size: 36rpx;
+    color: #fdefd3;
+    font-weight: bold;
+  }
+  
+  .box-img-base
+  {
+      width: 100%;
+      margin: 0;
+      display: block;
+  }
+  .tui-cover-back {
+      width: 60rpx;
+      height: 60rpx;
+      position: fixed;
+      /* top: 60rpx; */
+      /* top: 100rpx; 移到动态获取*/
+      left: 30rpx;
+      z-index: 9999;
+    }
+  
+  

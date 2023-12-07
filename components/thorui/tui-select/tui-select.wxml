@@ -1,0 +1,43 @@
+<view catchtouchmove="stop">
+  <view class="tui-select--mask {{show?'tui-select--mask-show':''}}" style="{{parse.getStyles(maskBackground, zIndex)}}" catchtap="maskClose">
+  </view>
+  <view class="tui-select--wrap {{show?'tui-select--wrap-show':''}}" style="border-top-left-radius:{{radius}}rpx;border-top-right-radius:{{radius}}rpx;background:{{background}};z-index:{{zIndex}}">
+    <view class="tui-select--header" style="background:{{background}};border-top-left-radius:{{radius}}rpx;border-top-right-radius:{{radius}}rpx">
+      <text class="tui-select--header-text" style="font-size:{{titleSize}}rpx;color:{{titleColor}};font-weight:{{fontWeight}}">{{title}}</text>
+      <view class="tui-select--header-close" catchtap="handleClose">
+        <icon type="clear" color="#ccc" size="{{16}}"></icon>
+      </view>
+      <view class="tui-select--header-line" style="background:{{dividerColor}}"></view>
+    </view>
+    <scroll-view scroll-y class="tui-select--scroll" style="height:{{height}}rpx">
+      <view class="tui-select--list">
+        <view class="tui-select--item {{reverse?'tui-select--reverse':''}} {{highlight && !model.disabled?'tui-select--item-active':''}} {{model.disabled?'tui-select--disabled ':''}}" style="padding:{{padding}}" bindtap="itemClick" data-index="{{index}}" wx:for="{{itemList}}" wx:for-item="model" wx:key="index">
+          <view class="tui-select--checkbox {{isCheckMark?'tui-select--is-checkmark ':''}}" style="background:{{model.checked && !isCheckMark ?(checkboxColor || g_primary):'transparent'}};border-color:{{model.checked && !isCheckMark ?(checkboxColor || g_primary):borderColor}}">
+            <view class="tui-select--checkmark" style="border-bottom-color:{{checkmarkColor}};border-right-color:{{checkmarkColor}}" wx:if="{{model.checked}}"></view>
+          </view>
+          <view class="tui-select--flex">
+            <view class="tui-select--icon-box {{!reverse?'tui-select--icon-ml':'tui-select--icon-mr'}}" style="width:{{iconWidth}}rpx;height:{{iconWidth}}rpx;background:{{iconBgColor}}" wx:if="{{model.src}}">
+              <image src="{{model.src}}" style="width:{{iconWidth}}rpx;height:{{iconWidth}}rpx" mode="widthFix"></image>
+            </view>
+            <text class="tui-select--item-text {{reverse?'tui-select--text-pr':'tui-select--text-pl'}}" style="font-size:{{size}}rpx;color:{{color}}">{{model.text}}</text>
+          </view>
+          <view wx:if="{{dividerLine}}" class="tui-select--item-line" style="background:{{dividerColor}};left:{{reverse?0:bottomLeft}}rpx;right:{{reverse?bottomLeft:0}}rpx">
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="tui-select--btn-wrap">
+      <view class="tui-select--btn" style="background:{{btnBackground || g_primary}}">
+        <text class="tui-select--btn tui-select--btn-text" style="color:{{btnColor}}" catchtap="handleClick">{{btnText}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<wxs module="parse">
+  module.exports = {
+    getStyles: function (maskBackground, zIndex) {
+      return "background:" + maskBackground + ";z-index:" + (parseInt(zIndex) - 1)
+    }
+  }
+</wxs>

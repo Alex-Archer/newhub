@@ -1,0 +1,88 @@
+.container {
+    padding: 40rpx 0 280rpx 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* 列表拿来 */
+.tui-order-list {
+    width: 100%;
+    padding: 0 25rpx 80rpx 25rpx;
+
+    box-sizing: border-box;
+}
+
+.tui-order-item {
+    margin-bottom: 40rpx;
+    border-radius: 12rpx;
+    box-shadow: 0 5rpx 10rpx 0 rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.certificate-img
+{
+    width: 100%;
+}
+.title-box
+{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.box-title{
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #999;
+}
+.box-tag
+{
+    margin-right:45rpx;
+}
+.color-red
+{
+    color:red;
+}
+
+.store-add
+{
+
+    width: 100%;
+
+    margin: 20rpx 0 30rpx 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.store-add-text{
+    font-size:30rpx;
+    color: #666;
+    margin-left:6rpx;
+}
+
+.boot-box {
+	display: flex;
+    align-items: center;
+    justify-content: flex-end;
+	margin-top: 32rpx;
+	padding-bottom: 8rpx;
+	font-size: 26rpx;
+	color: var(--thorui-text-color-grey);
+	line-height: 1em;
+	list-style: none;
+	overflow: hidden
+}
+.boot-box-meta
+{
+    font-size: 24rpx;
+}
+
+.boot-box-extra {
+	padding-left: 1em;
+	/* border-left: 1rpx solid var(--thorui-text-color-grey) */
+}
+.box-panel
+{
+    justify-content: space-between;
+}

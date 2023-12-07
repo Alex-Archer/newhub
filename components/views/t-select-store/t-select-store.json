@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tui-bottom-popup":"../../thorui/tui-bottom-popup/tui-bottom-popup",
+    "tui-icon":"../../thorui/tui-icon/tui-icon",
+    "tui-button":"../../thorui/tui-button/tui-button"
+  }
+}

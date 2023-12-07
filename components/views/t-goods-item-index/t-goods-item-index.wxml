@@ -1,0 +1,26 @@
+<view class="tui-product__item {{isList ? 'tui-flex__list' : ''}}" hover-class="tui-hover" hover-start-time="150" bindtap="detail">
+    <view class="img-k">
+      <image src="{{entity.img}}" class="tui-product__img {{isList ? 'tui-img__list' : ''}}"  mode="widthFix" />
+      <view class="img-play" wx:if="{{entity.video}}">
+        <tui-icon size="1.5" unit="rem" color="rgba(255,255,255,0.8);" name="play"></tui-icon>
+      </view>
+    </view>
+    
+		<view class="tui-product__content">
+			<view class="tui-product__title">{{ entity.title || '' }}</view>
+			<view>
+      
+				<view class="tui-product__price">
+          <view class="avatar">
+            <image class="avatar-img" src="{{ entity.headimg || '' }}"></image>
+          </view>
+          <view class="uname">{{ entity.uname || '佚名' }}</view>
+          <view class="zan">
+            <tui-icon size=".8" unit="rem" color="#626262" name="agree" margin="0 5rpx 0 0" content="{{entity.love||'0'}}" ></tui-icon>
+          </view>
+
+				</view>
+				<!-- <view class="tui-product__pay">{{ entity.payNum || 0 }}人付款</view> -->
+			</view>
+		</view>
+	</view>

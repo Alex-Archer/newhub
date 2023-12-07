@@ -1,0 +1,13 @@
+{
+    "usingComponents": {
+        "tui-no-data":"/components/thorui/tui-no-data/tui-no-data"
+    },
+
+"navigationBarTitleText": "我的服务场馆",
+"backgroundTextStyle": "dark",
+"navigationBarBackgroundColor": "#ffffff",
+"navigationStyle": "default",
+"backgroundColorTop": "#ffffff",
+"backgroundColorBottom": "#ffffff",
+"navigationBarTextStyle": "black"
+  }

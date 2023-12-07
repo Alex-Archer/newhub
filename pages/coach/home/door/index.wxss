@@ -1,0 +1,216 @@
+/* 不显示滚动条*/
+.container {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+.page-scroll
+{
+  height:calc(100vh - 180rpx) ;/*底部菜单高，也可以放style中计算*/
+  width: 100vw;
+  
+}
+/* 不显示滚动条END */
+
+/* 背影图 */
+.bgImage{
+  position: absolute;
+  height:100%;
+  width:100%;
+  z-index: -1;
+  opacity: 0.5;
+  overflow: hidden;
+}
+.bgImage>image{
+  height:100%;
+  width:100%;
+  background: rgba(0,0,0,0.2);
+  -webkit-filter:blur(15px);
+  -moz-filter:blur(15px);
+  -o-filter:blur(15px);
+  -ms-filter:blur(15px);
+  filter:blur(15px);
+}
+/* 背影图END */
+
+/* 半圆分隔线 */
+.tui-bg-line{
+  height: 30rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  
+  
+}
+.tui-bg-line-l,.tui-bg-line-r{
+  width: 15rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  background-color: rgb(46,113,117,0);
+
+  
+}
+.tui-bg-line-l{
+  /* border-radius: 0 15rpx 15rpx 0; */
+}
+.tui-bg-line-r{
+  /* border-radius: 15rpx 0 0 15rpx; */
+}
+.tui-bg-line-c{
+  height: 30rpx;
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tui-bg-line-c .line-line{
+  height: 1rpx;
+  background-color: #eaeef1;
+  width: 90%;
+}
+
+.line-img
+{
+    width: 15rpx;
+    height: 30rpx;
+}
+/* 半圆分隔线END */
+
+.tui-box {
+  width: 100%;
+  padding: 4vh 12% 0 12%;
+  box-sizing: border-box;
+
+}
+
+.tui-goods-title {
+  font-size: 32rpx;
+  height: 46rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx 20rpx 0 0;
+  background-color: #fff;
+  padding: 26rpx 30rpx 10rpx 30rpx;
+  letter-spacing: 2px;
+  color: red;
+  font-weight: bold;
+
+}
+
+/* 二维码页采来 */
+.qrcode {
+  width: 260rpx;
+  height: 260rpx;
+  margin: 45rpx auto 43rpx auto;
+}
+
+.hidden-box {
+  padding: 35rpx 40rpx 27rpx 40rpx;
+  box-sizing: border-box;
+  color: #333;
+  /* border-top: 1rpx solid #EAEEF1; */
+}
+
+.code-tit {
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+
+.code-num {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  padding-top: 23rpx;
+  font-weight: bold;
+}
+
+.qrcode-box {
+  width: 100%;
+  border-bottom: 1rpx dashed #eaeef1;
+  margin-bottom: 6rpx;
+}
+.img-box {
+    width: 100%;
+    border-bottom: 1rpx dashed #eaeef1;
+    margin-bottom: 6rpx;
+  }
+  .img-box-src
+  {
+      width: 100%;
+  }
+.list-item {
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+
+
+.list-item::after {
+  left: 0;
+}
+.item-tit {
+  color: #666;
+}
+
+.item-con {
+  color: #777;
+  display: flex;
+}
+
+.err-msg
+{
+    display: flex;
+    justify-content: center;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 26rpx;
+    color:#ff7900 ;
+    letter-spacing: 2rpx;
+}
+.explain {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #666;
+  padding: 33rpx 0 25rpx 0
+}
+
+.explain-text {
+  font-size: 26rpx;
+  line-height: 45rpx;
+  color: #888;
+}
+/* 二维码页采来END */
+
+.list-item-pass {
+    height: 90rpx;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 28rpx;
+  }
+  .pass-title
+  {
+      color: #ff7900;
+      padding-right: 10rpx;
+
+  }
+  .pass-msg
+  {
+      color: blue;
+      padding-right: 10rpx;
+      font-weight: bold;
+      letter-spacing: 2rpx;
+      font-size: 30rpx;
+  }  

@@ -1,0 +1,39 @@
+ <view
+    class="tui-input__wrap {{isFillet && parse.getRadius(radius,g_radius,1)!=-1?'tui-radius__fillet':''}}"
+    style="padding:{{padding || g_padding}};background-color:{{backgroundColor || g_backgroundColor}};border-radius: {{parse.getRadius(radius,g_radius,1)}}rpx;margin-top: {{marginTop}}rpx;" bindtap="fieldClick">
+    <view class="tui-input__border-top" wx:if="{{borderTop && !inputBorder}}" style="border-top-color:{{borderColor}}">
+		</view>
+		<view class="tui-input__border-bottom {{lineLeft?'tui-line__left':''}}" wx:if="{{borderBottom && !inputBorder}}"
+			style="border-bottom-color:{{borderColor}}"></view>
+		<view class="tui-input__border {{isFillet && parse.getRadius(radius,g_radius,1)!=-1?'tui-radius__fillet':''}}"  wx:if="{{inputBorder}}"
+			style="border-color:{{borderColor}};border-radius:{{parse.getRadius(radius,g_radius,2)}}rpx"></view>
+    <view class="tui-input__required" style="color:{{requiredColor || danger}}" wx:if="{{required}}">*</view>
+    <view class="tui-input__label" style="font-size:{{labelSize || g_labelSize}}rpx;color:{{labelColor || g_labelColor}};min-width:{{labelWidth+'rpx'}}"
+      wx:if="{{label}}">
+      {{label}}
+    </view>
+    <slot name="left"></slot>
+    <input class="tui-input__self {{textRight?'tui-text__right':''}}" style="font-size:{{size || g_size}}rpx;color:{{color || g_color}}"
+      placeholder-class="tui-input__placeholder" type="{{type}}" name="{{name}}" model:value="{{value}}"
+      password="{{password}}" placeholder="{{placeholder}}" placeholder-style="{{placeholderStyl}}"
+      disabled="{{disabled}}" cursor-spacing="{{cursorSpacing}}" maxlength="{{maxlength}}" focus="{{focused}}" confirm-type="{{confirmType}}"
+      confirm-hold="{{confirmHold}}" cursor="{{cursor}}" selection-start="{{selectionStart}}"
+      selection-end="{{selectionEnd}}" adjust-position="{{adjustPosition}}" hold-keyboard="{{holdKeyboard}}"
+      auto-blur="{{autoBlur}}" bindfocus="onFocus" bindblur="onBlur" bindinput="onInput" bindconfirm="onConfirm"
+      bindkeyboardheightchange="onKeyboardheightchange" />
+    <icon type="clear" size="{{clearSize}}" color="{{clearColor}}" wx:if="{{clearable && value != ''}}"
+      catchtap="onClear"></icon>
+    <slot name="right"></slot>
+  </view>
+
+  <wxs module="parse">
+  module.exports={
+    getRadius:function(radius,g_radius,multiple){
+      var rd = radius
+      if(rd==-1 || rd===true){
+        rd = g_radius
+      }
+      return parseInt(rd) * multiple
+    }
+  }
+  </wxs>

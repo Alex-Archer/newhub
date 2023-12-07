@@ -1,0 +1,194 @@
+<wxs src="/wxs/utils.wxs" module="parseUtils"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="container">
+  <!-- 日期选择===================== -->
+  <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
+    <view class="select-date-title">
+      <view class="title-date" wx:if="{{today}}">
+        <view class="date-day">{{today.day}}</view>
+        <view class="date-all">
+          <view class="day-week">星期{{today.week}}</view>
+          <view class="day-date">{{today.date}}</view>
+        </view>
+      </view>
+      <view class="title-menu">
+        <view class="menu-addclass">
+          <ald-icon size="32" padding="0 8rpx 0 0" unit="rpx" name="help" content="" color="#319fa6"></ald-icon>
+          <view class="restToday" bind:tap="actionHelper">帮助说明</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="data-list">
+    <!-- 日期选择===================== -->
+    <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
+      <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="into{{scrollInto}}">
+        <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="into{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
+          <!-- <view class="tui-tab-item-week" wx:if="{{index%2==0}}" >日</view> -->
+          <view class="tui-badge-item">
+            <view class="tui-tab-item-week">{{ tab.weekday }}</view>
+            <!-- margin="-10rpx 0 0 100rpx"  top="-6rpx" dot 不同时用，都可以上下定位  -->
+            <block wx:if="{{dateBarsTotal[index]>0}}">
+              <tui-badge dot="{{true}}" margin="-10rpx 0 0 100rpx" translateX="50%" type="red" absolute scaleRatio="0.8"></tui-badge>
+            </block>
+            <block wx:else>
+              <tui-badge margin="-10rpx 0 0 100rpx" translateX="50%" type="gray" absolute scaleRatio="0.8">无</tui-badge>
+            </block>
+          </view>
+          <view class="tui-tab-item-title {{tabIndex == index?'tui-tab-item-title-active':''}}">{{ tab.name }}</view>
+        </view>
+      </scroll-view>
+
+    </view>
+    <!-- 日期选择END ===================== -->
+  </view>
+
+  <view class="tui-line-h"></view>
+  <swiper current="{{tabIndex}}" class="tui-swiper-box" duration="300" bindchange="tabChange">
+    <swiper-item class="tui-swiper-item" wx:for="{{newsList}}" wx:for-item="tab" wx:for-index="index1" wx:key="index1">
+      <scroll-view style="height: 65vh;" class="tui-scroll-v" refresher-enabled refresher-triggered="{{tab.refreshing}}" refresher-background="#fafafa" enable-back-to-top refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" data-index="{{index1}}" bindrefresherrefresh="onrefresh">
+
+        <!-- 内 -->
+        <view class="tui-order-list">
+          <block wx:for="{{newsList[tabIndex].data}}" wx:for-item="item" wx:for-index="index2" wx:key="index2" bindtap="detail">
+            <!-- 循环 -->
+            <view class="schedule-list" style="border-left: 2px solid {{parse.getColor(item.source)}}">
+              <view class="schedule-list-t">
+                <view class="schedule-list-tl">
+                  <view class="list-tl-time">{{parseUtils.secondToHm(item.start_time)}}</view>
+                  <view class="list-tl-split">|</view>
+                  <view class="list-tl-time">{{parseUtils.secondToHm(item.end_time)}}</view>
+                  <view class="list-tl-type">
+                    <block wx:if="{{item.source==0}}">
+                      <view class="tui-coupon-btn tuan">团</view>
+                    </block>
+                    <block wx:if="{{item.source==1}}">
+                      <view class="tui-coupon-btn shi">私</view>
+                    </block>
+                    <block wx:if="{{item.source==2}}">
+                      <view class="tui-coupon-btn ji">营</view>
+                    </block>
+                  </view> 
+                  <!-- <view class="list-tl-state">已预约</view> -->
+                </view>
+                <view class="schedule-list-tc"></view>
+                <block wx:if="{{item.source==0}}">
+                  
+                  <!-- 团课-->
+                  <view class="schedule-list-tr">
+                    <view class="list-tr-name">
+                        <view class="name">{{item.course_title}}</view>
+                        <!-- <view class="tag">学员未到达</view> -->
+                    </view>
+                    <view class="list-tr-class">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="bookmark" color="#5f5f5f"></ald-icon></view>
+                      <view class="title" >{{item.room_title}}</view>
+                      <view class="section">第{{item.course_schedule}}/{{item.course_quantity}}节课</view>
+                    </view>
+                    <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="shop" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_title}}</view>                  
+                    </view>
+                    <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="location" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_address}}</view>                  
+                    </view>    
+                  </view>
+                  <!-- 团课END-->
+                </block>
+                <block wx:if="{{item.source==1}}">
+                   <!-- 私教课 -->
+                    <view class="schedule-list-tr">
+                      <view class="list-tr-name">
+                          <view class="name">{{item.course_title}}</view>
+                          <!-- <view class="tag">学员未到达</view> -->
+                      </view>
+                      <view class="list-tr-class">
+                        <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="my-lack" color="#5f5f5f"></ald-icon></view>
+                        <view class="title" >{{item.user_nickname}}</view>
+                      </view>
+                      <view class="list-tr-class">
+                        <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="bookmark" color="#5f5f5f"></ald-icon></view>
+                        <view class="title" >{{item.room_title}}</view>
+                      </view>
+                      <view class="list-tr-address">
+                        <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="shop" color="#5f5f5f"></ald-icon></view>
+                        <view>{{item.store_title}}</view>            
+                      </view>
+                      <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="location" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_address}}</view>                  
+                    </view>     
+                    </view>
+                   <!-- 私教课END-->
+                </block>
+                <block wx:if="{{item.source==2}}">
+                  <!-- 训练营-->
+                  <view class="schedule-list-tr">
+                    <view class="list-tr-name">
+                        <view class="name">{{item.course_title}}</view>
+                        <!-- <view class="tag">学员未到达</view> -->
+                    </view>
+                    <view class="list-tr-class">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="bookmark" color="#5f5f5f"></ald-icon></view>
+                      <view class="title" >{{item.room_title}}</view>
+                      <view class="section">第{{item.course_schedule}}/{{item.course_quantity}}节课</view>
+                    </view>
+                    <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="shop" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_title}}</view>                  
+                    </view>
+                    <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="location" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_address}}</view>                  
+                    </view>                    
+                  </view>
+                  <!-- 训练营END-->
+                </block>
+               
+                <view class="schedule-list-tel" wx:if="{{item.user_mobile}}" data-tel="{{item.user_mobile}}"  bindtap="callUserMobile" >
+                  <ald-icon padding="0" size="50" unit="rpx" name="tel-circle" color="#319fa6"></ald-icon>
+                </view>
+              </view>
+              <view class="schedule-list-d">
+                <view class="sign" data-id="{{item.id}}" bindtap="signScan">签到</view>
+              </view>
+            </view>
+            <!-- 循环END -->
+          </block>
+
+          <!-- 更多 -->
+          <view class="tui-loading-more">
+            <tui-loadmore wx:if="{{newsList[tabIndex].isLoading}}" index="3"></tui-loadmore>
+            <block wx:if="{{!newsList[tabIndex].isLoading}}">
+              <tui-no-data wx:if="{{newsList[tabIndex].noData}}" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">当天无日程</tui-no-data>
+              <tui-nomore wx:if="{{!newsList[tabIndex].noData&&newsList[tabIndex].pageIndex >= newsList[tabIndex].lastPage}}" backgroundColor="#fafafa"></tui-nomore>
+            </block>
+          </view>
+          <!-- 更多END -->
+
+        </view>
+        <!-- 内END -->
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>
+<coach-tabbar selectedColor="#ff7900" isFixed="{{true}}" tabBar="{{tabBar}}" hump="{{true}}" current="{{tabBarCurrent}}" bindclick="tabbarSwitch"></coach-tabbar>
+
+<wxs module="parse">
+    module.exports = {
+         getColor:function(_sourse){
+           if(_sourse==1){
+            return "#7030a0;"
+           }else if(_sourse==2){
+            return "#0070c0;"
+           }else if(_sourse==0){
+            return "#459a00;"
+           }else{
+            return "#fe8e61;"
+           }
+         }
+    }
+     
+  </wxs>

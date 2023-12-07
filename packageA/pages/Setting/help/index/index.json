@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "tui-bottom-popup":"/components/thorui/tui-bottom-popup/tui-bottom-popup",
+    "wxParse": "/components/parse/wxParse/wxParse"
+  },
+  "navigationBarTitleText": "帮助中心",
+
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+  "navigationBarTextStyle": "black"
+}
+

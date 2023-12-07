@@ -1,0 +1,65 @@
+<view class="container">
+  <!--头部背景色-->
+  <tui-banner-arc height="400" background="-webkit-linear-gradient(#569ca1,#569ca1)"></tui-banner-arc>
+  <!--头部背景色 END-->
+  <view class="tui-border"></view>
+  <view class="tui-content-box">
+    <view class="tui-box">
+      <view class="tui-course-item" style="background: -webkit-linear-gradient(#ceecea,#ffffff);">
+        <image src="{{globalURL}}/miniprogram/url-img/order/coach-home/course-1.png" class="tui-course-img"></image>
+        <view class="tui-course-info">
+          <view class="tui-course_title">空中瑜伽-打造完美曲线</view>
+          <view>进阶强化 重塑s曲线</view>
+          <view class="tui-course_tag">
+            <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">力量训练</tui-tag>
+            <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">全身增肌</tui-tag>
+            <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">减压放松</tui-tag>
+          </view>
+        </view>
+        <view class="tui-course-button">
+          <view class="tui-course_price"><text>¥220</text>/节</view>
+        </view>
+      </view>
+      <image src="{{globalURL}}/miniprogram/url-img/order/order-detail/border.png" mode="widthFix" style="width: 100%;"></image>
+      <view class="tui-order">
+        <view>订单号：123454678998741225</view>
+        <view>下单时间：2023-08-02 15:53</view>
+        <view>购买项目：一对一授课</view>
+        <view>上课时间：2023-08-01 17:00~17:30</view>
+        <view>上课地点：昆山市祖冲之路店</view>
+        <view>上课教练：李教练</view>
+        <view>课程节数：35节</view>
+        <view>课程总价：¥15999</view>
+        <view>优惠额度：¥600</view>
+        <view style="color: #fe8e60;">实际付款：¥9999</view>
+      </view>
+    </view>
+    <!--推荐课程-->
+    <view class="tui-box">
+      <view class="tui-title">
+        <tui-section title="推荐课程" is-line background="#fff" line-color="#68a9ad" margin="0" size="28" font-weight="bold"></tui-section>
+        <text style="font-size: 24rpx;">更多课程 ></text>
+      </view>
+      <view class="tui-course">
+        <!--课程列表-->
+        <view class="tui-course-item">
+          <image src="{{globalURL}}/miniprogram/url-img/order/coach-home/course-1.png" class="tui-course-img"></image>
+          <view class="tui-course-info">
+            <view class="tui-course_title">空中瑜伽-打造完美曲线</view>
+            <view>进阶强化 重塑s曲线</view>
+            <view class="tui-course_tag">
+              <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">力量训练</tui-tag>
+              <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">全身增肌</tui-tag>
+              <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">减压放松</tui-tag>
+            </view>
+          </view>
+          <view class="tui-course-button">
+            <view class="tui-course_price"><text>¥220</text>/节</view>
+            <tui-button margin="10rpx 0 0 0" type="warning" shape="circle" width="120rpx" height="45rpx" size="22" bindclick="detail">立即购买</tui-button>
+          </view>
+        </view>
+        <!--课程列表 END-->
+      </view>
+    </view>
+  </view>
+</view>

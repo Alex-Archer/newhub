@@ -1,0 +1,12 @@
+<view class="tui-waterfall__box" style="padding-left: {{leftGap}};padding-right: {{rightGap}};background: {{backgroundColor}}; border-radius:{{radius}}">
+		<view class="tui-waterfall__list" id="tui-waterfall__left" style="margin-right:{{columnGap}}">
+			<block wx:for="{{leftList}}" wx:key="index">
+			  <item index="{{index}}" entity="{{item}}" isList="{{isList}}"></item>
+			</block>
+		</view>
+		<view wx:if="{{columnCount > 1}}" class="tui-waterfall__list" id="tui-waterfall__right">
+			<block wx:for="{{rightList}}" wx:key="index">
+				 <item index="{{index}}" entity="{{item}}" isList="{{isList}}"></item>
+			</block>
+		</view>
+	</view>

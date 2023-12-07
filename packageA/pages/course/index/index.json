@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "tui-tabbar": "/components/thorui/tui-tabbar/tui-tabbar",
+    "tui-input": "/components/thorui/tui-input/tui-input"
+  },
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#fff",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "课程",
+  "navigationStyle": "custom"
+}

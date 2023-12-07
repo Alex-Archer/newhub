@@ -1,0 +1,3 @@
+<view class="tui-content">
+      <wxParse nodes="{{htmlSnip}}"></wxParse> 
+</view>

@@ -1,0 +1,20 @@
+<view class="container">
+  <tui-notice-bar padding="{{['0','20rpx','0','20rpx']}}" wx:if="{{noticeBarShow}}" is-left scrollable color="#f54f46" content="{{noticeBarContent}}" is-fixed>
+    <view slot="left" class="tui-padding">
+      <tui-icon name="news-fill" size="48" unit="rpx" color="#f54f46"></tui-icon>
+    </view>
+  </tui-notice-bar>
+  <view class="tui-flex">
+    <view class="head-img">
+      <image src="{{globalURL}}/miniprogram/url-img/about/about500X500.png" class="img-avatar" mode="widthFix"></image>
+    </view>
+  </view>
+  
+  <view class="tui-content-box">
+
+    <view class="tui-content">
+      <wxParse nodes="{{htmlSnip}}"></wxParse> 
+    </view>
+
+  </view>
+</view>

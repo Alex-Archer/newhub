@@ -1,0 +1,110 @@
+
+.tui-tab{
+  width: 100%;
+  padding: 30rpx 50rpx;
+  background-color: #FFFFFF;
+  border-top: 1px solid #fafafa;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tui-tab .hover{
+  border-bottom: 2px solid #ff7f36;
+}
+.tui-box{
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 3rpx 20rpx rgba(183, 183, 183, 0.1);
+  border-radius: 10rpx 10rpx;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+.tui-course{
+  padding: 30rpx;
+}
+.tui-course-item {
+	width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26rpx;
+  margin-bottom: 20rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid #fafafa;
+}
+.tui-course-item:last-child{
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.tui-course-img {
+	width: 140rpx;
+	height: 140rpx;
+	flex-shrink: 0;
+	margin-right: 16rpx;
+}
+.tui-course-info {
+  flex: 1;
+	height: 132rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: space-between;
+}
+.tui-course-info .tui-course_title{
+  font-size: 27rpx;
+  font-weight: bold;
+ 
+
+    /* 文字太长...号 */
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+.tui-course-info .tui-course_title .tui--course_tag{
+  padding: 5rpx 16rpx;
+  background-color: #111111;
+  color: #fceeb7;
+  font-size: 22rpx;
+  border-radius: 0 15rpx 0 15rpx;
+  margin-left: 10rpx;
+}
+.tui-course-button {
+	position: relative;
+	margin-left: auto;
+  flex-shrink: 0;
+  text-align: right;
+  display: flex;
+  height: 120rpx; 
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;  
+}
+.tui-course-button .tui-course_price{
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fe8e60;
+}
+.tui-course-button .tui-course_num{
+  font-size: 30rpx;
+}
+.tui-course-total{
+  width: 100%;
+  text-align: right;
+  font-size: 27rpx;
+  color: #666666;
+  display: block;
+}
+.tui-course-total .tui-course-total_num{
+  margin-left: 20rpx;
+  color: #fe8e60;
+}
+.tui-course-total .tui-course-total_num text{
+  font-size: 30rpx;
+  font-weight: bold;
+}

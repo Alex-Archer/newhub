@@ -1,0 +1,54 @@
+<view class="container">
+		<map id="maps" class="tui-maps" show-location longitude="{{longitude}}" latitude="{{latitude}}" scale="{{16}}" bindregionchange="regionchange">
+			<cover-image class="tui-cover-back" src="/static/img/map/icon_back_3x.png" catchtap="back" />
+			<cover-image class="tui-cover-image {{ani?'tui-ani':''}}" src="/static/img/map/icon_marker_3x.png" />
+			<cover-image src="/static/img/map/icon_location_3x.png" class="tui-current-img" catchtap="currentLocation"></cover-image>
+		</map>
+		<view class="tui-search__box">
+			<view class="thorui-flex__center" bindtap="search">
+				<icon class="tui-icon__search" type="search" size="{{14}}" color="#999"></icon>
+				<view class="tui-search__text">搜索地点</view>
+			</view>
+		</view>
+		<scroll-view scroll-y scroll-top="{{scrollTop}}" class="tui-scroll-view" style="height:{{scrollH + 'px'}}" bindscrolltolower="getLocation">
+			<radio-group class="thorui-radio" style="min-height:{{scrollH + 'px'}}" bindchange="radioChange">
+				<label wx:for="{{address}}" wx:key="index">
+					<tui-list-cell padding="30rpx">
+						<view class="tui-list__item">
+							<view class="tui-addr-box">
+								<view class="tui-addr-title">{{ item.title }}</view>
+								<view class="tui-addr-detail">
+									<text class="tui-distance">{{parse.getDistance(item.distance,item._distance) }}</text>
+									<text>{{ item.address }}</text>
+								</view>
+							</view>
+							<view class="tui-radio-box"><radio color="#81c2c6" value="{{index}}"></radio></view>
+						</view>
+					</tui-list-cell>
+				</label>
+				<tui-loadmore index="{{3}}" wx:if="{{loading}}"></tui-loadmore>
+				<view class="tui-seize__seat"></view>
+			</radio-group>
+		</scroll-view>
+		<view class="tui-btn__box">
+			<tui-button type="default" disabledGray disabled="{{index == -1}}" height="72rpx" shape="circle" size="{{30}}" bindclick="btnFix">确定</tui-button>
+
+			<view class="tui-seize__seat"></view>
+		</view>
+	</view>
+
+  <wxs module="parse">
+    module.exports = {
+         getDistance:function(distance, _distance){
+            distance = distance || _distance;
+            var result = '';
+            if (distance < 1000) {
+              result = distance + 'm';
+            } else {
+              result = (distance / 1000).toFixed(2) + 'km';
+            }
+            return result;
+         }
+    }
+     
+  </wxs>

@@ -1,0 +1,79 @@
+.tui-notice__bar {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tui-notice__fixed {
+  position: fixed;
+  left: 0;
+  z-index: 100;
+}
+
+.tui-notice__shrink {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tui-notice__wrap {
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tui-notice__wrap-scroll {
+  flex-direction: row;
+}
+
+.tui-notice__wrap-scroll {
+  position: relative;
+}
+
+.tui-notice__content {
+  flex: 1;
+  display: block;
+  overflow: hidden;
+}
+
+.tui-notice__text {
+  word-break: break-all;
+}
+
+.tui-notice__content-single {
+  display: flex;
+  flex: none;
+  width: 100%;
+  justify-content: center;
+}
+
+.tui-notice__single {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  flex-direction: row;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tui-notice__scrollable {
+  position: absolute;
+  display: block;
+  white-space: nowrap;
+  padding-left: 101%;
+  animation: notice 10s 0s linear infinite both;
+  animation-play-state: paused;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+@keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}

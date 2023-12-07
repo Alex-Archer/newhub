@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+    },
+    "navigationBarTitleText": "我的开门密码",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationStyle": "default",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff"
+  }

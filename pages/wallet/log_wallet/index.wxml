@@ -1,0 +1,99 @@
+<view class="container" wx:if="{{!preventOnShow}}">
+    <tui-list-cell hover="{{false}}">
+        <view class="page-head">
+
+            <view class="page-l">
+            <view class="page-title">全部</view>
+            <view class="page-ms">
+                <text class="ms-title">累计:</text>
+                <text class="ms-content">￥0.00</text>
+                <text class="ms-title">订单量:</text>
+                <text class="ms-content">0</text>
+            </view>
+            </view>
+
+<view class="page-date">
+<!--下拉选择框 dropdownlist-->
+<view class="tui-drop-input-box">
+    <tui-dropdown-list selectHeight="50" show="{{dropdownShow}}" top="52" height="420">
+      <view slot="selectionbox">
+        <!-- <tui-button type="white" shape="circle" bindclick="dropDownList" data-index="-1"> -->
+        <view class="tui-button-box" bind:tap="dropDownList" data-index="-1">
+        {{dropdownIndexText}}
+          <view class="tui-animation {{dropdownShow?'tui-animation-show':''}}">
+            <tui-icon name="turningdown" size="20"></tui-icon>
+          </view>
+        </view>
+        <!-- </tui-button> -->
+      </view>
+      <view slot="dropdownbox">
+        <view class="tui-selected-list">
+          <scroll-view scroll-y class="tui-dropdown-scroll">
+            <block wx:for="{{dropdownlistData}}" wx:key="index">
+              <tui-list-cell padding="0" bindclick="dropDownList" data-index="{{index}}" unlined="{{dropdownlistData.length-1==index}}">
+                <view class="tui-cell-class">
+                  <tui-icon wx:if="{{dropdownlistIcon}}" name="{{item.icon}}" size="{{item.size}}" color="{{item.color}}"></tui-icon>
+                  <text>{{item.name}}</text>
+                </view>
+
+              </tui-list-cell>
+            </block>
+          </scroll-view>
+        </view>
+      </view>
+    </tui-dropdown-list>
+  </view>
+  <!--下拉选择框-->
+
+</view>
+            <!-- <view class="page-date">下拉选择</view> -->
+        </view>
+    </tui-list-cell>
+    <view class="list-box">
+        <scroll-view class="tui-scroll-v" 
+        refresher-enabled 
+        refresher-triggered="{{refreshing}}" 
+        refresher-background="#fafafa" 
+        enable-back-to-top 
+        refresher-threshold="{{100}}" 
+        scroll-y 
+        bindscrolltolower="loadMore" 
+        bindrefresherrefresh="onrefresh"
+        style="height:calc(100vh - env(safe-area-inset-bottom) - 154rpx)"
+        >
+            <block wx:for="{{logArray}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                <!-- 循环体 -->
+                <tui-list-cell hover="{{false}}">
+                    <view class="tui-item-box">
+                        <view class="cell-left">
+                            <view class="left-price">私教订单推广</view>
+                            <view class="left-date">2023-12-26 17:22:00</view>
+                        </view>
+                        <view class="cell-r">
+                            +20.35
+                        </view>
+                    </view>
+                </tui-list-cell>
+                <!-- 循环体 END -->
+            </block>
+
+            <block wx:if="{{noData}}">
+                <tui-no-data imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无提现记录</tui-no-data>
+                <!-- <tui-no-data fixed="{{false}}" imgUrl="/static/images/toast/img_nodata.png">暂无数据</tui-no-data>
+                <tui-no-data fixed="{{false}}" imgUrl="/static/images/toast/img_nodata.png" btnText="去逛逛" bindclick="extend">您还没有购买任何商品~</tui-no-data> -->
+            </block>
+            <block wx:else>
+                <!-- 更多 -->
+                <view class="tui-loading-more">
+                    <tui-loadmore wx:if="{{isLoading}}" index="3"></tui-loadmore>
+                    <tui-nomore wx:if="{{pageIndex >= lastPage}}" backgroundColor="#fafafa"></tui-nomore>
+                </view>
+                <!-- 更多END -->
+            </block>
+
+
+        </scroll-view>
+    </view>
+
+
+</view>

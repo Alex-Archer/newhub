@@ -1,0 +1,10 @@
+<view class="tui-progress__box">
+	<view class="tui-progressbar__bg"
+		style="height:{{width+'rpx'}};border-radius:{{radius}};background:{{backgroundColor}}">
+		<view class="tui-progress__bar"
+			style="height:{{width+'rpx'}};background:{{activeColor || g_activeColor}};transform:translate3d(-{{translateX}},0,0);transition-duration:{{time}}s">
+		</view>
+	</view>
+	<view class="tui-progress__percent" style="width:{{percentWidth+'rpx'}};font-size:{{size+'rpx'}};color:{{color}}"
+		wx:if="{{showInfo}}">{{percentage}}%</view>
+</view>

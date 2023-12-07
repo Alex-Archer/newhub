@@ -1,0 +1,15 @@
+<text class="tui-icon-class {{customPrefix?'':'tui-icon'}} {{'tui-icon-' + name}} {{customPrefix}} {{customPrefix?name:''}}" style="color: {{parse.getColor(color, g_color)}};font-size: {{parse.getSize(size, g_size, unit, g_unit)}};font-weight:{{bold ? 'bold' : 'normal'}};margin:{{margin}};padding:{{padding}}"
+	 bindtap="handleClick">{{content?content:''}}</text>
+
+   <wxs module="parse">
+    module.exports={
+      getColor: function (color, g_color) {
+				return color || g_color || '#999';
+			},
+      getSize: function (size, g_size, unit, g_unit) {
+				var size = size || g_size || 32;
+        var unit = unit || g_unit || 'px';
+				return size + unit
+			}
+    }
+   </wxs>

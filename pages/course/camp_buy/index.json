@@ -1,0 +1,17 @@
+{
+    "navigationBarTitleText": "集训营订单详情",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "backgroundColorTop": "#fcfcfc",
+    "backgroundColorBottom": "#fcfcfc",
+    "navigationStyle": "default",
+  
+    "usingComponents": {
+      "t-pay-way": "/components/views/t-pay-way/t-pay-way",
+      "t-select-coupons": "/components/views/t-select-coupons/t-select-coupons",
+      "tui-list-cell": "/components/thorui/tui-list-cell/tui-list-cell",
+      "tui-bottom-popup": "/components/thorui/tui-bottom-popup/tui-bottom-popup",
+      "tui-button": "/components/thorui/tui-button/tui-button",
+      "t-select-coupon-type": "/components/views/t-select-coupon-type/t-select-coupon-type"
+    }
+  }

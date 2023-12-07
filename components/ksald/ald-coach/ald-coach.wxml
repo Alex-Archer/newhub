@@ -1,0 +1,17 @@
+<view class="tui-tabs-coach">
+    <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h-coach" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{coachScrollInto}}">
+        <view wx:for="{{entity}}" wx:for-item="tab" wx:key="index" class="tui-tab-item-coach" id="{{tab.id}}" data-current="{{index}}" bindtap="tabClick">
+
+            <view class="tui-badge-item-coach">
+                <view class="tui-avatar-coach">
+                    <image src="{{tab.headimgurl}}" bindtap="href" data-page="3"></image>
+                    <tui-badge wx:if="{{tab.badge}}" margin="-10rpx 0 0 100rpx" translateX="50%" type="{{tab.badgeType}}" absolute scaleRatio="0.8">{{tab.badge}}</tui-badge>
+                </view>
+
+
+            </view>
+
+        </view>
+    </scroll-view>
+    
+</view>

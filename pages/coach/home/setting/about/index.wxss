@@ -1,0 +1,75 @@
+.container {
+    padding: 0 50rpx 40rpx 50rpx;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .tui-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+  }
+  
+  
+  /* 内容区 */
+  .tui-content-box {
+    width: 100%;
+    margin-top: 30px;
+    padding: 30rpx;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 10rpx;
+    box-shadow: 0 0 10rpx #eee;
+  }
+  
+  .tui-content {
+    color: #333;
+    font-size: 30rpx;
+    line-height: 44rpx;
+    padding: 10rpx 0;
+    text-align: justify;
+  }
+  
+  .tui-content-email {
+    color: #5677fc !important;
+  }
+  
+  .tui-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 30rpx;
+  }
+  
+  .tui-applets {
+    width: 80px;
+    height: 80px;
+    display: block;
+  }
+  
+  .tui-footer-text {
+    font-size: 24rpx;
+    color: #999;
+    padding-left: 20rpx;
+    width: 300rpx;
+  }
+  .rich-text{
+    color: #333;
+    font-size: 30rpx;
+    line-height: 60rpx;
+    padding: 10rpx 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: justify;
+  }
+  .rich-text p{
+    word-break: break-all;
+      white-space: pre-warp;
+  }
+  
+  .img-avatar{
+    width: 180rpx;
+    height: 180rpx;
+    border-radius: 50%;
+  }

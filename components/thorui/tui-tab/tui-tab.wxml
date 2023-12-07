@@ -1,0 +1,10 @@
+<scroll-view class="tui-scroll__view {{isFixed && !isSticky?'tui-tabs__fixed':''}} {{isSticky?'tui-tabs__sticky':''}}" style="height:{{height+'rpx'}};background:{{backgroundColor?backgroundColor:''}};top:{{isFixed || isSticky ? top + 'px' : 'auto'}};z-index:{{isFixed || isSticky?zIndex:'auto'}}" scroll-x="{{scrolling}}" scroll-with-animation="{{scrolling}}" scroll-left="{{scrollLeft}}">
+		<view class="tui-tabs__wrap">
+			<view class="tui-tabs__list {{scroll ? 'tui-tabs__scroll' : ''}}" style="height:{{height+'rpx'}}">
+				<view class="tui-tabs__item" style="height: {{height+'rpx'}}" wx:for="{{tabs}}" wx:key="index" bindtap="handleClick" data-index="{{index}}">
+					<view class="tui-item__child" style="color: {{currentTab == index ? (selectedColor || g_primary) : color}};font-size: {{size + 'rpx'}};line-height: {{size + 'rpx'}};font-weight:{{bold && currentTab == index ? 'bold' : 'normal'}};transform:scale({{currentTab == index?scale:1}})">{{item}}</view>
+				</view>
+				<view class="tui-tabs__line {{needTransition ? 'tui-transition' : ''}}" style="background:{{sliderBgColor || g_primary}};height:{{sliderHeight}};border-radius: {{sliderRadius}};bottom: {{bottom}};width: {{lineWidth+'px'}};transform:translateX({{translateX}}px)"></view>
+			</view>
+		</view>
+	</scroll-view>

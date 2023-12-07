@@ -1,0 +1,25 @@
+.tui-section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tui-section__title {
+  position: relative;
+  display: flex;
+  word-break: break-all;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tui-section__decorate {
+  position: absolute;
+}
+
+.tui-section__sub {
+  word-break: break-all;
+}
+
+.tui-section__descr {
+  font-weight: 400;
+}

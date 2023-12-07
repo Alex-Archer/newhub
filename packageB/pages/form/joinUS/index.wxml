@@ -1,0 +1,89 @@
+<tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="加盟招募" backgroundColor="#fff" color="#333"></tui-navigation-bar>
+<!-- <view class="container" wx:if="{{!preventOnShow}}"> -->
+  <view class="container">
+    <!--头部背景色 -->
+    <!-- <tui-banner-arc height="400" background="-webkit-linear-gradient(#2e7175,#2e7175)"></tui-banner-arc> -->
+    <cover-image style="top: {{statusBar}}px;" class="tui-cover-back" src="/static/img/map/icon_back_3x.png" bind:tap="back" />
+
+    <view class="img-box">
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_01.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_02.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_03.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li input-parent">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_04.png" mode="widthFix"></image>
+            
+            <view class="input-box">
+              <view class="input-type">
+                  <view class="type-li {{formtType===0&&'active'}}" data-type="0" bindtap="swichType">综合瑜伽馆</view>
+                  <view class="type-li  {{formtType===1&&'active'}} margin-left40" data-type="1" bindtap="swichType">精品包月私教</view>
+              </view>
+              <view class="input-conten">
+                <!-- 表格区 -->
+                <view class="input-box-l"></view>
+                <view class="input-box-r">
+                  <tui-list-cell hover="{{false}}" marginTop="46" padding="10rpx 30rpx" radius="30" unlined>
+                        <view class="thorui-input-item">
+                            <input type="number" class="thorui-input" placeholder="请输入手机号" placeholder-class="thorui-phcolor" maxlength="11" bindinput="inputPhone" />
+                        </view>
+                    </tui-list-cell>
+                    
+                    <tui-list-cell hover="{{false}}" marginTop="54" padding="10rpx 30rpx" radius="30" unlined>
+                        <view class="thorui-input-item">
+                            <input type="text" class="thorui-input" placeholder="请输入您的联系称呼" placeholder-class="thorui-phcolor" maxlength="6" bindinput="inputUname" />
+                        </view>
+                    </tui-list-cell>
+
+                    <picker value="{{value}}" mode="multiSelector" bindchange="changePicker" bindcolumnchange="columnPicker" range="{{multiArray}}">
+                        <tui-list-cell marginTop="58" padding="10rpx 30rpx" radius="30" hover="{{false}}" unlined arrow>
+                            <tui-input size="{{32}}" backgroundColor="transparent" borderBottom="{{false}}" padding="0 0 0 0" placeholder="{{text}}" disabled></tui-input>
+                        </tui-list-cell>
+                    </picker>
+                    
+
+
+
+
+
+                </view>
+                
+                <!-- 表格区END -->
+              </view>
+            </view>
+            <view class="tui-ptop">
+                <tui-button borderRadius="35rpx" bgColor="#ff7831" disabled="{{subDisabled}}" type="{{btnType}}" shadow height="110rpx" width="100%" shape="circle" bindclick="submit">{{subText}}</tui-button>
+            </view>
+
+        </view>
+
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_05.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_06.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_07.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_08.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_09.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_10.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_11.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/partner_pub/partner_12.png" mode="widthFix"></image>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,24 @@
+{
+
+  "navigationBarTitleText": "教练中心",
+  "navigationBarTextStyle": "white",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#68a9ad",
+  
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 100,
+  "navigationStyle": "custom",
+
+  "usingComponents": {
+    "refresh": "/components/coolui-scroller/refresh/index",
+    "scroller": "/components/coolui-scroller/scroller/index",
+    "tui-progress": "/components/thorui/tui-progress/tui-progress",
+
+    "tui-section":"/components/thorui/tui-section/tui-section",
+    "tui-rate": "/components/thorui/tui-rate/tui-rate",
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "coach-tabbar": "/components/ksald/coach-tabbar/coach-tabbar",
+    "tui-no-data":"/components/thorui/tui-no-data/tui-no-data"
+
+  }
+}

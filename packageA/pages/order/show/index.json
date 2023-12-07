@@ -1,0 +1,13 @@
+{
+    "usingComponents": {
+        "tui-countdown": "/components/thorui/tui-countdown/tui-countdown"
+      
+  
+    },
+    "navigationBarTitleText": "订单详情",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationStyle": "default",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff"
+  }

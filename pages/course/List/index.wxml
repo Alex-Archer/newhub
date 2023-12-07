@@ -1,0 +1,139 @@
+<wxs src="/wxs/utils.wxs" module="parse"></wxs>
+<view class="container">
+  <view class="top-bar" style="top: {{statusBar}}px;height: {{navBarHeight}}rpx;">
+    <view  class="tui-cover-back" bind:tap="back">
+      <ald-icon size="45" unit="rpx" name="left" color="#000"></ald-icon>
+    </view>
+    <view class="cover-menu" style="height: {{navBarHeight}}rpx;line-height: {{navBarHeight}}rpx;">
+      <view class="store-select" bind:tap="ToMapList">
+        <view class="select-title line-one">{{Location.title}}</view>
+        <view class="select-ico">
+          <ald-icon size="22" customClass="" unit="rpx" margin="0 8rpx 0 0" name="down" color="#6b6b6b"></ald-icon>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 广告 -->
+  <view class="adv-top">
+
+    <!--轮播主件-->
+    <view class="tui-banner-box">
+      <view class="swiper-loding" wx:if="{{loadingSwiper}}"></view>
+      <swiper wx:if="{{!loadingSwiper}}" indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" previous-margin="0" next-margin="0">
+        <swiper-item wx:for="{{banner}}" wx:key="index" class="tui-banner-item">
+          <image src="{{item.poster}}" class="tui-slide-image" mode="scaleToFill" />
+        </swiper-item>
+      </swiper>
+    </view>
+    <!--轮播主件 END -->
+  </view>
+  <!-- 广告END -->
+
+  <!-- 包括到一个块里好定位 -->
+  <view class="fixed-box " id="FixedNavTop">
+
+
+    <!--筛选 下拉排序块-->
+    <view class="dropdown-box" id="dropdowNavTop">
+
+      <!--header-->
+
+      <view class="tui-header {{dropHeaderShow?'tui-header-act':''}}">
+        <view class="tui-header-bottom">
+          <view class="tui-header-bottom-l">
+            <view class="tui-bottom-item {{DropOrderIndex==1?'tui-btmItem-active':'tui-btmItem'}}" data-index="1" bindtap="btnDropOrder">
+              <view class="tui-bottom-text">教练高分</view>
+            </view>
+            <view class="tui-bottom-item  {{DropOrderIndex==2?'tui-btmItem-active':'tui-btmItem'}}" bindtap="btnDropOrder" data-index="2">
+              <view class="tui-bottom-text ">好评优先</view>
+            </view>
+            <view class="tui-bottom-item  {{DropOrderIndex==3?'tui-btmItem-active':'tui-btmItem'}}" bindtap="btnDropOrder" data-index="3">
+              <view class="tui-bottom-text">上课数最多</view>
+            </view>
+          </view>
+
+        </view>
+
+      </view>
+      <!--header-->
+      <view class="tui-top-dropdown-box">
+        <tui-top-dropdown show="{{dropShow}}" paddingbtm="110" translatey="100" bindclose="btnCloseDrop">
+          <scroll-view class="tui-scroll-box" scroll-y scroll-with-animation scroll-top="{{scrollTop}}">
+            <view class="tui-seizeaseat-20"></view>
+            <view class="tui-drop-item {{item.selected?'tui-bold':''}}" wx:for="{{proDropData}}" wx:key="index" catchtap="btnSelected" data-index="{{index}}" data-id="{{item.id}}">
+              <tui-icon name="check" size="16" color="#5677fc" bold="{{true}}" wx:if="{{item.selected}}"></tui-icon>
+              <text class="tui-ml tui-middle">{{item.title}}</text>
+            </view>
+            <view class="tui-seizeaseat-30"></view>
+          </scroll-view>
+          <view class="tui-drop-btnbox">
+            <view class="tui-drop-btn tui-button-white" hover-class="tui-button-white_hover" hover-stay-time="150" bindtap="reset">重置</view>
+            <view class="tui-drop-btn tui-button-primary" hover-class="tui-button-hover" hover-stay-time="150" bindtap="btnCloseDrop">确定</view>
+          </view>
+        </tui-top-dropdown>
+      </view>
+
+    </view>
+    <!--筛选 下拉排序块 END-->
+
+  </view>
+  <!-- 包括到一个块里好定位 END -->
+
+  <!--下部 -->
+  <view class="body-container">
+    <scroll-view class="right-box-scroll" refresher-triggered="{{newsList[0].refreshing}}" refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" style="height: calc(100vh - env(safe-area-inset-bottom) - 300px)">
+      <!--内容部分 start 自定义可删除-->
+      <view class="page-view" style="padding-bottom: calc(env(safe-area-inset-bottom) + 100rpx);">
+
+        <view wx:if="{{loadingData}}" class="no-data">
+          <text class="no-data-txt">数据加载中</text>
+        </view>
+
+        <!-- 无数据 -->
+        <view wx:if="{{!loadingData&&courseList.length<=0}}" class="no-data">
+          <text class="no-data-txt">暂无相关教练</text>
+        </view>
+        <!-- 无数据END -->
+
+
+        <block wx:if="{{!loadingData}}" wx:for="{{courseList}}" wx:for-item="courseitem" wx:for-index="courseIndex" wx:key="courseIndex">
+          <!-- <view style="height: 200rpx;width: 100%;margin: 15rpx 0 15rpx 0;background: #ccc;">{{newsitem.title}}adfasdf</view> -->
+          <!-- 开始列表 -->
+          <!--私教列表-->
+          <view class="tui-course-item_he" data-userid="{{courseitem.userId}}" bind:tap="goToCoach">
+            <view class="tui-course-img-box">
+              <image src="{{courseitem.headimgurl}}" mode="widthFix" class="tui-course-img"></image>
+            </view>
+            <view class="tui-course-info">
+              <view class="tui-course_title">
+                <text style="font-size: 27rpx; font-weight: bold;">{{courseitem.nickName}}<text class="servicepoints">{{courseitem.servicepoints}}分</text>
+                </text>
+                <text class="cGroup">{{courseitem.group}}</text>
+              </view>
+              <view style="font-size: 24rpx; color: #999;">好评率{{courseitem.positivenum}}% | 上课{{courseitem.coursenum}}节</view>
+
+
+              <view class="text-tag">
+                <view wx:for="{{courseitem.goodat}}" wx:key="coursekey" class="border">{{item}}</view>
+              </view>
+              <view wx:if="{{courseitem.introduce}}" class="desc">{{courseitem.introduce}}</view>
+            </view>
+          </view>
+          <!--私教列表 END-->
+
+          <!-- 开始列表END -->
+        </block>
+        <view class="tui-loading-more" wx:if="{{courseList.length>0}}">
+          <tui-loadmore wx:if="{{!loadingData&&isLoading}}" index="50"></tui-loadmore>
+          <tui-nomore wx:if="{{!loadingData&&pageIndex >= lastPage&&!isLoading}}" backgroundColor="#fafafa"></tui-nomore>
+        </view>
+
+      </view>
+
+
+      <!--内容部分 end 自定义可删除-->
+    </scroll-view>
+  </view>
+  <!--下部 END -->
+
+</view>

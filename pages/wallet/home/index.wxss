@@ -1,0 +1,61 @@
+
+  
+  .container {
+    background-color: #fff;
+
+    box-sizing: border-box;
+
+  }
+  
+  .tui-list-cell {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24rpx 60rpx 34rpx 30rpx !important;
+    box-sizing: border-box;
+    font-size: 30rpx;
+  }
+  .tui-item-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.tui-list-cell_name {
+    padding-left: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tui-mtop
+{
+    margin-top: 20rpx;
+}
+  .wallet-top-box
+  {
+      height: 260rpx;
+      background-color: #2e7175;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      box-sizing:border-box;
+      -webkit-box-sizing: border-box;
+      color: #fff;
+  }
+  .top-box-title,.top-box-price{
+      line-height: 60rpx;
+      height: 60rpx;
+      margin-bottom: 15rpx;
+  }
+.top-box-title{
+    font-size: 28rpx;
+}
+.top-box-price{
+    font-size:70rpx;
+    font-weight: bold;
+}
+.top-box-extract
+{
+    margin-top:15rpx;
+
+}

@@ -1,0 +1,12 @@
+<view class="tui-landscape__box">
+  <view class="tui-landscape__inner" style="z-index:{{zIndex}}" wx:if="{{show}}">
+    <slot></slot>
+    <view class="tui-icon__close {{position==1?'tui-icon__bottom':''}}"
+      style="top:{{position!=1?iconTop:'auto'}};bottom:{{position==1?iconBottom:'auto'}};left:{{position==3?iconLeft:(position==1?'50%':'auto')}};right:{{position==2?iconRight:'auto'}}"
+      wx:if="{{closeIcon}}" catchtap="close" data-type="0">
+      <icon type="clear" color="{{iconColor}}" size="{{iconSize}}"></icon>
+    </view>
+  </view>
+  <view style="background-color:{{maskBgColor}};z-index:{{maskZIndex}}" catchtap="close" data-type="1"
+    class="tui-landscape__mask {{!show?'tui-mask_hidden':''}}" wx:if="{{mask}}"></view>
+</view>

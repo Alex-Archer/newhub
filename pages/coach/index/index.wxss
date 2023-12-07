@@ -1,0 +1,470 @@
+@import "./index.skeleton.wxss";
+page {
+  background-color: #f4f4f4;
+}
+.container{
+  padding-top: 0;
+}
+
+/******头部*******/
+.tui-coachInfo{
+  position: relative;
+  width: 80%;
+
+  z-index: 999;
+  text-align: center;
+  margin: -70rpx 10% 0 10%;
+  min-height: 350rpx;
+}
+.tui-avatar {
+  flex-shrink: 0;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 0 auto 10rpx auto;
+  display: block;
+  border-radius: 50%;
+}
+.tui-coachInfo text{
+  line-height: 45rpx;
+  display: block;
+}
+.tui-content-box{
+  width: 100%;
+  padding: 0 30rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  margin-bottom: 180rpx;
+}
+.tui-box {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 3rpx 20rpx rgba(183, 183, 183, 0.1);
+  border-radius: 10rpx 10rpx;
+  margin: 30rpx 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  min-height: 220rpx;
+  
+}
+.tui-box .tui-title{
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  font-size: 32rpx;
+  font-weight: 600;
+  padding: 30rpx 30rpx 10rpx 30rpx;
+}
+.tui-titie-more{
+  color: #515056;
+  font-weight: normal;
+}
+.tui-box .tui-content-text{
+  padding: 10rpx 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 26rpx; 
+  line-height: 45rpx;
+  color: #514a63;
+  /* height: 400rpx; */
+   /* 文字太长...号 */
+   word-break: break-all;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 8;/* 行数 */
+}
+/******banner图片切换*******/
+.tui-banner-box {
+  width: 100%;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  background: #fff;
+}
+.tui-banner-swiper {
+  width: 100%;
+  height: 242rpx;
+}
+.tui-banner-item {
+  padding: 0 16rpx;
+  box-sizing: border-box;
+}
+.tui-slide-image {
+  width: 100%;
+  height: 242rpx;
+  display: block;
+  border-radius: 12rpx;
+  transition: all 0.05s linear;
+}
+.tui-banner-scale {
+  transform: scaleY(0.9);
+  transform-origin: center center;
+}
+.tui-banner-swiper .wx-swiper-dot {
+  width: 8rpx;
+  height: 8rpx;
+  display: inline-flex;
+  background: none;
+  justify-content: space-between;
+}
+.tui-banner-swiper .wx-swiper-dot::before {
+  content: '';
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.tui-banner-swiper .wx-swiper-dot-active::before {
+  background: #fff;
+}
+.tui-banner-swiper .wx-swiper-dot.wx-swiper-dot-active {
+  width: 16rpx;
+}
+/******课程*******/
+.tui-tag-fillet{
+    border-radius: 10rpx;
+}
+.tui-course_tag{
+    display: flex;
+    align-items: center;
+    justify-content:left;
+    flex-shrink: 1;
+    overflow: hidden;
+
+}
+.tui-course{
+  padding: 30rpx;
+}
+.tui-course-item {
+	width: 100%;
+	display: flex;
+	align-items: center;
+  font-size: 26rpx;
+  margin: 30rpx 0;
+
+  padding-bottom: 30rpx;
+  border-bottom: 1px dashed #ebebec;
+}
+.tui-course-item:last-child{
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.tui-course-img {
+	width: 140rpx;
+	height: 140rpx;
+	flex-shrink: 0;
+    margin-right: 16rpx;
+    border-radius: 10rpx;
+}
+.tui-course-info {
+	width: 80%;
+	/* height: 132rpx; */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: space-between;
+}
+.tui-course-info .tui-course_title{
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2a2929;
+  
+}
+.tui-course-button {
+	position: relative;
+	margin-left: auto;
+	flex-shrink: 0;
+}
+.tui-course-button .tui-course_price{
+  font-size: 28rpx;
+  color: #fe8e60;
+}
+.tui-course-button .tui-course_price text{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+/******上课场地*******/
+.tui-area-info{
+  width: auto;
+	height: auto; 
+}
+.tui-area-info .tui-course_title{
+  margin-bottom: 15rpx;
+}
+/******可约时间*******/
+.tui-time .tui-time_circle{
+  font-size: 24rpx;
+}
+.tui-time .tui-time_circle .tui-time_dot{
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: #569ca1;
+  margin-right: 10rpx;
+  display: inline-block;
+}
+.tui-time .tui-time_number{
+  font-size: 24rpx;
+  margin: 15rpx 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   
+}
+.tui-time .tui-time_number .tui-time_dot{
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 50%;
+  background-color: #000000;
+}
+.tui-time .tui-ptop{
+  margin-top: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tui-time .tui-ptop .tui-ptop_day,.tui-time_number .tui-ptop_day{
+  font-size: 24rpx;
+  margin-right: 20rpx;
+  width: 70rpx;
+  min-width: 70rpx;
+}
+
+.tui-time .tui-ptop .tui-progress{
+  flex: 1;
+  height: 16rpx;
+  background-color: #dddddd;
+  border-radius: 20rpx;
+  display: inline-block;
+}
+
+/* 场地弹窗 */
+.store-popup-box{
+  position: relative;
+  padding: 30rpx 0 10rpx 0;
+}
+
+.bottom-popup-close
+{
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+
+}
+.store-popup-title,.time-popup-title
+{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+
+  font-size: 32rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.store-popup-scroll
+{
+  height: 400rpx;
+  font-size: 26rpx;
+  box-sizing: border-box;
+  padding: 30rpx 30rpx;
+
+}
+
+.store-popup-bottom{/*底部按钮暂时未用*/
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100rpx;
+  padding-top: 0;
+
+  
+
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 10;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+.store-popup-flex-1{
+  flex: 1;
+    padding: 16rpx;
+}
+/* 场地弹窗END */
+
+/* 时间弹窗 */
+.time-popup-box{
+  position: relative;
+  padding: 30rpx 0 10rpx 0;
+}
+.time-popup-scroll
+{
+  height: 400rpx;
+  font-size: 26rpx;
+  box-sizing: border-box;
+  padding: 10rpx;
+}
+/* 时间弹窗END */
+.tui-course_item
+{
+    height: 46rpx;
+    line-height: 46rpx;
+    color: rgb(94, 94, 94);
+    font-size: 24rpx;
+}
+.store-score
+{
+    line-height: 55rpx;
+}
+.divide-list
+{
+  min-height: 120rpx;
+}
+
+
+/* 可约时间段 */
+.time-title-dot
+{
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background-color: #569ca1;
+  margin-right: 10rpx;
+  display: inline-block;
+}
+.time-box
+{
+
+  display: block;
+  flex-direction: column;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin: 4rpx 10rpx;
+  padding: 20rpx;
+}
+.time-box-circle
+{
+  font-size: 24rpx;
+}
+
+.list-day-title
+{
+  width: 65rpx;
+   flex-shrink: 0;
+   font-size: 24rpx;
+   display: flex;
+   justify-content:left;
+}
+.time-box-list
+{
+  height: 50rpx;
+  line-height: 50rpx;
+display:flex;
+align-items: center;
+justify-content: space-between;
+
+
+}
+.list-day-time
+{
+  flex: 1;
+  font-size: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  
+}
+.list-day-view
+{
+  flex: 1;
+  height: 8px;
+  background-color: rgb(231, 231, 231);
+  
+}
+.list-day-view.active{
+  background: #569ca1;
+}
+
+.list-day-dot
+{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+.dot-circle
+{
+  width: 4rpx;
+  height: 4rpx;
+  border-radius: 50%;
+  background-color:black;
+}
+/* 可约时间段END */
+
+.down-time-box
+{
+  min-height: 380rpx;
+}
+
+
+.buttom-this
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.buttom-price{
+    width: 100%;
+    height: 30rpx;
+    font-size: 28rpx;
+    margin: 5rpx 0; 
+}
+.buttom-price-noop{
+    width: 100%;
+    font-size:30rpx;
+}
+
+/***********tabbar***************/
+.tui-tabbar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid #dddddd;
+  }
+  .tui-tabbar .clicked{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+  }
+  .tui-tabbar .clicked view{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-right: 30rpx;
+    color: #000000;
+  }
+  .tui-tabbar .clicked text{
+    font-size: 28rpx;
+  }
+  .tui-tabbar_pay{
+    display: flex; 
+    align-items: flex-start;
+    justify-content: space-between; 
+    padding: 10px 60rpx;
+    color: #666666;
+  }
+  

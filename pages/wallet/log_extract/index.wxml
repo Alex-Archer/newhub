@@ -1,0 +1,55 @@
+<view class="container" wx:if="{{!preventOnShow}}">
+    <tui-list-cell hover="{{false}}">
+        <view class="page-head">
+            <view class="page-title">提现记录列表</view>
+            <!-- <view class="page-date">下拉选择</view> -->
+        </view>
+    </tui-list-cell>
+    <view class="list-box">
+        <scroll-view class="tui-scroll-v" 
+        refresher-enabled 
+        refresher-triggered="{{refreshing}}" 
+        refresher-background="#fafafa" 
+        enable-back-to-top 
+        refresher-threshold="{{100}}" 
+        scroll-y 
+        bindscrolltolower="loadMore" 
+        bindrefresherrefresh="onrefresh"
+        style="height:calc(100vh - env(safe-area-inset-bottom) - 94rpx)"
+        >
+            <block wx:for="{{logArray}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                <!-- 循环体 -->
+                <tui-list-cell hover="{{false}}">
+                    <view class="tui-item-box">
+                        <view class="cell-left">
+                            <view class="left-price">￥20.35</view>
+                            <view class="left-date">2023-12-26 17:22:00</view>
+                        </view>
+                        <view class="cell-r">
+                            <tui-tag margin="0 10rpx 0 0" padding="8rpx" type="warning" size="">退款中</tui-tag>
+                            <!-- <tui-tag margin="0 10rpx 0 0" padding="8rpx" type="btn-gray" size="">禁止退款</tui-tag>
+                        <tui-tag margin="0 10rpx 0 0" padding="8rpx" type="green" size="">已完成</tui-tag> -->
+                        </view>
+                    </view>
+                </tui-list-cell>
+                <!-- 循环体 END -->
+            </block>
+
+            <block wx:if="{{noData}}">
+                <tui-no-data imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无提现记录</tui-no-data>
+            </block>
+            <block wx:else>
+                <!-- 更多 -->
+                <view class="tui-loading-more">
+                    <tui-loadmore wx:if="{{isLoading}}" index="3"></tui-loadmore>
+                    <tui-nomore wx:if="{{pageIndex >= lastPage}}" backgroundColor="#fafafa"></tui-nomore>
+                </view>
+                <!-- 更多END -->
+            </block>
+
+
+        </scroll-view>
+    </view>
+
+
+</view>

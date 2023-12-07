@@ -1,0 +1,570 @@
+<wxs src="/wxs/utils.wxs" module="parseUtils"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="tui-container" wx:if="{{!preventOnShow}}">
+  <tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="教练中心" backgroundColor="#fff" color="#333"></tui-navigation-bar>
+
+
+  <scroller isBackBtn="{{true}}" bind:loadmore="indexLoadmore" bind:scroll="indexScroll" bind:refresh="indexRefresh" bind:restore="indexRestore" id="index-scroller" style="height: calc(100vh - 140rpx)">
+    <refresh slot="refresh" config="{{gifSetting}}" type="diy" />
+    
+
+    <view class="tui-mybg__box">
+      <view class="tui-header__center">
+        <image src="{{user.headimgurl}}" class="tui-avatar"></image>
+        <view class="tui-info">
+          <view class="tui-nickname">{{welcomeMessage}}</view>
+          <view class="tui-vip__box" wx:if="{{user.group&&user.group.title}}">
+            <!-- <image src="/static/img/member/member_3x.png" class="tui-vip__icon" mode="widthFix"></image> -->
+            <ald-icon padding="0 0 0 0" size="16" unit="px" name="vip" color="#ffd700"></ald-icon>
+            <view class="tui-vip__text">
+            {{user.group.title}}
+            </view>
+            <!-- <image src="/static/images/06/return_3x.png" class="tui-vip__icon"></image> -->
+            <ald-icon padding="0 0 0 0" size="12" unit="px" name="right" color="#fff"></ald-icon>
+          </view>
+        </view>
+
+        <view class="tui-set-box">
+
+          <view class="tui-btn__signin" data-url="/pages/index/index" data-navigate="{{false}}" data-islogin="{{false}}" bind:tap="topJump">
+            <ald-icon padding="0 0 0 0" size="24" unit="px" name="home-totop" color="#fff"></ald-icon>
+            <text class="tui-label">前台</text>
+          </view>
+
+          <view class="tui-btn__signin" style="position: relative;" data-url="/pages/coach/home/message/index" data-navigate="{{false}}" data-islogin="{{false}}" bind:tap="topJump">
+            <!-- <image class="tui-species" src="/static/images/06/species_3x.png"></image> -->
+            <ald-icon padding="0 0 0 0" size="24" unit="px" name="message" color="#fff"></ald-icon>
+            <text class="tui-label">消息</text>
+            <view wx:if="{{user.msgmum>0}}" class="tui-badge tui-badge-white">{{user.msgmum<100?user.msgmum:''}}</view>
+          </view>
+          <view class="tui-btn__signin"  data-url="/pages/coach/home/setting/index/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+            <!-- <image class="tui-species" src="/static/images/06/species_3x.png"></image> -->
+            <ald-icon padding="0 0 0 0" size="24" unit="px" name="set" color="#fff"></ald-icon>
+            <text class="tui-label">设置</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="tui-header-btm">
+        <view class="tui-btm-item" data-url="/pages/coach/home/schedule/index" data-navigate="{{false}}" data-islogin="{{false}}" bind:tap="topJump">
+          <view class="tui-btm-num">{{courseCount}}</view>
+          <view class="tui-btm-text">我的课程</view>
+        </view>
+        <view class="tui-btm-item" data-url="/pages/coach/home/setting/certificate/list/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+          <view class="tui-btm-num">{{certificateCount}}</view>
+          <view class="tui-btm-text">我的证书</view>
+        </view>
+        <view class="tui-btm-item" data-url="/pages/coach/home/setting/store/list/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+          <view class="tui-btm-num">{{storefrontCount}}</view>
+          <view class="tui-btm-text">我的场地</view>
+        </view>
+        <view class="tui-btm-item" data-url="/pages/wallet/home/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+          <view class="tui-btm-num">{{user.revenue}}</view>
+          <view class="tui-btm-text">我的收入</view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="tui-content-box">
+      <!-- 快捷指令 -->
+      <view class="tui-box tui-order-box">
+        <view class="tui-order-list">
+          <view class="tui-order-item" bind:tap="scanCode">
+            <view class="tui-icon-box">
+              <ald-icon padding="0 0 0 0" size="70" unit="rpx" name="scan" color="#5f5f5f"></ald-icon>
+            </view>
+            <view class="tui-order-text">扫码开门</view>
+          </view>
+          <view class="tui-order-item" data-url="/packageA/pages/Setting/accessControl/passAndFace/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+            <view class="tui-icon-box">
+              <ald-icon padding="0 0 0 0" size="70" unit="rpx" name="unlock" color="#5f5f5f"></ald-icon>
+              <!-- <view class="tui-badge tui-badge-red">1</view> -->
+
+              <tui-badge wx:if="{{user.faceopen==0&&!user.devicepassword}}" dot="{{true}}" margin="10rpx 0 0 100rpx" translateX="100%" type="red" absolute scaleRatio="1"></tui-badge>
+            </view>
+            
+            <view class="tui-order-text">门禁设置</view>
+            
+          </view>
+          <view class="tui-order-item" data-ac="{{restToday}}" bind:tap="actionButtons">
+            <view class="tui-icon-box">
+              <!-- <ald-icon padding="0 0 0 0" size="70" unit="rpx" name="moon" color="#5f5f5f"></ald-icon> -->
+              <ald-icon padding="0 0 0 0" size="70" unit="rpx" name="{{restToday===1?'moon':'wea-sun'}}" color="{{restToday===1?'#ff7900':'#5f5f5f'}}"></ald-icon>
+            </view>
+            <view class="tui-order-text {{restToday===1?'red':''}}">{{restToday===1?'取消休息':'一键休息'}}</view>
+          </view>
+          <view class="tui-order-item"  data-url="/pages/coach/home/setting/qrcode/my/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+            <view class="tui-icon-box">
+              <ald-icon padding="0 0 0 0" size="70" unit="rpx" name="qr-code" color="#5f5f5f"></ald-icon>
+              <!-- <view class="tui-badge tui-badge-red" v-if="false">12</view> -->
+            </view>
+            <view class="tui-order-text">专属码</view>
+          </view>
+        </view>
+      </view>
+      <!-- 快捷指令END -->
+      <!-- 广告 -->
+      <view class="tui-box tui-adv-list tui-redbag">
+        <view class="tui-box-text">
+          <text>邀请好友免费领红包</text>
+          <text style="font-size: 26rpx; color: #3e445b;">3天会员待领取 ></text>
+        </view>
+        <image src="{{globalURL}}/miniprogram/url-img/hqq/icon-2.png" mode="widthFix" class="tui-redbag-icon"></image>
+      </view>
+
+      <!-- 任务
+      <view class="tui-box tui-task-box" style="padding-bottom: 20rpx;">
+        <tui-list-cell hover="{{false}}" arrow="{{true}}" padding="0" lineLeft="{{false}}">
+          <view class="tui-cell-header">
+            <view class="tui-cell-title">我的任务</view>
+            <view class="tui-cell-sub">全部任务</view>
+          </view>
+        </tui-list-cell>
+        <view class="tui-task-list height160" style="padding-top: 20rpx;">
+          <view class="tui-task-item height160">
+              <view class="tui-task-box">
+                <view class="tui-task-text">当月带训积分</view>
+                <view class="box-number">+25</view>
+              </view>
+          </view>
+          <view class="tui-task-item height160 p-relative">
+            <image class="ranking" src="/static/img/coach/ranking2.png" mode="widthFix"></image>
+              <view class="tui-task-box">
+                <view class="tui-task-text">总积分</view>
+                <view class="box-number">7000</view>
+              </view>
+          </view>
+          <view class="tui-task-item height160">
+              <view class="tui-task-box">
+                <view class="tui-task-text">总课时数</view>
+                <view class="box-number">70</view>
+              </view>
+          </view>
+
+        </view>
+        <view class="tui-task-list height240" >
+          <view class="tui-task-item height240">
+
+            <view class="tui-task-box">
+              <view class="tui-task-text">本月带训业绩</view>
+              <view class="box-number">200000</view>
+              <view class="box-target">目标：400000</view>
+
+            </view>
+
+            <view class="tui-task-bt">
+              <view class="box-default">其础业绩：<text style="color: red;">50</text></view>
+              <tui-progress radius="0" width="{{4}}" backgroundColor="#dddddd" activeColor="#6dd401" percent="{{61}}"></tui-progress>
+            </view>
+
+          </view>
+          <view class="tui-task-item height240">
+
+            <view class="tui-task-box">
+              <view class="tui-task-text">到期续卡</view>
+              <view class="box-number">22</view>
+
+
+            </view>
+
+            <view class="tui-task-bt">
+              <view class="box-default">目标：42</view>
+              <tui-progress radius="0" width="{{4}}" backgroundColor="#dddddd" activeColor="#2882e9" percent="{{61}}"></tui-progress>
+            </view>
+
+          </view>
+
+          <view class="tui-task-item height240">
+
+            <view class="tui-task-box">
+              <view class="tui-task-text">有效转介</view>
+              <view class="box-number">9</view>
+
+
+            </view>
+
+            <view class="tui-task-bt">
+              <view class="box-default">目标：32</view>
+              <tui-progress radius="0" width="{{4}}" backgroundColor="#dddddd" activeColor="#d42c3b" percent="{{61}}"></tui-progress>
+            </view>
+
+          </view>
+
+        </view>
+
+      </view>
+    -->
+
+      <image src="{{globalURL}}/miniprogram/url-img/coach-home/banner.png" 	show-menu-by-longpress mode="aspectFit" class="tui-img-adv"></image>
+
+      <view class="tui-box tui-order-box">
+        <tui-list-cell hover="{{false}}" arrow="{{true}}" padding="0" lineLeft="{{false}}">
+          <view class="tui-cell-header">
+            <view class="tui-cell-title">我的日程</view>
+            <view class="tui-cell-sub"  data-url="/pages/coach/home/schedule/index" data-navigate="{{false}}" data-islogin="{{false}}" bind:tap="topJump">更多</view>
+          </view>
+        </tui-list-cell>
+        <view class="tui-data-list">
+
+      <!-- 日期选择===================== -->
+      <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
+        <view class="select-date-title">
+          <view class="title-date">
+            <view class="date-day">{{today.day}}</view>
+            <view class="date-all">
+                <view class="day-week">星期{{today.week}}</view>
+                <view class="day-date">{{today.date}}</view>
+            </view>
+            <!-- <view class="date-ico"> <ald-icon padding="0 0 0 0" size="28" unit="rpx" name="down" color="#333"></ald-icon></view> -->
+          </view>
+          <view class="title-menu">
+            <!-- <view class="menu-thisdate">回到本周</view> -->
+            <view class="menu-addclass" data-url="/pages/coach/home/surplus/add/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">可约时间管理</view>
+          </view>
+        </view>
+        
+        <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="Into{{scrollInto}}">
+          <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="Into{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
+            <!-- <view class="tui-tab-item-week" wx:if="{{index%2==0}}" >日</view> -->
+            <view class="tui-badge-item">
+              <view class="tui-tab-item-week">{{ tab.weekday }}</view>
+              <block wx:if="{{dateBarsTotal[index]>0}}">
+              <tui-badge dot="{{true}}" margin="-10rpx 0 0 100rpx" translateX="50%" type="red" absolute scaleRatio="0.8"></tui-badge>
+            </block>
+            <block wx:else>
+              <tui-badge margin="-10rpx 0 0 100rpx" translateX="50%" type="gray" absolute scaleRatio="0.8">无</tui-badge>
+            </block>
+            </view>
+            <view class="tui-tab-item-title {{tabIndex == index?'tui-tab-item-title-active':''}}">{{ tab.name }}</view>
+          </view>
+        </scroll-view>
+
+      </view>
+      <!-- 日期选择END ===================== -->
+
+      <scroll-view id="order-bar" scroll-with-animation class="tui-scroll-h" 	scroll-y show-scrollbar="{{true}}" style="height: 70vh;">
+      <!-- 日程列表 -->
+        <view class="schedule-list-box">
+            <block wx:for="{{newsList[tabIndex].data}}" wx:for-item="item" wx:for-index="index2" wx:key="index2" bindtap="detail">
+            <!-- 循环 -->
+            <view class="schedule-list" style="border-left: 2px solid {{parse.getColor(item.source)}}">
+              <view class="schedule-list-t">
+                <view class="schedule-list-tl">
+                  <view class="list-tl-time">{{parseUtils.secondToHm(item.start_time)}}</view>
+                  <view class="list-tl-split">|</view>
+                  <view class="list-tl-time">{{parseUtils.secondToHm(item.end_time)}}</view>
+                  <view class="list-tl-type">
+                    <block wx:if="{{item.source==0}}">
+                      <view class="tui-coupon-btn tuan">团</view>
+                    </block>
+                    <block wx:if="{{item.source==1}}">
+                      <view class="tui-coupon-btn shi">私</view>
+                    </block>
+                    <block wx:if="{{item.source==2}}">
+                      <view class="tui-coupon-btn ji">营</view>
+                    </block>
+                  </view>  
+                  <!-- <view class="list-tl-state">已预约</view>                                     -->
+                </view>
+                <view class="schedule-list-tc"></view>
+                
+                <block wx:if="{{item.source==0}}">
+                  
+                  <!-- 团课-->
+                  <view class="schedule-list-tr">
+                    <view class="list-tr-name">
+                        <view class="name">{{item.course_title}}</view>
+                        <!-- <view class="tag">学员未到达</view> -->
+                    </view>
+                    <view class="list-tr-class">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="bookmark" color="#5f5f5f"></ald-icon></view>
+                      <view class="title" >{{item.room_title}}</view>
+                      <view class="section">第{{item.course_schedule}}/{{item.course_quantity}}节课</view>
+                    </view>
+                    <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="shop" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_title}}</view>                  
+                    </view>
+                    <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="location" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_address}}</view>                  
+                    </view>    
+                  </view>
+                  <!-- 团课END-->
+                </block>
+                <block wx:if="{{item.source==1}}">
+                   <!-- 私教课 -->
+                    <view class="schedule-list-tr">
+                      <view class="list-tr-name">
+                          <view class="name">{{item.course_title}}</view>
+                          <!-- <view class="tag">学员未到达</view> -->
+                      </view>
+                      <view class="list-tr-class">
+                        <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="my-lack" color="#5f5f5f"></ald-icon></view>
+                        <view class="title" >{{item.user_nickname}}</view>
+                      </view>
+                      <view class="list-tr-class">
+                        <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="bookmark" color="#5f5f5f"></ald-icon></view>
+                        <view class="title" >{{item.room_title}}</view>
+                      </view>
+                      <view class="list-tr-address">
+                        <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="shop" color="#5f5f5f"></ald-icon></view>
+                        <view>{{item.store_title}}</view>            
+                      </view>
+                      <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="location" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_address}}</view>                  
+                    </view>     
+                    </view>
+                   <!-- 私教课END-->
+                </block>
+                <block wx:if="{{item.source==2}}">
+                  <!-- 训练营-->
+                  <view class="schedule-list-tr">
+                    <view class="list-tr-name">
+                        <view class="name">{{item.course_title}}</view>
+                        <!-- <view class="tag">学员未到达</view> -->
+                    </view>
+                    <view class="list-tr-class">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="bookmark" color="#5f5f5f"></ald-icon></view>
+                      <view class="title" >{{item.room_title}}</view>
+                      <view class="section">第{{item.course_schedule}}/{{item.course_quantity}}节课</view>
+                    </view>
+                    <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="shop" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_title}}</view>                  
+                    </view>
+                    <view class="list-tr-address">
+                      <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="location" color="#5f5f5f"></ald-icon></view>
+                      <view>{{item.store_address}}</view>                  
+                    </view>                    
+                  </view>
+                  <!-- 训练营END-->
+                </block>
+
+                <!-- <view class="schedule-list-tr">
+                  <view class="list-tr-name">
+                      <view class="name">张先生</view>
+                      <view class="tag">学员未到达</view>
+                  </view>
+                  <view class="list-tr-class">
+                    <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="bookmark" color="#5f5f5f"></ald-icon></view>
+                    <view class="title" >普拉提大节课请上课</view>
+                    <view class="section">第1/2节课节课节课节课节课</view>
+                  </view>
+                  <view class="list-tr-address">
+                    <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="location" color="#5f5f5f"></ald-icon></view>
+                    <view>森林公园中心店</view>                  
+                  </view>
+                </view> -->
+
+
+                <view class="schedule-list-tel" wx:if="{{item.user_mobile}}" data-tel="{{item.user_mobile}}"  bindtap="callUserMobile" >
+                <ald-icon  padding="0" size="50" unit="rpx" name="tel-circle" color="#319fa6"></ald-icon>
+                </view>
+              </view>
+              <view class="schedule-list-d">
+                <view class="sign" data-id="{{item.id}}" bindtap="signScan">签到</view>
+                <!-- <view class="student-sign-code" data-id="{{item.id}}" bindtap="signCode">学员签到码</view> -->
+              </view>
+            </view>
+            <!-- 循环END -->
+        </block>
+                            <!-- 更多 --> 
+                            <view class="tui-loading-more">
+                        <tui-loadmore wx:if="{{newsList[tabIndex].isLoading}}" index="3" ></tui-loadmore>
+                        <block wx:if="{{!newsList[tabIndex].isLoading}}">
+                            <tui-no-data wx:if="{{newsList[tabIndex].noData}}" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">当天无日程</tui-no-data>
+                            <tui-nomore wx:if="{{!newsList[tabIndex].noData&&newsList[tabIndex].pageIndex >= newsList[tabIndex].lastPage}}"  backgroundColor="#fafafa"></tui-nomore>
+                        </block>
+                    </view>
+                   <!-- 更多END -->
+            <!-- <view class="schedule-list color-a">
+              <view class="schedule-list-t">
+                <view class="schedule-list-tl">
+                  <view class="list-tl-time">14:00</view>
+                  <view class="list-tl-split">|</view>
+                  <view class="list-tl-time">19:00</view>
+                  <view class="list-tl-state">已签到</view>                  
+                </view>
+                <view class="schedule-list-tc"></view>
+                <view class="schedule-list-tr">
+                  <view class="list-tr-name">
+                      <view class="name">张先生</view>
+                      <view class="tag">签到 18/18</view>
+                  </view>
+                  <view class="list-tr-class">
+                    <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="bookmark" color="#5f5f5f"></ald-icon></view>
+                    <view class="title" >普拉提大节课请上课</view>
+                    <view class="section">第1/2节课</view>
+                  </view>
+                  <view class="list-tr-address">
+                    <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="location" color="#5f5f5f"></ald-icon></view>
+                    <view>森林公园中心店</view>                  
+                  </view>
+                </view>
+
+              </view>
+
+            </view>
+      
+            <view class="schedule-list color-b">
+              <view class="schedule-list-t">
+                
+                <view class="schedule-list-tl">
+                  <view class="list-tl-time">14:00</view>
+                  <view class="list-tl-split">|</view>
+                  <view class="list-tl-time">19:00</view>
+                  <view class="list-tl-state">已预约</view>                  
+                </view>
+                <view class="schedule-list-tc"></view>
+                <view class="schedule-list-tr">
+                  <view class="list-tr-name">
+                      <view class="name">张先生</view>
+                      <view class="tag">学员未到达</view>
+                  </view>
+                  <view class="list-tr-class">
+                    <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="bookmark" color="#5f5f5f"></ald-icon></view>
+                    <view class="title" >普拉提大节课请上课</view>
+                    <view class="section">第1/2节课</view>
+                  </view>
+                  <view class="list-tr-address">
+                    <view class="ico" ><ald-icon padding="0 6rpx 0 0" size="32" unit="rpx" name="location" color="#5f5f5f"></ald-icon></view>
+                    <view>森林公园中心店</view>                  
+                  </view>
+                </view>
+              </view>
+              <view class="schedule-list-d">
+                <view class="sign">签到</view>
+                <view class="student-sign-code">学员签到码</view>
+              </view>
+            </view>
+            -->
+
+
+        </view>
+        <!-- 日程列表END -->
+      </scroll-view>
+      
+
+        </view>
+      </view>
+
+
+<!-- <view class="tui-box" style="padding-bottom: 180rpx;">-以下为备用区</view>
+
+      <view class="tui-box tui-assets-box">
+        <tui-list-cell hover="{{false}}" padding="0" unlined hover="{{false}}">
+          <view class="tui-cell-header">
+            <view class="tui-cell-title">我的资产</view>
+          </view>
+        </tui-list-cell>
+        <view class="tui-order-list tui-assets-list">
+          <view class="tui-order-item">
+            <view class="tui-assets-num">
+              <text>3</text>
+              <view class="tui-badge-dot"></view>
+            </view>
+            <view class="tui-assets-text">优惠券</view>
+          </view>
+          <view class="tui-order-item">
+            <view class="tui-assets-num">
+              <text>7</text>
+              <view class="tui-badge-dot"></view>
+            </view>
+            <view class="tui-assets-text">积分</view>
+          </view>
+          <view class="tui-order-item">
+            <view class="tui-assets-num"><text>0</text></view>
+            <view class="tui-assets-text">金币</view>
+          </view>
+          <view class="tui-order-item">
+            <view class="tui-assets-num"><text>1</text></view>
+            <view class="tui-assets-text">礼品卡</view>
+          </view>
+        </view>
+      </view>
+
+
+      <view class="tui-box tui-tool-box">
+        <tui-list-cell hover="{{false}}" arrow padding="0" lineLeft="{{false}}">
+          <view class="tui-cell-header">
+            <view class="tui-cell-title">我的服务</view>
+            <view class="tui-cell-sub">查看更多</view>
+          </view>
+        </tui-list-cell>
+        <view class="tui-order-list tui-flex-wrap">
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="2" unit="rem" name="education" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">成为教练</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="identity" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">考教练证</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="2" unit="rem" name="trust" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">加盟招募</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="team" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">加入我们</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="company" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">企业服务</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="shop" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">商城招商</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="pay" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">自动续费</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="praise" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">满意度调查</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="service" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">联系客服</view>
+          </view>
+          <view class="tui-tool-item" data-url="/packageA/pages/Setting/help/index/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="help" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">帮助中心</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="1.9" unit="rem" name="refund" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">余额</view>
+          </view>
+          <view class="tui-tool-item">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="medical" color="#5f5f5f"></ald-icon>
+            <view class="tui-tool-text">运动顾问</view>
+          </view>
+        </view>
+      </view> -->
+
+    </view>
+  </scroller>
+</view>
+<tui-actionsheet zIndex="99999" show="{{showActionSheet}}" tips="{{tips}}" item-list="{{actionItemList}}" mask-closable="{{maskClosable}}" color="{{color}}" size="{{size}}" is-cancel="{{isCancel}}" bindclick="actionItemClick" bindcancel="closeActionSheet"></tui-actionsheet>
+<coach-tabbar selectedColor="#ff7900" isFixed="{{true}}" tabBar="{{tabBar}}" hump="{{true}}" current="{{tabBarCurrent}}" bindclick="tabbarSwitch"></coach-tabbar>
+
+<wxs module="parse">
+    module.exports = {
+         getColor:function(_sourse){
+           if(_sourse==1){
+            return "#7030a0;"
+           }else if(_sourse==2){
+            return "#0070c0;"
+           }else if(_sourse==0){
+            return "#459a00;"
+           }else{
+            return "#fe8e61;"
+           }
+         }
+    }
+     
+  </wxs>

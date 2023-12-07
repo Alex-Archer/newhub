@@ -1,0 +1,118 @@
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+<view class="tui-container" wx:if="{{!preventOnShow&&!loading}}">
+  <view class="tui-header">
+    <view class="tui-info__box">
+      <image src="{{headimgurl}}" class="tui-avatar"></image>
+      <view class="tui-info__inner">
+        <view class="tui-name__box">{{welcomeMessage}}</view>
+        <view class="tui-descr">感谢您的惠顾,将为您提供更优质的服务.</view>
+      </view>
+      <view class="tui-explain">{{vipExpireTime>0?'LV.1':'LV.0'}}</view>
+    </view>
+    <view class="tui-bg__box">
+      <image class="tui-bg" src="{{globalURL}}/miniprogram/url-img/my/vip_bg_3x.png" mode="widthFix"></image>
+      <view class="tui-vip__box">
+        <text>{{vipExpireTime>0?vipName:'普通会员'}}</text>
+        <view class="tui-vip__due">
+          <text>{{vipExpireTime>0?vipExpireTimeStr+' 到期':'欢迎购买会员'}}</text>
+          <!-- <view class="tui-arrow"></view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="tui-body">
+    <view class="tui-title__box">
+      <image class="tui-ornament" src="{{globalURL}}/miniprogram/url-img/my/ornament_3x.png" mode="widthFix"></image>
+      <view class="tui-tit">我的会员权益</view>
+      <image class="tui-ornament" src="{{globalURL}}/miniprogram/url-img/my/ornament_3x.png" mode="widthFix"></image>
+    </view>
+    <view class="tui-sub__text">开启会员认证畅享会员权益</view>
+
+    <view class="tui-outer__box tui-list">
+      <view class="tui-item">
+        <view class="tui-icon__box">
+          <image class="tui-icon" src="{{globalURL}}/miniprogram/url-img/my/money_3x.png" mode="widthFix"></image>
+        </view>
+        <text>器械不限用</text>
+      </view>
+      <view class="tui-item">
+        <view class="tui-icon__box">
+          <image class="tui-icon__md" src="{{globalURL}}/miniprogram/url-img/my/ensure_3x.png" mode="widthFix"></image>
+        </view>
+        <text>爱心保障</text>
+      </view>
+      <view class="tui-item">
+        <view class="tui-icon__box">
+          <image class="tui-icon__sm" src="{{globalURL}}/miniprogram/url-img/my/coupon_3x.png" mode="widthFix"></image>
+        </view>
+        <text>多馆随心练</text>
+      </view>
+      <view class="tui-item">
+        <view class="tui-icon__box">
+          <image class="tui-icon" src="{{globalURL}}/miniprogram/url-img/my/privilege_3x.png" mode="widthFix"></image>
+        </view>
+        <text>团课优惠</text>
+      </view>
+    </view>
+
+    <view class="tui-ad__box">
+      <image src="{{globalURL}}/miniprogram/url-img/my/ad_3x.png" class="tui-ad__img" mode="widthFix"></image>
+      <view class="tui-ad__inner">
+        <text class="tui-ad__tit">618瑜伽会员日</text>
+        <text>500份红包等你来拿，先到先得</text>
+      </view>
+    </view>
+    <view class="tui-title__box">
+      <image class="tui-ornament" src="{{globalURL}}/miniprogram/url-img/my/ornament_3x.png" mode="widthFix"></image>
+      <view class="tui-tit">会员任务</view>
+      <image class="tui-ornament" src="{{globalURL}}/miniprogram/url-img/my/ornament_3x.png" mode="widthFix"></image>
+    </view>
+    <view class="tui-sub__text">开启会员认证畅享会员权益</view>
+
+    <view class="tui-outer__box tui-task__flex">
+      <view class="tui-task__icon-box">
+        <image src="{{globalURL}}/miniprogram/url-img/my/amount_3x.png" class="tui-task__icon" mode="widthFix"></image>
+      </view>
+      <view>
+        <view class="tui-task__intro">宣传场馆随心得</view>
+        <text class="tui-task__explain">好友开通您得现金</text>
+      </view>
+      <view class="tui-btn__right">
+        <tui-button background="#ff591f" width="136rpx" height="60rpx" size="{{24}}" color="#fff" radius="30rpx">去完成</tui-button>
+      </view>
+    </view>
+
+    <view class="tui-outer__box tui-task__flex">
+      <view class="tui-task__icon-box">
+        <image src="{{globalURL}}/miniprogram/url-img/my/click_3x.png" class="tui-task__icon-sm" mode="widthFix"></image>
+      </view>
+      <view>
+        <view class="tui-task__intro">每日运动两小时</view>
+        <text class="tui-task__explain">即可获得5.8%加息券</text>
+      </view>
+      <view class="tui-btn__right">
+        <tui-button background="#ff591f" width="136rpx" height="60rpx" size="{{24}}" color="#fff" radius="30rpx">去完成</tui-button>
+      </view>
+    </view>
+
+    <view class="tui-outer__box tui-task__flex">
+      <view class="tui-task__icon-box">
+        <image src="{{globalURL}}/miniprogram/url-img/my/amount_3x.png" class="tui-task__icon" mode="widthFix"></image>
+      </view>
+      <view>
+        <view class="tui-task__intro">呼朋唤友来瑜伽</view>
+        <text class="tui-task__explain">好友开通您得现金</text>
+      </view>
+      <view class="tui-btn__right">
+        <tui-button background="#ff591f" width="136rpx" height="60rpx" size="{{24}}" color="#fff" radius="30rpx">去完成</tui-button>
+      </view>
+    </view>
+
+
+
+  </view>
+  <view class="submit-bottom">
+    <tui-button wx:if="{{bottomShow}}"  disabled="{{subDisabled}}" type="{{btnType}}" shadow height="88rpx" shape="circle" bindclick="Reqpay">{{subText}}</tui-button>
+  </view>
+</view>

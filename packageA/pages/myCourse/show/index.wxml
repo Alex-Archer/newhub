@@ -1,0 +1,149 @@
+<wxs src="/wxs/utils.wxs" module="parseUtils"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="container" wx:if="{{!preventOnShow&&!loading}}">
+
+    <view class="tui-order-list">
+        <view class="tui-order-item">
+            <tui-list-cell hover="{{false}}" lineLeft="0">
+                <view class="schedule-title">
+                    课程
+                </view>
+                <view class="schedule-item-box">
+                    <view class="class-item-li active">
+                        <view class="li-title">{{courseInfo.title}}</view>
+                        <view class="li-des">余{{courseInfo.quantity-courseInfo.used_quantity>0?courseInfo.quantity-courseInfo.used_quantity:0}}节 总课时{{courseInfo.quantity}}节 </view>
+                    </view>
+                </view>
+            </tui-list-cell>
+        </view>
+        <view class="tui-order-item">
+            <tui-list-cell hover="{{false}}" lineLeft="0" bind:tap="selectStore">
+                <view class="schedule-title-box">
+                    <text class="schedule-title">上课门店</text>
+                    <text class="schedule-des">{{selectStoreTxt}}</text>
+                </view>
+               
+                <view class="store-item-box-none" wx:if="{{!preventOnShow&&!loading&&!showStorePanel&&formStoreID<=0}}">
+                    <view class="item-box-ico">
+                        <ald-icon size="60" customClass="" unit="rpx" name="empty-address" content="" color="rgb(173, 173, 173)"></ald-icon>
+                    </view>
+                    <view class="item-box-none {{itemBoxAnimation}}">
+                        点击选择上课门店
+                    </view>
+                </view>
+
+                <view class="store-item-box active" wx:if="{{showStorePanel||(selectStore&&formStoreID>0)}}">
+                    <view class="item-box-l">
+                        <image class="store-img" src="https://temp-aoben-picture.oss-cn-shanghai.aliyuncs.com/web-images/2023/09/22/20230922%5C4550ce61696c8d072cb893d0d7c8a91c.png"></image>
+                    </view>
+                    <view class="item-box-r">
+                        <view class="box-r-title line-one">
+                            <text>{{selectStore.title}}</text>
+                            <text>{{selectStore.distanc}}</text>
+                        </view>
+                        <view class="box-r-star">{{selectStore.score}}分 <tui-rate size="{{14}}" current="{{selectStore.score}}" active="#ff7900" hollow="{{true}}" disabled="{{true}}" score="{{1}}"></tui-rate>
+                        </view>
+                        <view class="box-r-address line-one">{{selectStore.address}}</view>
+                    </view>
+                </view>
+            </tui-list-cell>
+        </view>
+
+
+        <view class="tui-order-item" wx:if="{{showCoachPanel}}">
+            <tui-list-cell hover="{{false}}" lineLeft="0">
+                <view class="schedule-title-box">
+                    <text class="schedule-title">上课教练</text>
+                    <text class="schedule-des">请选择您的教练</text>
+                </view>
+
+                <view class="coach-item-box">
+                    <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="coac{{coacScrollInto}}">
+                        <block wx:for="{{returnCoachList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                            <view class="coach-item {{item.id==formCoachID&&'active'}}" id="coac{{index}}" data-coachid="{{item.id}}" bindtap="selectCoach">
+                                <view class="item-img-box">
+                                    <image class="item-img" src="{{item.headimgurl}}"></image>
+                                    <view class="item-name">{{item.nickname}}</view>
+                                </view>
+                            </view>
+                        </block>
+                    </scroll-view>
+                </view>
+            </tui-list-cell>
+        </view>
+
+        <view class="tui-order-item" wx:if="{{showReserverPanel}}">
+            <tui-list-cell hover="{{false}}" lineLeft="0">
+                <view class="schedule-title">
+                    上课时间
+                </view>
+                <!-- 日期选择===================== -->
+                <view class="data-list">
+                    <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
+                        <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="into{{dateScrollInto}}">
+                            <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="into{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
+                                <!-- <view class="tui-tab-item-week" wx:if="{{index%2==0}}" >日</view> -->
+                                <view class="tui-badge-item">
+                                    <view class="tui-tab-item-week">{{ tab.weekday }}</view>
+          
+                                </view>
+                                
+                                <view class="tui-tab-item-title {{tabDateIndex == index?'tui-tab-item-title-active':''}}">
+                                
+                                <view class="tab-item-mon">10.</view>
+                                <view class="tab-item-day">{{ tab.name }}</view>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+                <!-- 日期选择END ===================== -->
+
+                <view class="time-item-box">
+                    <!-- 时间选择 -->
+                    <view class="tui-box tui-time-box">
+
+                        <view class="time-box">
+                            <!-- <block wx:for="{{timeArray}}" wx:for-item="item" wx:key="index"> -->
+                            <block wx:if="{{!isLoading}}" wx:for="{{timeData}}" wx:for-item="item" wx:key="index">
+                                <!-- 0未排课 1教练排课了 2及其它都是已约或占用
+                          站教练角度
+                       -->
+                                <block wx:if="{{item.state==0}}">
+                                    <view class="time-box-li {{item.use?'li-active':''}}" data-index="{{index}}" bind:tap="clickThisTime">{{item.start}}</view>
+                                </block>
+                                <block wx:elif="{{item.state==1}}">
+                                    <view class="time-box-li {{item.use?'li-active':''}}" data-index="{{index}}" bind:tap="clickThisTime">{{item.start}}</view>
+                                </block>
+                                <block wx:elif="{{item.state==3}}"> <!-- 教室占用 -->
+                                    <view class="time-box-li li-active-no" data-index="{{index}}" bind:tap="clickThisTime">{{item.start}}</view>
+                                </block>
+                                <block wx:else>
+                                    <view class="time-box-li li-active-no" data-index="{{index}}" bind:tap="clickThisTime">
+                                        {{item.start}}
+                                    </view>
+                                </block>
+                            </block>
+                            <!-- 更多 -->
+                            <view class="tui-loading-more">
+                                <tui-loadmore wx:if="{{isLoading}}"></tui-loadmore>
+                                <tui-nomore text="该教练没有排课,请重新选择!" wx:if="{{!isLoading&&timeData.length<=0}}" backgroundColor="#fafafa"></tui-nomore>
+                            </view>
+                            <!-- 更多END -->
+                        </view>
+                    </view>
+                    <!-- 时间选择END -->
+                </view>
+
+
+            </tui-list-cell>
+
+
+
+        </view>
+        <view class="sub-bottom-box">
+            <tui-button disabled="{{disabledBottom}}" flexdirection type="warning" shadow height="100rpx" bindclick="buttonForm">确认预约</tui-button>
+        </view>
+    </view>
+</view>
+<tui-loading wx:if="{{PayLoading}}"  text="{{PayLoadingTxt}}" isMask="{{true}}" maskColor="rgba(0,0,0,.1)"></tui-loading>

@@ -1,0 +1,59 @@
+page {
+	background-color: #fff;
+}
+.tui-img {
+	width: 60rpx;
+	height: 60rpx;
+}
+
+.tui-title {
+	font-size: 30rpx;
+	padding-left: 20rpx;
+}
+
+.tui-sub__text {
+	font-size: 28rpx;
+	color: #bfbfbf;
+	padding-right: 30rpx;
+}
+
+.tui-question__box {
+	width: 100%;
+	background-color: #fff;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-content: flex-start;
+	font-size: 26rpx;
+}
+
+.tui-question__item {
+	width: 49%;
+	height: 200rpx;
+	background-color: #f8f8f8;
+	margin-bottom: 2%;
+	border-radius: 20rpx;
+	padding: 0 24rpx;
+	box-sizing: border-box;
+}
+
+.thorui-flex__between {
+	position: relative;
+}
+
+.tui-common {
+	width: 100%;
+	padding: 30rpx;
+	box-sizing: border-box;
+}
+
+.tui-answer__title {
+	font-size: 30rpx;
+}
+
+.tui-answer__text {
+	width: 100%;
+	padding: 10rpx 30rpx;
+	box-sizing: border-box;
+	color: #555;
+	font-size: 28rpx;
+}

@@ -1,0 +1,111 @@
+.tui-form__box {
+    width: 92%;
+    margin: 0 4%;
+    border-radius: 20rpx;
+    background-color: #fff;
+    padding: 0 50rpx 60rpx;
+    box-sizing: border-box;
+  }
+  .extract-title{
+
+    font-size: 30rpx;
+    display: flex;
+    align-items: center;
+  }
+   .tui-ms{
+
+
+    display: flex;
+    align-items: center;
+    padding: 30rpx 0 0 0;
+    box-sizing: border-box;
+    font-size: 28rpx;
+  } 
+   .ms-l
+  {
+      color: #999;
+
+  } 
+  .ms-r
+  {
+      color: #657ea6;
+      margin-left: 20rpx;
+  }
+  .extract-a,.extract-b,.extract-c
+  {
+      height: 36px;
+      line-height: 36px;
+      margin-right: 16rpx;
+  }
+  .extract-b
+  {
+      font-weight: bold;
+  }
+  .extract-c
+  {
+      color: #dd7531;
+  }
+  .tui-exit
+  {
+      margin: 80rpx 0;
+      width: 100%;
+  }
+  .tui-exit-log
+  {
+    margin: 20rpx 0;
+    width: 100%;
+    font-size: 28rpx;
+    font-weight: normal;
+    color: #999;
+    display: flex;
+    justify-content: center;
+
+  }
+  
+  .tui-title {
+    padding: 60rpx 0;
+    box-sizing: border-box;
+    font-size: 28rpx;
+  }
+  
+  .tui-input__box {
+    display: flex;
+    align-items: center;
+    border-bottom: 1rpx solid rgba(0, 0, 0, .1);
+    height: 88rpx;
+    padding-bottom: 2rpx;
+  }
+  
+  .tui-symbol {
+    font-size: 60rpx;
+    font-weight: bold;
+  }
+  
+  .tui-input {
+    font-size: 80rpx;
+    line-height: 80rpx;
+    font-weight: bold;
+    padding-right: 6rpx;
+  }
+  
+  .tui-cursor {
+    display: block;
+    width: 2px;
+    border-radius: 2px;
+    height: 88rpx;
+    animation: blink 1s infinite steps(1, start)
+  }
+  
+  @keyframes blink {
+    0% {
+      background-color: white;
+    }
+  
+    50% {
+      background-color: #5677fc;
+    }
+  
+    100% {
+      background-color: white;
+    }
+  }

@@ -1,0 +1,27 @@
+{
+  "usingComponents": {
+    "tui-grid":"/components/thorui/tui-grid/tui-grid",
+    "tui-grid-item":"/components/thorui/tui-grid-item/tui-grid-item",
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "tui-card": "/components/thorui/tui-card/tui-card",
+    "tui-list-view": "/components/thorui/tui-list-view/tui-list-view",
+    "tui-tag": "/components/thorui/tui-tag/tui-tag",
+
+    "tui-tabbar": "/components/thorui/tui-tabbar/tui-tabbar",
+    "refresh": "/components/coolui-scroller/refresh/index",
+    "scroller": "/components/coolui-scroller/scroller/index",
+    "parallax": "/components/coolui-scroller/parallax/index"
+
+    ,"tui-userinfo": "/components/thorui/tui-userinfo/tui-userinfo",
+    "privacy-dialog": "/components/privacy-dialog/privacy-dialog"
+  },
+
+  "navigationBarTitleText": "我的",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#68a9ad",
+  
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 100,
+  "navigationStyle": "custom"
+}
+

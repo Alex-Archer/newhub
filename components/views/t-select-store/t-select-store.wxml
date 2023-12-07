@@ -1,0 +1,74 @@
+<view>
+    <tui-bottom-popup show="{{show}}" bindclose="close">
+        <view class="tui-coupon__box">
+            <view class="tui-coupon__title">
+                <text>选择上课门店</text>
+                <view class="tui-icon-close" bindtap="close">
+                    <tui-icon name="shut" size="{{22}}" color="#BFBFBF"></tui-icon>
+                </view>
+            </view>
+            <scroll-view scroll-y class="tui-coupon__list">
+                <radio-group bindchange='radiochange' id="radioGroup">
+                    <!-- 模式 -->
+                    <label wx:for="{{storeList}}" wx:key="index">
+                        <!-- <view class="tui-coupon-item tui-top20">
+
+                            <view class="tui-coupon-item-right">
+                                <view class="tui-coupon-content">
+                                    <view class="tui-coupon-title-box">
+                                        <view class="tui-coupon-btn" wx:if="{{typeList[index].hot}}">热</view>
+                                        <view class="tui-coupon-title">{{typeList[index].title}}</view>
+                                    </view>
+                                    <view class="tui-coupon-rule">
+                                        <block wx:for="{{typeList[index].des}}" wx:key="index2" wx:for-item="desitem">
+                                            <view class="tui-rule-box tui-padding-btm">
+                                                <view class="tui-coupon-circle"></view>
+                                                <view class="tui-coupon-text">{{desitem}}</view>
+                                            </view>
+                                        </block>
+                                    </view>
+                                </view>
+                                <radio value="{{index}}" class="tui-coupon-radio" color="#e41f19" checked="{{index==selectIndex?true:false}}" />
+                            </view>
+                        </view> -->
+                        <view class="tui-coupon-item tui-top20">
+                            <!-- <image src="{{storeList[index].picture}}" class="tui-coupon-bg" mode="widthFix"></image> -->
+                            <view class="tui-coupon-item-left">
+                                <!-- <view class="tui-coupon-price-box">
+                                    <view class="tui-coupon-price-sign" wx:if="{{index % 2 == 0}}">￥</view>
+                                    <view class="tui-coupon-price">{{ index % 2 == 0 ? 50 * (index + 1) : 2.5 }}</view>
+                                    <view class="tui-coupon-price-sign" wx:if="{{index % 2 != 0}}">折</view>
+                                </view>
+                                <view class="tui-coupon-intro">满38元可用</view> -->
+                                <image src="{{storeList[index].picture}}" class="tui-store-img"></image>
+                            </view>
+                            <view class="tui-coupon-item-right">
+                                <view class="tui-coupon-content">
+                                    <view class="tui-coupon-title-box">
+                                        <view class="tui-coupon-btn">{{storeList[index].distance}}</view>
+                                        <view class="tui-coupon-title">{{storeList[index].title}}</view>
+                                    </view>
+                                    <view class="tui-coupon-rule">
+                                        <view class="tui-rule-box">
+                                            <view class="tui-coupon-circle"></view>
+                                            <view class="tui-coupon-text">{{storeList[index].address}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <radio value="1" class="tui-coupon-radio" color="#e41f19" checked="{{index==0}}" />
+                            </view>
+                        </view>
+
+                    </label>
+                    <!-- 模式END -->
+
+
+                </radio-group>
+                <view class="tui-seat__box tui-top20"></view>
+            </scroll-view>
+            <view class="tui-btn-pay">
+                <tui-button height="88rpx" type="danger" shape="circle" shadow bindclick="btnConfirm">确定</tui-button>
+            </view>
+        </view>
+    </tui-bottom-popup>
+</view>

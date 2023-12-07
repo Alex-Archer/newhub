@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "tui-upload": "/components/thorui/tui-upload/tui-upload"
+  },
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#fff",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "搜索地点",
+  "navigationStyle": "default",
+  "onReachBottomDistance": 50
+}

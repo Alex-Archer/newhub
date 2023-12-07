@@ -1,0 +1,653 @@
+page {
+  background: #fcfcfc;
+
+}
+
+
+/* ============顶部类型选择===================== */
+.select-type{
+  height: 100rpx;
+  box-sizing: border-box;
+  width: 100%;
+
+  flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+  background-color: #fafafa;
+  /* height: 100%; */
+  
+  
+}
+/* 移动漂浮 */
+.select-type.fixed{
+  position:fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}
+
+
+.select-type .tui-scroll-h {
+	width: 100%;
+	height: 80rpx;
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: row;
+  white-space: nowrap;
+  padding: 0 3% 0 0;
+  box-sizing: border-box;
+}
+
+.select-type .tui-line-h {
+  position: relative;
+  background-color: rgb(243, 243, 243);
+  height: 1rpx;
+}
+.select-type .tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+}
+
+.select-type .tui-tab-item {
+	display: inline-block;
+	flex-wrap: nowrap;
+  padding:0 22rpx;
+  
+}
+
+.select-type .tui-tab-item-title {
+	color: #8a8696;
+	font-size: 30rpx;
+  height: 60rpx;
+  /* width: 60rpx; */
+	line-height: 60rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  font-weight: bold;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 0 0 0;
+
+}
+.select-type .tui-tab-item-title-active {
+  color: #29292b;
+  font-size: 34rpx;
+  border-bottom: 4rpx solid #fe8e61; 
+  box-sizing: border-box;
+
+}
+/* ============顶部类型选择END===================== */
+
+.page-title{
+  padding: 30rpx; 
+  font-size: 32rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.page-title-r{
+  font-size: 26rpx;
+  color: #544e63;
+  font-weight: normal;
+  display: flex;
+  margin-right: 10rpx;
+}
+.page-title-r-t{
+  margin-right: 10rpx;
+}
+.personal-title{
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.personal-title-more{
+  font-size: 26rpx;
+  color: #544e63;
+}
+/* ============日期选择模块===================== */
+.select-data{
+  height: 140rpx;
+  box-sizing: border-box;
+  width: 100%;
+  top:auto;
+
+  flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+  /* background-color: #fafafa; */
+  /* height: 100%; */
+}
+.select-data .tui-scroll-h {
+	width: 100%;
+	height: 150rpx;
+	/* background-color: #ffffff; */
+	display: flex;
+	flex-direction: row;
+  white-space: nowrap;
+  padding: 0 3% 0 3%;
+  box-sizing: border-box;
+}
+
+.select-data .tui-line-h {
+  position: relative;
+  background-color: rgb(243, 243, 243);
+  height: 1rpx;
+}
+.select-data .tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+}
+
+.select-data .tui-tab-item {
+	display: inline-block;
+	flex-wrap: nowrap;
+  /* padding:0 22rpx; */
+  
+  margin:0 22rpx;
+
+  
+}
+.select-data .tui-tab-item-active{
+  background-color: #319fa6;/*#cbfcff;*/
+  
+  border-radius: 12rpx;
+}
+
+
+.select-data .tui-badge-item {/* 角标 */
+
+  position: relative;
+  margin-top: 20rpx; /* 不然角标出不来 */
+}
+
+.select-data .tui-tab-item-week
+{
+  font-size: 12px;
+  color: #888;
+	height: 30rpx;
+	line-height: 30rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select-data .tui-tab-item-title {
+	color: #555;
+	font-size: 30rpx;
+  height: 60rpx;
+  width: 60rpx;
+	line-height: 60rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  font-weight: bold;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 0 0 0;
+
+}
+.select-data  .tui-tab-item-title-active {/* 选中是圆形 */
+  color: #fff;
+  
+  background: #319fa6;/*#ff7900;*/
+  border-radius: 50%;
+  /* border-bottom: 6rpx solid #fe8e61; 
+  box-sizing: border-box;
+  这是下划线*/
+}
+/* 日期选择模块 End*/
+
+/* 团课列表 */
+.group-list
+{
+  width: 100%;
+  box-sizing: border-box;
+}
+.group-item{
+  width: 92%;
+  box-sizing: border-box;
+  margin: 20rpx 4%;
+  
+  
+}
+.tui-box-h {
+	width: 100%;
+  background: #fff ;
+  box-shadow: 0 3rpx 20rpx rgba(183, 183, 183, 0.1);
+  border-radius: 10rpx 10rpx;
+  overflow: hidden;
+  margin-bottom:14rpx;
+}
+.tui-content-box-h .tui-box-h:last-child{
+  margin-bottom: 0;
+}
+.tui-title-h{
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0 0 0;
+  margin-left: 10rpx;
+  height: 60rpx;
+  
+}
+.tui-title-h .tui-person-h{
+  font-size: 22rpx;
+  border-radius: 10rpx;
+  background-color: #ffddcf;
+  color: #f84b06;
+  padding: 4rpx 12rpx;
+  letter-spacing: 2rpx;
+}
+.tui-course-item-h {
+	display: flex;
+	align-items: center;
+  font-size: 26rpx;
+  padding: 0 6rpx 30rpx 20rpx;
+}
+.tui-course-img-h {
+	width: 120rpx;
+	height: 120rpx;
+	flex-shrink: 0;
+	margin-right: 16rpx;
+}
+.tui-course-info-h {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: space-between;
+}
+.tui-course-info-h .tui-course_title{
+  font-size: 28rpx;
+  color: #544e63;
+  font-weight: bold;
+  height: 60rpx;
+  line-height: 36rpx;
+
+
+}
+.word-break
+{
+  /* 文字太长...号 */
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /*-webkit-line-clamp: 1; 行数 */
+}
+.tui-course-info-h .tui-course_rate{
+  color: #fe8e60;
+height: 40rpx;
+  font-size: 22rpx;
+}
+.tui-course-button {
+	position: relative;
+	margin-left: auto;
+  flex-shrink: 0;
+}
+.tui-course-button .tui-course_price{
+  font-size: 28rpx;
+  color: #fe8e60;
+}
+.tui-course-button .tui-course_price text{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.tui-course_rate-txt{
+  margin: 0 10rpx 0 0 ;
+  font-size: 26rpx;
+}
+/* 团课列表END */
+
+
+
+/* 以下是青青区 */
+.tui-content-box_he{
+  padding-bottom: 220rpx;
+}
+/*********banner************/
+.tui-content-box_he .tui-banner-swiper {
+  width: 100%;
+  
+  max-height: 417rpx;
+  overflow: hidden;
+  transform: translateY(0);
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.tui-content-box_he .tui-slide-image {
+  width: 100%;
+  height: 447rpx;
+  display: block;
+}
+.tui-content-box_he .tui-banner-swiper .wx-swiper-dot {
+  width: 8rpx;
+  height: 8rpx;
+  display: inline-flex;
+  background: none;
+  justify-content: space-between;
+}
+.tui-content-box_he .tui-banner-swiper .wx-swiper-dot::before {
+  content: '';
+  flex-grow: 1;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.tui-content-box_he .tui-banner-swiper .wx-swiper-dot-active::before {
+  background-color: #fff;
+}
+.tui-content-box_he .tui-banner-swiper .wx-swiper-dot.wx-swiper-dot-active {
+  width: 16rpx;
+}
+.tui-content-box_he .box-answer{
+  background-color: #f4f4f4;
+  border-radius: 10rpx;
+  margin: 6rpx 30rpx 30rpx 30rpx;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+	justify-content: space-between;
+	align-content: space-between;   
+}
+.tui-content-box_he .box-answer_adviser{
+  font-size: 26rpx;
+  color: #333333;
+  display: flex;
+  align-items: center;
+}
+.tui-content-box_he .box-answer_adviser .tui-avatar {
+  flex-shrink: 0;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin: 0 20rpx 0 0;
+  display: inline-block;
+}
+.tui-content-box_he .box-answer_adviser .tag{
+  background-color: #319fa6;
+  color: #ffffff;
+  border-radius: 15rpx;
+  padding: 4rpx 10rpx;
+  font-size: 22rpx;
+  letter-spacing: 1rpx;
+  margin-right: 20rpx;
+}
+.tui-content-box_he .box-personalTraining{
+  padding: 30rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  
+}
+.tui-content-box_he .box-personalTraining .box-personalTraining_title{
+  font-size: 36rpx;
+  display: flex;
+  align-items: center;
+	justify-content: space-between;
+	align-content: space-between; 
+}
+.tui-content-box_he .box-personalTraining_banner{
+  width: 100%;
+  background: linear-gradient(to right, #fea784, #ffdbcc, #fea682);
+  border-radius: 15rpx;
+  padding: 20rpx 20rpx 10rpx 20rpx;
+
+  font-size: 26rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+	justify-content: space-between;
+  align-content: space-between; 
+  max-height: 150rpx;
+}
+.tui-content-box_he .box-personalTraining_banner .img-desc{
+  display: flex;
+  align-items: center; 
+}
+.tui-content-box_he .box-personalTraining_banner .img{
+  width: 120rpx;
+  margin-right: 20rpx;
+  display: inline-block;
+  height: 80rpx;
+}
+.tui-content-box_he .box-personalTraining_banner .btn{
+  font-size: 24rpx;
+  font-weight: bold;
+  padding: 8rpx 16rpx;
+  border-radius: 25rpx;
+  background-color: #ffffff;
+  color: #f02302;
+}
+.tui-content-box_he .tui-goods_list {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+
+}
+.tui-goods_list-scroll{
+  display: flex;
+  flex-direction: column;
+
+
+}
+.tui-content-box_he .tui-goods_item {
+  background-color: #f4f4f4;/*f4f4f4*/
+  width: 330rpx;
+
+  max-height: 520rpx;
+  padding-bottom: 16rpx;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  /* display: flex;
+  align-items: left;
+  justify-content: left;
+  flex-direction: column; */
+  
+  flex-shrink: 0;
+
+  margin:0 18rpx 30rpx 0;
+}
+.tui-content-box_he .tui-goods_imgbox {
+  width: 330rpx;
+  height: 330rpx;
+  display: flex;
+  align-items:flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.tui-content-box_he .tui-goods_img {
+  max-width: 330rpx;
+  max-height: 330rpx;
+  display: block;
+  border-radius: 10rpx 10rpx 0 0;
+}
+.tui-content-box_he .tui-goods_name{
+  padding: 10rpx 10rpx 0 10rpx;
+}
+
+/* 小鱼加 */
+.tui-goods_name-nick{
+  font-weight: bold; 
+  margin-right: 10rpx;
+
+}
+.tui-goods_name-rate{
+  color: #fe8e60;
+}
+.tui-goods_name-title{
+  padding: 10rpx 10rpx 0 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+ 
+}
+.tui-goods_name-title .title{
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+.tui-goods_name-title .tag{
+  border: 1px solid #8d8d8d;
+  
+  padding: 0 10rpx;
+  font-size: 22rpx;
+}
+.tui-goods_name-des{
+  padding: 10rpx 10rpx 0 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content:left;
+
+}
+.tui-goods_name-des-star{
+  font-size: 20rpx;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;/* 行数 */
+}
+.tui-goods_name-price{
+  color: #fe8e60;
+  font-size: 30rpx; 
+  font-weight: bold;
+}
+.tui-goods_name-unit{
+  font-size: 22rpx;
+}
+
+/* 训练营 */
+
+.camp-list
+{
+  width: 96%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin: 10rpx 2%;
+
+}
+.trainingCamp-box{
+  /* padding: 4% 5%; */
+  /* padding: 0 0 70rpx 0; */
+  margin:0 0 70rpx 0;
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+}
+
+.trainingCamp-box .trainingCamp-box_bg{
+  position: absolute;
+  width: 96%;
+  border-radius: 15rpx;
+  display: block;
+  height: 280rpx;
+  min-height: 280rpx;
+  z-index: 1;
+}
+.trainingCamp-box .trainingCamp-box_mask{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15rpx;
+  background-color: rgb(0, 0, 0 ,.6);
+  display: block;
+  height: 280rpx;
+  width: 720rpx;
+  z-index: 2;
+}
+.trainingCamp-box .trainingCamp-box_content{
+  position: relative;
+  z-index: 3;
+}
+.trainingCamp-box .trainingCamp-box_content .trainingCamp-box_person{
+  float: right;
+  background-color: #111111;
+  border-radius: 0 15rpx 0 15rpx;
+  font-size: 24rpx;
+  color: #fceeb7;
+  letter-spacing: 2rpx;
+  padding: 8rpx 20rpx;
+  margin: 0 0 0 0;
+}
+.trainingCamp-box .trainingCamp-box_content .trainingCamp-box_text{
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 0 30rpx 0 50rpx;
+  color: #ffffff;
+  letter-spacing: 2rpx;
+}
+.trainingCamp-box .trainingCamp-box_content .trainingCamp-box_text .btn{
+  width: 160rpx;
+  border: 2px solid #ffffff;
+  border-radius: 25rpx;
+  background-color: transparent;
+  font-size: 27rpx;
+  font-weight: normal;
+  padding: 7rpx 0;
+  color: #ffffff;
+  letter-spacing: 1rpx;
+}
+/* 训练营END */
+
+
+.camp-title,.camp-time,.store-title,.camp-data,.camp-pric
+  {
+    color: #fff;
+    font-size: 26rpx; 
+    letter-spacing: 2rpx;
+    margin-bottom: 6rpx;
+  }
+  .camp-title
+  {
+    font-size: 34rpx; 
+    font-weight: bold;
+  }
+
+  .camp-pric
+  {
+    display: flex;
+    align-items:center;
+  }
+  .camp-pric-l
+  {
+    font-size: 36rpx; 
+    font-weight: bold;
+    margin-right: 10rpx;
+  }
+
+  .course-nodata
+  {
+    font-size: 26rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110rpx;
+    line-height: 110rpx;
+    color: #c2c2c2;
+    /* border-bottom: 1px solid #ececec; */
+  }

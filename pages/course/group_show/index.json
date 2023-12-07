@@ -1,0 +1,19 @@
+{
+  "usingComponents": {
+    "ald-icon":"/components/ksald/ald-icon/ald-icon",
+    "tui-button": "/components/thorui/tui-button/tui-button",
+    "tui-tag": "/components/thorui/tui-tag/tui-tag",
+    "tui-popup":"/components/thorui/tui-popup/tui-popup",
+    "tui-image-group":"/components/thorui/tui-image-group/tui-image-group",
+    "tui-overflow-hidden":"/components/thorui/tui-overflow-hidden/tui-overflow-hidden",
+    "wxParse": "/components/parse/wxParse/wxParse",
+    "tui-modal": "/components/thorui/tui-modal/tui-modal"
+  },
+  "navigationBarTitleText": "课程详情",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "backgroundColorTop": "#fcfcfc",
+  "backgroundColorBottom": "#fcfcfc",
+
+  "navigationStyle": "default"
+}

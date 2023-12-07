@@ -1,0 +1,16 @@
+{
+
+  "navigationBarTitleText": "教练档期管理",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+
+  "usingComponents": {
+    "coach-tabbar": "/components/ksald/coach-tabbar/coach-tabbar",
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "scroller": "/components/coolui-scroller/scroller/index",
+    "tui-picker":"/components/thorui/tui-picker/tui-picker"
+  }
+}

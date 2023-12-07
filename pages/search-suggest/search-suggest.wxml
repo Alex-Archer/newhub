@@ -1,0 +1,35 @@
+<view class="container">
+		<view class="tui-search__bar">
+			<view class="tui-search__box">
+				<icon class="tui-icon__search" type="search" size="{{14}}" color="#999"></icon>
+				<input confirm-type="search" auto-focus class="tui-search__input" placeholder="请输入搜索地点关键词" value="{{keywords}}" bindconfirm="search" bindinput="inputChange" />
+				<view class="tui-icon__clear" wx:if="{{keywords}}" bindtap="clearInput"><icon type="clear" size="14"></icon></view>
+				<view class="tui-btn__search" bindtap="search">搜索</view>
+			</view>
+		</view>
+		<view class="tui-list-view">
+			<tui-list-cell wx:for="{{result}}" wx:key="index" bindclick="choose" data-index="{{index}}">
+				<view class="thorui-flex">
+					<tui-icon name="position" color="#888" size="{{20}}"></tui-icon>
+					<view class="tui-addr__box">
+						<view class="tui-addr-title">{{ item.title }}</view>
+						<view class="tui-addr-detail">{{ item.address }}</view>
+						<view class="tui-tag" wx:if="{{item.type > 0 && item.type < 5}}">{{parse.getType(item.type) }}</view>
+					</view>
+				</view>
+			</tui-list-cell>
+		</view>
+		<tui-loadmore index="{{3}}" wx:if="{{loading}}"></tui-loadmore>
+		<tui-divider width="50%" wx:if="{{!loading && !pullUpOn}}">没有更多了</tui-divider>
+	</view>
+
+  <wxs module="parse">
+    module.exports = {
+         getType:function(type){
+            //0:普通POI / 1:公交车站 / 2:地铁站 / 3:公交线路 / 4:行政区划
+		      	type = type || 0;
+			      return ['', '公交车站', '地铁站', '公交线路', '行政区划'][type];
+         }
+    }
+     
+  </wxs>

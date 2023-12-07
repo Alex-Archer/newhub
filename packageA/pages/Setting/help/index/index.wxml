@@ -1,0 +1,50 @@
+<view class="container" wx:if="{{!preventOnShow}}">
+		<tui-list-cell arrow padding="30rpx" unlined bindclick="moreQuestion">
+			<view class="thorui-flex__between">
+				<view class="thorui-align__center">
+					<image class="tui-img" src="/packageA/static/images/setting/common_img_3x.png"></image>
+					<text class="tui-title">常见问题</text>
+				</view>
+				<view class="tui-sub__text">更多问题</view>
+			</view>
+		</tui-list-cell>
+		<tui-list-cell padding="10rpx 29rpx 30rpx" hover="{{false}}">
+			<view class="tui-question__box thorui-flex__between">
+        <block wx:for="{{question}}" wx:for-index="idx" wx:for-item="itemName">
+          <view class="tui-question__item thorui-flex__center" bindtap="getAnswer" data-index="{{itemName.id}}">{{itemName.title}}</view>
+        </block>
+			</view>
+		</tui-list-cell>
+		<tui-list-cell arrow padding="30rpx">
+			<view class="thorui-flex__between">
+        <button class="tui-btn__opentype" style="width: 100%;" open-type="contact"></button>
+				<view class="thorui-align__center">
+					<image class="tui-img" src="/packageA/static/images/setting/wechat_img_3x.png"></image>
+					<text class="tui-title">在线咨询</text>
+				</view>
+				<view class="tui-sub__text">自己努力过仍未解决</view>
+			</view>
+		</tui-list-cell>
+		<tui-list-cell arrow padding="30rpx" data-call="13888888888" bindclick="callBind">
+			<view class="thorui-flex__between">
+				<view class="thorui-align__center">
+					<image class="tui-img" src="/packageA/static/images/setting/number_img_3x.png"></image>
+					<text class="tui-title">电话热线</text>
+				</view>
+				<view class="tui-sub__text">13888888888</view>
+			</view>
+		</tui-list-cell>
+		<tui-bottom-popup show="{{infoShow}}" bindclose="popupClose">
+			<view style="min-height: 720rpx;">
+				<tui-list-cell hover="{{false}}" padding="0" lineLeft="0">
+					<view class="tui-common tui-answer__title thorui-flex__between">
+						<view>{{ answerTitle }}</view>
+						<tui-icon name="shut" size="{{22}}" bindclick="popupClose"></tui-icon>
+					</view>
+				</tui-list-cell>
+        <view class="tui-answer__text" >
+          <wxParse nodes="{{answerContent}}"></wxParse>
+        </view>
+			</view>
+		</tui-bottom-popup>
+	</view>

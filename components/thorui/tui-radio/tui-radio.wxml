@@ -1,0 +1,28 @@
+<view class="tui-checkbox__input {{disabled?'tui-checkbox__disabled':''}}"
+  style="background-color:{{parse.getBackgroundStyle(val,isCheckMark,color,g_color)}};border:{{parse.getBorderStyle(val,isCheckMark,color,borderColor,g_color)}};zoom:{{scaleRatio}};padding: {{padding}}; margin: {{margin}};"
+  catchtap="radioChange">
+  <view class="tui-check__mark" style="border-bottom-color:{{checkMarkColor}};border-right-color:{{checkMarkColor}}"
+    wx:if="{{val}}">
+  </view>
+  <radio class="tui-radio__hidden" color="{{color || g_color}}" disabled="{{disabled}}" value="{{value}}" checked="{{val}}">
+  </radio>
+</view>
+
+<wxs module="parse">
+  module.exports = {
+    getBackgroundStyle: function (val, isCheckMark, color,g_color) {
+      var color = val ? (color || g_color) : '#fff'
+      if (isCheckMark) {
+        color = 'transparent'
+      }
+      return color;
+    },
+    getBorderStyle: function (val, isCheckMark, color, borderColor,g_color) {
+      var color = val ? (color || g_color) : borderColor;
+      if (isCheckMark) {
+        color = 'transparent'
+      }
+      return '1px solid' + color;
+    }
+  }
+</wxs>

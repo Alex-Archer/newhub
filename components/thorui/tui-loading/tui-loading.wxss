@@ -1,0 +1,72 @@
+.tui-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.tui-loading__fixed{
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 9999;
+}
+.tui-loading__mask {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9900;
+}
+.tui-loading__box {
+	min-width: 200rpx;
+	min-height: 200rpx;
+	max-width: 500rpx;
+	flex-direction: column;
+	border-radius: 10rpx;
+}
+.tui-loading__ani {
+	width: 64rpx;
+	height: 64rpx;
+	margin: 0 6px;
+	animation: rotate 0.9s linear infinite;
+	margin-bottom: 30rpx;
+}
+
+.tui-loading__row {
+	width: 100%;
+	height: 36rpx;
+	color: #888;
+}
+
+.tui-loading-row__ani {
+	width: 36rpx;
+	height: 36rpx;
+	display: block;
+	border-radius: 50%;
+	animation: rotate 0.9s linear infinite;
+	margin-right: 20rpx;
+}
+
+.tui-loading__text {
+	font-size: 26rpx;
+	line-height: 26rpx;
+	text-align: center;
+}
+
+@-webkit-keyframes rotate {
+	from {
+		transform: rotatez(0deg);
+	}
+	to {
+		transform: rotatez(360deg);
+	}
+}
+@keyframes rotate {
+	from {
+		transform: rotatez(0deg);
+	}
+	to {
+		transform: rotatez(360deg);
+	}
+}

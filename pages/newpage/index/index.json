@@ -1,0 +1,23 @@
+{
+  "usingComponents": {
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "tui-tabbar": "/components/thorui/tui-tabbar/tui-tabbar",
+    "tui-dropdown-list": "/components/thorui/tui-dropdown-list/tui-dropdown-list",
+    "tui-top-dropdown": "/components/thorui/tui-top-dropdown/tui-top-dropdown",
+    "tui-loadmore": "/components/thorui/tui-loadmore/tui-loadmore",
+
+    "tui-rate": "/components/thorui/tui-rate/tui-rate",
+    "tui-button": "/components/thorui/tui-button/tui-button",
+    "tui-section":"/components/thorui/tui-section/tui-section",
+    "tui-tag": "/components/thorui/tui-tag/tui-tag",
+    "privacy-dialog": "/components/privacy-dialog/privacy-dialog"
+
+  },
+  "navigationBarTitleText": "约课程",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "backgroundColorTop": "#fcfcfc",
+  "backgroundColorBottom": "#fcfcfc",
+
+  "navigationStyle": "default"
+}

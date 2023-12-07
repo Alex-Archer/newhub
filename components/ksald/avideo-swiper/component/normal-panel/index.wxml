@@ -1,0 +1,23 @@
+<view class="panel">
+  <text class="title">{{videoData.title}}</text>
+  <view class="avatar">
+    <image src="/static/urlimg/hqq/icon-nickphoto.png" class="avatar-img" bindtap="href" data-page="3"></image>
+   </view>
+   
+  <button class="forward-btn" plain="true" catch:tap="onForwardTap">
+    <!-- <image class="forward-btn-img" src="../../image/forward.png" /> -->
+    <ald-icon size="1.5" customClass="" unit="rem" name="send-fill" content="" color="#fff"></ald-icon>
+  </button>
+  <button class="praise-btn" plain="true" catch:tap="onPraiseTap">
+    <!-- <image class="forward-btn-img" src="../../image/forward.png" /> -->
+    <ald-icon size="1.5" customClass="" unit="rem" name="praise-fill" content="" color="#fff"></ald-icon>
+  </button>
+   <button class="message-btn" plain="true" catch:tap="onMessageTap">
+    <!-- <image class="forward-btn-img" src="../../image/forward.png" /> -->
+    <ald-icon size="1.5" customClass="" unit="rem" name="message-fill" content="" color="#fff"></ald-icon>
+  </button> 
+  <button class="star-btn" plain="true" catch:tap="onStarTap">
+    <!-- <image class="forward-btn-img" src="../../image/forward.png" /> -->
+    <ald-icon size="1.5" customClass="" unit="rem" name="star-fill" content="" color="#fff"></ald-icon>
+  </button> 
+</view>

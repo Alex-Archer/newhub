@@ -1,0 +1,34 @@
+.tui-overflow__text {
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.tui-overflow__hidden {
+  display: -webkit-box;
+  overflow: hidden;
+  word-break: break-all;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+
+}
+
+.tui-gradient__hidden {
+  display: block;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.tui-text__nowrap {
+  display: inline-block !important;
+  word-break: normal !important;
+  white-space: nowrap !important;
+}
+
+.tui-gradient__box {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0;
+}

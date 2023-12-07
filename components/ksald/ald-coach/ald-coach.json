@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tui-badge":"../../../components/thorui/tui-badge/tui-badge"
+
+  }
+}

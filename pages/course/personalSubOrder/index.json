@@ -1,0 +1,24 @@
+{
+  "navigationBarTitleText": "私教购买",
+
+  "navigationBarTextStyle": "white",
+ 
+  "backgroundColorBottom": "#fcfcfc",
+
+  "navigationStyle": "default",
+  "backgroundColorTop": "#2e7175",
+  "navigationBarBackgroundColor": "#2e7175",
+  "usingComponents": {
+    "t-pay": "/components/views/t-pay/t-pay",
+    "t-select-coupons": "/components/views/t-select-coupons/t-select-coupons",
+    "t-select-coach-type": "/components/views/t-select-coach-type/t-select-coach-type", 
+    "t-select-store": "/components/views/t-select-store/t-select-store",       
+    "tui-list-cell": "/components/thorui/tui-list-cell/tui-list-cell",
+    "tui-bottom-popup": "/components/thorui/tui-bottom-popup/tui-bottom-popup",
+    "tui-button": "/components/thorui/tui-button/tui-button",
+    "tui-tag": "/components/thorui/tui-tag/tui-tag",
+    "tui-banner-arc": "/components/thorui/tui-banner-arc/tui-banner-arc",
+     "tui-numberbox": "/components/thorui/tui-numberbox/tui-numberbox",
+    "personal-select-coupons": "/components/views/personal-select-coupons/personal-select-coupons"   
+  }
+}

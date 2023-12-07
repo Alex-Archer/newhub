@@ -1,0 +1,26 @@
+{
+  "navigationBarTitleText": "购卡续费",
+   "navigationBarTextStyle": "white",
+   "backgroundTextStyle": "dark",
+   "navigationBarBackgroundColor": "#ffffff",
+   
+   "enablePullDownRefresh": false,
+   "onReachBottomDistance": 100,
+   "navigationStyle": "custom",
+ 
+   "usingComponents": {
+     "tui-banner-arc": "/components/thorui/tui-banner-arc/tui-banner-arc",
+     "tui-list-cell": "/components/thorui/tui-list-cell/tui-list-cell",
+     "tui-input": "/components/thorui/tui-input/tui-input",
+     "tui-icon": "/components/thorui/tui-icon/tui-icon",
+     "tui-button": "/components/thorui/tui-button/tui-button",
+     "tui-card":"/components/thorui/tui-card/tui-card",
+     "tui-tag":"/components/thorui/tui-tag/tui-tag",
+     "tui-navigation-bar": "/components/thorui/tui-navigation-bar/tui-navigation-bar",
+     "scroller": "/components/coolui-scroller/scroller/index",
+
+     "tui-overflow-hidden":"/components/thorui/tui-overflow-hidden/tui-overflow-hidden",
+     "wxParse": "/components/parse/wxParse/wxParse"
+ 
+   }
+ }

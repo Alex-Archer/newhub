@@ -1,0 +1,50 @@
+<view class="tui-userinfo-box" wx:if="{{!preventOnShow}}">
+        <tui-list-cell padding="0"  lineLeft="100" lineRight="100" hover="{{false}}" bind:tap="chooseImage" >
+         <view class="face-box">
+            <image src="{{faceimgurl}}" class="face-img" mode="widthFix"></image>
+            <view class="face-del" catchtap="actionButtons" wx:if="{{displayDelButtom}}">
+                <ald-icon padding="0 0 0 0" size="24" unit="px" name="delete" color="#ff7900"></ald-icon>
+            </view>
+         </view>
+         <view class="face-des">如需使用人脸识别开门请上传</view>
+        </tui-list-cell>
+    <!-- </button> -->
+
+    <tui-list-cell padding="0" hover="{{false}}"  lineLeft="0">
+        <view class="tui-list-cell-switch" style="padding-right: 0;margin-bottom: 20rpx;">
+            <view>门禁人脸识别</view>
+            <view class="tui-content">
+            <switch bindchange="switchFace" checked="{{switchChecked}}" color="#319fa6" class="tui-scale-small" />
+            </view>
+        </view>
+    </tui-list-cell>
+
+
+
+    <tui-list-cell padding="20rpx 0" hover="{{false}}"  arrow data-length="6" bind:tap="switchKeyboard" lineLeft="0">
+        <view class="tui-list-cell">
+            <view>门禁密码设置</view>
+            <view class="content-pass">{{devicePass?'******':'请设置'}} </view>
+        </view>
+    </tui-list-cell>
+
+    <tui-list-cell padding="20rpx 0" hover="{{false}}" lineLeft="0" unlined>
+        <view class="tui-list-cell-des">
+            <view class="use-des-title">使用说明</view>
+            <view class="use-des-box">
+                <view class="use-des">1. 人脸门禁：为提高识别率,请上传正面免冠照片！</view>
+                <view class="use-des">2. 密码开门：请设置6位非序列密码。</view>
+                <view class="use-des">3. 开启人脸识别前请认真阅读我们的<text style="color:rgb(0,0,255,.5);">隐私条款</text>！</view>
+            </view>
+        </view>
+    </tui-list-cell>
+</view>
+
+<tui-keyboard radius="{{passRadius}}" show="{{passShow}}" bindclose="closeKeyboard" bindclick="keyboardClick">
+    <view class="tui-digital-box">
+      <view class="tui-keyboard-tips">请输入密码</view>
+      <tui-keyboard-input inputvalue="{{pwdArr}}"></tui-keyboard-input>
+    </view>
+</tui-keyboard>
+
+<tui-actionsheet show="{{showActionSheet}}" tips="{{tips}}" item-list="{{actionItemList}}" mask-closable="{{maskClosable}}" color="{{color}}" size="{{size}}" is-cancel="{{isCancel}}" bindclick="confirmDel" bindcancel="closeActionSheet"></tui-actionsheet>

@@ -1,0 +1,52 @@
+<tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="会员等级" backgroundColor="#fff" color="#333"></tui-navigation-bar>
+<view class="container"> 
+    <!--头部背景色 -->
+  <cover-image style="top: {{statusBar}}px;" class="tui-cover-back" src="/static/img/map/icon_back_3x.png" bind:tap="back" />
+  <view class="img-box">
+
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 196rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_01.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 269rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_02.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 144rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_03.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 183rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_04.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 174rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_05.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 172rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_06.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 168rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_07.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height:173rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_08.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 171rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_09.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 175rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_10.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 97rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_11.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height:148rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_12.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 180rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_13.jpg" mode="widthFix"></image>
+    </view>
+    <view class="img-box-li">
+      <image class="box-img-base" style="min-height: 269rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_14.png" mode="widthFix"></image>
+    </view>
+    <view class="tui-safe-area"></view>
+  </view>
+
+</view>

@@ -1,0 +1,40 @@
+<view class="tui-picker__box">
+  <view class="tui-mask__screen {{visible?'tui-picker__mask-show':''}}" style="z-index: {{zIndex}};" bindtap="maskClick"></view>
+  <view class="tui-picker__wrap {{visible?'tui-picker__show':''}} {{radius?'tui-picker__radius':''}}"
+    style="background-color:{{backgroundColor}};z-index: {{parse.getIndex(zIndex)}};">
+    <view class="tui-picker__header" style="background-color:{{headerBgColor}}">
+      <view class="tui-picker__btn-cancle" hover-class="tui-picker__opcity" hover-stay-time="{{150}}"
+        catchtap="hidePicker"
+        style="color:{{cancelColor}};font-size:{{btnSize+'rpx'}};font-weight:{{bold?'bold':'normal'}}">
+        {{cancelText}}
+      </view>
+      <view class="tui-picker__title" style="font-size:{{titleSize+'rpx'}};color:{{titleColor}}">{{title}}</view>
+      <view class="tui-picker__btn-sure" hover-class="tui-picker__opcity" hover-stay-time="{{150}}" catchtap="picker"
+        style="color:{{confirmColor || g_confirmColor}};font-size:{{btnSize+'rpx'}};font-weight:{{bold?'bold':'normal'}}">{{confirmText}}
+      </view>
+    </view>
+    <picker-view immediate-change="{{true}}" mask-style="{{maskStyle}}" indicator-style="{{indicatorStyle}}" class="tui-picker__view"
+      value="{{vals}}" bindchange="columnPicker" bindpickstart="pickstart" bindpickend="pickend">
+      <picker-view-column>
+        <view style="color:{{color}};font-size:{{size+'px'}}" wx:for="{{layer1__data}}" wx:key="index"
+          class="tui-picker__item">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column wx:if="{{layer==2 || layer==3}}">
+        <view style="color:{{color}};font-size:{{size+'px'}}" wx:for="{{layer2__data}}" wx:key="index"
+          class="tui-picker__item">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column wx:if="{{layer==3}}">
+        <view style="color:{{color}};font-size:{{size+'px'}}" wx:for="{{layer3__data}}" wx:key="index"
+          class="tui-picker__item">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+
+<wxs module="parse">
+   module.exports={
+     getIndex: function (zIndex) {
+       return parseInt(zIndex) + 2
+     }
+   }
+</wxs>

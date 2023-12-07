@@ -1,0 +1,13 @@
+<view class="tui-product__item {{isList ? 'tui-flex__list' : ''}}" hover-class="tui-hover" hover-start-time="150" bindtap="detail">
+		<image src="{{entity.img}}" class="tui-product__img {{isList ? 'tui-img__list' : ''}}"  mode="widthFix" />
+		<view class="tui-product__content">
+			<view class="tui-product__title">{{ entity.name || '' }}</view>
+			<view>
+				<view class="tui-product__price">
+					<text class="tui-sale__price">￥{{ entity.sale || '0.00' }}</text>
+					<text class="tui-factory__price">￥{{ entity.factory || '0.00'  }}</text>
+				</view>
+				<view class="tui-product__pay">{{ entity.payNum || 0 }}人付款</view>
+			</view>
+		</view>
+	</view>

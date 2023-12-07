@@ -1,0 +1,165 @@
+<wxs src="/wxs/utils.wxs" module="parse"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="container">
+    <!-- 类型选择 -->
+    <view class="select-type {{isTypeNavFixed&&'fixed'}}" id="typeNavTop"> 
+        <scroll-view id="type-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{typeScrollInto}}">
+            <view wx:for="{{typeBars}}" wx:for-item="typetab" wx:key="index" class="tui-tab-item" id="{{typetab.id}}" data-current="{{index}}" bindtap="tabTypeClick" data-path="{{typetab.path}}">
+                <view class="tui-tab-item-title {{tabTypeIndex == index?'tui-tab-item-title-active':''}}">{{ typetab.name }}</view>
+            </view>
+        </scroll-view>
+    </view>
+    <!-- 类型选择END  -->
+
+ <!-- 搜索 -->
+ <view class="tui-searchbox {{isSearchFixed&&'fixed'}}" id="searchNavTop">
+        <!-- <view class="tui-search-input" bindtap="search">
+      <icon type="search" size="13" color="#999"></icon>
+      <text class="tui-search-text">搜索关键词</text>
+    </view> -->
+        <view class="search-bar">
+            <view class="search-bar-form">
+                <view class="search-bar-box">
+                    <icon class="icon-search-in-box" type="search" size="{{14}}" color="#999"></icon>
+                    <input confirm-type="search" class="search-bar-input" placeholder="请输入搜索关键词" value="{{word}}" focus="{{inputShowed}}" bindconfirm="bindInput" bindinput="inputTyping" />
+                    <view class="icon-clear" wx:if="{{word}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <view class="search-bar-label" wx:if="{{!inputShowed}}" bindtap="showInput">
+                    <icon class="icon-search" type="search" size="14" color="#999"></icon>
+                    <view class="search-bar-text">请输入搜索关键词</view>
+                </view>
+            </view>
+            <view class="cancel-btn" bindtap="hideInput" wx:if="{{inputShowed}}">取消</view>
+        </view>
+
+    </view>
+    <!-- 搜索end -->
+
+
+    <!-- 广告 -->
+    <view class="adv-top">
+        <image class="adv-top-img" src="{{globalURL}}/miniprogram/url-img/banner/course/2.jpg" mode="widthFix"></image>
+    </view>
+    <!-- 广告END -->
+
+    <!--筛选 下拉排序块-->
+    <view class="dropdown-box {{isDropdowFixed&&'fixed'}}" id="dropdowNavTop">
+        <!--header-->
+        <view class="tui-header {{dropHeaderShow?'tui-header-act':''}}">
+            <view class="tui-header-bottom">
+                <view class="tui-bottom-item {{proDropIndex==0?'tui-btmItem-active':''}}" data-index="0" bindtap="btnDropStore">
+                    <view class="tui-bottom-text {{proDropIndex==0?'tui-active':''}}">{{parse.getArrFilterLength(storeListData)}}</view>
+                    <tui-icon name="{{proDropIndex==0?'arrowup':'arrowdown'}}" size="{{14}}" color="{{proDropIndex==0?'#5677fc':'#444'}}"></tui-icon>
+                </view>
+                <view class="tui-bottom-item {{proDropIndex==1?'tui-btmItem-active':''}}" bindtap="btnDropOrderBy" data-index="1">
+                    <view class="tui-bottom-text {{proDropIndex==1?'tui-active':''}}">{{parse.getOrderText(orderListData)}}</view>
+                    <tui-icon name="{{proDropIndex==1?'arrowup':'arrowdown'}}" size="14" color="{{proDropIndex==1?'#5677fc':'#444'}}"></tui-icon>
+                </view>
+                <view class="tui-bottom-item {{proDropIndex==2?'tui-btmItem-active':''}}" bindtap="btnDropCoach" data-index="2">
+                    <view class="tui-bottom-text {{proDropIndex==2?'tui-active':''}}">{{parse.getArrFilterLength(coachListData,3)}}</view>
+                    <tui-icon name="{{proDropIndex==2?'arrowup':'arrowdown'}}" size="14" color="{{proDropIndex==2?'#5677fc':'#444'}}"></tui-icon>
+                </view>
+            </view>
+
+        </view>
+        <!--header-->
+        <view class="tui-top-dropdown-box">
+            <tui-top-dropdown show="{{dropShow}}" paddingbtm="110" translatey="100" bindclose="btnCloseDrop">
+                <scroll-view class="tui-scroll-box" scroll-y scroll-with-animation scroll-top="{{scrollTop}}">
+                    <view class="tui-seizeaseat-20"></view>
+                    <view class="tui-drop-item {{item.selected?'tui-bold':''}}" wx:for="{{proDropData}}" wx:key="index" catchtap="btnSelected" data-index="{{index}}" data-id="{{item.id}}">
+                        <tui-icon name="check" size="16" color="#5677fc" bold="{{true}}" wx:if="{{item.selected}}"></tui-icon>
+                        <text class="tui-ml tui-middle">{{item.title}}</text>
+                    </view>
+                    <view class="tui-seizeaseat-30"></view>
+                </scroll-view>
+                <view class="tui-drop-btnbox">
+                    <view class="tui-drop-btn tui-button-white" hover-class="tui-button-white_hover" hover-stay-time="150" bindtap="reset">重置</view>
+                    <view class="tui-drop-btn tui-button-primary" hover-class="tui-button-hover" hover-stay-time="150" bindtap="btnCloseDrop">确定</view>
+                </view>
+            </tui-top-dropdown>
+        </view>
+
+
+
+
+    </view>
+    <!--筛选 下拉排序块 END-->
+
+    <!--下部两块 -->
+    <view class="body-container {{isTypeNavFixed&&'pt'}}">
+
+        <!-- 右边  -->
+        <view class="right-box">
+            <block wx:for="{{leftBars}}" wx:key="index">
+                <!-- <scroll-view scroll-y class="right-box-scroll" style="height: calc(100vh - env(safe-area-inset-bottom) - 180rpx)" wx:if="{{tabLeftIndex == index}}"> -->
+                <scroll-view class="right-box-scroll" refresher-triggered="{{newsList[0].refreshing}}" refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" style="height: calc(120vh - env(safe-area-inset-bottom) - 440rpx)" wx:if="{{tabLeftIndex == index}}">
+                    <!--内容部分 start 自定义可删除-->
+                    <view class="page-view">
+
+
+                        <view class="class-box" style="min-height:101%">
+
+                            <view wx:if="{{loadingData}}" class="no-data">
+                                <text class="no-data-txt">数据加载中</text>
+                            </view>
+
+                            <!-- 无数据 -->
+                            <view wx:if="{{!loadingData&&courseList.data.length<=0}}" class="no-data">
+                                <text class="no-data-txt">正在加紧排课中</text>
+                                <text class="no-data-txt">看看其他日期的课程吧</text>
+                            </view>
+                            <!-- 无数据END -->
+
+                            <block wx:if="{{!loadingData}}" wx:for="{{courseList.data}}" wx:for-item="storeItem" wx:for-index="storeIndex" wx:key="storeIndex">
+                                <!-- 开始列表 -->
+                                <block wx:for="{{storeItem.camp}}" wx:for-item="campItem" wx:for-index="campIndex" wx:key="campIndex">
+                                <view class="trainingCamp-box" bind:tap="campShow" data-id="{{campItem.id}}">
+                                    <image src="{{campItem.poster||globalURL+'/miniprogram/url-img/training-camp/img-1.png'}}"  class="trainingCamp-box_bg"></image>
+                                    <view class="trainingCamp-box_mask"></view>
+
+                                    <!-- <image src="{{campItem.poster}}" mode="widthFix" class="trainingCamp-box_bg"></image> -->
+                                    <view class="trainingCamp-box_content">
+                                        <text class="trainingCamp-box_person">满{{campItem.peoplenummin}}人开课</text>
+                                        <view class="trainingCamp-box_text">
+                                            <view>
+                                                <view class="camp-title">{{campItem.title}}</view>
+                                                <view class="store-title">{{storeItem.title}}</view>
+                                                <view class="camp-time">时间:{{parse.secondToHm(campItem.starttime)}}~{{parse.secondToHm(campItem.endtime)}}</view>
+                                                <view class="camp-data">时段:{{date.format(campItem.startdate*1000,'yyyy.MM.dd')}} - {{date.format(campItem.enddate*1000,'yyyy.MM.dd')}}</view>
+                                                <view class="camp-pric">
+                                                    <text class="camp-pric-l">¥{{parse.formatRMB(campItem.price)}}</text> 
+                                                    <text class="camp-pric-r"> /{{campItem.total}}课时</text>                      
+                                                </view>
+                                            </view>
+                                            <view>
+                                                <button class="btn">立即预约</button>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                                </block>
+                                <!-- 开始列表END -->
+                            </block>
+                            <view class="tui-loading-more" wx:if="{{courseList.data.length>0}}">
+                                <tui-loadmore wx:if="{{!loadingData&&courseList.isLoading}}" index="50"></tui-loadmore>
+                                <tui-nomore wx:if="{{!loadingData&&courseList.pageIndex >= courseList.lastPage&&!courseList.isLoading}}" backgroundColor="#fafafa"></tui-nomore>
+                            </view>
+
+                        </view>
+
+                    </view>
+                    <!--内容部分 end 自定义可删除-->
+                </scroll-view>
+            </block>
+        </view>
+        <!-- 右边 -->
+    </view>
+    <!--下部两块 END -->
+
+</view>
+
+<tui-tabbar paddingBottom="24rpx" wx:if="{{tabbarShow&&agreeClick}}" id="tui-tabbar" bind:goToTop="indexGoTop" indexPage="{{indexPage}}" tabBar="{{tabBar}}" isFixed="{{true}}" current="{{current}}" bind:click="tabbarSwitch"></tui-tabbar>
+<privacy-dialog fixedbottom="25vh" mask="true" bottomShowType="{{1}}" bind:agree="agree" bind:disagree="disagree"></privacy-dialog>

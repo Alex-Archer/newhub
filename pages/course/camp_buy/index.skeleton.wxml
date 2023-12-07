@@ -1,0 +1,156 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="container">
+      <view class="tui-box">
+        <view class="tui-top tui-goods-info">
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-goods-title sk-transparent sk-text-14-2857-596 sk-text">
+                订单信息
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:0px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-flex">
+                <view class="sk-transparent sk-text-14-2857-627 sk-text">集训营名称</view>
+                <view class="sk-transparent sk-text-14-2857-710 sk-text">集训课程计划</view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-flex">
+                <view class="sk-transparent sk-text-14-2857-348 sk-text">教练</view>
+                <view class="sk-transparent sk-text-14-2857-811 sk-text">---</view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-flex">
+                <view class="sk-transparent sk-text-14-2857-300 sk-text">开班时段</view>
+                <view class="sk-transparent sk-text-14-2857-14 sk-text">2023.11.28 - 2023.12.18</view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-flex">
+                <view class="sk-transparent sk-text-14-2857-370 sk-text">时间说明</view>
+                <view class="sk-transparent sk-text-14-2857-989 sk-text">14:00~15:00</view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-flex">
+                <view class="sk-transparent sk-text-14-2857-817 sk-text">地点</view>
+                <view class="sk-transparent sk-text-14-2857-571 sk-text">阳科园店</view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-flex">
+                <view class="sk-transparent sk-text-14-2857-3 sk-text">课时数</view>
+                <view class="sk-transparent sk-text-14-2857-481 sk-text">20节</view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-flex">
+                <view class="sk-transparent sk-text-14-2857-649 sk-text">价格</view>
+                <view class="sk-transparent sk-text-14-2857-659 sk-text">￥10.00</view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-goods-title sk-transparent sk-text-14-2857-583 sk-text">
+                优惠信息
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:0px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-flex">
+                <view class="sk-transparent sk-text-14-2857-831 sk-text">折扣</view>
+                <view class="tui-color-default sk-transparent sk-text-14-2857-531 sk-text">
+                  5折 优惠
+                </view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-pd-title">
+                <view class="tui-pd-agree sk-transparent sk-text-32-5000-965 sk-text">同意《aoben shared yoga集训营服务协议》</view>
+                <view class="tui-pd-radio">
+                  <switch class="tui-checkbox-small" color="#EFEFEF" type="checkbox"></switch>
+                </view>
+              </view>
+              <view class="tui-padding tui-flex-pd">
+                <view class="sk-transparent sk-text-24-0000-21 sk-text">1.若课程结束还未排队成功,将自动退款 (包含使用的优惠券):</view>
+                <view class="sk-transparent sk-text-24-0000-126 sk-text">2.如已预约有时间冲突的课程,排队将自动取消:</view>
+                <view class="sk-transparent sk-text-24-0000-892 sk-text">3.排队中的课程可随时选择取消</view>
+              </view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-flex tui-total-flex">
+                <view class="tui-flex-end tui-color-red">
+                  <view class="tui-black sk-transparent sk-text-6-6667-793 sk-text">合计： </view>
+                  <view class="tui-size-26 sk-transparent sk-opacity">￥</view>
+                  <view class="tui-price-large sk-transparent sk-text--3-1250-751 sk-text">5.00</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="tui-top">
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell cell--tui-radius" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:truerpx;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-flex">
+                <view class="tui-balance">
+                  <view class="balance-title sk-transparent sk-text-14-2857-465 sk-text">使用瑜伽币抵扣</view>
+                </view>
+                <view class="tui-balance-switch">
+                  <switch class="tui-scale-small" color="#EFEFEF"></switch>
+                </view>
+              </view>
+              <view class="tui-balance-des sk-transparent sk-text-24-0000-95 sk-text">您当前拥有6个瑜伽币,约等于0.06元人民币</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="tui-tabbar">
+        <view class="tui-flex-end tui-color-red tui-pr-20">
+          <view class="tui-black sk-transparent sk-text-6-6667-102 sk-text">实付金额: </view>
+          <view class="tui-size-26 sk-transparent sk-opacity">￥</view>
+          <view class="tui-price-large sk-transparent sk-text--3-1250-99 sk-text">5.00</view>
+        </view>
+        <view class="tui-pr25">
+          <view is="components/thorui/tui-button/tui-button">
+            <view class="tui-button--tui-button__wrap tui-button--tui-fillet" style="width: 100px;height:35px;margin:0">
+              <button app-parameter="true" class="tui-button--tui-btn tui-button--tui-btn-danger tui-button--tui-dark-disabled tui-button--tui-fillet sk-transparent sk-button sk-pseudo sk-pseudo-circle" form-type="true" open-type="true" style="width: 100px; height: 35px; line-height: 35px; font-size: 14px;background:#EB0909;color: #fff;box-shadow: none;"
+                disabled="true">确认支付</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

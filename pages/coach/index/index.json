@@ -1,0 +1,26 @@
+{
+  "usingComponents": {
+    "ald-icon":"/components/ksald/ald-icon/ald-icon",
+    "tui-charts-bar":"/components/thorui/tui-charts-bar/tui-charts-bar",
+    "tui-button": "/components/thorui/tui-button/tui-button",
+    "tui-tag": "/components/thorui/tui-tag/tui-tag",
+    "tui-icon": "/components/thorui/tui-icon/tui-icon",
+    "tui-divide-list":"/components/thorui/tui-divide-list/tui-divide-list",    
+    "tui-banner-arc": "/components/thorui/tui-banner-arc/tui-banner-arc",
+     "tui-progress": "/components/thorui/tui-progress/tui-progress",
+     "tui-bottom-popup": "/components/thorui/tui-bottom-popup/tui-bottom-popup",
+     "tui-rate": "/components/thorui/tui-rate/tui-rate"
+  },
+ 
+  "navigationBarTitleText": "教练信息",
+
+  "navigationBarTextStyle": "white",
+
+
+
+  "navigationStyle": "default",
+
+  "backgroundColorTop": "#2e7175",
+  "backgroundColorBottom": "#fcfcfc",
+  "navigationBarBackgroundColor": "#2e7175"
+}

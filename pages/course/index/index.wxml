@@ -1,0 +1,241 @@
+<wxs src="/wxs/utils.wxs" module="parse"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="tui-content-box_he">
+  <!-- 类型选择 -->
+  <view class="select-type {{isTypeNavFixed&&'fixed'}}" id="typeNavTop">
+    <scroll-view id="type-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{typeScrollInto}}">
+      <view wx:for="{{typeBars}}" wx:for-item="typetab" wx:key="index" class="tui-tab-item" id="{{typetab.id}}" data-current="{{index}}" bindtap="tabTypeClick" data-path="{{typetab.path}}">
+        <view class="tui-tab-item-title {{tabTypeIndex == index?'tui-tab-item-title-active':''}}">{{ typetab.name }}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 类型选择END -->
+
+
+
+  <!--banner-->
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" indicator-color="rgba(255, 255, 255, 0.8)" indicator-active-color="#fff">
+    <swiper-item wx:for="{{banner}}" wx:key="index" catchtap="detail">
+      <image src="{{item.poster}}" class="tui-slide-image" mode="widthFix" />
+    </swiper-item>
+  </swiper>
+  <!--banner END-->
+  <view class="box-answer">
+    <view class="box-answer_adviser">
+      <image src="{{globalURL}}/miniprogram/url-img/coach-home/icon-nickphoto.png" class="tui-avatar" />
+      <text class="tag">运动顾问</text>
+      <text>在线解答运动瑜伽问题</text>
+    </view>
+    <tui-button open-type="contact" margin="0 10rpx 0 0" type="warning" plain shape="circle" width="100rpx" height="45rpx" size="24" bindclick="detail">咨询</tui-button>
+  </view>
+
+  <view class="page-title">
+    <view class="page-title-l">团体课</view>
+    <view class="page-title-r" bind:tap="moreTap" data-url="/pages/course/group/index">
+
+      <view class="page-title-r-t">更多</view>
+      <view class="page-title-r-ico">
+        <ald-icon size=".8" customClass="" unit="rem" name="right" color="#000000" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+      </view>
+    </view>
+  </view>
+  <view class="group-list">
+    <view class="data-list">
+      <!-- 日期选择===================== -->
+      <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
+        <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="Into{{scrollInto}}">
+          <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="Into{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
+            <!-- <view class="tui-tab-item-week" wx:if="{{index%2==0}}" >日</view> -->
+            <view class="tui-badge-item">
+              <view class="tui-tab-item-week">{{ tab.weekday }}</view>
+              <!-- <block wx:if="{{dateBarsTotal[index]>0}}">
+                <tui-badge dot="{{true}}" margin="-10rpx 0 0 100rpx" translateX="50%" type="red" absolute scaleRatio="0.8"></tui-badge>
+              </block>
+              <block wx:else>
+                <tui-badge margin="-10rpx 0 0 100rpx" translateX="50%" type="gray" absolute scaleRatio="0.8">无</tui-badge>
+              </block> -->
+            </view>
+            <view class="tui-tab-item-title {{tabIndex == index?'tui-tab-item-title-active':''}}">{{ tab.name }}</view>
+          </view>
+        </scroll-view>
+
+      </view>
+      <!-- 日期选择END ===================== -->
+    </view>
+    <!-- 团课列表 -->
+    <view class="group-item">
+
+      <!--课程列表-->
+      <block wx:if="{{isLoadingCourse||noDataCourse}}">
+        <view wx:if="{{noDataCourse}}" class="course-nodata">当日暂无排课</view>
+        <view wx:else class="course-nodata">课程加载中...</view>
+      </block>
+      <block wx:if="{{!isLoadingCourse&&!noDataCourse}}" wx:for="{{courseList}}" wx:for-item="courseItem" wx:for-key="courseIndex" wx:key="courseIndex">
+        <view class="tui-box-h">
+          <view class="tui-title-h">
+            <tui-section color="#ff591f" title="{{parse.secondToHm(courseItem.starttime)}} ~ {{parse.secondToHm(courseItem.endtime)}}" is-line background="#fff" line-color="#fe8e61" margin="0" size="24" font-weight="bold"></tui-section>
+            <text class="tui-person-h">已约 {{courseItem.registerednum}} / {{courseItem.peoplenum}}</text>
+          </view>
+          <view class="tui-course">
+
+            <view class="tui-course-item-h">
+              <image src="{{courseItem.listposter}}" class="tui-course-img-h"></image>
+              <view class="tui-course-info-h">
+                <view class="tui-course_title word-break" style="-webkit-line-clamp: 2;">{{courseItem.title}}</view>
+                <view class="tui-course_rate">
+                  <text class="tui-course_rate-txt">{{parse.formatNumber(courseItem.score)}} 分</text>
+                  <tui-rate margin="50rpx" current="{{courseItem.score}}" bindchange="change" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{16}}"></tui-rate>
+                </view>
+              </view>
+              <view class="tui-course-button">
+                <tui-button margin="0 30rpx 0 10rpx" type="default" shape="circle" width="120rpx" height="44rpx" size="24" data-id="{{courseItem.id}}" data-registerednum="{{courseItem.registerednum}}" data-peoplenum="{{courseItem.peoplenum}}" bindclick="groupShow">立即预约</tui-button>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!--课程列表 END-->
+      </block>
+
+
+    </view>
+
+  </view> 
+
+
+  <view class="page-title">
+    <view class="page-title-l">私教课</view>
+    <view class="page-title-r" bind:tap="moreTap" data-url="/pages/course/personal/index">
+
+      <view class="page-title-r-t">更多</view>
+      <view class="page-title-r-ico">
+        <ald-icon size=".8" customClass="" unit="rem" name="right" color="#000000" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+      </view>
+    </view>
+  </view>
+
+  <view class="box-personalTraining">
+    <!-- <view class="box-personalTraining_title">
+      <text class="personal-title">私教课</text>
+      <view class="personal-title-more">更多私教<ald-icon size=".8" customClass="" unit="rem" name="right" color="#000000" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+      </view>
+    </view> -->
+    <view class="box-personalTraining_banner">
+      <view class="img-desc">
+        <image src="{{globalURL}}/miniprogram/url-img/coach-home/img-4.png" class="img" mode="widthFix" />
+        <view>
+          <view style="font-size: 28rpx; font-weight: bold; margin-bottom: 5rpx;">60分钟私教体验课</view>
+          <view style="font-size: 22rpx; margin-bottom: 5rpx;">身体评估 I 制定计划 I 增肌减脂</view>
+          <view>
+            <text style="font-size: 24rpx; text-decoration: line-through;">原价¥220</text>
+            <text style="color: #f02302; font-size: 32rpx; font-weight: bold; margin-left: 10rpx;">¥19.9</text>
+          </view>
+        </view>
+      </view>
+      <view class="btn">¥19.9去体验</view>
+    </view>
+    <!--私教列表-->
+    <view class="tui-goods_list-scroll">
+      <scroll-view style="height:auto;" scroll-x>
+        <view class="tui-goods_list">
+          <block wx:for="{{coachList}}" wx:for-item="coachItem" wx:for-key="coachIndex" wx:key="coachIndex">
+            <view class="tui-goods_item" bindtap="goToCoach" data-userid="{{coachItem.userid}}">
+              <view class="tui-goods_imgbox">
+                <image src="{{coachItem.headimgurl}}" mode="widthFix" class="tui-goods_img"></image>
+              </view>
+              <view class="tui-goods_name">
+                <text class="tui-goods_name-nick">{{coachItem.nickname}}</text>
+                <!-- <text class="tui-goods_name-rate">5.0分</text>
+              <tui-rate current="5" bindchange="change" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{14}}"></tui-rate> -->
+              </view>
+              <view class="tui-goods_name-title">
+                <text class="title">特长：</text><text class="tag">减肥</text><text class="tag">塑形</text><text class="tag">拉伸</text>
+              </view>
+              <!--  
+            <view class="tui-goods_name-des">
+              <view class="tui-goods_name-des-ico">
+                <ald-icon size="0.7" customClass="" unit="rem" name="praise" color="#8d8d8d" content="" contentsize="{{20}}" contentunit="rpx" contentpadding="0 0 0 4rpx" padding="0 4rpx 0 0"></ald-icon>
+              </view>
+              <view class="tui-goods_name-des-star">服务分 {{coachItem.servicepoints<=0?5:coachItem.servicepoints}} 分</view>
+            </view>
+            <view class="tui-goods_name">
+              <text class="tui-goods_name-price">¥220</text>
+              <text class="tui-goods_name-unit">/节</text>
+            </view> -->
+              <view class="tui-goods_name">
+                <text class="tui-goods_name-rate">{{parse.formatNumber(coachItem.servicepoints<=0?5:coachItem.servicepoints)}} 分</text>
+                    <tui-rate current="{{parse.formatNumber(coachItem.servicepoints<=0?5:coachItem.servicepoints)}}" bindchange="change" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{14}}"></tui-rate>
+              </view>
+            </view>
+          </block>
+
+        </view>
+      </scroll-view>
+    </view>
+    <!--私教列表-->
+  </view>
+
+  <view class="page-title">
+    <view class="page-title-l">训练营</view>
+    <view class="page-title-r" bind:tap="moreTap" data-url="/pages/course/camp/index">
+
+      <view class="page-title-r-t">更多</view>
+      <view class="page-title-r-ico">
+        <ald-icon size=".8" customClass="" unit="rem" name="right" color="#000000" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+      </view>
+    </view>
+  </view>
+
+  <view class="camp-list">
+    <!-- 开始列表 -->
+    <block wx:for="{{campList}}" wx:for-item="campItem" wx:for-key="campIndex" wx:key="campIndex">
+      <!-- <view class="trainingCamp-box" bind:tap="campShow">
+      <image src="{{campItem.camp[0].poster}}" mode="widthFix" class="trainingCamp-box_bg"></image>
+      <view class="trainingCamp-box_content">
+        <text class="trainingCamp-box_person">满{{campItem.camp[0].peoplenummin}}人开课</text>
+        <view class="trainingCamp-box_text">
+          <view>
+            <view style="color: #fff; font-size: 32rpx; font-weight: bold; margin-bottom: 15rpx; letter-spacing: 2rpx;">
+              {{campItem.camp[0].title}}</view>
+            <view>{{campItem.address}}</view>
+            <view>每周四17:00~17:30</view>
+            <view style="margin-top: 15rpx;"><text style="font-size: 36rpx; font-weight: bold;">¥2300</text> 起/20课时</view>
+          </view>
+          <view>
+            <button class="btn">立即预约</button>
+          </view>
+        </view>
+      </view>
+    </view> -->
+      <view class="trainingCamp-box" bind:tap="campShow" data-id="{{campItem.camp[0].id}}">
+        <image src="{{campItem.camp[0].poster||globalURL+'/miniprogram/url-img/training-camp/img-1.png'}}" class="trainingCamp-box_bg"></image>
+        <view class="trainingCamp-box_mask"></view>
+
+        <!-- <image src="{{campItem.poster}}" mode="widthFix" class="trainingCamp-box_bg"></image> -->
+        <view class="trainingCamp-box_content">
+          <text class="trainingCamp-box_person">满{{campItem.camp[0].peoplenummin}}人开课</text>
+          <view class="trainingCamp-box_text">
+            <view>
+              <view class="camp-title">{{campItem.camp[0].title}}</view>
+              <view class="store-title">{{campItem.title}}</view>
+              <view class="camp-time">时间:{{parse.secondToHm(campItem.camp[0].starttime)}}~{{parse.secondToHm(campItem.camp[0].endtime)}}</view>
+              <view class="camp-data">时段:{{date.format(campItem.camp[0].startdate*1000,'yyyy.MM.dd')}} - {{date.format(campItem.camp[0].enddate*1000,'yyyy.MM.dd')}}</view>
+              <view class="camp-pric">
+                <text class="camp-pric-l">¥{{parse.formatRMB(campItem.camp[0].price)}}</text>
+                <text class="camp-pric-r"> /{{campItem.camp[0].total}}课时</text>
+              </view>
+            </view>
+            <view>
+              <button class="btn">立即预约</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- 开始列表END -->
+
+  </view>
+
+
+</view>
+
+<tui-tabbar wx:if="{{tabbarShow}}" id="tui-tabbar" bind:goToTop="indexGoTop" indexPage="{{indexPage}}" tabBar="{{tabBar}}" isFixed="{{true}}" current="{{current}}" bind:click="tabbarSwitch"></tui-tabbar>

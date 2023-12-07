@@ -1,0 +1,13 @@
+.tui-waterfall__box {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+.tui-waterfall__list {
+  flex: 1;
+}

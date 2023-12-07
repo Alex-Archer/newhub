@@ -1,0 +1,58 @@
+<view class="container">
+		<view class="tui-block__box tui-mtop__20">
+			<text>发票状态</text>
+			<text class="tui-color__red">已开票</text>
+		</view>
+		<view class="tui-block__box tui-mtop__24">
+			<view>
+				<text>订单状态</text>
+				<text class="tui-color__black">已完成</text>
+			</view>
+			<view class="tui-ptop__20">
+				<text>订单编号</text>
+				<text class="tui-color__black">109943209010</text>
+			</view>
+			<view class="tui-ptop__20">
+				<text>下单时间</text>
+				<text class="tui-color__black">2020-01-01 13:18:21</text>
+			</view>
+			<view class="tui-ptop__20">
+				<text>发票类型</text>
+				<text class="tui-color__black">电子普通发票</text>
+			</view>
+		</view>
+		<view class="tui-block__box tui-mtop__24">
+			<view class="tui-invoice__box">
+				<image src="{{globalURL}}/miniprogram/url-img/my/invoice_logo.png" class="tui-invoice__logo"></image>
+				<view class="tui-color__red tui-invoice__title">增值税电子普通发票</view>
+			</view>
+			<view class="tui-flex__between tui-ptop__20">
+				<view>
+					<text>发票内容</text>
+					<text class="tui-color__black">商品明细</text>
+				</view>
+				<tui-button type="black" plain shape="circle" width="162rpx" height="52rpx" size="{{24}}" bindclick="view">查看发票</tui-button>
+			</view>
+			<view class="tui-ptop__20">
+				<text>发票抬头</text>
+				<text class="tui-color__black">个人</text>
+			</view>
+		</view>
+		<view class="tui-btn__box">
+			<tui-button type="danger" shape="circle" height="88rpx" bindclick="sendEmail">发送至邮箱</tui-button>
+		</view>
+		<tui-modal show="{{modal}}" bindcancel="cancel" custom fadeIn>
+			<view class="tui-modal-custom">
+				<view class="tui-prompt-title">请确认邮箱地址</view>
+				<input placeholder="用来接收电子发票邮件" class="tui-modal-input {{!modal?'tui-hidden-input':''}}"/>
+				<view class="tui-modal__btn">
+					<view class="tui-box">
+						<tui-button type="danger" plain shape="circle" height="64rpx" size="{{26}}" bindclick="cancel">取消</tui-button>
+					</view>
+					<view class="tui-box">
+						<tui-button type="danger" height="64rpx" size="{{26}}" shape="circle" bindclick="cancel">发送</tui-button>
+					</view>
+				</view>
+			</view>
+		</tui-modal>
+	</view>

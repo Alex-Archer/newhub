@@ -1,0 +1,51 @@
+.tui-week-date {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 14rpx;
+  box-sizing: border-box;
+}
+
+.tui-week--item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tui-week--label {
+  text-align: center;
+  padding-bottom: 8rpx;
+}
+
+.tui-week--value {
+  text-align: center;
+  width: 64rpx;
+  height: 64rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.tui-arrow--box {
+  padding: 16rpx 4rpx;
+  flex-shrink: 0;
+}
+
+.tui-left--arrow {
+  border: 16rpx solid;
+  width: 0;
+  height: 0;
+  border-color: transparent #5677fc transparent transparent;
+}
+
+.tui-right--arrow {
+  border: 16rpx solid;
+  width: 0;
+  height: 0;
+  border-color: transparent transparent transparent #5677fc;
+}

@@ -1,0 +1,29 @@
+<view
+    class="tui-textarea__wrap {{lineLeft?'tui-line__left':''}} {{!borderTop || textareaBorder?'tui-border__top':''}} {{!borderBottom || textareaBorder?'tui-border__bottom':''}} {{flexStart?'tui-textarea__flex-start':''}}"
+    style="padding:{{padding}};background-color:{{backgroundColor}};margin-top:{{marginTop+'rpx'}};border-radius:{{radius}}rpx" bindtap="fieldClick">
+    <view class="tui-textarea__border-top" wx:if="{{borderTop && !textareaBorder}}" style="border-top-color:{{borderColor}}"></view>
+		<view class="tui-textarea__border-bottom" wx:if="{{borderBottom && !textareaBorder}}" style="border-bottom-color:{{borderColor}}"></view>
+		<view class="tui-textarea__border" wx:if="{{textareaBorder}}"
+			style="border-color:{{borderColor}};border-radius:{{borderRadius*2}}rpx"></view>
+    <view class="tui-textarea__required {{flexStart?'tui-required__flex-start':''}}"
+      style="color:{{requiredColor || g_requiredColor}};top:{{flexStart?requiredTop:'50%'}}" wx:if="{{required}}">*</view>
+    <view class="tui-textarea__label"
+      style="font-size:{{labelSize}}rpx;color:{{labelColor}};min-width:{{labelWidth+'rpx'}}" wx:if="{{label}}">
+      {{label}}
+    </view>
+    <slot name="left"></slot>
+    <view class="tui-textarea__flex-1">
+      <textarea class="tui-textarea__self {{textRight?'tui-text__right':''}}"
+        style="height:{{height}};min-height:{{minHeight}};font-size:{{size+'rpx'}};color:{{color}}"
+        placeholder-class="tui-placeholder" name="{{name}}" model:value="{{value}}" placeholder="{{placeholder}}"
+        placeholderStyle="{{placeholderStyl}}" disabled="{{disabled}}" cursor-spacing="{{cursorSpacing}}" maxlength="{{maxlength}}" focus="{{focused}}"
+        auto-height="{{autoHeight}}" fixed="{{fixed}}"
+        show-confirm-bar="{{showConfirmBar}}" cursor="{{cursor}}" selection-start="{{selectionStart}}"
+        selection-end="{{selectionEnd}}" adjust-position="{{adjustPosition}}" hold-keyboard="{{holdKeyboard}}"
+        disable-default-padding="{{disableDefaultPadding}}" auto-blur="{{autoBlur}}" bindfocus="onFocus"
+        bindblur="onBlur" bindinput="onInput" bindconfirm="onConfirm" bindlinechange="onLinechange"
+        bindkeyboardheightchange="onKeyboardheightchange"></textarea>
+      <view class="tui-textarea__counter" style="font-size:{{counterSize+'rpx'}};color:{{counterColor}}" wx:if="{{isCounter}}">{{maxlength!=-1?count+'/'+maxlength:count}}</view>
+    </view>
+    <slot name="right"></slot>
+  </view>

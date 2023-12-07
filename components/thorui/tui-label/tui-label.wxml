@@ -1,0 +1,3 @@
+<view class="tui-label__box" style="padding:{{padding}};margin:{{margin}}" catchtap="onClick">
+  <slot></slot>
+</view>

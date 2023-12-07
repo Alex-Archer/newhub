@@ -1,0 +1,103 @@
+<tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="购卡续费" backgroundColor="#fff" color="#333"></tui-navigation-bar>
+<view class="container">
+  <!--头部背景色 -->
+  <cover-image style="top: {{statusBar}}px;" class="tui-cover-back" src="/static/img/map/icon_back_3x.png" bind:tap="back" />
+
+  <view class="img-box">
+    <view class="img-box-li input-parent" style="min-height: 540rpx;">
+      <image class="box-img-base" style="min-height: 493rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/top-bg.png" mode="widthFix"></image>
+      <view class="card-box">
+        <image class="box-img-base card" style="min-height: 335rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/card.png" mode="widthFix"></image>
+      </view>
+      <view class="card-des">首次入会 立减300元</view>
+    </view>
+    <view class="img-box-li qy-center">
+      <view class="qy-split">
+        <image style="min-height: 44rpx;width: 36rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/xie.png" mode="widthFix"></image>
+      </view>
+      <view class="qy-title" bindtap="myRights">奥本会员 专属权益</view>
+      <view class="qy-split">
+        <image style="min-height: 44rpx;width: 36rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/xie.png" mode="widthFix"></image>
+      </view>
+    </view>
+    <view class="ico-box">
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/ico01.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">课程随时约</view>
+      </view>
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/ico02.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">私教随心选</view>
+      </view>
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/ico03.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">新人大礼包</view>
+      </view>
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/ico04.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">教练无忧换</view>
+      </view>
+    </view>
+    <view class="img-box-li img-center">
+      <image class="box-img-base" style="min-height:154rpx;width: 650rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/adv800X189.png"></image>
+    </view>
+
+  </view>
+
+<!-- 协议 -->
+  <view class="agreement-box">
+    <tui-list-cell marginTop="40" radius="20" backgroundColor="#000" padding="0 0 0 20rpx" lineLeft="0" arrow="{{false}}" hover="{{false}}" unlined>
+    
+        <view class="tui-pd-title">
+            <view class="tui-pd-agree">《会员卡协议》</view>
+            <!-- <view class="tui-pd-des">上下滚动可阅读全部</view> -->
+        </view>
+        <view class="tui-padding tui-flex-pd">
+        <tui-overflow-hidden type="{{2}}"  lineClamp="5" size="28" color="#000" backgroundColor="#dadada"  width="100%" height="300rpx" radius="20rpx 20rpx 0 0" padding="20rpx" gradientColor="#000" removeGradient="{{removeGradientContent}}">
+            <rich-text nodes="{{agreeContent}}"></rich-text>
+        </tui-overflow-hidden>
+        <view class="tui-btn__box">
+                <tui-button wx:if="{{!removeGradientContent}}" size="{{22}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="40rpx auto" bindclick="readmoreContent">查看全部</tui-button>
+        </view>
+
+        </view>
+        <view class="tui-se-title">
+            <view class="tui-se-agree">
+              <checkbox-group bindchange="checkboxChange">
+                <label class="agree-label"  >
+                  <checkbox value="agree" checked="{{agreeCheckbox}}"   />
+                  <text>我已阅读并接受《会员卡协议》</text>
+                </label>
+            </checkbox-group>
+            </view>
+        </view>
+    </tui-list-cell>
+  </view>
+<!-- 协议END -->
+
+
+		<view class="tui-tabbar">
+			<view class="tui-flex-end tui-color-red tui-pr-20">
+        <view class="tui-bar-t">
+          <view class="tui-black">实付金额: </view>
+          <view class="tui-size-26">￥</view>
+          <view class="tui-price-large">20</view>
+          <view class="tui-size-26">.00</view>
+        </view>
+			</view>
+			<view class="tui-pr25">
+				<tui-button  width="200rpx" height="70rpx" size="28" type="{{subDisabled?'gray':'danger'}}" shape="circle"  bindclick="btnPay">{{thisPay<=0?'确认兑换':'确认支付'}}</tui-button>
+			</view>
+		</view> 
+
+    <view class="tui-safe-area"></view>
+  
+</view>

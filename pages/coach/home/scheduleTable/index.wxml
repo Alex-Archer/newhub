@@ -1,0 +1,216 @@
+<view class="container">
+
+  <scroller isBackBtn="{{false}}" id="page-scroller" style="height: calc(100vh - 200rpx);">
+    <!-- fixed-box -->
+    <view class="fixed-box">
+      <!-- 页头 -->
+      <view class="page-head">
+        <view class="head-time" style="color: {{weekDateShow?'#eb0909':'#000'}};" bind:tap="selectWeek">
+          <view class="time-title">{{weekStart}}-{{weekEnd}}</view>
+          <view class="time-ico">
+            <ald-icon padding="0 0 0 0" size="28" unit="rpx" name="{{weekDateShow?'up':'down'}}" color="{{weekDateShow?'#eb0909':'#333'}}"></ald-icon>
+          </view>
+        </view>
+        <view class="head-menu">
+          <view wx:if="{{notDefaultWeek}}" class="menu-a" bind:tap="thisWeek">返回本周</view>
+          <ald-icon padding="0 8rpx 0 20rpx" size="30" unit="rpx" name="calendar" color="#319fa6"></ald-icon>
+          <view class="menu-b" bind:tap="addSurplus">档期管理</view>
+        </view>
+      </view>
+      <!-- 页头END -->
+      <!-- 图标 -->
+      <view class="table-ico">
+        <view class="ico-item" style="flex-grow: 1;">
+          <view class="item-color color-white"></view>
+          <view class="item-title">空白未排</view>
+        </view>
+        <view class="ico-item" style="flex-grow: 1;">
+          <view class="item-color color-a"></view>
+          <view class="item-title">档期已排</view>
+        </view>
+        <view class="ico-item" style="flex-grow: 1;">
+          <view class="item-color color-b"></view>
+          <view class="item-title">团课</view>
+        </view>
+        <view class="ico-item" style="flex-grow: 1;">
+          <view class="item-color color-c"></view>
+          <view class="item-title">私教</view>
+        </view>
+        <view class="ico-item" style="flex-grow: 1;">
+          <view class="item-color color-d"></view>
+          <view class="item-title">集训营</view>
+        </view>
+      </view>
+      <!-- 头部 -->
+      <view class="table-head">
+        <view class="head-item">
+          <view class="head-item-title"></view>
+        </view>
+        <view class="head-item">
+          <view class="head-item-li {{!notDefaultWeek&&defaultWeek=='一'?'active':''}}">一</view>
+        </view>
+        <view class="head-item">
+          <view class="head-item-li {{!notDefaultWeek&&defaultWeek=='二'?'active':''}}">二</view>
+        </view>
+        <view class="head-item">
+          <view class="head-item-li {{!notDefaultWeek&&defaultWeek=='三'?'active':''}}">三</view>
+        </view>
+        <view class="head-item">
+          <view class="head-item-li {{!notDefaultWeek&&defaultWeek=='四'?'active':''}}">四</view>
+        </view>
+        <view class="head-item">
+          <view class="head-item-li {{!notDefaultWeek&&defaultWeek=='五'?'active':''}}">五</view>
+        </view>
+        <view class="head-item">
+          <view class="head-item-li {{!notDefaultWeek&&defaultWeek=='六'?'active':''}}">六</view>
+        </view>
+        <view class="head-item">
+          <view class="head-item-li {{!notDefaultWeek&&defaultWeek=='日'?'active':''}}">日</view>
+        </view>
+      </view>
+      <!-- 头部 -->
+      <!-- 日期可变选择 -->
+      <view class="head-date" wx:if="{{weekDateShow}}">
+        <week-date today="{{todayDate}}" value="{{defaultDate}}" activeBackground="#eb0909" weekSize="24" dateSize="30" arrow="{{false}}" bindclick="dateClick" bindprevweek="thisPrevWeek" bindnextweek="thisNextWeek">
+          <tui-icon slot="left" name="arrowleft" size="{{20}}"></tui-icon>
+          <tui-icon slot="right" name="arrowright" size="{{20}}"></tui-icon>
+        </week-date>
+      </view>
+      <!-- 日期可变选择 -->
+
+
+    </view>
+    <!-- fixed-box end -->
+
+    <view class="table-body" bind:tap="closeWeekPanel">
+      <view class="body-item">
+        <view class="body-item-time">06时</view>
+        <view class="body-item-time">07时</view>
+        <view class="body-item-time">08时</view>
+        <view class="body-item-time">09时</view>
+
+        <view class="body-item-time">10时</view>
+        <view class="body-item-time">11时</view>
+        <view class="body-item-time">12时</view>
+        <view class="body-item-time">13时</view>
+
+        <view class="body-item-time">14时</view>
+        <view class="body-item-time">15时</view>
+        <view class="body-item-time">16时</view>
+        <view class="body-item-time">17时</view>
+
+        <view class="body-item-time">18时</view>
+        <view class="body-item-time">19时</view>
+        <view class="body-item-time">20时</view>
+        <view class="body-item-time">21时</view>
+
+        <view class="body-item-time">22时</view>
+
+      </view>
+      <!-- 周一 -->
+      <view class="body-item">
+
+        <block wx:for="{{weekDateList[0]}}" wx:key="index">
+          <view class="body-item-li {{parse.getColor(weekDateList[0][index].state)}}"></view>          
+        </block>
+
+      </view>
+      <!-- 周二 -->
+      <view class="body-item">
+        <block wx:for="{{weekDateList[1]}}" wx:key="index">
+          <view class="body-item-li {{parse.getColor(weekDateList[1][index].state)}}"></view>          
+        </block>
+        
+      </view>
+      <!-- 周三 -->
+      <view class="body-item">
+        <block wx:for="{{weekDateList[2]}}" wx:key="index">
+          <view class="body-item-li {{parse.getColor(weekDateList[2][index].state)}}"></view>          
+        </block>
+        
+      </view>
+      <!-- 周四 -->
+      <view class="body-item">
+        <block wx:for="{{weekDateList[3]}}" wx:key="index">
+          <view class="body-item-li {{parse.getColor(weekDateList[3][index].state)}}"></view>          
+        </block>
+       
+      </view>
+      <!-- 周五 -->
+      <view class="body-item">
+        <block wx:for="{{weekDateList[4]}}" wx:key="index">
+          <view class="body-item-li {{parse.getColor(weekDateList[4][index].state)}}"></view>          
+        </block>
+        
+      </view>
+      <!-- 周六 -->
+      <view class="body-item">
+        <block wx:for="{{weekDateList[5]}}" wx:key="index">
+          <view class="body-item-li {{parse.getColor(weekDateList[5][index].state)}}"></view>          
+        </block>
+        
+      </view>
+      <!-- 周日 -->
+      <view class="body-item">
+        <block wx:for="{{weekDateList[6]}}" wx:key="index">
+          <view class="body-item-li {{parse.getColor(weekDateList[6][index].state)}}"></view>          
+        </block>
+        
+      </view>
+    </view>
+    <!-- 说明 -->
+    <view class="des-box">
+      <view class="title">说明：</view>
+      <view class="des">1.只能预排三天档期</view>
+      <view class="des">2.为了合理按排您的时间，尽量只排每二天档期！</view>
+      <view class="des">3.排好的档期如果有人预约后是无法更改的。</view>
+      <view class="des">4.为了合理按排您的时间，尽量只排每二天档期！</view>
+      <view class="des">5.排好的档期如果有人预约后是无法更改的。</view>
+    </view>
+    <!-- 说明 END-->
+  </scroller>
+</view>
+
+<coach-tabbar selectedColor="#ff7900" isFixed="{{true}}" tabBar="{{tabBar}}" hump="{{true}}" current="{{tabBarCurrent}}" bindclick="tabbarSwitch"></coach-tabbar>
+
+<wxs module="parse">
+  module.exports = {
+
+    getColor: function (state) {
+      switch(state){
+        case "O"://可排
+          return "color-a";
+          break; 
+        case "T": //团课
+          return "color-b";//绿
+          break;   
+        case "S": //私教
+          return "color-c";//紫
+        case "X"://训练营 蓝
+          return "color-d";
+          break;  
+
+          break;  
+        default:
+            return ""
+      }
+    },
+    search: function (ranges, target) {
+      let left = 0;
+      let right = ranges.length - 1;
+      while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+        const range = ranges[mid];
+        if (target < range.start) {
+          right = mid - 1;
+        } else if (target > range.end) {
+          left = mid + 1;
+        } else {
+          // 考虑 target 等于端点值的情况
+          return true;
+        }
+      }
+      return false;
+    },
+  }
+</wxs>

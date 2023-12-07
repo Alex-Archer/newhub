@@ -1,0 +1,268 @@
+@import "./index.skeleton.wxss";
+.tui-container {
+  padding-bottom: 240rpx;
+  
+}
+.tui-header {
+  background-color: #2e7175;
+}
+.tui-info__box {
+  width: 100%;
+  padding: 40rpx 48rpx 32rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.tui-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  background-color: #3b949e;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.tui-name__box {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.tui-descr {
+  font-size: 24rpx;
+  color: #fff;
+  transform: scale(.8);
+  transform-origin: 0 center;
+  padding-top: 8rpx;
+}
+
+.tui-explain {
+  color: #fff;
+  font-size: 24rpx;
+  margin-left: auto;
+}
+
+.tui-explain:active {
+  opacity: .5;
+}
+
+.tui-bg__box {
+  position: relative;
+  width: 100%;
+  padding: 0 36rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 150rpx;
+}
+
+.tui-bg {
+  width: 100%;
+  margin-bottom: -28rpx;
+}
+
+.tui-vip__box {
+  position: absolute;
+  left: 48rpx;
+  right: 48rpx;
+  top: 0;
+  bottom: -14rpx;
+  z-index: 2;
+  color: #FFDBB4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 36rpx;
+  box-sizing: border-box;
+  font-size: 44rpx;
+  font-weight: bold;
+}
+
+.tui-vip__due {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  font-weight: normal;
+}
+
+.tui-vip__due:active {
+  opacity: .5;
+}
+
+.tui-arrow {
+  width: 12rpx;
+  height: 12rpx;
+  border-top: 1px solid #FFDBB4;
+  border-right: 1px solid #FFDBB4;
+  transform: rotate(45deg) scale(.8);
+}
+
+.tui-body {
+  width: 100%;
+  padding: 28rpx 32rpx 0;
+  box-sizing: border-box;
+}
+
+.tui-title__box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tui-tit {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ff591f;
+  padding: 0 16rpx;
+}
+
+.tui-ornament {
+  width: 44rpx;
+  height: 20rpx;
+}
+
+.tui-sub__text {
+  width: 100%;
+  font-size: 24rpx;
+  color: #888;
+  transform: scale(.8);
+  transform-origin: center center;
+  padding-top: 8rpx;
+  text-align: center;
+}
+
+.tui-outer__box {
+  width: 100%;
+  padding: 24rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 16rpx;
+  box-shadow: 3rpx 4rpx 18rpx rgba(0, 0, 0, 0.1);
+  margin-top: 28rpx;
+}
+
+.tui-list {
+  display: flex;
+  align-content: center;
+}
+
+.tui-item {
+  flex: 1;
+  font-size: 24rpx;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.tui-item:active {
+  opacity: .5;
+}
+
+.tui-icon__box {
+  width: 96rpx;
+  height: 96rpx;
+  background-color: #ffe6dd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12rpx;
+}
+
+.tui-icon {
+  width: 56rpx;
+  height: 56rpx;
+}
+
+.tui-icon__md {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.tui-icon__sm {
+  width: 48rpx;
+  height: 52rpx;
+}
+
+.tui-ad__box {
+  padding: 32rpx 0;
+  position: relative;
+}
+
+.tui-ad__img {
+  width: 100%;
+  height: 200rpx;
+}
+
+.tui-ad__inner {
+  position: absolute;
+  z-index: 2;
+  color: #fff;
+  left: 48rpx;
+  right: 0;
+  top: 24rpx;
+  bottom: 42rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 24rpx;
+}
+
+.tui-ad__tit {
+  font-size: 48rpx;
+  font-weight: bold;
+  padding-bottom: 8rpx;
+}
+
+.tui-task__flex {
+  display: flex;
+  align-items: center;
+  padding: 36rpx 24rpx;
+  box-sizing: border-box;
+}
+.tui-task__icon-box{
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #ffe6dd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.tui-task__icon {
+  width: 56rpx;
+  height: 56rpx;
+}
+.tui-task__icon-sm{
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.tui-task__intro {
+  font-size: 28rpx;
+}
+
+.tui-task__explain {
+  font-size: 24rpx;
+  color: #888;
+}
+.tui-btn__right{
+  margin-left: auto;
+}
+
+.submit-bottom
+{
+  width: 80%;
+  padding: 0 10%;
+  position: fixed;
+  left: 0;
+  bottom: 100rpx;
+  z-index: 6;
+} 

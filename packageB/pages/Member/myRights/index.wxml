@@ -1,0 +1,187 @@
+<tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="我的权益" backgroundColor="#fff" color="#333"></tui-navigation-bar>
+<!-- <view class="container" wx:if="{{!preventOnShow}}"> -->
+<view class="container">
+  <!--头部背景色 -->
+  <cover-image style="top: {{statusBar}}px;" class="tui-cover-back" src="/static/img/map/icon_back_3x.png" bind:tap="back" />
+
+  <view class="img-box">
+    <view class="img-box-li input-parent" style="min-height: 540rpx;">
+      <image class="box-img-base" style="min-height:399rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/top-bg750X399.png" mode="widthFix"></image>
+      <view class="card-box">
+        <image class="box-img-base card" style="min-height: 335rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/card630X276.png" mode="widthFix"></image>
+      </view>
+      <view class="card-des">
+        <view class="card-header">
+          <image src="/static/img/login/login_header.jpg" class="header-photo"></image>
+        </view>
+        <view class="card-user">
+          <view class="card-user-name">张先生</view>
+          <view class="card-user-level">
+            <image src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/level0.png" class="level-photo"></image>
+            <view class="user-level-box">黑钻会员</view>
+          </view>
+        </view>
+        <view class="card-level">
+           <view class="level-more">完善个人信息></view>
+        </view>
+      </view>
+      <view class="card-bottom">
+          <view class="card-bottom-title">消费金额:</view>
+          <view class="card-bottom-price">400.00</view>
+          <view class="card-bottom-view">
+            <!-- <ald-icon size="40" customClass="" unit="rpx" name="eye" content="" color="#fff"></ald-icon> -->
+            <ald-icon margin="20rpx 0 0 0" size="36" customClass="" unit="rpx" name="eye-close" content="" color="#fff"></ald-icon>
+          </view>
+      </view>
+    </view>
+    
+    <view class="img-box-li qy-center">
+      <view class="qy-split">
+        <image style="min-height: 31rpx;width: 25rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/split.png" mode="widthFix"></image>
+      </view>
+      <view class="qy-title">
+      <view class="qy-title-t">会员专属特权</view>
+      <view class="qy-title-des">开通会员畅享会员权益</view>
+      </view>
+      <view class="qy-split">
+        <image style="min-height: 31rpx;width: 25rpx;margin-left: -10rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/split.png" mode="widthFix"></image>
+      </view>
+      
+
+      <!-- <image class="box-img-base" style="min-height: 113rpx;width: 500rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/qybt376X85.png" mode="widthFix"></image> -->
+    </view>
+    <view class="ico-box">
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/ico01.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">全城一卡通</view>
+      </view>
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/ico02.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">多馆随心练</view>
+      </view>
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/ico03.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">私教随心练</view>
+      </view>
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/ico04.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">约课更方便</view>
+      </view>
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/ico05.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">教练无忧换</view>
+      </view>
+      <view class="ico-item">
+        <view class="ico-item-img">
+          <image class="menu-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/ico06.png" mode="widthFix"></image>
+        </view>
+        <view class="ico-item-title">推荐有礼</view>
+      </view>
+
+
+      <!-- <image class="box-img-base" style="min-height: 112rpx;width: 750rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/qy750X112.png" mode="widthFix"></image> -->
+    </view>
+    <view class="img-box-li img-center">
+      <image class="box-img-base" style="min-height:154rpx;width: 650rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/adv800X189.png"></image>
+    </view>
+
+  </view>
+
+  <view class="menu-cell-box">
+    <tui-list-cell hover="{{false}}" padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="4" data-url="../about/index">
+      <view class="tui-list-cell">
+        <view class="list-cell-ico">
+          <image class="cell-ico-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/cell-ico-1.png" mode="widthFix"></image>
+        </view>
+        <view class="list-cell-title">我的课卡</view>
+      </view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}" padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="4" data-url="../about/index">
+      <view class="tui-list-cell">
+        <view class="list-cell-ico">
+          <image class="cell-ico-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/cell-ico-2.png" mode="widthFix"></image>
+        </view>
+        <view class="list-cell-title">我的券</view>
+      </view>
+    </tui-list-cell>
+   
+    <tui-list-cell unlined hover="{{false}}" padding="0" lineLeft="0" arrow="{{false}}" bindclick="href" data-page="4" data-url="../about/index">
+      <view class="tui-list-cell">
+        <view class="list-cell-ico">
+          <image class="cell-ico-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/cell-ico-3.png" mode="widthFix"></image>
+        </view>
+        <view class="list-cell-title">我的积分</view>
+      </view>
+    </tui-list-cell>
+  </view>
+
+  <view class="img-box-li qy-center">
+      <view class="qy-split">
+        <image style="min-height: 31rpx;width: 25rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/split.png" mode="widthFix"></image>
+      </view>
+      <view class="qy-title">
+      <view class="qy-title-t">做任务赚积分</view>
+      </view>
+      <view class="qy-split">
+        <image style="min-height: 31rpx;width: 25rpx;margin-left: -10rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/split.png" mode="widthFix"></image>
+      </view>
+     </view>
+
+    
+  <view class="rw-cell-box">
+    <tui-list-cell hover="{{false}}" padding="0" lineLeft="0" arrow="{{false}}" bindclick="href" data-page="4" data-url="../about/index">
+      <view class="tui-list-cell">
+        <view class="list-cell-signico">
+          <image class="cell-signico-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/sign-ico-1.png" mode="widthFix"></image>
+        </view>
+        <view class="list-cell-stitle">
+         <view class="list-cell-t">
+            <view class="cell-t-title">每日签到</view>
+            <view class="cell-t-bottom">
+              <tui-button type="warning" size="{{24}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="0">签到</tui-button>
+            </view>
+         </view>
+         <view class="list-cell-d">
+          签到成功<text class="red">+1</text>成长值，<text class="red">+1</text>积分
+          </view>
+        </view>
+        
+      </view>
+    </tui-list-cell>
+    <tui-list-cell unlined hover="{{false}}" padding="0" lineLeft="0" arrow="{{false}}" bindclick="href" data-page="4" data-url="../about/index">
+      <view class="tui-list-cell">
+        <view class="list-cell-signico">
+          <image class="cell-signico-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/sign-ico-2.png" mode="widthFix"></image>
+        </view>
+        <view class="list-cell-stitle">
+         <view class="list-cell-t">
+            <view class="cell-t-title">完成评价</view>
+            <view class="cell-t-bottom">
+              <tui-button type="warning" size="{{24}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="0">去评价</tui-button>
+            </view>
+         </view>
+         <view class="list-cell-d">
+          超10字<text class="red">+1</text>成长值，<text class="red">+1</text>积分
+          </view>
+        </view>
+        
+      </view>
+    </tui-list-cell>
+  </view>
+
+  <view class="bottom-logo">
+    <image class="logo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/bottom-logo750X139.png?v=202311272032" mode="widthFix"></image>
+  </view>
+    <view class="tui-safe-area"></view>
+  
+</view>

@@ -1,0 +1,41 @@
+<view class="container" wx:if="{{!preventOnShow}}"> 
+
+<tui-list-cell padding="0" arrow data-nickname="{{nickname}}" bindclick="typeShow">
+    <view class="tui-list-cell">
+        <view class="title-a">反馈类型</view>
+        <view class="tui-content">{{selectText}}</view>
+    </view>
+</tui-list-cell>
+
+
+<view class="title">问题描述</view>
+    <view class="tui-cells">
+        <textarea class="tui-textarea" placeholder="请输入您的反馈内容" maxlength="200" placeholder-class="phcolor"
+         bindinput="inputDesc" />
+        <view class="textarea-counter">{{parse.descNum(desc)}}/200</view>
+  </view> 
+  
+    <view class="title top32">联系电话</view>
+    <input class="tui-input" value="{{phone}}"  placeholder-class="phcolor" placeholder="请输入您的联系方式，非必填" bindinput="inputPhone" maxlength="11"></input>
+   
+    <view class="title top32">图片信息</view>
+
+  <view class="tui-box-upload">
+  <tui-upload limit="{{1}}" id="uploadRef" bindcomplete="uploadComplete" bindreupload="reUpload"></tui-upload>  
+</view>   
+  <view class="tui-ptop">
+         <tui-button disabled="{{subDisabled}}" type="{{btnType}}" shadow height="88rpx" shape="circle" bindclick="submit">{{subText}}</tui-button>
+  </view> 
+
+  
+  
+</view>
+<wxs module="parse">
+  module.exports={
+      descNum:function(desc){
+        return desc.length
+      } 
+  }
+</wxs>
+
+<tui-picker value="{{defaultTypeValue}}" show="{{typeShow}}" pickerData="{{typeItems}}" bindhide="hideType" bindchange="changeType"></tui-picker>

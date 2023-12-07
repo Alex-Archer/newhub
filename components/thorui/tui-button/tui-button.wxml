@@ -1,0 +1,74 @@
+<view class="tui-button__wrap {{(width==='100%' || !width || width===true) && (!btnSize || btnSize===true)?'tui-btn__flex-1':''}} {{parse.getShapeClass(shape, plain)}} {{!disabled?'tui-button__hover':''}}"	style="width: {{parse.getWidth(width,btnSize)}};height:{{parse.getHeight(height,btnSize,g_height)}};margin:{{margin}}">
+<button class="tui-btn-class tui-btn {{plain ? 'tui-' + type + '-outline' : 'tui-btn-' + (type || 'primary')}} {{parse.getDisabledClass(disabled, type, plain,disabledGray)}} {{parse.getShapeClass(shape, plain,borderRadius)}} {{bold ? 'tui-text-bold' : ''}} {{link?'tui-btn__link':''}}" style="{{borderRadius?'border-radius:'+borderRadius+';':''}}width: {{parse.getWidth(width,btnSize)}}; height: {{parse.getHeight(height,btnSize,g_height)}}; line-height: {{parse.getHeight(height,btnSize,g_height)}}; font-size: {{parse.getSize(size,g_size)}}rpx;background:{{g_bg_color}};color: {{g_color}};box-shadow: {{shadow?g_shadow:'none'}};{{flexdirection?'flex-direction: column;':''}}" loading="{{loading}}" form-type="{{formType}}" open-type="{{openType}}" app-parameter="{{appParameter}}" bindgetuserinfo="bindgetuserinfo" bindgetphonenumber="bindgetphonenumber" bindcontact="bindcontact" binderror="binderror" bindchooseavatar="bindchooseavatar" bindlaunchapp="bindlaunchapp" disabled="{{disabled}}" bindtap="handleClick">
+	<slot></slot>
+</button>
+<view class="tui-button__border {{parse.getShapeClass(shape, plain)}} {{parse.getDisabledClass(disabled, type, plain)}}" style="border-color:{{g_border_color}}" wx:if="{{!link && plain}}"></view>
+	</view>
+
+<wxs module="parse">
+	module.exports = {
+		getShadowClass: function(type, shadow, plain) {
+			var className = '';
+			if (shadow && type != 'white' && !plain) {
+				className = 'tui-shadow-' + type;
+			}
+			return className;
+		},
+		getDisabledClass: function(disabled, type, plain,disabledGray) {
+			var className = '';
+			if (disabled && type != 'white') {
+				var classVal = disabledGray ? 'tui-gray-disabled' : 'tui-dark-disabled';
+				className = plain ? 'tui-dark-disabled-outline' : classVal;
+			}
+			return className;
+		},
+		getShapeClass: function(shape, plain,borderRadius='') {
+			var className = '';
+			if (shape == 'circle') {
+                if (borderRadius == '') 
+                {
+                    className = plain ? 'tui-outline-fillet' : 'tui-fillet';
+                }else{
+                    className = plain ? 'tui-outline-fillet' : '';
+                }
+			} else if (shape == 'rightAngle') {
+				className = plain ? 'tui-outline-rightAngle' : 'tui-rightAngle';
+			}
+			return className;
+		},
+		getHoverClass: function(disabled, type, plain) {
+			var className = '';
+			if (!disabled) {
+				className = plain ? 'tui-outline-hover' : 'tui-' + (type || 'primary') + '-hover';
+			}
+			return className;
+    },
+    getWidth:function(width,btnSize) {
+        //medium 184*40 / small 120 40/ mini 58*32 
+      var btnWidth = width
+				if (btnSize && btnSize !== true) {
+					btnWidth = {
+						'medium': '368rpx',
+						'small': '240rpx',
+						'mini': '116rpx'
+					} [btnSize] || width
+				}
+				return btnWidth
+			},
+			getHeight:function(height,btnSize,g_height) {
+				//medium 184*40 / small 120 40/ mini 58*32
+				var btnHeight = height || g_height || '96rpx';
+				if (btnSize && btnSize !== true) {
+					btnHeight = {
+						'medium': '80rpx',
+						'small': '80rpx',
+						'mini': '64rpx'
+					} [btnSize] || btnHeight
+				}
+				return btnHeight
+			},
+			getSize:function(size,g_size) {
+				return size || g_size || 32;
+			}
+	}
+</wxs>

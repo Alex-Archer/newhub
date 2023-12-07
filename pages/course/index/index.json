@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "tui-section":"/components/thorui/tui-section/tui-section",
+    "tui-rate": "/components/thorui/tui-rate/tui-rate",
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "tui-tabbar": "/components/thorui/tui-tabbar/tui-tabbar"
+  },
+  "navigationBarTitleText": "课程",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "backgroundColorTop": "#fcfcfc",
+  "backgroundColorBottom": "#fcfcfc",
+  "navigationStyle": "default"
+}

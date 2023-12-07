@@ -1,0 +1,77 @@
+.tui-scroll__view {
+  width: 100%;
+  height: 80rpx;
+  overflow: hidden;
+}
+
+.tui-tabs__fixed {
+  position: fixed;
+  left: 0;
+}
+.tui-tabs__sticky {
+  position: sticky;
+  left: 0;
+}
+
+.tui-tabs__wrap {
+  padding-bottom: 20rpx;
+}
+
+.tui-tabs__list {
+  position: relative;
+  height: 80rpx;
+  display: flex;
+}
+
+.tui-tabs__scroll {
+  white-space: nowrap !important;
+  display: block !important;
+}
+
+.tui-tabs__scroll .tui-tabs__item {
+  padding: 0 30rpx;
+  display: inline-flex;
+}
+
+.tui-tabs__scroll .tui-item__child {
+  display: block !important;
+}
+
+.tui-tabs__item {
+  flex: 1;
+  text-align: center;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  transition: color 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tui-item__child {
+  display: inline-block;
+  transition: transform 0.15s;
+  transform-origin: center center;
+
+  /* //小鱼加  */
+  /* text-align: center;
+  width: 64rpx;
+  height: 64rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: aquamarine; */
+}
+
+.tui-tabs__line {
+  position: absolute;
+  left: 0;
+  width: 0;
+  display: inline-block;
+}
+
+.tui-tabs__line.tui-transition {
+  transition: width 0.3s, transform 0.3s;
+}

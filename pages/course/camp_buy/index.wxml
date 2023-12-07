@@ -1,0 +1,176 @@
+<wxs src="/wxs/utils.wxs" module="parse"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+
+<view class="container"  wx:if="{{!loading&&!preventOnShow}}">
+    <!-- <view class="container"  wx:if="{{!preventOnShow}}"> -->
+		<view class="tui-box">
+		
+			<view class="tui-top tui-goods-info">
+				<tui-list-cell hover="{{false}}" lineLeft="0">
+					<view class="tui-goods-title">
+						 订单信息
+					</view>
+				</tui-list-cell>
+
+				<tui-list-cell hover="{{false}}">
+					<view class="tui-padding tui-flex">
+						<view>集训营名称</view>
+						<view>{{title}}</view>
+					</view>
+				</tui-list-cell>
+                <tui-list-cell hover="{{false}}" wx:if="{{campInfo.coachName}}">
+					<view class="tui-padding tui-flex">
+						<view>教练</view>
+						<view>{{campInfo.coachName}}</view>
+					</view>
+				</tui-list-cell>
+                <tui-list-cell hover="{{false}}">
+					<view class="tui-padding tui-flex">
+						<view>开班时段</view>
+						<view>{{date.format(campInfo.startdate*1000,'yyyy.MM.dd')}} - {{date.format(campInfo.enddate*1000,'yyyy.MM.dd')}}</view>
+					</view>
+				</tui-list-cell>
+                <tui-list-cell hover="{{false}}">
+					<view class="tui-padding tui-flex">
+						<view>时间说明</view>
+						<view>{{parse.secondToHm(campInfo.starttime)}}~{{parse.secondToHm(campInfo.endtime)}}</view>
+					</view>
+				</tui-list-cell>
+                <tui-list-cell hover="{{false}}">
+					<view class="tui-padding tui-flex">
+						<view>地点</view>
+						<view>{{campInfo.storefrontName}}</view>
+					</view>
+				</tui-list-cell>
+                <tui-list-cell hover="{{false}}">
+					<view class="tui-padding tui-flex">
+						<view>课时数</view>
+						<view>{{campInfo.total}}节</view>
+					</view>
+				</tui-list-cell>
+                <tui-list-cell hover="{{false}}">
+					<view class="tui-padding tui-flex">
+						<view>价格</view>
+						<view>￥{{parse.formatRMB(campInfo.price)}}</view>
+					</view>
+				</tui-list-cell>
+
+				<tui-list-cell hover="{{false}}" lineLeft="0" wx:if="{{favourableShow||discountShow}}">
+					<view class="tui-goods-title">
+						 优惠信息
+					</view>
+				</tui-list-cell>
+
+
+        <!-- <tui-list-cell hover="{{false}}">
+					<view class="tui-padding tui-flex">
+						<view>折扣</view>
+						<view>7.8折</view>
+					</view>
+				</tui-list-cell> -->
+				<tui-list-cell wx:if="{{favourableShow}}" arrow="{{hasCoupon}}" hover="{{hasCoupon}}" bindclick="selectCoupon">
+					<view class="tui-padding tui-flex">
+						<view>优惠</view>
+						<!-- <view class="{{hasCoupon?'tui-color-red':''}}">{{hasCoupon?"满5减1":'没有可用优惠券'}}</view> -->
+						<view class="{{hasCoupon?'tui-color-red':'tui-color-none'}}">
+            {{hasCoupon?couponSelectTitle:discount>=100?'无优惠':'不使用优惠'}}
+            </view>            
+					</view>
+				</tui-list-cell>
+				<tui-list-cell wx:if="{{discountShow}}"  hover="{{false}}">
+					<view class="tui-padding tui-flex">
+						<view>折扣</view>
+						<!-- <view class="{{hasCoupon?'tui-color-red':''}}">{{hasCoupon?"满5减1":'没有可用优惠券'}}</view> -->
+						<view class="tui-color-default">
+            {{discount/10}}折 优惠
+            </view>            
+					</view>
+				</tui-list-cell>
+
+				<tui-list-cell wx:if="{{exchangeSwitchShow}}"  hover="{{false}}" radius>
+					<view class="tui-flex">
+						<view class="tui-balance">使用兑换</view>
+						<switch disabled="{{couponSwitchDisabled}}" bindchange="couponSwitch" checked="{{couponSwitch}}" color="#19be6b" class="tui-scale-small"/>
+					</view>
+				</tui-list-cell>
+				<!-- <tui-list-cell hover="{{true}}" arrow="{{true}}"  bindclick="invoice">
+					<view class="tui-padding tui-flex">
+						<view>发票</view>
+						<view class="tui-invoice-text">不开发票</view>
+					</view>
+				</tui-list-cell> -->
+
+                <tui-list-cell hover="{{false}}" unlined>
+					<view class="tui-goods-title">
+						 购前必读
+					</view>
+                    <view class="tui-padding tui-pd-title">
+                        <view class="tui-pd-agree" >同意《aoben shared yoga集训营服务协议》</view>
+                        <view class="tui-pd-radio">
+                        <!-- <switch bindchange="agreeSwitch" checked="{{agreeSwitch}}" color="#19be6b" class="tui-scale-small"/> -->
+                        <switch bindchange="agreeSwitch" checked="{{agreeChecked}}" color="#EB0909"/>
+                        <!-- <switch margin="20rpx" scaleRatio="1" checked="{{agreeChecked}}" value="{{1}}" color="#EB0909" borderColor="#999"></switch> -->
+               
+                        </view>
+                    </view>
+                    <view class="tui-padding tui-flex-pd">
+                        <view>1.参与aoben shared yoga集训营的用户，具有完全的法律行为能力，同意遵守相关管理规章制度，应接受aoben shared yoga集训营的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守aoben shared yoga集训营的相关规定。</view>
+                        <view>2.在确认本协议前，用户应了解自身身体情况，以确保用户具备参与aoben shared yoga集训营的身体条件，且没有任何不宜运动的疾病、损伤和其他缺陷。因用户自身的任何疾病、损伤或其他缺陷导致用户在接受服务时发生任何损害的，aoben shared yoga不承担任何法律责任。</view>
+                        <view>3.以下人群不能参加aoben shared yoga集训营: 手术后3个月内的人群、有心血管疾病者、不能剧烈运动伤者、孕妇及哺乳期女性、产后不足6个月内的人群，上课时如有隐瞒，所发生的一切后果及对他人产生的后果aoben shared yoga集训营及教练均不负任何责任。如因此造成第三人损害的，则由其承担赔偿责任。在课程中感到任何不适的，请及时告知aoben shared yoga集训营的教练。否则，如果发生身体损害，aoben shared yoga集训营不承担法律责任。</view>
+                        <view>4.为了用户的健身安全，用户训练时须穿着专业的运动服、运动鞋及运动装备。运动期间，不得参与违反国家法律法规的活动、不得穿着违反道德规范服饰进行运动。</view>
+                        <view>5.用户在参加健身锻炼时请勿携带珠宝饰品等贵重物品，以免丢失或造成意外。物品遗失概不负责。</view>
+                        <view>6.请您认真阅读以上内容，报名成功即认为您同意此服务协议!</view>
+                    
+                    </view>
+                </tui-list-cell> 
+
+				
+
+				<tui-list-cell hover="{{false}}" unlined>
+					<view class="tui-padding tui-flex tui-total-flex">
+						<view class="tui-flex-end tui-color-red">
+							<view class="tui-black">合计： </view>
+							<view class="tui-size-26">￥</view>
+							<view class="tui-price-large">{{parse.formatRMB(amountPrice)}}</view>
+							<!-- <view class="tui-size-26">.00</view> -->
+						</view>
+					</view>
+				</tui-list-cell>
+			</view>
+
+			<view class="tui-top" wx:if="{{spareShow&&totalBalance>0&&!couponSwitch}}">
+				<tui-list-cell unlined hover="{{false}}" radius>
+					<view class="tui-flex">
+						<view class="tui-balance">
+              <!-- <view>瑜伽币抵扣<text class="tui-gray">(￥{{parse.formatRMB(totalBalance)}})</text></view> -->
+              <view class="balance-title">使用瑜伽币抵扣</view>
+            </view>
+            <view class="tui-balance-switch">
+              <switch bindchange="balanceSwitch" color="#19be6b" class="tui-scale-small" checked="{{balanceSwitch}}" />
+            </view>
+						<!-- <view class="tui-pr-30 tui-light-dark" hidden="{{!insufficient}}">瑜伽币不足, 去充值</view> -->
+					</view>
+          <view  class="tui-balance-des">您当前拥有{{totalBalance}}个瑜伽币,约等于{{parse.formatRMB(totalBalance)}}元人民币</view>
+				</tui-list-cell>
+			</view>
+		</view>
+		<view class="tui-safe-area"></view>
+		<view class="tui-tabbar">
+			<view class="tui-flex-end tui-color-red tui-pr-20" wx:if="{{thisPay>0}}">
+				<view class="tui-black">实付金额: </view>
+				<view class="tui-size-26">￥</view>
+				<view class="tui-price-large">{{parse.formatRMB(thisPay)}}</view>
+				<!-- <view class="tui-size-26">.00</view> -->
+			</view>
+			<view class="tui-pr25">
+				<tui-button  width="200rpx" height="70rpx" size="28" type="{{subDisabled?'gray':'danger'}}" shape="circle"  bindclick="btnPay">{{thisPay<=0?'确认兑换':'确认支付'}}</tui-button>
+			</view>
+		</view>
+		<!-- <t-pay-way show="{{show}}"  bindclose="popupClose"></t-pay-way> -->
+
+		<!-- <t-select-coupons show="{{couponShow}}" bindclose="couponClose"></t-select-coupons> -->
+    <t-select-coupon-type typeList="{{typeList}}" typeListIndex="{{typeListIndex}}" show="{{couponShow}}" bindclose="couponTypeClose"></t-select-coupon-type>
+	</view>
+  <tui-loading wx:if="{{PayLoading}}"  text="{{PayLoadingTxt}}" isMask="{{true}}" maskColor="rgba(0,0,0,.1)">asdfasd</tui-loading>

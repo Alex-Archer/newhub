@@ -1,0 +1,18 @@
+<privacy-dialog fixedbottom="25vh" mask="true" bottomShowType="{{1}}" bind:agree="agree" bind:disagree="disagree"></privacy-dialog>
+<wxs src="/wxs/utils.wxs" module="utilParse"></wxs>
+<view class="tui-maps-container">
+    <!-- <map class="tui-map" latitude="{{lat}}" longitude="{{lng}}" markers="{{covers}}" bindmarkertap="marker" scale="{{12}}"> -->
+    <map id="maps" class="tui-map" show-location longitude="{{lng}}" latitude="{{lat}}" scale="{{scale}}" bindregionchange="regionchange" markers="{{covers}}" bindmarkertap="marker" id="map" min-scale="{{minScale}}" max-scale="{{maxScale}}" setting="{{setting}}" enable-overlooking="{{isOverLooking}}" 
+    enable-rotate="{{false}}" bindcallouttap="marker">
+        <cover-image style="top: {{statusBar}}px;" class="tui-cover-back" src="/static/img/map/icon_back_3x.png" catchtap="back" />
+        <cover-image wx:if="{{!showActionSheet}}" src="/static/img/map/icon_location_3x.png" class="tui-current-img" catchtap="currentLocation"></cover-image>
+        <!-- <cover-view wx:if="{{!showActionSheet}}" class="cover-des">拖动地图可搜索周边门店</cover-view> -->
+        <cover-view class="cover-menu" style="top: {{statusBar}}px;" >
+        <cover-view class="menu-item" bindtap="goList">列表</cover-view>
+        <cover-view class="menu-item active-box">
+            <cover-view>地图</cover-view>
+            <cover-view class="active-view"></cover-view>
+        </cover-view>
+        </cover-view>
+    </map>
+</view>

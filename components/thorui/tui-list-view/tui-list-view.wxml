@@ -1,0 +1,6 @@
+<view class="tui-list-view tui-view-class {{radius && radius!=0?'tui-radius':''}}" style="background-color:{{backgroundColor}};margin-top:{{marginTop}};border-radius: {{radius}}rpx;">
+	<view class="tui-list-title" style="color:{{color}};font-size:{{size}}rpx;line-height:{{size}}rpx" wx:if="{{title}}">{{title}}</view>
+	<view class="tui-list-content {{unlined?'tui-border-'+unlined:''}}">
+		<slot></slot>
+	</view>
+</view>

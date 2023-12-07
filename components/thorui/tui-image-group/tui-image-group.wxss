@@ -1,0 +1,34 @@
+.tui-image-container {
+	display: inline-flex;
+	align-items: center;
+}
+.tui-image-direction {
+	flex-direction: column;
+}
+.tui-image__warp {
+	flex-wrap: wrap;
+}
+.tui-image-item_box {
+	position: relative;
+}
+.tui-image-item {
+	border-style: solid;
+	flex-shrink: 0;
+	display: block;
+}
+
+.more
+{
+    
+
+    background-color: #f7f8fc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+    position: relative;
+    border: 1px solid #fff;
+    color: #a1a2a6;
+}

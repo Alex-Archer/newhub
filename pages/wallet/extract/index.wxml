@@ -1,0 +1,32 @@
+<view class="container">
+		<view class="tui-page__hd">
+			<view class="extract-title">
+            <view class="extract-a">提现到</view>
+            <view class="extract-b">微信零钱</view>
+            <view class="extract-c">(单笔最高限额5000)</view>
+            </view>
+		</view>
+		<view class="tui-page__bd">
+			<view class="tui-form__box">
+				<view class="tui-title">实际提现金额</view>
+				<view class="tui-input__box" bindtap="focus">
+					<view class="tui-symbol">￥</view>
+					<view class="tui-input">{{value}}</view>
+					<view class="tui-cursor" wx:if="{{cursor}}"></view>
+				</view>
+                <view class="tui-ms">
+                    <view class="ms-l">当前账户余额 {{balance}} 元</view>
+                    <view class="ms-r">全部提现</view>
+                </view>
+
+    <view class="tui-exit">
+        <tui-button disabled="{{buttonDisabled}}" shape="circle" shadow type="default" height="88rpx" bind:tap="openActionSheet">立即提现</tui-button>
+    </view>
+    <view class="tui-exit-log" bind:tap="goViewLog">
+    查看提现记录
+    </view>
+			</view>
+			<tui-digital-keyboard buttonBackground="{{buttonBackground}}" buttonText="{{text}}" darkMode="{{darkMode}}" show="{{show}}"
+			 disabled="{{value==''}}" isDecimal="{{isDecimal}}" bindclick="keyTap" bindbackspace="backspace" bindconfirm="confirm"></tui-digital-keyboard>
+		</view>
+	</view>

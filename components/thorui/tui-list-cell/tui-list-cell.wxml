@@ -1,0 +1,35 @@
+<view class="tui-list-class tui-list-cell {{radius && radius!='0' ? 'tui-radius' : ''}} {{	hover ? 'tui-cell-hover' : ''}}" style="background-color: {{backgroundColor}};font-size: {{parse.getSize(size,g_size)}}rpx;color:{{parse.getColor(color,g_color)}};padding:{{parse.getPadding(padding,g_padding)}};border-radius:{{radius}}rpx;margin-top: {{marginTop}}rpx;margin-bottom: {{marginBottom}}rpx;"
+		bindtap="handleClick">
+		<slot></slot>
+		<view class="tui-cell__line"
+			style="border-bottom-color:{{parse.getLineColor(lineColor,g_lineColor)}};left:{{parse.getLineLeft(lineLeft,g_lineLeft)}}rpx;right:{{lineRight}}rpx" wx:if="{{!unlined}}">
+		</view>
+		<view class="tui-cell__arrow" style="border-color:{{parse.getArrowColor(arrowColor,g_arrowColor)}};right:{{arrowRight}}rpx" wx:if="{{arrow}}"></view>
+	</view>
+
+  <wxs module="parse">
+   module.exports={
+      getArrowColor:function(arrowColor,g_arrowColor) {
+				return arrowColor || g_arrowColor || '#c0c0c0';
+			},
+			getLineColor:function(lineColor,g_lineColor) {
+				return lineColor || g_lineColor || '#eaeef1';
+			},
+			getLineLeft:function(lineLeft,g_lineLeft) {
+				var left = lineLeft;
+				if (left == -1) {
+					left = g_lineLeft;
+				}
+        return left === undefined || left === null ? 30 : left;
+			},
+			getPadding:function(padding,g_padding) {
+				return padding || g_padding || '26rpx 30rpx';
+			},
+			getColor:function(color,g_color) {
+				return color || g_color || '#333';
+			},
+			getSize:function(size,g_size) {
+				return size || g_size || 28;
+			}
+   }
+  </wxs>

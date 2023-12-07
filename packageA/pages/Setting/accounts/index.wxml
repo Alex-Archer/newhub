@@ -1,0 +1,30 @@
+<tui-list-view>
+  <tui-list-cell bindclick="detail">
+    <view class="tui-item-box">
+      <view class="tui-list-cell_name">手机号</view>
+      <view class="tui-right">123456789</view>
+    </view>
+  </tui-list-cell>
+  <tui-list-cell bindclick="detail">
+    <view class="tui-item-box">
+      <view class="tui-list-cell_name">密码设置</view>
+      <view class="tui-right">未设置</view>
+    </view>
+  </tui-list-cell>
+  <tui-list-cell bindclick="detail">
+    <view class="tui-item-box">
+      <view class="tui-list-cell_name">微信</view>
+      <view class="tui-right">未绑定</view>
+    </view>
+  </tui-list-cell>
+  <tui-list-cell bindclick="detail">
+    <view class="tui-item-box">
+      <view class="tui-list-cell_name">支付宝</view>
+      <view class="tui-right">未绑定</view>
+    </view>
+  </tui-list-cell>
+</tui-list-view>
+<view class="foot">
+  <tui-button type="danger" shape="circle" plain bindclick="detail" width="90%" height="75rpx" size="30" margin="0 auto 20rpx auto">退出登录</tui-button>
+  <view style="font-size: 24rpx;">不想继续使用乐刻了？<text style="color: #ff7900;">注销账号</text></view>
+</view>

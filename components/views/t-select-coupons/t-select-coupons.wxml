@@ -1,0 +1,57 @@
+<view>
+		<tui-bottom-popup show="{{show}}" bindclose="close">
+			<view class="tui-coupon__box">
+				<view class="tui-coupon__title">
+					<text>优惠券</text>
+					<view class="tui-icon-close" bindtap="close">
+						<tui-icon name="shut" size="{{22}}" color="#BFBFBF"></tui-icon>
+					</view>
+				</view>
+				<scroll-view scroll-y class="tui-coupon__list">
+					<radio-group>
+						<label class="tui-not-used  tui-top20">
+							<text>不使用优惠券</text>
+							<radio value="-1" class="tui-coupon-radio" color="#e41f19" />
+						</label>
+						<label wx:for="{{couponList}}" wx:key="index">
+							<view class="tui-coupon-item tui-top20">
+								<image src="{{webURL}}/static/images/mall/coupon/bg_coupon_3x.png" class="tui-coupon-bg" mode="widthFix"></image>
+								<view class="tui-coupon-item-left">
+									<view class="tui-coupon-price-box">
+										<view class="tui-coupon-price-sign" wx:if="{{index % 2 == 0}}">￥</view>
+                    <!--tui-coupon-price tui-price-small-->
+										<view class="tui-coupon-price" >{{ index % 2 == 0 ? 50 * (index + 1) : 2.5 }}</view>
+										<view class="tui-coupon-price-sign" wx:if="{{index % 2 != 0}}">折</view>
+									</view>
+									<view class="tui-coupon-intro">满38元可用</view>
+								</view>
+								<view class="tui-coupon-item-right">
+									<view class="tui-coupon-content">
+										<view class="tui-coupon-title-box">
+											<view class="tui-coupon-btn">全场券</view>
+											<view class="tui-coupon-title">全部商品可用</view>
+										</view>
+										<view class="tui-coupon-rule">
+											<view class="tui-rule-box tui-padding-btm">
+												<view class="tui-coupon-circle"></view>
+												<view class="tui-coupon-text">不可叠加使用</view>
+											</view>
+											<view class="tui-rule-box">
+												<view class="tui-coupon-circle"></view>
+												<view class="tui-coupon-text">{{ index % 2 == 0 ? '自领取之日起30天有效' : '2019-11-01至2019-12-31' }}</view>
+											</view>
+										</view>
+									</view>
+									<radio value="1" class="tui-coupon-radio" color="#e41f19" checked="{{index==0}}" />
+								</view>
+							</view>
+						</label>
+					</radio-group>
+					<view class="tui-seat__box tui-top20"></view>
+				</scroll-view>
+				<view class="tui-btn-pay">
+					<tui-button height="88rpx" type="danger" shape="circle" shadow bindclick="btnConfirm">确定</tui-button>
+				</view>
+			</view>
+		</tui-bottom-popup>
+	</view>

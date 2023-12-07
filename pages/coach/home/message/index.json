@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "coach-tabbar": "/components/ksald/coach-tabbar/coach-tabbar",
+    "tui-list-cell":"/components/thorui/tui-list-cell/tui-list-cell",
+    "tui-loadmore": "/components/thorui/tui-loadmore/tui-loadmore",
+    "tui-nomore": "/components/thorui/tui-nomore/tui-nomore",
+    "t-order-item":"/components/views/t-order-item/t-order-item",
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "tui-no-data":"/components/thorui/tui-no-data/tui-no-data"
+
+  },
+  "navigationBarTitleText": "消息",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff"
+}

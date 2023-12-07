@@ -1,0 +1,358 @@
+
+page{
+  background-color: #faf8f9;
+  height: 100%;
+}
+.container {
+  /* padding-bottom: 498rpx; */
+  min-height: 100vh;
+  /* background-color: #faf8f9; */
+/* padding-bottom: calc(env(safe-area-inset-bottom) + 300rpx); */
+background-color: #f4f4f4;
+}
+
+.bg-box {
+  width: 100%;
+  height: 480rpx;
+  position: relative;
+  /* background: linear-gradient(to bottom,#f97c39 20%,#faf8f9); */
+  
+}
+
+.content-list
+{
+  width: 90%;
+  margin: 0 5%;
+  top:10rpx;
+  /* background-color: #f7e6de; */
+  position: absolute;
+}
+.card-box
+{
+  width: 675rpx;
+  height: 308rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+  margin-top: 16rpx;
+  display: flex;
+
+  justify-content: space-between;
+
+}
+.card-title
+{
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 60rpx 0 0 60rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.card-bg
+{
+  height: 300rpx;
+  width: 265rpx;
+}
+
+
+.card-des
+{
+  height: 300rpx;
+  width: 265rpx;
+  margin: 6rpx 20rpx 0 0;
+}
+.price-item
+{
+  height: 130rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  margin-top: 26rpx;
+  padding:10rpx 20rpx;
+  /* border: 1rpx solid #c8bfba; */
+  box-sizing: border-box;
+}
+.price-item.active
+{
+  /* border: 1rpx solid #f6ab83; */
+  background-color: #f4eade;
+}
+.item-t,.item-d
+{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.item-t
+{
+  height: 50rpx;
+}
+.item-t-l,.item-t-r
+{
+  font-size: 32rpx;
+  color: #e95314;
+  font-weight: bold;
+}
+
+.item-d-l,.item-d-r
+{
+  font-size: 26rpx;
+  color: #272727;
+}
+
+.item-d
+{
+  height: 60rpx;
+}
+
+
+.cell-li
+{
+  height: 80rpx;
+  margin-top: 16rpx;
+  padding: 0 20rpx;
+
+border-radius: 14rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+.cell-li-t
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60rpx;
+}
+
+
+.cell-li-l
+{
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #101010;
+}
+.cell-li-r
+{
+  font-size: 26rpx;
+  color: #6c6c6c;
+  display: flex;
+  align-items: center;
+}
+.cell-li-r .red,.cell-li-r.red
+{
+  color: #e95314; 
+  font-size: 32rpx; 
+}
+.scan-text
+{
+  width: 60rpx;
+  flex-wrap: wrap;
+  height: 50rpx;
+  line-height: 25rpx;
+  font-size: 22rpx;
+  margin-left: 6rpx;
+}
+
+.tui-goods-title {
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+
+/* 购前必读 */
+.tui-pd-agree
+{
+    font-size: 28rpx;
+    color:#EB0909 ;
+    flex-shrink: 0;
+    height: 35rpx;
+    line-height: 35rpx;
+
+}
+
+/*swtich整体大小及背景色*/
+.wx-switch-input {
+    width: 80rpx !important;
+    height: 35rpx !important;
+    box-sizing: border-box;
+    position: relative;
+    border: 0px !important;
+}
+   /* false的样式 */
+  .wx-switch-input::before {
+    width: 45px !important;
+    height: 35rpx !important;
+    background: #CCCCCC !important;
+    border: 0px solid #CCCCCC !important;
+    box-shadow: none !important;
+    left: 0px;
+    top: 0px;
+  }
+   /* 中间的圆 true样式 */
+  .wx-switch-input::after {
+    width: 40rpx !important;
+    height: 35rpx !important;
+    /* top: 2px !important;
+    left: 2px !important; */
+    opacity: 1 !important;
+    box-sizing: border-box;
+    box-shadow: none !important;
+    border: 0px !important;
+  }
+  .tui-pd-title
+{
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height:80rpx;
+  height: 80rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tui-flex-pd {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 26rpx;
+  line-height:45rpx;
+  color: #989898;
+  /* padding: 0 10rpx; */
+  padding-bottom: 200rpx;
+}
+  /* 购前必读 END */
+
+
+.tui-safe-area {
+  height: 1rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+
+.tui-tabbar {
+  width: 100%;
+  height: 98rpx;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  font-size: 26rpx;
+  box-shadow: 0 0 1px rgba(0, 0, 0, .3);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 996;
+}
+
+.tui-pr25 {
+  padding-right: 25rpx;
+}
+
+
+
+.tui-black {
+  color: #222;
+  line-height: 30rpx;
+}
+.tui-size-26 {
+  font-size: 26rpx;
+  line-height: 26rpx;
+}
+
+
+
+.tui-flex-end {
+  display: flex;
+  align-items: flex-end;
+  flex-direction:column;
+  padding-right: 0;
+  margin-left: 50rpx;
+}
+.tui-black {
+  color: #222;
+  line-height: 30rpx;
+}
+.tui-size-26 {
+  font-size: 26rpx;
+  line-height: 26rpx;
+}
+.tui-price-large {
+  font-size: 34rpx;
+  line-height: 32rpx;
+  font-weight: 600;
+}
+.tui-color-red,
+.tui-invoice-text {
+  color: #e95314;
+  padding-right: 30rpx;
+}
+.tui-pr-20 {
+  padding-right: 20rpx;
+}
+.cell-li-d
+{
+  margin: 20rpx 0;
+}
+.tui-bar-t
+{
+  width: 100%;
+  display:flex;
+  align-items:inherit;
+  
+
+}
+.tui-bar-d
+{
+  width: 100%;
+  display:flex;
+  align-items: center;
+  text-align: left;
+
+  color: #6c6c6c;
+  font-size: 22rpx;
+  margin-top: 6rpx;
+}
+
+/* 同意协议 */
+.tui-pd-radio
+{
+    height: 60rpx;
+    line-height: 45rpx;
+}
+.agree-label
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60rpx;
+}
+checkbox .wx-checkbox-input {
+  width: 45rpx;
+  height:45rpx;
+  border-radius: 10rpx;
+
+  border: 2px solid #CCCCCC !important;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {/* 选中背景 */
+  border-color: #EB0909;
+  background-color: #EB0909;
+  border: 0px solid #CCCCCC !important;
+  
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {/* 选中后勾号 */
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: bold;
+  border: 0px solid #CCCCCC !important;
+}
+/* 同意协议 */

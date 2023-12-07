@@ -1,0 +1,55 @@
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="container" wx:if="{{!preventOnShow}}">
+    <view class="tui-order-list">
+        
+        <tui-loadmore wx:if="{{loading}}" index="3" ></tui-loadmore>
+        <tui-no-data wx:if="{{!loading&&noDataShow}}" bindtap="selectStore" btnText="增加服务场馆" backgroundColor="#ff7900" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无服务的场馆,快去增加吧!</tui-no-data>
+
+        <view wx:if="{{!loading}}" class="tui-order-item" wx:for="{{storeList}}" wx:for-item="item" wx:for-index="index" wx:key="index" bindtap="detail">
+            <!-- 循环区 -->
+            <view class="thorui-panel">
+                <!-- <view class="thorui-panel__hd">这是店名</view> -->
+                <view class="thorui-media-box thorui-unlined" hover-class="thorui-cell_active" hover-stay-time="{{150}}">
+                    <view class="thorui-media-box__bd">
+                        <view class="store-box">
+                            <view class="store-box-l">
+                                <image class="store-l-img" src="{{item.poster}}"></image>
+                            </view>
+                            <view class="store-box-c">
+                                <view class="store-box-title">{{item.title}}</view>
+                                <view class="store-box-address">
+                                    <ald-icon size="30" color="#666" customClass="" unit="rpx" name="location"></ald-icon>
+                                    <text class="store-box-text">{{item.address}}</text>
+                                </view>
+                                <view class="store-box-tel">
+                                    <ald-icon size="30" color="#666" customClass="" unit="rpx" name="tel"></ald-icon>
+                                    <text class="store-box-text">{{item.tel}}</text>
+                                </view>
+                            </view>
+                            <view class="store-box-r">
+                                <view class="store-box-location" data-address="{{item.address}}" data-title="{{item.title}}" data-lat="{{item.lat}}" data-lng="{{item.lng}}" bind:tap="openLocation">
+                                    <ald-icon size="50" color="#dedede" customClass="" unit="rpx" name="map-fill"></ald-icon>
+                                </view>
+                            </view>
+                        </view>
+
+                        <!-- <view class="thorui-media-box__desc">减脂塑形A款 30节</view> -->
+                        <view class="boot-box">
+                            <view class="boot-box-meta">加入时间: {{date.format(item.addtime*1000,'yyyy-MM-dd HH:mm:ss')}}</view>
+                            <view class="boot-box-extra">
+                                <tui-button type="warning" plain="{{true}}" width="152rpx" height="56rpx" size="26" shape="circle" data-index="{{index}}" data-id="{{item.storeId}}" bind:tap="actionButtons">取消服务</tui-button>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- 循环区EDN -->
+        </view>
+        <view wx:if="{{!loading&&storeList&&storeList.length>0}}" class="store-add" bind:tap="selectStore">
+            <ald-icon size="30" color="#666" customClass="" unit="rpx" name="add-square"></ald-icon>
+            <view class="store-add-text">增选我的服务场馆</view>
+        </view>
+
+    </view>
+</view>
+<tui-actionsheet show="{{showActionSheet}}" tips="{{tips}}" item-list="{{actionItemList}}" mask-closable="{{maskClosable}}" color="{{color}}" size="{{size}}" is-cancel="{{isCancel}}" bindclick="confirmDel" bindcancel="closeActionSheet"></tui-actionsheet>

@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "tui-tag": "/components/thorui/tui-tag/tui-tag",
+    "tui-rate": "/components/thorui/tui-rate/tui-rate",
+    "privacy-dialog": "/components/privacy-dialog/privacy-dialog",
+    "tui-dropdown-list": "/components/thorui/tui-dropdown-list/tui-dropdown-list",
+    "tui-no-data":"/components/thorui/tui-no-data/tui-no-data",
+    "tui-loadmore": "/components/thorui/tui-loadmore/tui-loadmore",
+    "tui-nomore": "/components/thorui/tui-nomore/tui-nomore"
+  },
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#81c2c6",
+  "navigationBarTitleText": "寻场馆_列表",
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

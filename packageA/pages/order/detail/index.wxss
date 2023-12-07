@@ -1,0 +1,90 @@
+page{
+  background-color: #f4f4f4;
+}
+.container{
+  padding-top: 0;
+}
+.tui-border{
+  position: relative;
+  width: 96%;
+  height: 40rpx;
+  border-radius: 40rpx;
+  margin: -370rpx 0 0 0;
+  background-color: #1a7177;
+  z-index: 2;
+}
+.tui-content-box{
+  position: relative;  
+  width: 100%;
+  padding: 0 30rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  margin-top: -20rpx; 
+  z-index: 3;
+}
+.tui-box {
+	width: 100%;
+  background: #fff ;
+  box-shadow: 0 3rpx 20rpx rgba(183, 183, 183, 0.1);
+  border-radius: 10rpx 10rpx;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+  z-index: 3;
+}
+.tui-title{
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 20rpx 20rpx 0 20rpx;
+}
+.tui-title .tui-title-border{
+  width: 10rpx;
+  height: 30rpx;
+  background-color: #68a9ad;
+  border-radius: 20rpx;
+  margin-right: 10rpx;
+  display: inline-block;
+}
+.tui-course-item {
+	display: flex;
+	align-items: center;
+  font-size: 26rpx;
+  padding: 30rpx;
+}
+.tui-course-img {
+	width: 140rpx;
+	height: 140rpx;
+	flex-shrink: 0;
+	margin-right: 16rpx;
+}
+.tui-course-info {
+	width: 80%;
+	height: 132rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: space-between;
+}
+.tui-course-info .tui-course_title{
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.tui-course-button {
+	position: relative;
+	margin-left: auto;
+	flex-shrink: 0;
+}
+.tui-course-button .tui-course_price{
+  font-size: 28rpx;
+  color: #fe8e60;
+}
+.tui-course-button .tui-course_price text{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.tui-order{
+  padding: 30rpx;
+}
+.tui-order view{
+  padding-bottom: 20rpx;
+}

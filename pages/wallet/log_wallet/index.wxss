@@ -1,0 +1,142 @@
+.container {
+    padding: 0;
+    /* padding-bottom: 100rpx; */
+  
+    height: 100vh;
+    width: 100vw;
+  }
+.tui-scroll-v {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+  width: 100%;
+  /* height: 900px;
+  background-color: cornsilk; */
+}
+.tui-loading-more {
+	width: 100%;
+	padding-bottom: 1rpx; 
+}
+
+.tui-item-box
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.page-head
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.page-title
+{
+    font-size: 32rpx;
+    font-weight: bold;
+}
+.page-ms
+{
+    height: 30px;
+    line-height: 30px;
+    font-size: 26rpx;
+    display: flex;
+    align-items: center;
+    color: #999;
+      /* 文字太长...号 */
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;/* 行数 */
+
+}
+.ms-title
+{
+    margin-right: 10rpx;
+}
+.ms-content
+{
+    margin-right: 20rpx;
+}
+
+.cell-left
+{
+    display: flex;
+    flex-direction: column;
+}
+.left-price,.left-date
+{
+    height: 30px;
+    line-height: 30px;
+}
+.left-price
+{
+    font-size: 30rpx;
+}
+.cell-r
+{
+    font-weight: bold;
+    font-size: 32rpx;
+}
+.left-date
+{
+    font-size: 28rpx;
+    color: #999;
+    padding-left:6rpx;
+}
+.page-date
+{
+    flex-shrink: 0;
+    border: 1px solid #ccc;
+    border-radius: 20rpx;
+
+
+}
+/* 下拉选择 */
+.tui-button-box
+{
+    width: 100%;
+    height: 50rpx;
+    display: flex;
+    align-items: center;
+
+}
+.tui-drop-input-box 
+{
+    box-sizing: border-box;
+    margin: 0 20rpx;
+}
+
+.tui-animation {
+    display: inline-block;
+    transform: rotate(0deg);
+    transition: all 0.2s;
+}
+
+.tui-animation-show {
+    transform: rotate(180deg);
+}
+.tui-selected-list {
+    background-color: #fff;
+  
+    overflow: hidden;
+    transform: translateZ(0);
+
+
+
+    
+}
+
+.tui-cell-class {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 10rpx !important;
+
+
+}
+
+/* 下拉选择 END*/

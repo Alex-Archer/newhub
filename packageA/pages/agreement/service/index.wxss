@@ -1,0 +1,8 @@
+.tui-content {
+    color: #333;
+    font-size: 30rpx;
+    line-height: 44rpx;
+    padding: 30rpx 40rpx;
+    text-align: justify;
+  }
+ 

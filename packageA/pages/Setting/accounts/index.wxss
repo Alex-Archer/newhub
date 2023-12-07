@@ -1,0 +1,24 @@
+.tui-item-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.tui-list-cell_name {
+  padding-left: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tui-right {
+  margin-left: auto;
+  margin-right: 34rpx;
+  font-size: 26rpx;
+  color: #f02302;
+}
+.foot{
+  position: fixed;
+  left: 0;
+  bottom: 80rpx;
+  width: 100%;
+  text-align: center;
+}

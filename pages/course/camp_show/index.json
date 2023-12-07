@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "ald-icon":"/components/ksald/ald-icon/ald-icon",
+    "tui-button": "/components/thorui/tui-button/tui-button",
+    "tui-tag": "/components/thorui/tui-tag/tui-tag",
+    "tui-modal": "/components/thorui/tui-modal/tui-modal"
+  },
+
+  "navigationBarTitleText": "集训营",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "backgroundColorTop": "#fff",
+  "backgroundColorBottom": "#fcfcfc",
+
+  "navigationStyle": "default"
+}

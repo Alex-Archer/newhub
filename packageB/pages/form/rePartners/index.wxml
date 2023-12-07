@@ -1,0 +1,134 @@
+<tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="教练招募" backgroundColor="#fff" color="#333"></tui-navigation-bar>
+<view class="container" wx:if="{{!preventOnShow}}">
+    <!--头部背景色-->
+    <!-- <tui-banner-arc height="400" background="-webkit-linear-gradient(#2e7175,#2e7175)"></tui-banner-arc> -->
+    <cover-image style="top: 48px;" class="tui-cover-back" src="/static/img/map/icon_back_3x.png" bind:tap="back" />
+
+    <view class="img-box">
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/coach_pub/01.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/coach_pub/02.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li input-parent">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/coach_pub/03.png" mode="widthFix"></image>
+            <view class="input-box">
+                <!-- 表格区 -->
+                <view class="input-box-l"></view>
+                <view class="input-box-r">
+                    <picker value="{{value}}" mode="multiSelector" bindchange="changePicker" bindcolumnchange="columnPicker" range="{{multiArray}}">
+                        <tui-list-cell marginTop="18" padding="10rpx 30rpx" radius="30" hover="{{false}}" unlined arrow>
+                            <tui-input size="{{32}}" backgroundColor="transparent" borderBottom="{{false}}" padding="0 0 0 0" placeholder="{{text}}" disabled></tui-input>
+                        </tui-list-cell>
+                    </picker>
+
+                    <tui-list-cell hover="{{false}}" marginTop="46" padding="10rpx 30rpx" radius="30" unlined>
+                        <view class="thorui-input-item">
+                            <input type="text" class="thorui-input" placeholder="请输入您的联系称呼" placeholder-class="thorui-phcolor" maxlength="6" bindinput="inputUname" />
+                        </view>
+                    </tui-list-cell>
+
+                    <tui-list-cell hover="{{false}}" marginTop="46" padding="10rpx 30rpx" radius="30" unlined>
+                        <view class="thorui-input-item">
+                            <input type="number" class="thorui-input" placeholder="请输入手机号" placeholder-class="thorui-phcolor" maxlength="11" bindinput="inputPhone" />
+                        </view>
+                    </tui-list-cell>
+
+                </view>
+                
+                <!-- 表格区END -->
+            </view>
+            <view class="tui-ptop">
+                <tui-button borderRadius="35rpx" bgColor="#09beaf" disabled="{{subDisabled}}" type="{{btnType}}" shadow height="88rpx" shape="circle" bindclick="submit">{{subText}}</tui-button>
+            </view>
+
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/coach_pub/04.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/coach_pub/05.png" mode="widthFix"></image>
+        </view>
+        <view class="img-box-li">
+            <image class="box-img-base" src="{{globalURL}}/miniprogram/coach_pub/06.png" mode="widthFix"></image>
+        </view>
+    </view>
+
+
+
+   
+
+
+
+        <!--   <view class="tui-box"><view class="coach-img">
+           <view class="coach-title">成为奥本教练</view> 
+             <image class="img-base" src="{{globalURL}}/miniprogram/url-img/about/coach.png" mode="widthFix"></image>
+
+        </view> -->
+<!-- 
+        <tui-list-cell hover="{{false}}" lineLeft="0" padding="0" backgroundColor="">
+            <view class="tui-goods-title">申请信息填写</view>
+        </tui-list-cell>
+
+        <tui-list-cell hover="{{false}}"  padding="0">
+      <view class="tui-list-desc">
+        <view class="tui-list-item">1.高质量，高收入;</view>
+        <view class="tui-list-item">2.时间宽松，收入更高；</view>
+        <view class="tui-list-item">3. .....</view>
+      </view>
+    </tui-list-cell> -->
+
+
+        <!-- pages/component/input/input -->
+        <!-- <picker value="{{value}}" mode="multiSelector" bindchange="changePicker" bindcolumnchange="columnPicker" range="{{multiArray}}">
+      <tui-list-cell arrow>
+        <tui-input size="{{32}}" backgroundColor="transparent" borderBottom="{{false}}" padding="0 20rpx 0 0" label="地区" placeholder="{{text}}" disabled></tui-input>
+
+      </tui-list-cell>
+    </picker> -->
+
+
+
+
+
+        <!-- <tui-list-cell hover="{{false}}">
+      <view class="thorui-input-item">
+        <view class="thorui-input-title">联系电话</view>
+        <input type="number" class="thorui-input" placeholder="请输入手机号" placeholder-class="thorui-phcolor" maxlength="11" bindinput="inputPhone" />
+      </view>
+    </tui-list-cell> -->
+
+        <!-- <tui-input label="姓名" borderTop placeholder="请输入姓名" clearable model:value="{{name}}"></tui-input>
+    <tui-input label="联系电话" lineLeft="{{false}}" placeholder="请输入手机号" clearable model:value="{{mobile}}" maxlength="11"></tui-input> -->
+
+        <!-- <view class="tui-ptop">
+
+      <tui-button disabled="{{subDisabled}}" type="{{btnType}}" shadow height="88rpx" shape="circle" bindclick="submit">{{subText}}</tui-button>
+    </view></view> -->
+    
+    <!-- 审核中 -->
+    <view class="verify-box" wx:if="{{verifyBoxShow}}">
+        <view class="tui-title">
+            {{verifyInfo.state===0?'审核中的申请':'已通过审核'}}
+        </view>
+        <tui-card image="{{card[0].img}}" title="{{card[0].title}}" tag="{{card[0].tag}}">
+            <view class="tui-default" slot="body">
+                申请状态: <tui-tag type="light-{{verifyInfo.state===0?'warning':'green'}}" margin="0 20rpx 0 0" padding="8rpx 12rpx" size="24rpx">{{verifyInfo.stateTitle}}</tui-tag>
+            </view>
+            <view class="tui-default" slot="body" wx:if="{{verifyInfo.state===0}}">
+                提交时间: {{verifyInfo.addtime}}
+            </view>
+            <view class="tui-default" slot="body" wx:if="{{verifyInfo.state===1}}">
+                通过时间: {{verifyInfo.statetime}}
+            </view>
+
+            <view slot="footer">
+                <view class="tui-default tui-flex">
+                    <tui-tag type="light-green" margin="0 20rpx 0 0" padding="8rpx 12rpx" size="24rpx">客服电话: {{verifyInfo.customer.mobile}}</tui-tag>
+                    <tui-tag type="light-green" padding="8rpx 12rpx" size="24rpx">客服微信: {{verifyInfo.customer.weixin}}</tui-tag>
+                </view>
+            </view>
+        </tui-card>
+    </view>
+</view>

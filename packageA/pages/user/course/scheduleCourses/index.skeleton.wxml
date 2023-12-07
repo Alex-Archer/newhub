@@ -1,0 +1,70 @@
+<!--
+此文件为开发者工具生成，生成时间: 2023/10/19下午10:30:30
+使用方法：
+在 E:\奥本瑜伽\瑜伽小程序\packageA\pages\user\course\scheduleCourses\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 E:\奥本瑜伽\瑜伽小程序\packageA\pages\user\course\scheduleCourses\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="container">
+      <view class="tui-order-list">
+        <view class="tui-order-item">
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="schedule-title sk-transparent sk-text-14-2857-616 sk-text">
+                课程
+              </view>
+              <view class="schedule-item-box">
+                <view class="class-item-li active">
+                  <view class="li-title sk-transparent sk-text-20-0000-474 sk-text">腿型矫正</view>
+                  <view class="li-des sk-transparent sk-text-21-4286-994 sk-text">1对1 剩余1节 </view>
+                </view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:0px;right:0px"></view>
+            </view>
+          </view>
+        </view>
+        <view class="tui-order-item">
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:13px 15px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="schedule-title-box">
+                <text class="schedule-title sk-transparent sk-text-14-2857-551 sk-text">上课门店</text>
+                <text class="schedule-des sk-transparent sk-text-14-2857-438 sk-text">请选择您要上课的门店</text>
+              </view>
+              <view class="store-item-box-none">
+                <view class="item-box-ico">
+                  <view is="components/ksald/ald-icon/ald-icon">
+                    <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-empty-address ald-icon--tn-icon-empty-address sk-pseudo sk-pseudo-circle" style="color: rgb(173, 173, 173);font-size: 30px;font-weight:normal;margin:0;padding:0;"></text>
+                  </view>
+                </view>
+                <view class="item-box-none item-box-animation sk-transparent sk-text-15-0000-537 sk-text">
+                  点击选择上课门店
+                </view>
+              </view>
+              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:0px;right:0px"></view>
+            </view>
+          </view>
+        </view>
+        <view class="sub-bottom-box">
+          <view is="components/thorui/tui-button/tui-button">
+            <view class="tui-button--tui-button__wrap tui-button--tui-btn__flex-1" style="width: 100%;height:50px;margin:0">
+              <button app-parameter="true" class="tui-button--tui-btn tui-button--tui-btn-warning tui-button--tui-dark-disabled sk-transparent sk-button sk-pseudo sk-pseudo-circle" form-type="true" open-type="true" style="width: 100%; height: 50px; line-height: 50px; font-size: 16px;background:#ff7900;color: #fff;box-shadow: 0 5px 7px 0 rgba(255, 121, 0, 0.2);flex-direction: column;"
+                disabled="true">确认预约</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

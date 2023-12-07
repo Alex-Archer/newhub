@@ -1,0 +1,139 @@
+<privacy-dialog fixedbottom="25vh" mask="true" bottomShowType="{{1}}" bind:agree="agree" bind:disagree="disagree"></privacy-dialog>
+
+<view class="tui-maps-container" >
+    <view  style="top: {{statusBar}}px;" class="tui-cover-back" catchtap="back">
+      <ald-icon  size="45" unit="rpx" name="left" color="#000"></ald-icon>
+    </view>
+    <view class="cover-menu" style="top: {{statusBar}}px;" >
+        <view class="menu-item active">列表</view>
+        <view class="menu-item" bindtap="goMap">地图</view>
+    </view>
+    <view class="action-box">
+      <view class="action-l">
+        <!--下拉选择框 dropdownlist-->
+        <view class="tui-drop-input-box">
+          <tui-dropdown-list selectHeight="50" show="{{dropdownShow}}" top="52" height="420">
+            <view slot="selectionbox">
+              <!-- <tui-button type="white" shape="circle" bindclick="dropDownList" data-index="-1"> -->
+              <view class="tui-button-box" bind:tap="dropDownList" data-index="-1">
+                {{dropdownIndexText}}
+                <view class="tui-animation {{dropdownShow?'tui-animation-show':''}}">
+                  <tui-icon name="turningdown" size="20"></tui-icon>
+                </view>
+              </view>
+              <!-- </tui-button> -->
+            </view>
+            <view slot="dropdownbox">
+              <view class="tui-selected-list">
+                <scroll-view scroll-y class="tui-dropdown-scroll" style="height: 300rpx;">
+                  <block wx:for="{{dropdownlistData}}" wx:key="index">
+                    <tui-list-cell padding="0" bindclick="dropDownList" data-index="{{index}}" unlined="{{dropdownlistData.length-1==index}}">
+                      <view class="tui-cell-class">
+                        <tui-icon wx:if="{{dropdownlistIcon}}" name="{{item.icon}}" size="{{item.size}}" color="{{item.color}}"></tui-icon>
+                        <text>{{item.name}}</text>
+                      </view>
+
+                    </tui-list-cell>
+                  </block>
+                </scroll-view>
+              </view>
+            </view>
+          </tui-dropdown-list>
+        </view>
+        <!--下拉选择框-->
+      </view>
+   
+      <view class="action-r">
+      <!-- 搜索区 -->
+        <view class="search-bar">
+          <view class="search-bar-form">
+              <view class="search-bar-box">
+                  <icon class="icon-search-in-box" type="search" size="{{14}}" color="#999"></icon>
+                  <input confirm-type="search" class="search-bar-input" placeholder="请输入门店关键字" value="{{inputVal}}" focus="{{inputShowed}}" bindconfirm="bindInput" bindinput="inputTyping" />
+                  <view class="icon-clear" wx:if="{{inputVal}}" bindtap="clearInput">
+                      <icon type="clear" size="14"></icon>
+                  </view>
+              </view>
+              <view class="search-bar-label" wx:if="{{!inputShowed}}" bindtap="showInput">
+                  <icon class="icon-search" type="search" size="14" color="#999"></icon>
+                  <view class="search-bar-text">请输入门店关键字</view>
+              </view>
+          </view>
+          <view class="cancel-btn" bindtap="hideInput" wx:if="{{inputShowed}}">取消</view>
+      </view>
+      <!-- 搜索区END -->
+      </view>
+    </view>
+
+      <scroll-view class="tui-scroll-v" refresher-enabled refresher-triggered="{{refreshing}}" refresher-background="#fafafa" enable-back-to-top refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" bindrefresherrefresh="onrefresh" style="height:calc(92vh - env(safe-area-inset-bottom) - 154rpx)">
+        <view class="tui-list">
+            <block wx:for="{{address}}" wx:for-item="item" wx:key="index">
+               <!-- 新版列表 -->
+                <view  class="store-list-cell {{Location.id == item.id ? 'select-location' : ''}} {{index == address.length - 1 ? 'tui-cell-last' : ''}}"  bind:tap="toViewStore" data-lat="{{item.location.lat}}" data-lng="{{item.location.lng}}" data-id="{{item.id}}">
+                    <image src="{{item.listPoster}}" class="store-bg"></image>
+                    <view class="store-select">
+                    <!-- 选择框 -->
+                    <view class="btn_box" catchtap="switchLocation" data-poster="{{item.listPoster}}" data-index="{{index}}" data-distanc="{{parse.getDistance(item.distance) }}" data-score="{{item.score}}" data-title="{{item.title}}" data-lat="{{item.location.lat}}" data-lng="{{item.location.lng}}" data-id="{{item.id}}" data-address="{{item.address}}">
+                        <block wx:if="{{Location.id == item.id }}">
+                            <ald-icon margin="0 0 0 0" class="activeico" size="44" unit="rpx" name="success-square-fill" color="#b60205"></ald-icon>
+                            <text class="btn_box-text active">当前</text>
+                        </block>
+                        <block wx:else>
+                            <ald-icon margin="0 0 0 0" size="40" unit="rpx" name="success-square" color="#fff"></ald-icon>
+                            <text class="btn_box-text {{paramStoreID==item.id&&'active'}}">切换</text>
+                        </block>
+                    </view>
+                    <!-- 选择框END -->                    
+                    </view>
+                     <view class="store-mask">
+                        <view class="store-l">
+                            <view class="store-l-title">{{ item.title }}</view>
+                            <view class="store-l-address line-one">{{ item.address }}</view>
+                        </view>
+                        <!-- <view class="store-c">b</view> -->
+                        <view class="store-r">
+                            <view class="store-distance">距您约: {{parse.getDistance(item.distance) }}</view>
+                            <view class="store-time">
+                                <ald-icon margin="0 8rpx 0 0" size="22" unit="rpx" name="time" color="#fff"></ald-icon>
+                                <text>{{item.businessStartTime}} ~ {{item.businessEndTime}}</text>
+                            </view>
+                        </view>
+                     </view>
+                </view>
+                <!-- 新版列表END -->
+                
+            </block>
+
+        <!-- 更多 -->
+        <view class="tui-loading-more">
+            <tui-loadmore wx:if="{{isLoading}}" index="3" ></tui-loadmore>
+            <block wx:if="{{!isLoading}}">
+                <!-- <tui-no-data wx:if="{{noData}}" bindtap="gobuy" btnText="购买课程" backgroundColor="#ff7900" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">所选区域暂无数据</tui-no-data> -->
+                <tui-no-data wx:if="{{noData}}"  backgroundColor="#ff7900" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">所选区域暂无数据</tui-no-data>
+                <tui-nomore wx:if="{{!noData&&pageIndex >= lastPage}}"  backgroundColor="#fafafa"></tui-nomore>
+            </block>
+        </view>
+        <!-- 更多END -->
+
+        </view>
+    </scroll-view>
+
+</view>
+
+<wxs module="parse">
+    module.exports = {
+
+        getDistance: function (_distance) {
+
+            distance = _distance || 0;
+            var result = '';
+            if (distance < 1000) {
+                result = distance + 'm';
+            } else {
+                result = (distance / 1000).toFixed(2) + 'km';
+            }
+            return result;
+        }
+    }
+
+</wxs>

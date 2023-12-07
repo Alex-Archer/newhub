@@ -1,0 +1,28 @@
+.container {
+  /* padding-bottom: 98rpx; */
+  /*  */  
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* padding-bottom: env(safe-area-inset-bottom); */
+}
+
+.content-box{
+  min-height: 100vh;
+  padding: 0;
+  
+/* 
+  margin: -380rpx 0 0 0; */
+  z-index: 3;
+
+}
+ .submit-bottom
+{
+  width: 80%;
+  padding: 0 10%;
+  position: fixed;
+  left: 0;
+  bottom: 100rpx;
+  z-index: 6;
+} 

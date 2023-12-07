@@ -1,0 +1,34 @@
+.tui-form-button {
+	width: 100%;
+	position: relative;
+	padding-left: 0;
+	border: 1rpx solid;
+	padding-right: 0;
+	overflow: hidden;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.tui-form-button::after {
+	border: 0;
+}
+.tui-button__active::after {
+	content: ' ';
+	background-color: rgba(0, 0, 0, 0.1);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	right: 0;
+	transform: none;
+	z-index: 1;
+	border-radius: 0;
+}
+.tui-button__opacity {
+	opacity: 0.5;
+}
+
+.tui-btn__link {
+	border-color: transparent;
+	background: transparent;
+}

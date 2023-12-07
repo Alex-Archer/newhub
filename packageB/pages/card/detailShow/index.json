@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "tui-button": "/components/thorui/tui-button/tui-button",
+    "tui-list-cell":"/components/thorui/tui-list-cell/tui-list-cell",
+    "tui-input": "/components/thorui/tui-input/tui-input",
+    "ald-icon": "/components/ksald/ald-icon/ald-icon",
+    "tui-overflow-hidden":"/components/thorui/tui-overflow-hidden/tui-overflow-hidden",
+    "wxParse": "/components/parse/wxParse/wxParse"
+  },
+  "navigationBarTitleText": "购卡项",
+
+  "navigationStyle": "default",
+
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff"
+
+}

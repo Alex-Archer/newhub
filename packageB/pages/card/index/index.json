@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "tui-navigation-bar": "/components/thorui/tui-navigation-bar/tui-navigation-bar"
+  },
+
+  "navigationBarTitleText": "购卡项",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#f97c39",
+  "backgroundColorBottom": "#fcfcfc",
+  "navigationBarBackgroundColor": "#f97c39"
+}

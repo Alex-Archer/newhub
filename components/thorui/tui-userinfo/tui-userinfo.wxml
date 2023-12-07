@@ -1,0 +1,56 @@
+<view catchtouchmove="stop">
+  <view class="tui-select--mask {{show?'tui-select--mask-show':''}}" style="{{parse.getStyles(maskBackground, zIndex)}}" catchtap="maskClose">
+  </view>
+  <view class="tui-select--wrap {{show?'tui-select--wrap-show':''}}" style="border-top-left-radius:{{radius}}rpx;border-top-right-radius:{{radius}}rpx;background:{{background}};z-index:{{zIndex}}">
+    <view class="tui-select--header" style="background:{{background}};border-top-left-radius:{{radius}}rpx;border-top-right-radius:{{radius}}rpx">
+      <text class="tui-select--header-text" style="font-size:{{titleSize}}rpx;color:{{titleColor}};font-weight:{{fontWeight}}">{{title}}</text>
+      <view class="tui-select--header-close" catchtap="handleClose">
+        <icon type="clear" color="#ccc" size="{{16}}"></icon>
+      </view>
+      <view class="tui-select--header-line" style="background:{{dividerColor}}"></view>
+    </view>
+    <scroll-view scroll-y class="tui-select--scroll" style="height:{{height>0?height+'rpx':''}}">
+      <view class="tui-page__bd" style="background:{{background}};">
+        <!-- arrow -->
+        <tui-list-cell hover="{{false}}" > 
+
+
+ <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+  <view class="thorui-media-box" hover-class="thorui-cell_active" hover-stay-time="{{150}}">
+					<view class="thorui-thumb__hd"><image class="thorui-thumb__sm" src="{{headimgurl}}" /></view>
+					<view class="thorui-media-box__bd"><view class="thorui-media-box__title">点击更换头像</view></view>
+        </view>
+  </button> 
+
+      </tui-list-cell>
+
+        <tui-list-cell hover="{{false}}">
+          <tui-input value="{{nickname}}" type="nickname" padding="20rpx 30rpx" border-color="#979BB5" radius="20" label="昵称" inputBorder placeholder="点击填写" bindinput="inputText"></tui-input>
+        </tui-list-cell>
+
+        <tui-list-cell hover="{{false}}" unlined>
+          <!-- <view  class="cell-center">点击生成随机头像、昵称</view> -->
+        </tui-list-cell>
+      </view>
+
+    </scroll-view>
+
+    <view class="tui-select--btn-wrap">
+      <!-- //样式类型 primary, white, danger, warning, green,blue, gray，black,brown,gray-primary,gray-danger,gray-warning,gray-green -->
+        <tui-button margin="0" type="green" width="100%" shape="circle" catchtap="handleClick" >{{btnText}}</tui-button>
+
+     <!-- <view class="tui-select--btn" style="background:{{btnBackground || g_primary}}">
+        
+         <text class="tui-select--btn tui-select--btn-text" style="color:{{btnColor}}" catchtap="handleClick">{{btnText}}</text>
+      </view> -->
+    </view>
+  </view>
+</view>
+
+<wxs module="parse">
+  module.exports = {
+    getStyles: function (maskBackground, zIndex) {
+      return "background:" + maskBackground + ";z-index:" + (parseInt(zIndex) - 1)
+    }
+  }
+</wxs>

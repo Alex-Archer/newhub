@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "tui-tabbar": "/components/thorui/tui-tabbar/tui-tabbar"
+  },
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#fff",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "活动",
+  "navigationStyle": "custom"
+}

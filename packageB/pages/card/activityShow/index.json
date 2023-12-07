@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    
+  },
+  "navigationBarTitleText": "99新人",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#f97c39",
+  "backgroundColorBottom": "#fcfcfc",
+  "navigationBarBackgroundColor": "#f97c39"
+}

@@ -1,0 +1,34 @@
+{
+  "usingComponents": {
+    "ald-icon":"/components/ksald/ald-icon/ald-icon",
+    "tui-loadmore":"/components/thorui/tui-loadmore/tui-loadmore",
+
+    "tui-tab":"/components/thorui/tui-tab/tui-tab",    
+
+    "tui-rate": "/components/thorui/tui-rate/tui-rate",
+    "tui-grid":"/components/thorui/tui-grid/tui-grid",
+    "tui-grid-item":"/components/thorui/tui-grid-item/tui-grid-item",
+    "tui-button": "/components/thorui/tui-button/tui-button",
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "tui-card": "/components/thorui/tui-card/tui-card",
+    "tui-list-view": "/components/thorui/tui-list-view/tui-list-view",
+    "tui-list-cell": "/components/thorui/tui-list-cell/tui-list-cell",    
+    "tui-icon": "/components/thorui/tui-icon/tui-icon",
+    "tui-tag": "/components/thorui/tui-tag/tui-tag",
+    "tui-week-date": "/components/thorui/tui-week-date/tui-week-date",
+     "ald-coach": "/components/ksald/ald-coach/ald-coach",
+     "privacy-dialog": "/components/privacy-dialog/privacy-dialog"
+  },
+
+
+  "navigationBarTitleText": "",
+
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+
+
+  "navigationBarTextStyle": "black"
+}

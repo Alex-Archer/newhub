@@ -1,0 +1,56 @@
+.tui-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6rpx;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.tui-tag__border {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5) translateZ(0);
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  border-radius: 12rpx;
+  border: 1px solid;
+  pointer-events: none;
+}
+
+.tui-tag-fillet {
+  border-radius: 100rpx;
+}
+
+.tui-white.tui-tag-fillet {
+  border-radius: 160rpx;
+}
+
+.tui-tag-outline-fillet {
+  border-radius: 160rpx;
+}
+
+.tui-tag-fillet-left {
+  border-radius: 100rpx 0 0 100rpx;
+}
+
+.tui-tag-fillet-right {
+  border-radius: 0 100rpx 100rpx 0;
+}
+
+
+/* tag end*/
+.tui-origin-left {
+  transform-origin: 0 center;
+}
+
+.tui-origin-right {
+  transform-origin: 100% center;
+}
+
+.tui-tag-opcity {
+  opacity: 0.5;
+}

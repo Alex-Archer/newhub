@@ -1,0 +1,8 @@
+<view class="container">
+  <view class="content-box">
+  <wxParse nodes="{{content}}"></wxParse> 
+  </view>
+  <view class="submit-bottom" wx:if="{{bottomShow}}">
+    <tui-button data-href="{{href}}" disabled="{{subDisabled}}" type="{{btnType}}" shadow height="88rpx" shape="circle" bindclick="NavigateTo">{{subText}}</tui-button>
+  </view>
+</view> 

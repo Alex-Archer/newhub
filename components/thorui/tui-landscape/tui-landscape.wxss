@@ -1,0 +1,49 @@
+.tui-landscape__box {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.tui-landscape__inner {
+  max-width: 100%;
+  position: fixed;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tui-icon__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  z-index: 10;
+}
+
+.tui-icon__bottom {
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+.tui-landscape__mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+  transition: all .2s ease-in
+}
+
+.tui-mask_hidden {
+  opacity: 0 !important;
+  transform: scale3d(1, 1, 0) !important;
+}

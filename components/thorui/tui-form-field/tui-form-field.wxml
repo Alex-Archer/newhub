@@ -1,0 +1,3 @@
+<view class="{{hidden?'tui-form__field':''}}">
+  <slot></slot>
+</view>

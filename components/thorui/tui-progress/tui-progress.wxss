@@ -1,0 +1,28 @@
+.tui-progress__box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.tui-progressbar__bg {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.tui-progress__bar {
+  width: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 2;
+		transform: translateX(-100%);
+		transition-delay: 0s;
+		transition-property: transform;
+		transition-timing-function: linear;
+}
+
+.tui-progress__percent {
+  text-align: center;
+}

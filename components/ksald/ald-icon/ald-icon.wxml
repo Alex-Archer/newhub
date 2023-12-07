@@ -1,0 +1,35 @@
+<!--
+  全部查看网址：https://icon.ahuaaa.cn/#/
+  <ald-icon 
+  size="1.5" 
+  customClass="" 
+  unit="rem" 
+  name="safe" 
+  content="" 
+  color="#333"
+  padding="0 0 0 0"
+  margin="0 0 0 0"
+  bold="bold"
+  contentsize="{{.2}}"
+  contentunit="rem"
+  contentpadding="0 0 0 0" 
+  contentmargin="0 0 0 0"
+  ></ald-icon>
+-->
+<text class="{{customClass?customClass:'tn-icon-class'}} {{'tn-icon-' + name}}" bindtap="handleClick" style="color: {{parse.getColor(color, g_color)}};font-size: {{parse.getSize(size, g_size, unit, g_unit)}};font-weight:{{bold ? 'bold' : 'normal'}};margin:{{margin}};padding:{{padding}};">
+
+<text wx:if="{{content}}"  style="padding:{{contentpadding}};margin:{{contentmargin}};font-size: {{parse.getSize(contentsize, size, contentunit, unit)}};">{{content}}</text>
+
+</text>
+<wxs module="parse">
+  module.exports = {
+    getColor: function (color, g_color) {
+      return color || g_color || '#999';
+    },
+    getSize: function (size, g_size, unit, g_unit) {
+      var size = size || g_size || 32;
+      var unit = unit || g_unit || 'px';
+      return size + unit
+    }
+  }
+</wxs> 

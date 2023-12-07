@@ -1,0 +1,54 @@
+
+/* 日历主要颜色相关样式 周几的色*/
+.ksald_color,
+.ksald_weekend-color,
+.ksald_handle-color,
+.ksald_week-color {
+    color: #177379;
+    font-weight: bolder;
+}
+
+.ksald_today {
+    color: #fff;
+    background-color: #177379;
+}
+/* 选中色 */
+.ksald_choosed {
+    color: #fff;
+    background-color: #ff7900;
+}
+
+.ksald_date-disable {
+    color: #c7c7c7;
+
+}
+
+.ksald_prev-month-date,
+.ksald_next-month-date {
+    color: #e2e2e2;
+}
+/* 可以选 */
+.ksald_normal-date {
+    color: #68a9ad;
+    font-weight: bolder;
+}
+
+.ksald_todo-circle {
+    border-color: #88d2ac;
+}
+
+.ksald_todo-dot {
+    background-color: #e54d42;
+}
+
+.ksald_date-desc {
+    color: #c2c2c2;
+}
+
+.ksald_date-desc-lunar {
+    color: #e54d42;
+}
+
+.ksald_date-desc-disable {
+    color: #e2e2e2;
+}

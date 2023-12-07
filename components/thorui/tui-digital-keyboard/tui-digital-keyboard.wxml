@@ -1,0 +1,23 @@
+<view class="tui-digital-keyboard {{show?'tui-keyboard__action':''}}" style="background-color:{{darkMode?'#1E1E1E':backgroundColor}};z-index:{{zIndex}}">
+		<!--自定义内容，如关闭键盘按钮-->
+		<slot></slot>
+		<view class="tui-keyboard__grids">
+			<view class="tui-keyboard__left">
+				<view class="tui-keyboard__grid {{item=='0'?'tui-flex__2':''}}" wx:for="{{keyArr}}" wx:key="index">
+					<view class="tui-key__item" style="color:{{darkMode?'#D1D1D1':color}};background-color:{{darkMode?'#2C2C2C':keyBackground}}"
+					 hover-class="{{!isDecimal && index==10?'':'tui-key__item-active'}}" hover-stay-time="{{150}}" catchtap="handleClick"
+					 data-value="{{item}}">{{item}}</view>
+				</view>
+			</view>
+			<view class="tui-keyboard__right">
+				<view class="tui-keyboard__grid">
+					<view class="tui-key__item" catchtap="backspace" hover-class="tui-key__item-active" hover-stay-time="{{150}}" style="background-color:{{darkMode?'#2C2C2C':keyBackground}}">
+						<text class="tui-dk__icon tui-icon__backspace" style="color:{{darkMode?'#D1D1D1':color}}"></text>
+					</view>
+				</view>
+				<view class="tui-keyboard__grid tui-dk__btn">
+					<view class="tui-key__item {{disabled?'tui-dkBtn__disabled':''}}"  catchtap="confirm" style="color:{{buttonColor}};background-color:{{buttonBackground || g_buttonBackground}};font-size:{{buttonSize}};font-weight:{{buttonFontBold?'bold':'normal'}}" hover-class="{{disabled?'':'tui-key__item-active'}}" hover-stay-time="{{150}}">{{buttonText}}</view>
+				</view>
+			</view>
+		</view>
+	</view>

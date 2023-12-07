@@ -1,0 +1,71 @@
+<wxs src="/wxs/utils.wxs" module="parseUtils"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="container">
+  <scroll-view class="tui-scroll-v" refresher-enabled refresher-triggered="{{refreshing}}" refresher-background="#fafafa" enable-back-to-top refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" bindrefresherrefresh="onrefresh" style="height:96vh;">
+  <block wx:if="{{noData}}">
+      <tui-no-data imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无相关信息</tui-no-data>
+    </block>
+    <block wx:else>
+      <view class="tui-order-list">
+        <view wx:if="{{dataList&&dataList.length>0}}" class="tui-order-item" wx:for="{{dataList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <!-- 循环区 -->
+          <view class="thorui-panel">
+            <view class="thorui-panel__hd">{{item.title}}</view>
+            <view class="thorui-media-box thorui-unlined" hover-class="thorui-cell_active" hover-stay-time="{{150}}">
+              <view class="thorui-media-box__bd">
+                <view class="thorui-media-box__desc">{{item.content}}</view>
+                <view class="thorui-media-box__info">
+                  <!-- <view class="thorui-info__meta">昨天</view> -->
+                  <view class="thorui-info__meta">{{date.format(item.add_time*1000,'yyyy.MM.dd EE')}}</view>
+                  <view class="thorui-info__extra">{{msgParse.getMsgType(item.type)}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 循环区EDN  -->
+
+        </view>
+
+        <!-- 更多 -->
+          <!-- 更多 -->
+          <view class="tui-loading-more">
+            <tui-loadmore wx:if="{{isLoading}}" index="3"></tui-loadmore>
+            <tui-nomore wx:if="{{!isLoading&&pageIndex >= lastPage}}" backgroundColor="#fafafa"></tui-nomore>
+          </view>
+          <!-- 更多END -->
+      </view>
+    </block>
+    <!-- 内END -->
+  </scroll-view>
+</view>
+<wxs module="msgParse">
+    module.exports = {
+        getMsgType: function (_type) {
+
+            var result = '';
+            switch(_type){
+              case 0:
+                result = "系统通知"
+                break;
+              case 1:
+                result = "客服消息"
+                break;
+              case 2:
+                result = "发货通知"
+                break;
+              case 3:
+                result = "收货通知"
+                break;
+              case 4:
+                result = "付款通知"
+                break;
+              default:
+                result = "系统通知"
+                break;
+            }
+
+            return result;
+        }
+    }
+
+</wxs>

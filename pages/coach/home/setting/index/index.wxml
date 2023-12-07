@@ -1,0 +1,84 @@
+<view class="tui-set-box" wx:if="{{!preventOnShow}}">
+    <tui-list-cell hover="{{false}}"  padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="1" data-url="../userInfo/index">
+        <view class="tui-list-cell tui-info-box">
+            <image src="{{headimgurl}}" class="tui-avatar"></image>
+            <view>{{nickname}}</view>
+        </view>
+    </tui-list-cell>
+
+    <tui-list-cell hover="{{false}}" padding="0" lineLeft="0" arrow="{{true}}">
+            <view class="tui-list-cell">
+                教练资料(待)
+            </view>
+        </tui-list-cell>
+        <tui-list-cell  hover="{{false}}" padding="0" lineLeft="0" arrow="{{true}}">
+            <view class="tui-list-cell">
+                企业微信设置(待)
+            </view>
+        </tui-list-cell>
+
+    <!-- <view class="tui-mtop">
+        <tui-list-cell padding="0" lineLeft="0" arrow="{{true}}">
+            <view class="tui-list-cell">
+                门禁与柜锁
+            </view>
+        </tui-list-cell>
+        <tui-list-cell padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-url="../accounts/weChat/index">
+            <view class="tui-list-cell">
+                收款帐号管理
+            </view>
+        </tui-list-cell>
+        <tui-list-cell padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="3" data-url="../notice/index">
+            <view class="tui-list-cell">
+                消息提醒设置
+            </view>
+        </tui-list-cell>
+    </view> -->
+    
+
+    <view class="tui-mtop">
+        <tui-list-cell hover="{{false}}"   padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="3" data-url="/packageA/pages/Setting/accessControl/passAndFace/index">
+            <view class="list-cell-box">
+                <view class="tui-list-cell">
+                    门禁与柜锁
+                </view>
+                    <tui-tag padding="10rpx 12rpx" margin="0 60rpx 0 0" size="24rpx" type="light-green" shape="circle">智慧门禁</tui-tag>
+            </view>
+        </tui-list-cell>
+        <tui-list-cell hover="{{false}}"  padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="3" data-url="../notice/index">
+            <view class="tui-list-cell">
+                消息提醒设置
+            </view>
+        </tui-list-cell>
+        
+        <tui-list-cell hover="{{false}}"  padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="4" data-url="/packageA/pages/agreement/privacy/index">
+            <view class="tui-list-cell">
+                 隐私条款
+            </view>
+        </tui-list-cell>
+        <tui-list-cell hover="{{false}}"  padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="5" data-url="/packageA/pages/agreement/service/index">
+            <view class="tui-list-cell">
+                服务协议
+            </view>
+        </tui-list-cell> 
+    </view>
+
+    <view class="tui-mtop">
+        <tui-list-cell hover="{{false}}"  padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="4" data-url="../about/index">
+            <view class="tui-list-cell">
+                关于我们
+            </view>
+        </tui-list-cell>
+        <tui-list-cell hover="{{false}}"  padding="0" lineLeft="0" arrow="{{true}}" bindclick="href" data-page="5" data-url="../feedback/index">
+            <view class="tui-list-cell">
+                意见反馈
+            </view>
+        </tui-list-cell>
+    </view>
+
+    <view class="tui-exit">
+        <tui-button shape="circle" shadow type="default" height="88rpx" bind:tap="openActionSheet">退出登录</tui-button>
+    </view>
+</view>
+
+<tui-actionsheet show="{{showActionSheet}}" tips="{{tips}}" item-list="{{itemList}}" mask-closable="{{maskClosable}}" color="{{color}}" size="{{size}}" is-cancel="{{isCancel}}" bindclick="itemClick" bindcancel="closeActionSheet"></tui-actionsheet>

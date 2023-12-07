@@ -1,0 +1,571 @@
+{
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "%E7%91%9C%E4%BC%BD%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+  "setting": {
+    "compileHotReLoad": false,
+    "urlCheck": true,
+    "bigPackageSizeSupport": true,
+    "preloadBackgroundData": false,
+    "lazyloadPlaceholderEnable": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "",
+          "pathName": "pages/newpage/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "课程过来约课",
+          "pathName": "packageA/pages/user/course/scheduleCourses/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "从场馆入口约课",
+          "pathName": "packageA/pages/user/course/scheduleCoursesByStore/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "从教练入口约课",
+          "pathName": "packageA/pages/user/course/scheduleCoursesBycoach/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "扫码-开门",
+          "pathName": "pages/mini/scan/index",
+          "query": "q=HTTPS%3A%2F%2Fyoga.aoben.yoga%2Fmini%2F%3Fs%3Ddoor%26param%3Dkey&scancode_time=1698413286",
+          "launchMode": "default",
+          "scene": 1011
+        },
+        {
+          "name": "已购课程",
+          "pathName": "packageA/pages/listCourse/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用户中心",
+          "pathName": "pages/user/home/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "私都课程",
+          "pathName": "pages/course/personal/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "私教详情",
+          "pathName": "pages/course/personalShow/index",
+          "query": "id=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-个人中心",
+          "pathName": "pages/coach/home/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "已购课程",
+          "pathName": "packageA/pages/listCourse/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-日程",
+          "pathName": "pages/coach/home/schedule/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-课程",
+          "pathName": "pages/coach/home/scheduleTable/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "增加档期",
+          "pathName": "pages/coach/home/surplus/add/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "训练营-详情",
+          "pathName": "pages/course/camp_show/index",
+          "query": "detail=5",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "集训营",
+          "pathName": "pages/course/camp/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "已约课程",
+          "pathName": "packageA/pages/myCourse/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "已购课程",
+          "pathName": "packageA/pages/listCourse/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "柜子扫描进入二维码",
+          "pathName": "pages/door/showPass/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "团课-订单列表",
+          "pathName": "packageA/pages/order/list/index",
+          "query": "t=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "私教-列表",
+          "pathName": "pages/course/personal/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "团课-下单",
+          "pathName": "pages/course/groupSubOrder/index",
+          "query": "id=40&t=%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "团课-显示",
+          "pathName": "pages/course/group_show/index",
+          "query": "id=40",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "团课-显示-有教练",
+          "pathName": "pages/course/group_show/index",
+          "query": "id=13",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "团课-列表",
+          "pathName": "pages/course/group/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-申请成为教练",
+          "pathName": "packageB/pages/form/ApplyToCoach/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "问题反馈",
+          "pathName": "packageA/pages/Setting/feedback/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "普通用户-修改基本信息",
+          "pathName": "packageA/pages/Setting/userInfo/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用记中心-消息",
+          "pathName": "packageA/pages/msg/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "登录跳转",
+          "pathName": "/pages/user/login/index",
+          "query": "url=/pages/index/index",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "普通用户-中心",
+          "pathName": "pages/user/home/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-开门",
+          "pathName": "pages/coach/home/door/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "1111111111111",
+          "pathName": "pages/coach/Order/submit/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-日程排版",
+          "pathName": "pages/coach/home/scheduleTable/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-消息",
+          "pathName": "pages/coach/home/message/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-时档",
+          "pathName": "pages/coach/home/classList/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-日程",
+          "pathName": "pages/coach/home/schedule/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心",
+          "pathName": "pages/coach/home/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用户中心-旧",
+          "pathName": "pages/user/home/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用户中心-新",
+          "pathName": "pages/user/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "私教-购买",
+          "pathName": "pages/coach/Order/submit/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用户中心-我的订单",
+          "pathName": "packageA/pages/order/list/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "地图-列表",
+          "pathName": "pages/map/list/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用户中心-会员等级",
+          "pathName": "pages/user/level/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用记中心-帮助",
+          "pathName": "packageA/pages/Setting/help/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "个人中心-已购课程",
+          "pathName": "packageA/pages/listCourse/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "个人中心-已约课程",
+          "pathName": "packageA/pages/myCourse/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "设置中心",
+          "pathName": "packageA/pages/Setting/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "课程-首页",
+          "pathName": "pages/course/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "课程-详情",
+          "pathName": "pages/course/group_show/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "训练营-详情",
+          "pathName": "pages/course/camp_show/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练-展示页",
+          "pathName": "pages/coach/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "课程列表-训练营",
+          "pathName": "pages/course/camp/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "课程列表-私教包月",
+          "pathName": "pages/course/personalMon/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "课程列表-私教",
+          "pathName": "pages/course/personal/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "课程列表",
+          "pathName": "pages/course/group/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "研究 TAB选择",
+          "pathName": "pages/store/navbar-tab/navbar",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "订单详情",
+          "pathName": "pages/user/order/detail/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "定单列表",
+          "pathName": "pages/user/order/list/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练头像点击选择模块研发",
+          "pathName": "pages/store/navbar-header/navbar",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "门店日期选择模块研发",
+          "pathName": "/pages/store/navbar/navbar",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "登录",
+          "pathName": "pages/user/login/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/map/point/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "点位选择",
+          "pathName": "pages/map/list/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "朋友圈HOME",
+          "pathName": "pages/moments/list/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "测试上传",
+          "pathName": "pages/test2/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "地图选点",
+          "pathName": "pages/selectLocation/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用户中心",
+          "pathName": "pages/user/home/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "课程",
+          "pathName": "pages/course/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "门店",
+          "pathName": "pages/store/show/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "私教购买",
+          "pathName": "pages/course/personalSubOrder/index",
+          "query": "id=1&t=%25E4%25BD%2593%25E6%2580%2581%25E8%25B0%2583%25E6%2595%25B4",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "约课",
+          "pathName": "packageA/pages/user/course/scheduleCourses/index",
+          "query": "courseID=3&orderID=168&orderNo=43120231017132162201",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "已约课程",
+          "pathName": "packageA/pages/myCourse/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "加盟招募",
+          "pathName": "packageB/pages/form/joinUS/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "普能用户消息中心",
+          "pathName": "packageA/pages/msg/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "教练中心-日程",
+          "pathName": "pages/coach/home/schedule/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "扫码进入首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": 1017
+        },
+        {
+          "name": "场馆详情",
+          "pathName": "pages/store/show/index",
+          "query": "storeID=2",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "会员权益-购卡",
+          "pathName": "/packageB/pages/Member/buyCard/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": 1024
+        }
+      ]
+    }
+  },
+  "libVersion": "3.2.2"
+}

@@ -1,0 +1,123 @@
+<wxs src="/wxs/utils.wxs" module="parseUtils"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="container" wx:if="{{!preventOnShow}}">
+  <view class="tui-tabs"   style="height: 900px; ">
+		<scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{scrollInto}}">
+			<view wx:for="{{tabBars}}"  wx:for-item="tab" wx:key="index" class="tui-tab-item" id="{{tab.id}}" data-current="{{index}}" bindtap="tabClick">
+				<view class="tui-tab-item-title {{tabIndex == index?'tui-tab-item-title-active':''}}" >{{ tab.name }}</view>
+			</view>
+		</scroll-view>
+		<view class="tui-line-h"></view>
+		<swiper current="{{tabIndex}}" class="tui-swiper-box" duration="300" bindchange="tabChange">
+			<swiper-item class="tui-swiper-item" wx:for="{{newsList}}"  wx:for-item="tab" wx:for-index="index1" wx:key="index1">
+				<scroll-view 	class="tui-scroll-v"	refresher-enabled	refresher-triggered="{{tab.refreshing}}"	refresher-background="#fafafa"	enable-back-to-top	refresher-threshold="{{100}}"	scroll-y	bindscrolltolower="loadMore"  data-index="{{index1}}"	bindrefresherrefresh="onrefresh">
+
+<!-- 内 -->
+    <view class="tui-order-list">
+    <view  class="tui-order-item" wx:for="{{tab.data}}" wx:for-item="orderItem" wx:for-index="index2" wx:key="index2">
+        <tui-list-cell hover="{{false}}" lineLeft="0" bindtap="detailShow" data-source="{{orderItem.source}}" data-id="{{orderItem.id}}">
+					<view class="tui-goods-title">
+						<view class="tui-goods-title-l">
+                    <block wx:if="{{orderItem.source==0}}">
+                      <view class="tui-coupon-btn tuan">团</view>
+                    </block>
+                    <block wx:if="{{orderItem.source==1}}">
+                      <view class="tui-coupon-btn shi">私</view>
+                    </block>
+                    <block wx:if="{{orderItem.source==2}}">
+                      <view class="tui-coupon-btn ji">营</view>
+                    </block>
+
+                <view class="tui-goods-date">{{date.format(orderItem.start_date*1000,'yyyy-MM-dd')}}</view>
+                <tui-badge margin="-30rpx 0 0 -10rpx" type="{{orderItem.start_time>0&&orderItem.end_time>0&&parseUtils.validateDateExpires((orderItem.start_date+orderItem.start_time)*1000)?'gray':'warning'}}"  scaleRatio="0.8">{{date.format(orderItem.start_date*1000,'EE')}}</tui-badge>
+             </view>
+						<block wx:if="{{orderItem.start_time>0&&orderItem.end_time>0&&parseUtils.validateDateExpires((orderItem.start_date+orderItem.start_time)*1000)}}">
+               <view class="tui-order-status-none">{{parseUtils.secondToHm(orderItem.start_time)}} - {{parseUtils.secondToHm(orderItem.end_time)}}</view>
+            </block>
+            <block wx:else>
+              <view class="tui-order-status">{{parseUtils.secondToHm(orderItem.start_time)}} - {{parseUtils.secondToHm(orderItem.end_time)}}</view>
+            </block>
+            <view>
+              <!-- 
+                1.tabIndex==0 只有在待上课中才可以有 取消按钮
+                2. 过期的没有取消  
+                2. 团课0、训练营2是没有取消预约的,仅 orderItem.source==1
+                
+                -->
+              <block wx:if="{{tabIndex==0&&orderItem.source==1&&orderItem.start_time>0&&orderItem.end_time>0&&!parseUtils.validateDateExpires((orderItem.start_date+orderItem.start_time)*1000)}}">
+                <tui-button bindtap="actionButtons" data-date="{{orderItem.start_date}}" data-stime="{{orderItem.start_time}}" data-id="{{orderItem.id}}" data-index="{{index2}}" type="brown" plain width="152rpx" height="52rpx" size="26" shape="circle">取消预约</tui-button>
+              </block>
+            </view>
+					</view>
+				</tui-list-cell>
+
+				<tui-list-cell padding="0" hover="{{false}}">
+					<view class="tui-goods-item">
+						<image src="{{orderItem.course_poster}}" class="tui-goods-img"></image>
+						<view class="tui-goods-center">
+							<view class="tui-goods-name">
+                <view>
+                {{orderItem.course_title}}
+                </view>
+                <block wx:if="{{orderItem.start_time>0&&orderItem.end_time>0&&parseUtils.validateDateExpires((orderItem.start_date+orderItem.start_time)*1000)}}">
+                  <tui-badge absolute="{{false}}" margin="0" translateX="20rpx" type="gray"  scaleRatio="1.2">已结束</tui-badge>
+                </block>
+                <block wx:else>
+                  <tui-badge absolute="{{false}}" margin="0" translateX="20rpx" type="primary"  scaleRatio="1">待上课</tui-badge>
+                  <tui-badge absolute="{{false}}" margin="0" translateX="40rpx" type="warning"  scaleRatio="1">{{parseUtils.countdownDay(orderItem.start_date)}}</tui-badge>
+                  
+                </block>
+              </view>
+              
+              
+        
+							<view class="tui-goods-address">
+                  <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="map" content="" color="#000"></ald-icon>
+                  <view class="tui-goods-address-title">上课门店:{{orderItem.store_title}}</view>
+              </view>
+
+              <view class="tui-goods-address">
+                  <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="company" content="" color="#000"></ald-icon>
+                  <view class="tui-goods-address-title">上课教室:{{orderItem.room_title}}</view>
+              </view>
+							<view class="tui-goods-address">
+                  <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="map" content="" color="#000"></ald-icon>
+                  <view class="tui-goods-address-title">上课地址:{{orderItem.store_address}}</view>
+              </view>
+
+						</view>
+
+					</view>
+				</tui-list-cell>
+
+				<tui-list-cell hover="{{false}}" unlined>
+					<view class="item-coach">
+						<view class="coach-poster">	<image src="{{orderItem.coach_head_img_url}}" class="coach-poster-img"></image></view>
+            <view class="coach-name">{{orderItem.coach_nickname}}</view>
+						<view class="coach-tel">{{orderItem.coach_mobile}}</view>
+					</view>
+				</tui-list-cell>
+
+			</view>
+                    <!-- 更多 -->
+                    <view class="tui-loading-more">
+                        <tui-loadmore wx:if="{{tab.isLoading}}" index="3" ></tui-loadmore>
+                        <block wx:if="{{!tab.isLoading}}">
+                            <tui-no-data wx:if="{{tab.noData}}" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无相关信息</tui-no-data>
+                            <tui-nomore wx:if="{{!tab.noData&&tab.pageIndex >= tab.lastPage}}"  backgroundColor="#fafafa"></tui-nomore>
+                        </block>
+                    </view>
+                    <!-- 更多END --> 
+		</view>
+
+        
+
+
+          <!-- 内END -->    
+
+				</scroll-view>
+			</swiper-item>
+		</swiper>
+	</view>
+</view>
+<tui-actionsheet show="{{showActionSheet}}" tips="{{tips}}" item-list="{{actionItemList}}" mask-closable="{{maskClosable}}" color="{{color}}" size="{{size}}" is-cancel="{{isCancel}}" bindclick="actionItemClick" bindcancel="closeActionSheet"></tui-actionsheet>

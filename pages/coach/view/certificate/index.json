@@ -1,0 +1,14 @@
+{
+    "usingComponents": {
+        "tui-no-data":"/components/thorui/tui-no-data/tui-no-data",
+        "tui-tag":"/components/thorui/tui-tag/tui-tag"     
+    },
+
+"navigationBarTitleText": "我的证书",
+"backgroundTextStyle": "dark",
+"navigationBarBackgroundColor": "#ffffff",
+"navigationStyle": "default",
+"backgroundColorTop": "#ffffff",
+"backgroundColorBottom": "#ffffff",
+"navigationBarTextStyle": "black"
+  }

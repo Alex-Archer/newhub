@@ -1,0 +1,114 @@
+<!--
+此文件为开发者工具生成，生成时间: 2023/9/23上午10:16:35
+使用方法：
+在 E:\公司项目2023\瑜伽项目\瑜伽小程序\pages\course\group_show\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 E:\公司项目2023\瑜伽项目\瑜伽小程序\pages\course\group_show\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="tui-content-box_he">
+      <swiper autoplay="false" circular="true" class="tui-banner-swiper" duration="150" indicator-active-color="#fff" indicator-color="rgba(255, 255, 255, 0.8)" indicator-dots="true" interval="5000" current="0">
+        <swiper-item style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+          <image class="tui-slide-image sk-image" mode="widthFix" style="height: 281.5px;"></image>
+        </swiper-item>
+      </swiper>
+      <view class="trainingCamp-data">
+        <view class="trainingCamp-data_time">
+          <view class="data-li">
+            <view class="data-title sk-transparent sk-text-14-0000-349 sk-text">打开心轮</view>
+            <view class="data-start sk-transparent sk-text-16-6667-609 sk-text">满 3 人开课</view>
+          </view>
+          <view class="data-des">
+            <view class="data-des-min">
+              <text class="des-title sk-transparent sk-text-0-0000-824 sk-text">60</text>
+              <text class="des-unit sk-transparent sk-text-0-0000-271 sk-text">Min</text>
+            </view>
+            <view class="data-des-kcal kcal-margin">
+              <text class="des-title sk-transparent sk-text-0-0000-761 sk-text">500</text>
+              <text class="des-unit des-margin sk-transparent sk-text-0-0000-739 sk-text">Kcal</text>
+            </view>
+          </view>
+        </view>
+        <view class="trainingCamp-data_price sk-transparent sk-text-14-2857-112 sk-text">¥0.01/节</view>
+      </view>
+      <view class="tui-box_he">
+        <view class="coach">
+          <text class="coach-title sk-transparent sk-text-14-2857-357 sk-text">分类</text>
+          <text class="coach-des sk-transparent sk-text-14-2857-783 sk-text">精品小班</text>
+        </view>
+        <view class="coach">
+          <text class="coach-title sk-transparent sk-text-14-2857-334 sk-text">时间</text>
+          <text class="coach-des sk-transparent sk-text-14-2857-344 sk-text">2023.09.23 周六 22:00~23:00</text>
+        </view>
+        <view class="coach" style="align-items: flex-start;">
+          <text class="coach-title sk-transparent sk-text-14-2857-95 sk-text">地址</text>
+          <view class="coach_address" data-lat="31.403930" data-lng="120.894638">
+            <text class="sk-transparent sk-text-14-2857-874 sk-text">江苏省苏州市昆山市博士路</text>
+            <view>
+              <view is="components/ksald/ald-icon/ald-icon">
+                <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-map ald-icon--tn-icon-map sk-pseudo sk-pseudo-circle" style="color: #666;font-size: 1.2rem;font-weight:normal;margin:0;padding:0;"></text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="coach">
+          <text class="coach-title sk-transparent sk-text-14-2857-881 sk-text">教室</text>
+          <text class="coach-des sk-transparent sk-text-14-2857-728 sk-text">大课普拉提教室</text>
+        </view>
+        <view class="coach">
+          <text class="coach-title sk-transparent sk-text-14-2857-832 sk-text">用户</text>
+          <view class="coach_address">
+            <text class="sk-transparent sk-text-14-2857-457 sk-text">已约 3人</text>
+            <view>
+              <view is="components/thorui/tui-image-group/tui-image-group">
+                <view class="group--tui-image-container" style="margin-bottom: 0">
+                  <view class="group--tui-image-item_box" data-id="1" data-index="0" style="width: 30px;height: 30px;border-radius: 50%;margin-left: 0px;margin-top: 0;margin-right:0;margin-bottom:0">
+                    <image class="group--tui-image-item sk-image" lazy-load="true" mode="scaleToFill" style="width: 30px; height: 30px; border-radius: 50%; border-width: 0; border-color: #fff"></image>
+                  </view>
+                  <view class="group--tui-image-item_box" data-id="2" data-index="1" style="width: 30px;height: 30px;border-radius: 50%;margin-left: -8px;margin-top: 0;margin-right:0;margin-bottom:0">
+                    <image class="group--tui-image-item sk-image" lazy-load="true" mode="scaleToFill" style="width: 30px; height: 30px; border-radius: 50%; border-width: 0; border-color: #fff"></image>
+                  </view>
+                  <view class="group--tui-image-item_box" data-id="3" data-index="2" style="width: 30px;height: 30px;border-radius: 50%;margin-left: -8px;margin-top: 0;margin-right:0;margin-bottom:0">
+                    <image class="group--tui-image-item sk-image" lazy-load="true" mode="scaleToFill" style="width: 30px; height: 30px; border-radius: 50%; border-width: 0; border-color: #fff"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="tui-box_he">
+        <text class="title sk-transparent sk-text-14-2857-985 sk-text">课程介绍</text>
+        <view is="components/thorui/tui-overflow-hidden/tui-overflow-hidden">
+          <view class="hidden--tui-overflow__text hidden--tui-gradient__hidden" style="width:100%;height:100px;padding:15px 15px 0 15px;background:transparent;font-size:16px;color:#333;font-weight:normal;-webkit-line-clamp:none;text-overflow:ellipsis">
+            <rich-text class="des-content" nodes="课程介绍内容，测试人员不超过一个的课程"></rich-text>
+            <view class="hidden--tui-gradient__box sk-image" style="background:-webkit-linear-gradient(top,rgba(255,255,255,0), #f8f8f8 100%)"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="tui-tabbar" style="padding-bottom: env(safe-area-inset-bottom);">
+      <view class="tui-tabbar_pay">
+        <view is="components/thorui/tui-button/tui-button" class="buttom-this">
+          <view class="tui-button--tui-button__wrap tui-button--tui-btn__flex-1 tui-button--tui-fillet tui-button--tui-button__hover" style="width: 100%;height:40px;margin:0">
+            <button app-parameter="true" class="tui-button--tui-btn tui-button--tui-btn-warning tui-button--tui-fillet sk-button sk-pseudo sk-pseudo-circle" form-type="true" open-type="true" style="width: 100%; height: 40px; line-height: 40px; font-size: 12px;background:#ff7900;color: #fff;box-shadow: none;flex-direction: column;">
+              <view class="buttom-price sk-transparent sk-text-32-5000-647 sk-text" style="background-position-x: 50%;">立即预约购买课程 ¥0.01</view>
+              <view class="buttom-discount sk-transparent sk-text-35-0000-311 sk-text" style="text-decoration-color: transparent; background-position-x: 50%;">原价 ¥1000.00</view>
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

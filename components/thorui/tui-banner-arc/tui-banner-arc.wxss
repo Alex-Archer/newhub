@@ -1,0 +1,16 @@
+.tui-banner-arc {
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.tui-banner--box {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  border-radius: 0 0 50% 50%;
+  overflow: hidden;
+}

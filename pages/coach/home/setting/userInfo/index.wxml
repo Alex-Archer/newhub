@@ -1,0 +1,34 @@
+<view class="tui-userinfo-box" wx:if="{{!preventOnShow}}">
+
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <tui-list-cell hover="{{false}}"  padding="0" arrow>
+
+            <view class="tui-list-cell" data-navigate="{{true}}" data-wechatinfo="{{true}}">
+                <view>头像</view>
+                <image src="{{headimgurl}}" class="tui-avatar"></image>
+            </view>
+
+        </tui-list-cell>
+    </button>
+    <tui-list-cell hover="{{false}}"  padding="0" arrow data-nickname="{{nickname}}" bindclick="jumpNickname">
+        <view class="tui-list-cell">
+            <view>昵称</view>
+            <view class="tui-content">{{nickname}}</view>
+        </view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}"  padding="0" arrow bind:tap="selectSex">
+        <view class="tui-list-cell">
+            <view>性别</view>
+            <view class="tui-content">{{sexText}}</view>
+        </view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}"  padding="0" arrow unlined   data-type="1" bind:tap="showDate">
+        <view class="tui-list-cell">
+            <view>出生日期</view>
+            <view class="tui-content">{{birthdayText}}</view>
+        </view>
+    </tui-list-cell>
+</view>
+
+<tui-picker value="{{sexValue}}" show="{{sexShow}}" pickerData="{{SexItems}}" bindhide="hideSex" bindchange="changeSex"></tui-picker>
+<tui-datetime id="tui-dateTime-ctx" type="{{type}}" startYear="{{startYear}}" endYear="{{endYear}}" cancelColor="{{cancelColor}}" color="{{color}}" setDateTime="{{birthday}}" unitTop="{{unitTop}}" radius="{{radius}}" bindconfirm="changeDate"></tui-datetime>

@@ -1,0 +1,87 @@
+.tui-input__wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.tui-input__border-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-top: 1px solid var(--thorui-line-color, rgba(0, 0, 0, 0.1));
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  transform-origin: 0 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tui-input__border-bottom {
+  position: absolute;
+  border-bottom: 1px solid var(--thorui-line-color, rgba(0, 0, 0, 0.1));
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  transform-origin: 0 100%;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tui-line__left {
+  left: 30rpx !important;
+}
+
+
+.tui-input__required {
+  height: 30rpx;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  left: 12rpx;
+  transform: translateY(-50%);
+}
+
+.tui-input__label {
+  padding-right: 12rpx;
+  flex-shrink: 0;
+}
+
+.tui-input__self {
+  flex: 1;
+  padding-right: 12rpx;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.tui-input__placeholder {
+  color: var(--thorui-text-color-placeholder, #ccc);
+  overflow: visible;
+}
+
+
+
+.tui-input__border {
+  position: absolute;
+  height: 200%;
+  width: 200%;
+  border: 1px solid var(--thorui-border-color, #d1d1d1);
+  transform-origin: 0 0;
+  transform: scale(0.5);
+  left: 0;
+  top: 0;
+  border-radius: 8rpx;
+  pointer-events: none;
+}
+
+.tui-radius__fillet {
+  border-radius: 100px !important;
+}
+
+.tui-text__right {
+  text-align: right;
+}

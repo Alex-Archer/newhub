@@ -1,0 +1,14 @@
+<view class="box" wx:if="{{SHOW_TOP}}">
+  <view class='arrow'></view>
+  <view class='body'>
+    <!-- <text>{{text}}</text> -->
+    <text class = "guideText"> 点击右上角 </text>    
+    <text class = "curcleL"></text>    
+    <text class = "curcleM"></text>    
+    <text class = "curcleL"></text>    
+    <text class = "guideText"> 添加到我的小程序 </text>
+      <text class = "guideClose" bindtap = "okHandler">    
+      <text class = "closeText">×</text>  
+    </text>
+  </view>
+</view>

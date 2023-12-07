@@ -1,0 +1,124 @@
+<view class="container">
+  <scroller isBackBtn="{{false}}" id="page-scroller">
+  <view class="tui-box tui-order-box">
+    <!-- 日期选择===================== -->
+    <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
+      <view class="select-date-title">
+        <view class="title-date" wx:if="{{today}}">
+          <view class="date-day">{{today.day}}</view>
+          <view class="date-all">
+            <view class="day-week">星期{{today.week}}</view> 
+            <view class="day-date">{{today.date}}</view>
+          </view>
+        </view>
+        <view class="title-menu">
+          <view class="menu-addclass"> 
+          </view>
+        </view>
+      </view>
+      <!-- 日历 ===================== -->
+      <!-- 日期选择===================== -->
+      <view class="tui-tabs">
+        <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="into{{dateScrollInto}}">
+          <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="into{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
+            <view class="tui-badge-item">
+              <view class="tui-tab-item-week">{{ tab.weekday }}</view>
+              <block wx:if="{{tab.number>0}}">
+                <tui-badge dot="{{true}}" margin="-10rpx 0 0 100rpx" translateX="50%" type="red" absolute scaleRatio="0.8"></tui-badge>
+              </block>
+            </view>
+            <block wx:if="{{tab.allowClick}}">
+                 <view class="tui-tab-item-title {{tabIndex == index?'tui-tab-item-title-active':''}}">{{ tab.name }}</view>
+            </block>
+            <block wx:else>
+                <view class="tui-tab-item-title tui-tab-item-title-noclick">{{ tab.name }}</view>
+            </block>
+          </view>
+        </scroll-view>
+      </view>
+      <!-- 日历 END ===================== -->
+      <!-- 日期选择END ===================== -->
+      <tui-list-cell hover="{{false}}" arrow="{{false}}" padding="0" lineLeft="{{false}}">
+        <view class="tui-cell-header">
+          <view class="tui-cell-title">选择时间段</view>
+          <view class="tui-cell-menu">
+            
+            <view class="menu-select-all {{select_all?'select-this':''}}" bind:tap="selectAllTime">全选时间</view>
+            <view class="menu-other" bind:tap="resetAllTime">取消全选</view>
+          </view>
+        </view>
+      </tui-list-cell>
+      <tui-list-cell hover="{{false}}" arrow="{{false}}" padding="0" lineLeft="{{false}}">
+      <view class="swiper-box">
+        <!-- 团课列表 ===================== -->
+        <swiper current="{{tabIndex}}" class="tui-swiper-box" duration="300" bindchange="tabChange">
+          <swiper-item wx:for="{{groupList}}" wx:for-item="tab" wx:for-index="index1" wx:key="index1">
+            
+            <scroll-view  refresher-triggered="{{tab.refreshing}}" refresher-background="#fafafa" data-index="{{index1}}">
+              <!-- 时间选择 -->
+              <view class="tui-box tui-time-box">
+
+                <view class="time-box">
+                  <block wx:for="{{tab.data}}" wx:for-item="item" wx:key="index">
+                    <!-- 0未排课 1教练排课了 2及其它都是已约或占用
+                        站教练角度
+                     -->
+                    <block wx:if="{{item.state==0}}">
+                        <view class="time-box-li {{item.use?'li-active':''}}" data-index="{{index}}" bind:tap="clickThisTime">{{item.start}}</view>
+                    </block>
+                    <block wx:elif="{{item.state==1}}">
+                        <view class="time-box-li {{item.use?'li-active':''}}" data-index="{{index}}" bind:tap="clickThisTime">{{item.start}}</view>
+                    </block>
+                    <block wx:else>
+                        <view class="time-box-li li-active-no" data-index="{{index}}" bind:tap="clickThisTime">
+                        {{item.start}}
+                        </view>
+                    </block>
+                  </block>
+                <!-- 更多 -->
+                <view class="tui-loading-more">
+                    <tui-loadmore wx:if="{{tab.isLoading}}"></tui-loadmore>
+                    <tui-nomore text="数据有误,请联系管理人员!" wx:if="{{!tab.isLoading&&tab.data.length<=0}}" backgroundColor="#fafafa"></tui-nomore>
+                </view>
+                <!-- 更多END -->
+                </view>
+              </view>
+              <!-- 时间选择END -->
+            </scroll-view>
+            
+          </swiper-item>
+        </swiper>
+        <!-- 团课列表END===================== -->
+      </view>
+      </tui-list-cell>   
+      <tui-list-cell radius="30" marginBottom="15"  padding="0" lineLeft="{{false}}" hover="{{false}}" arrow  bind:tap="selectRestTime">
+                <view class="tui-cell-header">
+                <view class="tui-cell-title">课后休息时长选择</view>
+                <view class="tui-cell-menu">
+                    {{restTimeText}}
+                </view>
+            </view>
+            </tui-list-cell>
+            <view class="tui-ptop">
+			 <tui-button disabled="{{!groupEdit}}" flexdirection type="warning" shadow height="100rpx" bindclick="buttonForm">
+             <view class="button-box-t">{{groupEditText}}</view>
+             <view class="button-box-d">{{groupEditDate}}</view>
+             
+             </tui-button>
+      </view> 
+      <view class="des-box">
+        <view class="title">说明：</view>
+        <view class="des">1.只能预排三天档期</view>
+        <view class="des">2.为了合理按排您的时间，尽量只排每二天档期！</view>
+        <view class="des">3.排好的档期如果有人预约后是无法更改的。</view>
+        <view class="des">4.课后休息时间默认为30分钟，请谨慎更改！</view>
+        
+      </view>
+
+
+    </view>
+  </view>
+</scroller>
+</view>
+<tui-picker value="{{[restTimeText]}}" show="{{restTimeShow}}" pickerData="{{restTimeArr}}" bindhide="hideRestTime" bindchange="changeRestTime"></tui-picker>
+<tui-actionsheet show="{{showActionSheet}}" tips="{{tips}}" item-list="{{actionItemList}}" mask-closable="{{maskClosable}}" color="{{color}}" size="{{size}}" is-cancel="{{isCancel}}" bindclick="actionItemClick" bindcancel="closeActionSheet"></tui-actionsheet>

@@ -1,0 +1,35 @@
+.container {
+    padding-top: 20rpx;
+  }
+  
+  .tui-cell-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  
+  .tui-cell-input input {
+    flex: 1;
+    padding-left: 20rpx;
+  }
+  
+  .tui-btn-box {
+    padding: 40rpx 30rpx 10rpx 30rpx;
+    box-sizing: border-box;
+  }
+  .formsubmit-des-box
+  {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      width: 90%;
+      margin: 0 5%;
+      
+  }
+  .formsubmit-des
+  {
+      height: 50rpx;
+      line-height: 50rpx;
+      color: #999;
+  }

@@ -1,0 +1,9 @@
+/* pages/course/index/index.wxss */
+.contain{
+  width: 100vw;
+  height: 100vh;
+  padding:48rpx 0 0 0;
+}
+.contain image{
+width: 100%;
+}

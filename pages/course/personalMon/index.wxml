@@ -1,0 +1,147 @@
+<view class="container">
+  <!-- 类型选择 -->
+  <view class="select-type {{isTypeNavFixed&&'fixed'}}" id="typeNavTop">
+    <scroll-view id="type-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{typeScrollInto}}">
+      <view wx:for="{{typeBars}}" wx:for-item="typetab" wx:key="index" class="tui-tab-item" id="{{typetab.id}}" data-current="{{index}}" bindtap="tabTypeClick" data-path="{{typetab.path}}">
+        <view class="tui-tab-item-title {{tabTypeIndex == index?'tui-tab-item-title-active':''}}">{{ typetab.name }}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 类型选择END -->
+
+  <!--提卡提示-->
+  <view class="notice-box">
+    <view class="tui-class-title-notice">
+      <view class="tui-class-title-notice-l">
+        <ald-icon size="1" margin="0 10rpx 0 8rpx" customClass="" unit="rem" name="notice" color="#ffb913" content="" contentsize="" contentunit="" contentpadding=""></ald-icon>
+        <text style="color: #534d62;font-size: 24rpx;font-weight: normal;">您有一张体验卡待领取</text>
+      </view>
+      <view class="tui-class-title-notice-r">
+        <text>立即领取</text>
+      </view>
+
+
+    </view>
+
+  </view>
+  <!--提卡提示 END-->
+
+
+  <!-- 广告 -->
+  <view class="adv-top">
+    <image class="adv-top-img" src="{{globalURL}}/miniprogram/url-img/banner/course/2.jpg" mode="widthFix"></image>
+  </view>
+  <!-- 广告END -->
+
+  <!-- 日期选择===================== -->
+  <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
+    <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{dateScrollInto}}">
+      <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
+        <!-- <view class="tui-tab-item-week" wx:if="{{index%2==0}}" >日</view> -->
+        <view class="tui-badge-item">
+          <view class="tui-tab-item-week">{{ tab.weekday }}</view>
+          <!-- margin="-10rpx 0 0 100rpx"  top="-6rpx" dot 不同时用，都可以上下定位  -->
+          <block wx:if="{{tab.number>0}}">
+            <tui-badge dot="{{true}}" margin="-10rpx 0 0 100rpx" translateX="50%" type="red" absolute scaleRatio="0.8"></tui-badge>
+          </block>
+          <block wx:else>
+            <tui-badge margin="-10rpx 0 0 100rpx" translateX="50%" type="gray" absolute scaleRatio="0.8">无</tui-badge>
+          </block>
+        </view>
+        <view class="tui-tab-item-title {{tabDateIndex == index?'tui-tab-item-title-active':''}}">{{ tab.name }}</view>
+      </view>
+    </scroll-view>
+
+    <!-- 放到日期块 好定位 -->
+    <view class="dropdown-box {{isDropdowFixed&&'fixed'}}" id="dropdowNavTop" bind:tap="goToStore">
+      <view class="tui-class-title-dropdown">
+        <text>昆山市祖冲之路店 </text>
+        <text style="margin: 0 20rpx 0 20rpx; font-size:22rpx; font-weight:normal; color:#afb1bd;">距离12.12km</text>
+        <ald-icon size=".8" customClass="" unit="rem" name="right" color="#b1b4bf" content="" contentsize="" contentunit="" contentpadding="0 0 0 8rpx"></ald-icon>
+      </view>
+    </view>
+    <!-- 放到日期块 好定位 END -->
+
+  </view>
+  <!-- 日期选择END ===================== -->
+
+
+
+
+  <!--筛选 下拉排序块-->
+  <!-- <view class="dropdown-box {{isDropdowFixed&&'fixed'}}" id="dropdowNavTop">
+    <view class="tui-class-title-dropdown">
+      <text>昆山市祖冲之路店  </text>
+      <text style="margin: 0 20rpx 0 20rpx; font-size:22rpx; font-weight:normal; color:#afb1bd;">距离12.12km</text>
+      <ald-icon size=".8" customClass="" unit="rem" name="right" color="#b1b4bf" content="" contentsize="" contentunit="" contentpadding="0 0 0 8rpx"></ald-icon>
+                      
+    </view>
+
+  </view> -->
+  <!--筛选 下拉排序块 END-->
+
+  <!--下部两块 -->
+  <view class="body-container {{isTypeNavFixed&&'pt'}}">
+    <!-- 左边 -->
+    <view class="left-box">
+      <scroll-view scroll-y scroll-with-animation class="tab-view" scroll-into-view="{{scrollViewId}}" style="height: calc(120vh - env(safe-area-inset-bottom) - 460rpx)">
+        <view id="id_{{index}}" wx:for="{{leftBars}}" wx:key="index" class="tab-bar-item {{ item[1]=='已结束'?'expire':'' }} {{tabLeftIndex == index ? 'active' : ''}}" data-current="{{index}}" catchtap="swichNav">
+          <text>{{ item[0] }}</text>
+          <text>{{ item[1] }}</text>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 左边 END -->
+    <!-- 右边  -->
+    <view class="right-box">
+      <block wx:for="{{leftBars}}" wx:key="index">
+        <!-- <scroll-view scroll-y class="right-box-scroll" style="height: calc(100vh - env(safe-area-inset-bottom) - 180rpx)" wx:if="{{tabLeftIndex == index}}"> -->
+        <scroll-view class="right-box-scroll" refresher-triggered="{{newsList[0].refreshing}}" refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" style="height: calc(120vh - env(safe-area-inset-bottom) - 440rpx)" wx:if="{{tabLeftIndex == index}}">
+          <!--内容部分 start 自定义可删除-->
+          <view class="page-view">
+
+
+            <view class="class-box" style="min-height:101%">
+
+              <block wx:for="{{newsList[0].data}}" wx:for-item="newsitem" wx:for-index="index2" wx:key="index2">
+                <!-- <view style="height: 200rpx;width: 100%;margin: 15rpx 0 15rpx 0;background: #ccc;">{{newsitem.title}}adfasdf</view> -->
+                <!-- 开始列表 -->
+                <!--课程列表-->
+                <view class="tui-course-item_he" bind:tap="goToCoach">
+
+                  <view class="tui-course-img-box">
+                    <image src="{{globalURL}}/miniprogram/url-img/coach-home/head.png" mode="widthFix" class="tui-course-img"></image>
+                  </view>
+                  <view class="tui-course-info">
+                    <view class="tui-course_title">英老师</view>
+                    <view class="tui-course_rate">
+                      好评率 99.38%
+                    </view>
+                    <view class="desc">毕业于武汉生物工程学院 毕业于武汉生物工程学院 社区</view>
+                  </view>
+                  <view class="tui-course-button">
+                    <tui-button margin="40rpx 0 0 0" type="warning" shape="circle" width="100rpx" height="45rpx" size="22" bindclick="detail">约课</tui-button>
+                  </view>
+                </view>
+                <!--课程列表 END-->
+                <!-- 开始列表END -->
+              </block>
+              <view class="tui-loading-more">
+                <tui-loadmore wx:if="{{newsList[0].isLoading && newsList[0].pageIndex <=3}}" index="3"></tui-loadmore>
+                <tui-nomore wx:if="{{newsList[0].pageIndex > 3}}" backgroundColor="#fafafa"></tui-nomore>
+              </view>
+
+            </view>
+
+          </view>
+          <!--内容部分 end 自定义可删除-->
+        </scroll-view>
+      </block>
+    </view>
+    <!-- 右边 -->
+  </view>
+  <!--下部两块 END -->
+
+</view>
+
+<tui-tabbar wx:if="{{tabbarShow}}" id="tui-tabbar" bind:goToTop="indexGoTop" indexPage="{{indexPage}}" tabBar="{{tabBar}}" isFixed="{{true}}" current="{{current}}" bind:click="tabbarSwitch"></tui-tabbar>

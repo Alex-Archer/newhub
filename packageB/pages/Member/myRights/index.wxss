@@ -1,0 +1,387 @@
+page{
+  background-color: #f9f8f8;
+}
+
+image{height:auto}
+
+.img-box
+{
+    width: 100%;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.img-box-li
+{
+    width: 100%;
+    display: flex;
+    flex: 1;
+    margin:0;
+}
+.img-center
+{
+  justify-content: center;
+}
+.qy-center
+{
+  justify-content: center;
+  margin-top: 40rpx;
+}
+.qy-split
+{
+  margin: 8rpx  20rpx 0 20rpx;
+}
+.qy-title
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.qy-title-t
+{
+  font-size: 36rpx;
+  color: #1f1f1f;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 10rpx;
+}
+.qy-title-des
+{
+  font-size: 20rpx;
+   color: #828282; 
+   margin-top: 10rpx;
+   text-align: center;
+
+}
+
+.box-img-base
+{
+    width: 100%;
+    margin: 0;
+    display: block;
+}
+.tui-cover-back {
+    width: 60rpx;
+    height: 60rpx;
+    position: fixed;
+    /* top: 60rpx; */
+    /* top: 100rpx; 移到动态获取*/
+    left: 30rpx;
+    z-index: 9999;
+  }
+
+  .input-parent{
+      position: relative;
+  }
+  .card-box
+  {
+      position: absolute;
+      width: 84%;
+      left: 8%;
+      top:200rpx;
+      display: flex;
+      justify-content: center;
+      /* background-color: #666; */
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+  }
+  .card
+  {
+    width: 630rpx;
+
+    border-radius: 30rpx;
+  }
+  .card-des,.card-bottom
+  {
+    position: absolute;
+    left: 90rpx;
+    display: flex;
+    justify-content:flex-start;
+    width: 570rpx;
+
+  }
+  .card-des
+  {
+    height: 230rpx;
+    top:230rpx;
+    /* background-color: rgba(226, 226, 226,.5); */
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+  .card-header
+  {
+    height: 230rpx;
+    width:120rpx;
+  }
+  .header-photo {
+    height: 120rpx;
+    width: 120rpx;
+    display: block;
+    border-radius: 50%;
+    margin-top: 10rpx;
+  }
+  .card-user
+  {
+    height: 230rpx;
+    width: 200rpx;
+    margin-left: 10rpx;
+
+  }
+  .card-user-name
+  {
+    font-size: 30rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-weight: bold;
+    color: #0e0e0e;
+  }
+
+
+  .card-user-level
+  {
+    font-size: 38rpx;
+  }
+  .level-photo
+  {
+    width: 49rpx;
+    height: 54rpx;
+    display: block;
+    position: absolute;
+    top: 63rpx;
+
+  }
+  .user-level-box
+  {
+    background-color: #ec652b;
+    border-radius: 20rpx;
+    color: #fff;
+    font-size: 26rpx;
+    font-weight: bold;
+    height: 40rpx;
+    line-height: 40rpx;
+    width: 160rpx;
+    text-align: right;
+    padding: 0 20rpx 0 0;
+    margin-top: 10rpx;
+  }
+
+  .card-level
+  {
+    height: 230rpx;
+    width: 220rpx;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .level-more
+  {
+    font-size:24rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-weight: bold;
+    color: #0e0e0e;
+  }
+
+
+
+
+.card-bottom
+{
+    height: 60rpx;
+    top:470rpx;
+    display: flex;
+    align-items: center;
+    
+    color: #fff;
+}
+.card-bottom-title
+{
+  font-weight: bold;
+  margin-right: 10rpx;
+  font-size: 26rpx;
+}
+.card-bottom-price
+{
+  margin-right: 10rpx;
+  font-size: 24rpx;
+}
+.card-bottom-view
+{
+  margin: 0 0 0 10rpx;
+  height: 42rpx;
+  font-weight: normal;
+}
+
+
+  .ico-box
+  {
+    display: flex;
+    width: 88%;
+    margin: 20rpx 6%;
+    height: 150rpx;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: space-between;
+  
+  }
+  .ico-item
+  {
+    width: 100rpx;
+    height: 150rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+  }
+  .ico-item-img
+  {
+    width: 100rpx;
+    height: 86rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+  }
+  .menu-img
+  {
+    min-height: 80rpx;
+    width:81rpx;
+  }
+
+
+  .ico-item-title
+  {
+    color: #0e0e0e;
+    font-size: 20rpx;
+    height: 60rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+ 
+
+.tui-flex-pd {
+  width: 96%;
+  line-height:50rpx;
+  /* padding: 0 10rpx; */
+  /* padding-bottom: 200rpx; */
+
+
+}
+
+  /* 购买 */
+
+  .tui-safe-area {
+    height: 1rpx;
+    padding-bottom: 60rpx;
+  }
+  
+  .menu-cell-box
+  {
+    background-color: #fff;
+    border-radius: 20rpx;
+    padding: 30rpx 0;
+    width: 86%;
+    margin: 30rpx 7%;
+  }
+  .rw-cell-box
+  {
+    background-color: #fff;
+    border-radius: 20rpx;
+    padding: 30rpx 0;
+    width: 86%;
+    margin: 30rpx 7%;
+  }
+  
+  .tui-list-cell {
+    display: flex;
+    align-items: center;
+    padding: 24rpx 30rpx;
+    font-size: 30rpx;
+  }
+  .list-cell-ico
+  {
+    width: 46rpx;
+    height: 46rpx;
+ 
+  }
+  .cell-ico-img
+  {
+    min-height:46rpx;
+    width:46rpx;
+  }
+ .list-cell-signico
+  {
+    width: 79rpx;
+    height: 79rpx;
+ 
+  }
+  .cell-signico-img
+  {
+    min-height:79rpx;
+    width:79rpx;
+  }
+  
+  .list-cell-title
+  {
+    margin-left: 20rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+  }
+  .list-cell-stitle
+  {
+    margin-left: 20rpx;
+    width: 100%;
+
+
+  }
+  .list-cell-t
+  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+  .cell-t-title
+  {
+    font-size: 30rpx;
+    font-weight: bold;
+    height: 50rpx;
+    line-height: 50rpx;
+  }
+
+
+    .list-cell-d
+  {
+    font-size: 24rpx;
+    color: #6c6e6f;
+  }
+.list-cell-d .red
+  {
+    font-size: 24rpx;
+    color: red;
+  }
+
+  .bottom-logo
+  {
+    width: 100%;
+    min-height: 139rpx;
+  }
+  .bottom-logo .logo-img
+  {
+    width: 750rpx;
+    min-height: 139rpx;
+  }

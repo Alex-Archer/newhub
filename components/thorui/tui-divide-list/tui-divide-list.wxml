@@ -1,0 +1,27 @@
+<view class="tui-divide-list" style="background:{{background}}">
+  <view class="tui-divide--item" bindtap="itemTap" data-index="{{index}}" style="padding-top:{{padding}}rpx;padding-bottom:{{padding}}rpx" wx:for="{{list}}" wx:key="index">
+    <view class="tui-divide--value">
+      <view class="tui-divide--val" wx:if="{{item.value && !item.src}}" style="color:{{item.valueColor || valueColor}};font-size:{{item.valueSize || valueSize}}rpx;font-weight:{{item.valueFontWeight || valueFontWeight}}">
+        {{item.value}}
+      </view>
+      <image src="{{item.src}}" style="width:{{item.width || width}}rpx;height:{{item.height || height}}rpx" wx:if="{{item.src}}">
+      </image>
+      <view class="{{item.isDot ? 'tui-badge-dot' : 'tui-badge'}}" style="color: {{badgeColor}}; background:{{badgeBgColor || g_badgeBgColor}}" wx:if="{{item.num || item.isDot}}">
+        {{ item.isDot ? '' : item.num }}
+      </view>
+    </view>
+    <view class="tui-divide--text" wx:if="{{item.text}}" style="color:{{item.textColor || textColor}};font-size:{{item.textSize || textSize}}rpx;font-weight:{{item.textFontWeight || textFontWeight}}">
+      {{item.text}}
+    </view>
+    <view class="tui-divide--line" style="background:{{dividerColor}};height:{{dividerHeight+'%'}};top:{{parse.getTop(dividerHeight)}}" wx:if="{{divider && index!==list.length-1}}"></view>
+  </view>
+</view>
+
+<wxs module="parse">
+  module.exports = {
+    getTop: function (height) {
+        var height = parseInt(height) || 60
+				return (100 - height) / 2 + '%'
+    }
+  }
+</wxs>

@@ -1,0 +1,225 @@
+.tui-select--mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition: all ease-in-out .3s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.tui-select--mask-show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tui-select--wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translate3d(0, 100%, 0);
+  transition: all 0.3s ease-in-out;
+  min-height: 20rpx;
+  opacity: 0;
+  visibility: hidden;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tui-select--wrap-show {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.tui-select--scroll {
+  width: 100%;
+  flex: 1;
+}
+
+.tui-select--list {
+  width: 100%;
+}
+
+.tui-select--item {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  position: relative;
+}
+.tui-select--disabled {
+  opacity: .5;
+}
+
+.tui-select--item-line {
+  position: absolute;
+  bottom: 0;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  transform-origin: 0 100%;
+  z-index: 1;
+}
+
+.tui-select--item-active:active {
+  background: rgba(0, 0, 0, .2);
+}
+
+.tui-select--flex {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tui-select--reverse {
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.tui-select--checkbox {
+  font-size: 0;
+  color: rgba(0, 0, 0, 0);
+  width: 40rpx;
+  height: 40rpx;
+  border-width: 1px;
+  border-style: solid;
+  display: inline-flex;
+  box-sizing: border-box;
+  border-radius: 50%;
+  vertical-align: top;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.tui-select--is-checkmark {
+  border-width: 0 !important;
+  background: transparent !important;
+}
+
+.tui-select--checkmark {
+  width: 20rpx;
+  height: 40rpx;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  border-right-style: solid;
+  border-right-width: 3px;
+  border-right-color: #FFFFFF;
+  box-sizing: border-box;
+  transform: rotate(45deg) scale(0.5) translateZ(0);
+  transform-origin: 54% 48%;
+}
+
+.tui-select--item-text {
+  word-break: break-all;
+  font-weight: normal;
+}
+
+.tui-select--text-pl {
+  padding-left: 20rpx;
+}
+
+.tui-select--text-pr {
+  padding-right: 20rpx;
+}
+
+.tui-select--icon-box {
+  overflow: hidden;
+  background-color: #F8F8F8;
+  flex-shrink: 0;
+}
+
+.tui-select--icon-ml {
+  margin-left: 20rpx;
+}
+
+.tui-select--icon-mr {
+  margin-right: 20rpx;
+}
+
+.tui-select--header {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  height: 98rpx;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+}
+
+.tui-select--header-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  transform-origin: 0 100%;
+  z-index: 1;
+}
+
+.tui-select--header-text {
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  flex: 1;
+  padding: 0 88rpx;
+}
+
+.tui-select--header-close {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 24rpx;
+  text-align: right;
+}
+
+.tui-select--btn-wrap {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx;
+}
+
+.tui-select--btn {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 84rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: normal;
+  text-align: center;
+}
+
+.tui-select--btn-text:active {
+  background: rgba(0, 0, 0, .2);
+}

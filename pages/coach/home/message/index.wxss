@@ -1,0 +1,313 @@
+/* page{
+  background-color: #f4f4f4;
+} */
+.container {
+  padding: 160rpx 0 0 0;
+  height: 88vh;
+  width: 100vw;
+  margin-bottom: 240rpx;
+}
+.tui-content-box{
+  width: 100%;
+  padding: 0 30rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  
+}
+/* .tui-tabs {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+  background-color: #fafafa;
+  width: 100vw;
+  min-height: 300px;
+} */
+
+.tui-scroll-h {
+  width: 100%;
+  height: 100rpx;
+	/* background-color: #ffffff; */
+	/* flex-direction: row;
+  white-space: nowrap; */
+
+}
+.tab-item-box{
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tui-tab-item {
+	display: inline-block;
+	flex-wrap: nowrap;
+  padding:0 34rpx;
+}
+
+.tui-tab-item-title {
+	color: #555;
+	font-size: 30rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tui-tab-item-title-active {
+	color: #319fa6;
+	font-size: 36rpx;
+	font-weight: bold;
+	border-bottom: 6rpx solid #319fa6;
+	box-sizing: border-box;
+	text-align: center;
+}
+/* 
+.tui-line-h {
+  position: relative;
+  
+}
+.tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+} */
+
+.tui-swiper-box {
+  flex: 1 !important;
+
+}
+
+.tui-swiper-item {
+	flex: 1 !important;
+	display: flex;
+	flex-direction: row;
+}
+
+.tui-scroll-v {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+  width: 100%;
+  /* height: 900px;
+  background-color: cornsilk; */
+}
+
+
+.tui-loading-more {
+	width: 100%;
+	padding-bottom: 1rpx;
+}
+
+/* 列表拿来 */
+.tui-order-list {
+	width: 100%;
+	padding: 0 25rpx;
+
+	box-sizing: border-box;
+}
+
+.tui-order-item {
+	margin-top: 20rpx;
+	border-radius: 12rpx;
+	box-shadow: 0 5rpx 10rpx 0 rgba(0, 0, 0, 0.06);
+	overflow: hidden;
+}
+
+.tui-goods-title {
+	width: 100%;
+	font-size: 28rpx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.tui-flex {
+	display: flex;
+	align-items: center;
+}
+.tui-flex text {
+	padding-right: 12rpx;
+}
+
+.tui-order-status {
+	color: #eb0909;
+	font-size: 26rpx;
+}
+
+.tui-goods-item {
+	width: 100%;
+	padding: 20rpx 30rpx;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+}
+
+.tui-goods-img {
+	width: 160rpx;
+	height: 160rpx;
+	display: block;
+  flex-shrink: 0;
+  padding: 20rpx 20rpx 20rpx 0;
+}
+
+.tui-goods-center {
+	flex: 1;
+	padding: 20rpx 8rpx;
+	box-sizing: border-box;
+}
+
+.tui-goods-name {
+	/* max-width: 310rpx; */
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	font-size: 26rpx;
+  line-height: 36rpx;
+  font-weight: bolder;
+  margin-bottom: 14rpx;
+
+
+
+   /* 文字太长...号 */
+   word-break: break-all;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2;/* 行数 */
+}
+
+.tui-goods-attr {
+	font-size: 22rpx;
+	color: #888888;
+	line-height: 32rpx;
+	padding-top: 20rpx;
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.tui-price-right {
+	text-align: right;
+	font-size: 24rpx;
+	color: #888888;
+	line-height: 30rpx;
+	padding-top: 20rpx;
+}
+
+.tui-color-red {
+	color: #e41f19;
+	padding-right: 30rpx;
+}
+
+.tui-goods-price {
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	font-size: 24rpx;
+}
+
+.tui-size-24 {
+	font-size: 24rpx;
+	line-height: 24rpx;
+}
+
+.tui-price-large {
+	font-size: 32rpx;
+	line-height: 30rpx;
+	font-weight: 500;
+}
+
+.tui-order-btn {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	background: #fff;
+	padding: 10rpx 30rpx 20rpx;
+	box-sizing: border-box;
+}
+
+/* 列表拿来END */
+
+.tui-coupon-week{
+
+
+  font-size: 22rpx;
+  line-height: 32rpx;
+
+  margin: 0 10rpx 0 20rpx;
+  background:chocolate;
+}
+.tui-coupon-btn{
+
+
+    font-size: 25rpx;
+    line-height: 32rpx;
+    width: 32rpx;
+    height: 32rpx;
+
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    border-radius: 6rpx;
+    margin: 0 10rpx 0 0;
+}
+.tui-coupon-btn.red{
+  background: #FFEBEB;
+  color: #e41f19;
+}
+.tui-coupon-btn.green{
+  background: #d7ffb7;
+  color: #377c00;
+}
+.tui-goods-title-l{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.tui-goods-date{
+  font-weight: bolder;
+}
+
+.tui-goods-address {
+	font-size: 24rpx;
+	color: #888888;
+	line-height: 32rpx;
+	padding-top: 10rpx;
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: flex;
+  align-items: center;
+
+}
+.tui-goods-address-title
+{
+   /* 文字太长...号 */
+   word-break: break-all;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 1;/* 行数 */
+}

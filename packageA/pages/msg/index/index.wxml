@@ -1,0 +1,72 @@
+<view class="container" wx:if="{{!preventOnShow}}">
+
+  <view class="tui-top" wx:if="{{subScriptionsShow}}">
+      <tui-list-cell hover="{{false}}" unlined>
+        <view class="tui-message-item">
+          <view>
+            <view class="tui-title">开启订阅消息</view>
+            <view class="tui-sub-title">开启后，可以第一时间收到课程变动提醒！</view>
+          </view>
+          <tui-button type="danger" width="140rpx" height="60rpx" size="24" bindclick="subScriptionsCofig" data-type="1">前往设置</tui-button>
+        </view>
+      </tui-list-cell>
+    </view>
+
+		<view class="tui-top">
+			<tui-list-cell  hover="{{false}}"  data-msgtype="1"  data-href="/packageA/pages/msg/list/index" bind:tap="NavigateTo">
+				<view class="tui-message-item">
+					<view class="tui-title-box">
+						<view class="tui-icon-box tui-bg-danger">
+							<tui-icon name="kefu" color="#fff" size="26"></tui-icon>
+						</view>
+						<view class="tui-title">客服消息</view>
+					</view>
+					<tui-badge wx:if="{{serviceMsgNum>0}}"  position="{{false}}" type="red" scale="{{false}}">{{serviceMsgNum}}</tui-badge>
+				</view>
+			</tui-list-cell>
+			<!-- <tui-list-cell unlined hover="{{false}}"  data-msgtype="2"  data-href="/packageA/pages/msg/list/index" bind:tap="NavigateTo">
+				<view class="tui-message-item">
+					<view class="tui-title-box">
+						<view class="tui-icon-box tui-bg-warning">
+							<tui-icon name="transport" color="#fff" size="28"></tui-icon>
+						</view>
+						<view class="tui-title">发货通知</view>
+					</view>
+					<tui-badge position="{{false}}" type="red" scale="{{false}}">12</tui-badge>
+				</view>
+			</tui-list-cell>
+			<tui-list-cell unlined hover="{{false}}"  data-msgtype="3"  data-href="/packageA/pages/msg/list/index" bind:tap="NavigateTo">
+				<view class="tui-message-item">
+					<view class="tui-title-box">
+						<view class="tui-icon-box tui-bg-pink">
+							<tui-icon name="unreceive" color="#fff" size="26"></tui-icon>
+						</view>
+						<view class="tui-title">收货通知</view>
+					</view>
+					<tui-badge position="false" type="red" scale="false" wx:f="{{false}}">1</tui-badge>
+				</view>
+			</tui-list-cell>
+			<tui-list-cell unlined hover="{{false}}"  data-msgtype="4"  data-href="/packageA/pages/msg/list/index" bind:tap="NavigateTo">
+				<view class="tui-message-item">
+					<view class="tui-title-box">
+						<view class="tui-icon-box tui-bg-success">
+							<tui-icon name="wallet" color="#fff" size="26"></tui-icon>
+						</view>
+						<view class="tui-title">付款通知</view>
+					</view>
+					<tui-badge position="{{false}}" type="red" scale="{{false}}">8</tui-badge>
+				</view>
+			</tui-list-cell> -->
+			<tui-list-cell unlined hover="{{false}}"  data-msgtype="0"  data-href="/packageA/pages/msg/list/index" bind:tap="NavigateTo">
+				<view class="tui-message-item">
+					<view class="tui-title-box">
+						<view class="tui-icon-box tui-bg-blue">
+							<tui-icon name="message" color="#fff" size="30"></tui-icon>
+						</view>
+						<view class="tui-title">系统通知</view>
+					</view>
+					<tui-badge wx:if="{{sysMsgNum>0}}" position="{{false}}" type="red" scale="false">{{sysMsgNum}}</tui-badge>
+				</view>
+			</tui-list-cell>
+		</view>
+	</view>

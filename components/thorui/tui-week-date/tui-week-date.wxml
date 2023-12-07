@@ -1,0 +1,24 @@
+<view class="tui-week-date" style="background:{{background}}">
+  <view class="tui-arrow--box" catchtap="prevWeek">
+    <slot name="left"></slot>
+    <view wx:if="{{arrow}}" class="tui-left--arrow" style="border-right-color:{{arrowColor || g_primary}}"></view>
+  </view>
+  <view class="tui-week--item" catchtap="dateClick" data-index="{{index}}" wx:for="{{weeksArr}}" wx:key="index">
+    <view class="tui-week--label" style="font-size:{{weekSize}}rpx;color:{{weekColor}}">{{item.week}}</view>
+    <view class="tui-week--value" style="font-size:{{dateSize}}rpx;color:{{activeDate==item.date?activeColor:dateColor}};background:{{activeDate==item.date?(activeBackground || g_primary) :'transparent'}}">
+      {{parse.formatNum(item.day)}}
+    </view>
+  </view>
+  <view class="tui-arrow--box" catchtap="nextWeek">
+    <slot name="right"></slot>
+    <view wx:if="{{arrow}}" class="tui-right--arrow" style="border-left-color:{{arrowColor || g_primary}}"></view>
+  </view>
+</view>
+
+<wxs module="parse">
+  module.exports = {
+    formatNum: function(num) {
+				return num < 10 ? '0' + num : num + '';
+		}
+  }
+</wxs>

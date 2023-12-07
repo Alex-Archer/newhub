@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "tui-notice-bar":"/components/thorui/tui-notice-bar/tui-notice-bar",
+    "tui-icon":"/components/thorui/tui-icon/tui-icon",
+    "wxParse": "/components/parse/wxParse/wxParse"
+  },
+  "navigationBarTitleText": "关于我们",
+
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+  "navigationBarTextStyle": "black"
+}

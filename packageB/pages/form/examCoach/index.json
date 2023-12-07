@@ -1,0 +1,14 @@
+{
+
+  "navigationBarTitleText": "考教练证",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "tui-button":"/components/thorui/tui-button/tui-button",
+    "wxParse": "/components/parse/wxParse/wxParse"
+  }
+}

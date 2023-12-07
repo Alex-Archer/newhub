@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ald-icon": "/components/ksald/ald-icon/ald-icon"
+  }
+}

@@ -1,0 +1,143 @@
+.tui-product__item {
+	width: 100%;
+	margin-bottom: 10rpx;
+	background: #fff;
+	box-sizing: border-box;
+	border-radius: 12rpx;
+	overflow: hidden;
+  transition: all 0.15s ease-in-out;
+  
+  
+}
+.img-k
+{
+  position: relative;
+
+}
+.img-play {
+  width: 36rpx;
+  height: 36rpx;
+  color: red;
+  font-size: 0.8rem;
+  font-weight:normal;
+  position: absolute; 
+  bottom:40rpx;
+  right: 40rpx;
+ 
+}
+.tui-flex__list {
+	display: flex;
+	margin-bottom: 0;
+	position: relative;
+}
+.tui-flex__list::after{
+	content: " ";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 1px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	-webkit-transform: scaleY(.5);
+	transform: scaleY(.5);
+	-webkit-transform-origin: 0 100%;
+	transform-origin: 0 100%;
+	z-index: 2;
+}
+
+.tui-product__img {
+	width: 100%;
+	display: block;
+	background-color: #F1F1F1;
+	flex-shrink: 0;
+}
+
+.tui-img__list {
+	width: 260rpx !important;
+	height: 260rpx !important;
+	flex-shrink: 0;
+	border-radius: 12rpx;
+}
+
+.tui-product__content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	box-sizing: border-box;
+	padding: 20rpx;
+}
+
+.tui-product__title {
+	color: #2e2e2e;
+	font-size: 26rpx;
+	line-height: 32rpx;
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.tui-product__price {
+	padding-top: 18rpx;
+}
+
+.tui-sale__price {
+	font-size: 34rpx;
+	font-weight: 500;
+	color: #e41f19;
+}
+
+.tui-factory__price {
+	font-size: 24rpx;
+	color: #a0a0a0;
+	text-decoration: line-through;
+	padding-left: 12rpx;
+}
+
+.tui-product__pay {
+	padding-top: 10rpx;
+	font-size: 24rpx;
+	color: #656565;
+}
+
+.avatar {
+  float: left;
+  width: 40rpx;
+  height: 40rpx;
+  
+}
+.avatar-img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+  align-self: center;
+  display: block;
+}
+
+
+.uname {
+  float: left;
+  width: 120rpx;
+  min-width: 100rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-left: 10rpx;
+  font-size: .8rem;
+
+  word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+.zan {
+  float: right;
+  width: auto;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: .8rem;
+}

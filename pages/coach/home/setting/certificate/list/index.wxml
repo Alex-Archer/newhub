@@ -1,0 +1,47 @@
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="container" wx:if="{{!preventOnShow}}">
+    <view class="tui-order-list">
+        
+        <tui-loadmore wx:if="{{loading}}" index="3" ></tui-loadmore>
+        <tui-no-data wx:if="{{!loading&&noDataShow}}" bindtap="addCertificate" btnText="上传新的证书" backgroundColor="#ff7900" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_nodata.png" contentColor="#999" contentSize="24rpx">暂无相关证书图片,快去上传吧!</tui-no-data>
+        <view wx:if="{{!loading&&storeList&&storeList.length>0}}" class="store-add" bind:tap="addCertificate">
+            <ald-icon size="50" color="#666" customClass="" unit="rpx" name="upload-simple"></ald-icon>
+            <view class="store-add-text">上传新的证书</view>
+        </view>
+        <view wx:if="{{!loading}}" class="tui-order-item" wx:for="{{storeList}}" wx:for-item="item" wx:for-index="index" wx:key="index" bindtap="detail">
+            <!-- 循环区 -->
+            <view class="thorui-panel">
+                <view class="thorui-panel__hd box-panel">
+                    <view class="box-title">{{item.type.title}}</view> 
+                    <view class="box-tag">
+                        <tui-tag wx:if="{{item.state===0}}" margin="0" padding="8rpx" type="primary" size="" scaleMultiple="0.7">审核中...</tui-tag>
+                        <tui-tag wx:if="{{item.state>1}}" margin="0" padding="8rpx" type="danger" size="" scaleMultiple="0.7">审核未通过</tui-tag>
+                    </view>  
+                </view>
+                <view class="thorui-media-box thorui-unlined" hover-class="thorui-cell_active" hover-stay-time="{{150}}">
+                    <view class="thorui-media-box__bd">
+                        <image class="certificate-img" src="{{item.poster}}" mode="widthFix"></image>
+                        
+                        <!-- <view class="title-box">
+                            <view class="box-title">{{item.title}}</view> 
+                            <view class="box-tag">
+                                <tui-tag margin="0" padding="8rpx" type="warning" size="" scaleMultiple="0.7">审核中...</tui-tag>
+                            </view>                             
+                        </view> -->
+                        <view wx:if="{{item.state>1&&item.reason}}" class="thorui-media-box__desc color-red"><text style="font-weight: bold;">审核未通过: </text>{{item.reason}}</view>
+                        <view class="boot-box">
+                            <view class="boot-box-meta">上传时间: {{date.format(item.addtime*1000,'yyyy-MM-dd HH:mm:ss')}}</view>
+                            <view class="boot-box-extra">
+                                <tui-button type="warning" plain="{{true}}" width="152rpx" height="56rpx" size="26" shape="circle" data-index="{{index}}" data-id="{{item.id}}" bind:tap="actionButtons">删除证书</tui-button>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- 循环区EDN -->
+        </view>
+
+
+    </view>
+</view>
+<tui-actionsheet show="{{showActionSheet}}" tips="{{tips}}" item-list="{{actionItemList}}" mask-closable="{{maskClosable}}" color="{{color}}" size="{{size}}" is-cancel="{{isCancel}}" bindclick="confirmDel" bindcancel="closeActionSheet"></tui-actionsheet>

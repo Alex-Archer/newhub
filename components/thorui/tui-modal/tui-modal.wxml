@@ -1,0 +1,45 @@
+<view class="tui-modal__container {{show?'tui-modal-show':''}}" style="z-index:{{zIndex}}" catchtouchmove="stop">
+		<view class="tui-modal-box {{(fadeIn || show)?'tui-modal-normal':'tui-modal-scale'}} {{show?'tui-modal-show':''}}" style="width:{{width}};padding:{{padding}};border-radius:{{radius}};background-color: {{backgroundColor}};z-index:{{zIndex+1}}">
+			<view wx:if="{{!custom}}">
+				<view class="tui-modal-title" wx:if="{{title}}">{{title}}</view>
+				<view class="tui-modal-content {{title?'':'tui-mtop'}}" style="color:{{color}};font-size:{{size+'rpx'}}">{{content}}</view>
+				<view class="tui-modalBtn-box {{button.length!=2?'tui-flex-column':''}}" >
+          <view wx:for="{{button}}" wx:key="index" class="tui-modal-btn {{button.length != 2 ? 'tui-btn-width' : ''}} {{button.length > 2 ? 'tui-mbtm' : ''}} {{shape == 'circle' ? 'tui-circle-btn' : ''}}" style="background:{{parse.getColor(colors,item.type,true,item.plain)}};color:{{parse.getTextColor(item.type,item.plain,colors)}}" bindtap="handleClick" data-index="{{index}}">
+						{{ item.text || '确定' }}
+						<view class="tui-modal__border {{shape == 'circle' ? 'tui-circle-border' : ''}}"
+							style="border-color:{{parse.getColor(colors,item.type)}}" wx:if="{{item.plain}}"></view>
+					</view>
+				</view>
+			</view>
+			<view wx:else>
+				<slot></slot>
+			</view>
+		</view>
+		<view wx:if="{{isMask}}" class="tui-modal-mask {{show?'tui-mask-show':''}}" style="z-index:{{maskZIndex}};background: {{maskColor}};" bindtap="handleClickCancel"></view>
+	</view>
+
+
+  <wxs module="parse">
+    module.exports={
+      getColor:function(colors,type, isBg, plain) {
+        var colorObj =colors || {}; 
+        colorObj['white']=isBg ? '#fff' : '#333';
+        colorObj['gray']=isBg ? '#ededed' : '#999';
+        var color=colorObj[type || 'primary']
+        if (isBg && plain) {
+          color = 'transparent'
+        }
+        return color
+      },
+      getTextColor:function(type, plain,colors) {
+        var colorObj =colors || {}; 
+        colorObj['white']='#333';
+        colorObj['gray']='#999';
+        var color=colorObj[type || 'primary']
+        if (!plain && type !== 'white' && type !== 'gray') {
+          color = '#fff'
+        }
+        return color
+      }
+    }
+  </wxs>

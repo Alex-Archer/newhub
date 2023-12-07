@@ -1,0 +1,641 @@
+page {
+  background-color: #f4f4f4;
+}
+.container {
+  padding: 0;
+  padding-bottom: 100rpx;
+  color: #333; 
+}
+
+
+
+.tui-banner-swiper {
+  width: 100%;
+  height: 447rpx;
+  overflow: hidden;
+  transform: translateY(0);
+}
+.tui-slide-image {
+  width: 100%;
+  height: 447rpx;
+  display: block;
+}
+.tui-banner-swiper .wx-swiper-dot {
+  width: 8rpx;
+  height: 8rpx;
+  display: inline-flex;
+  background: none;
+  justify-content: space-between;
+}
+.tui-banner-swiper .wx-swiper-dot::before {
+  content: '';
+  flex-grow: 1;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.tui-banner-swiper .wx-swiper-dot-active::before {
+  background-color: #fff;
+}
+.tui-banner-swiper .wx-swiper-dot.wx-swiper-dot-active {
+  width: 16rpx;
+}
+.tui-content-box{
+  width: 100%;
+  padding: 0 2% 30rpx 2%;
+  box-sizing: border-box;
+}
+.tui-box {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 3rpx 20rpx rgba(183, 183, 183, 0.1);
+  border-radius: 10rpx 10rpx;
+  overflow: hidden;
+}
+.tui-header-center {
+  width: 100%;
+  height: 128rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.tui-header-center .tui-avatar{
+  position: absolute;
+  padding: 15rpx;
+  top: 410rpx;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+.tui-avatar image{
+  flex-shrink: 0;
+  width: 128rpx;
+  height: 128rpx;
+  display: block;
+  border-radius: 50%;
+}
+.tui-info {
+  width: 80%;
+  padding-left: 160rpx;
+  margin-top: 20rpx;
+}
+.tui-nickname {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #00000f;
+  display: flex;
+  align-items: center;
+}
+.tui-rate-container {
+  /* width: 80%; */
+  padding: 10rpx 10rpx;
+  box-sizing: border-box;
+  margin-bottom: 30rpx;
+  background: #fff;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+}
+.tui-set-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tui-icon-box {
+  position: relative;
+  width: 40%;
+  text-align: center;
+  /* margin-top: -20rpx;  */
+}
+.tui-box-list{
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+}
+.tui-address{
+  width: auto;
+  margin: 0 10rpx 30rpx 10rpx;
+  background-color: #eefcfd;
+  border-radius: 10rpx;
+  
+
+
+}
+.tui-address .tui-box-text{
+  padding: 20rpx 0  20rpx 0; 
+  margin-right: 10rpx;
+
+}
+.box-text-address
+{
+  font-size: 26rpx;
+
+  /* display: block; */
+
+  /* 文字太长...号 */
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.box-text-distance
+{
+  font-size: 22rpx;
+  color: #3e445a;
+}
+
+/* .tui-address .tui-box-text text{
+  
+  font-size: 26rpx;
+
+
+
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+} */
+.tui-address .tui-text-border{
+  padding: 6rpx 20rpx;
+  border: 1px solid #68a6aa;
+  border-radius: 20rpx;
+
+
+
+/* min-width: 100rpx; */
+height: 30rpx;
+line-height: 30rpx;
+
+}
+.tui-box-flex{
+  display: flex;  
+  align-items: center; 
+  margin: 30rpx 30rpx 30rpx 10rpx;
+}
+.tui-box-left{
+  width: 50%;
+  padding: 0 10rpx 0 20rpx;
+  margin-left: 20rpx;
+  background-color: #f3f8ff;
+  border-radius: 10rpx;
+}
+.tui-box-left .tui-box-text{
+  padding: 30rpx 0;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.tui-box-left .tui-box-text text{
+  margin-right: 10rpx;
+}
+.tui-title{
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 30rpx;
+}
+.tui-tabs-box{
+  width: 100%;
+  box-sizing: border-box; 
+}
+.tui-tabs-box .tui-tabs-week{
+  margin: 0 35rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   
+}
+.tui-box-caurse{
+  margin: 40rpx 30rpx 30rpx 30rpx;
+}
+.tui-box-caurse .tui-caurse-text{
+  position: absolute;
+  width: 60%;
+  padding: 20rpx 0 20rpx 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;    
+}
+.tui-box-caurse .tui-caurse-text .tui-box-text text{
+  padding: 0 0 15rpx 0;
+  display: block;
+}
+.tui-box-caurse .tui-caurse-text .tui-box-text .tui-text-border{
+  width: 160rpx;
+  border-radius: 30rpx;
+  background-color: #68a9ad;
+  text-align: center;
+  padding: 5rpx 0 8rpx 0;
+}
+.tui-box-caurse .tui-caurse-text .tui-box-text .tui-text-border2{
+  width: 130rpx;
+  border: 2px solid #000000;
+  border-radius: 25rpx;
+  background-color: transparent;
+  text-align: center;
+  padding: 0rpx 0 3rpx 0;
+}
+.tui-box-caurse .tui-caurse-text .tui-box-text .tui-text-border3{
+  width: 130rpx;
+  border-radius: 25rpx;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 2rpx 0 5rpx 0;
+}
+.tui-box-caurse .tui-caurse-text .tui-box-text .tui-text-border text{
+  display: inline;
+}
+.tui-box-caurse .tui-caurse-img{
+  position: absolute;
+  right: 120rpx;
+  width: 25%;
+  margin-top: -52rpx;
+}
+.tui-box-caurse .tui-caurse-img2{
+  position: absolute;
+  right: 90rpx;
+  width: 35%;
+  margin-top: -20rpx;
+}
+.tui-box-caurse .tui-caurse-img3{
+  position: absolute;
+  right: 90rpx;
+  width: 35%;
+  margin-top: -20rpx;
+}
+.tui-trainingCamp .tui-text-border{
+  width: 160rpx;
+  border-radius: 30rpx;
+  background-color: #68a9ad;
+  text-align: center;
+  padding: 5rpx 0 8rpx 0;
+}
+.tui-evaluate__box {
+  width: 100%;
+  padding: 25rpx;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  box-shadow: 0 3rpx 20rpx rgba(183, 183, 183, 0.1);
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+.tui-flex__center {
+  display: flex;
+  align-items: center;
+}
+.tui-evaluate__box .tui-avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+}
+.tui-nickname {
+  font-size: 28rpx;
+  padding-left: 12rpx;
+}
+.tui-content__box {
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.tui-rate__box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999;
+  padding: 24rpx 0;
+}
+.tui-desc {
+  font-size: 28rpx;
+  word-break: break-all;
+  text-align: justify;
+}
+.tui-img__box {
+  width: 100%;
+  font-size: 0;
+  padding-top: 4rpx;
+}
+.tui-img__box image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-right: 12rpx;
+  margin-top: 12rpx;
+}
+.tui-image {
+  width: 360rpx !important;
+  height: auto;
+}
+.tui-product-box {
+  margin-top: 20rpx;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+}
+.tui-product-list {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  /* padding-top: 20rpx; */
+}
+.tui-product-container {
+  flex: 1;
+  margin-right: 2%;
+}
+.tui-product-container:last-child {
+  margin-right: 0;
+}
+.tui-pro-item {
+  width: 100%;
+  margin-bottom: 4%;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+.tui-pro-img {
+  width: 100%;
+  display: block;
+}
+.tui-pro-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.tui-pro-tit {
+  color: #2e2e2e;
+  font-size: 26rpx;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.tui-product-container .tui-avatar {
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 50%;
+}
+.tui-nickname {
+  font-size: 28rpx;
+  padding-left: 12rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+}
+.tui-product-container .tui-flex__center{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ============团课日期选择愉===================== */
+.tui-tabs {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+  background-color: #fafafa;
+  /* height: 100%; */
+}
+
+.tui-scroll-h {
+	width: 100%;
+	height: 130rpx;
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: row;
+  white-space: nowrap;
+  padding: 0 3% 0 3%;
+  box-sizing: border-box;
+}
+
+.tui-line-h {
+  position: relative;
+  background-color: rgb(243, 243, 243);
+  height: 1rpx;
+}
+.tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+}
+
+.tui-tab-item {
+	display: inline-block;
+	flex-wrap: nowrap;
+  padding:0 18rpx;
+  
+}
+/* 角标 */
+
+.tui-badge-item {
+  position: relative;
+  margin-top: 20rpx; /* 不然角标出不来 */
+}
+
+.tui-tab-item-week
+{
+  font-size: 12px;
+  color: #888;
+	height: 30rpx;
+	line-height: 30rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tui-tab-item-title {
+	color: #555;
+	font-size: 30rpx;
+  height: 60rpx;
+  width: 60rpx;
+	line-height: 60rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  font-weight: bold;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 0 0 0;
+
+}
+/* 选中是圆形 */
+.tui-tab-item-title-active {
+  color: #fff;
+  
+  background: #ff7900;
+  border-radius: 50%;
+  /* border-bottom: 6rpx solid #fe8e61; 
+  box-sizing: border-box;
+  这是下划线*/
+}
+
+.tui-swiper-box {
+	flex: 1 !important;
+}
+
+.tui-swiper-item {
+	flex: 1 !important;
+	display: flex;
+	flex-direction: row;
+}
+
+.tui-scroll-v {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+
+.tui-loading-more {
+	width: 100%;
+	padding-bottom: 1rpx;
+}
+
+/* 名师 */
+.tui-tabs-coach {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: #fafafa;
+}
+/* 名师END */
+
+/* 团课列表 */
+.group-list
+{
+  width: 100%;
+  box-sizing: border-box;
+}
+.group-item{
+  width: 92%;
+  box-sizing: border-box;
+  margin: 20rpx 4%;
+  border-top:1px solid rgba(172, 171, 171,.3);
+  min-height: 225rpx;
+  
+}
+.tui-box-h {
+	width: 100%;
+  background: #fff ;
+  box-shadow: 0 3rpx 20rpx rgba(183, 183, 183, 0.1);
+  border-radius: 10rpx 10rpx;
+  overflow: hidden;
+  margin-bottom:14rpx;
+}
+.tui-content-box-h .tui-box-h:last-child{
+  margin-bottom: 0;
+}
+.tui-title-h{
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0 0 0;
+  margin-left: 10rpx;
+  height: 60rpx;
+  
+}
+.tui-title-h .tui-person-h{
+  font-size: 22rpx;
+  border-radius: 10rpx;
+  background-color: #ffddcf;
+  color: #f84b06;
+  padding: 4rpx 12rpx;
+  letter-spacing: 2rpx;
+}
+.tui-course-item-h {
+	display: flex;
+	align-items: center;
+  font-size: 26rpx;
+  padding: 0 6rpx 30rpx 20rpx;
+}
+.tui-course-img-h {
+	width: 120rpx;
+	height: 120rpx;
+	flex-shrink: 0;
+	margin-right: 16rpx;
+}
+.tui-course-info-h {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: space-between;
+}
+.tui-course-info-h .tui-course_title{
+  font-size: 28rpx;
+  color: #544e63;
+  font-weight: bold;
+  height: 60rpx;
+  line-height: 36rpx;
+
+
+}
+.word-break
+{
+  /* 文字太长...号 */
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /*-webkit-line-clamp: 1; 行数 */
+}
+.tui-course-info-h .tui-course_rate{
+  color: #fe8e60;
+height: 40rpx;
+  font-size: 22rpx;
+}
+.tui-course-button {
+	position: relative;
+	margin-left: auto;
+  flex-shrink: 0;
+}
+.tui-course-button .tui-course_price{
+  font-size: 28rpx;
+  color: #fe8e60;
+}
+.tui-course-button .tui-course_price text{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.tui-course_rate-txt{
+  margin: 0 10rpx 0 0 ;
+  font-size: 26rpx;
+}
+.course-nodata
+  {
+    font-size: 26rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200rpx;
+    line-height: 110rpx;
+    color: #c2c2c2;
+    /* border-bottom: 1px solid #ececec; */
+  }
+/* 团课列表END */

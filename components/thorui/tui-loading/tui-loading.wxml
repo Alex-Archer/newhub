@@ -1,0 +1,11 @@
+<view>
+  <view class="tui-loading tui-loading__box {{fixed?'tui-loading__fixed':''}}" style="background-color:{{backgroundColor}}; color: {{color}};position:{{fixed?'fixed':'static'}}" wx:if="{{type === 'column'}}">
+		<image class="tui-loading__ani" src="{{src}}"></image>
+		<view class="tui-loading__text">{{ text }}</view>
+	</view>
+	<view wx:else class="tui-loading tui-loading__row {{fixed?'tui-loading__fixed':''}}" style="position:{{fixed?'fixed':'static'}}">
+		<image class="tui-loading-row__ani" src="{{rowsrc}}"></image>
+		<view class="tui-loading__text">{{ text }}</view>
+	</view>
+  <view class="tui-loading__mask" style="background:{{maskColor}}" wx:if="{{isMask && fixed}}"></view>
+</view>

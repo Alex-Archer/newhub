@@ -1,0 +1,19 @@
+<view>
+		<view wx:if="{{show}}" class="tui-dialog" style="background:{{backgroundColor}};border-radius:{{radius}}" catchtap="stopEvent">
+			<view class="tui-dialog__hd">
+				<view class="tui-dialog__title" style="color:{{titleColor}}">{{title}}
+					<slot name="title"></slot>
+				</view>
+			</view>
+			<view class="tui-dialog__bd" style="color:{{contentColor}}">
+				<slot name="content"></slot>
+			</view>
+			<view class="tui-dialog__ft">
+				<block wx:if="{{buttons && buttons.length}}">
+					<view wx:for="{{buttons}}" wx:key="index" style="color:{{item.color || '#333'}}" class="tui-dialog__btn" data-index="{{index}}" bindtap="buttonTap">{{item.text}}</view>
+				</block>
+				<slot name="footer" wx:else></slot>
+			</view>
+		</view>
+		<view bindtap="close" class="tui-dialog__mask {{!show?'tui-mask_hidden':''}}" wx:if="{{mask}}"></view>
+	</view>

@@ -1,0 +1,12 @@
+{
+    "usingComponents": {
+      "tui-tag": "/components/thorui/tui-tag/tui-tag",
+      "tui-rate": "/components/thorui/tui-rate/tui-rate",
+      "privacy-dialog": "/components/privacy-dialog/privacy-dialog"
+    },
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#81c2c6",
+    "navigationBarTitleText": "定位选择",
+    "navigationStyle": "custom",
+    "disableScroll": true
+  }

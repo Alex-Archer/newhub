@@ -1,0 +1,489 @@
+<wxs src="/wxs/utils.wxs" module="parse"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+<view class="container" wx:if="{{!loading}}">
+  <!--头部-->
+  <tui-banner-arc height="100" background="-webkit-linear-gradient(#2e7175,#2e7175)"></tui-banner-arc>
+  <view class="tui-coachInfo">
+    <image src="{{uInfo.headimgurl}}" class="tui-avatar"></image>
+    <text style="font-size: 36rpx;">{{uInfo.nickname}}</text>
+    <text style="font-size: 22rpx;">{{uInfo.group}}</text>
+    <view class="divide-list">
+      <tui-divide-list list="{{list}}" bindclick="itemClick" background="#f4f4f4" dividerColor="#d6d6d6"></tui-divide-list>
+    </view>
+  </view>
+  <!--头部 END--> 
+
+  <view class="tui-content-box">
+    <!--教练介绍-->
+    <view class="tui-box">
+      <view class="tui-title">
+        <text class="tui-title-text">教练介绍</text>
+      </view>
+      <view class="tui-content-text">{{uInfo.introduce?uInfo.introduce:'汗水与决心的熏陶下，塑造出柔韧与优雅并存的体型之美...'}}</view>
+
+    </view>
+    <!--教练介绍 END-->
+    <!--课程-->
+    <view class="tui-box" wx:if="{{courseList.length>0}}">
+      <view class="tui-title">
+        <text class="tui-title-text">课程</text>
+      </view>
+      <view class="tui-course">
+       <block wx:for="{{courseList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <!--课程列表-->
+        <view class="tui-course-item">
+          <image src="{{item.poster}}" class="tui-course-img"></image>
+          <view class="tui-course-info">
+            <view class="tui-course_title">{{item.title}}</view>
+            <view class="tui-course_item">课程时间:{{parse.secondToHm(item.starttime)}}~{{parse.secondToHm(item.endtime)}}</view>
+            <!-- <view class="tui-course_item">课程日期:</view> -->
+            <view class="tui-course_tag">
+              <tui-tag wx:for="{{item.label}}" wx:key="labelindex" wx:for-item="itemTag" margin="0 6rpx 0 0" padding="10rpx 6rpx 10rpx 6rpx" shape="circle" size="18rpx" type="btn-gray" bindclick="show">{{itemTag.title}}</tui-tag>
+            </view>
+          </view>
+          <view class="tui-course-button" bind:tap="gobuy">
+             <view class="tui-course_price"><text>¥{{parse.formatRMB(item.price)}}</text></view>
+            <!-- <view class="tui-course_price"><text>¥{{parse.formatRMB(item.price)}}</text>/节</view> -->
+            <tui-button margin="10rpx 0 0 0" type="warning" shape="circle" width="120rpx" height="45rpx" size="22" data-id="{{item.id}}" bind:tap="groupShow" data-enrollstate="{{item.enrollstate}}" data-registerednum="{{item.registerednum}}" data-peoplenum="{{item.peoplenum}}">立即购买</tui-button>
+          </view>
+        </view>
+        <!--课程列表 END-->
+    </block>
+        
+      </view>
+    </view>
+    <!--课程 END-->
+<!--可约时间-->
+
+        <view class="tui-box down-time-box">
+      
+
+
+
+      <view class="tui-title">
+        <text class="tui-title-text">可约时间</text>
+
+      </view>
+
+      <!-- 时间列表 -->
+        <view class="time-box">
+          <view class="time-box-circle">
+            <view class="time-title-dot"></view>可约
+          </view>
+          <view class="time-box-list">
+            <view class="list-day-title">时段</view>
+            <view class="list-day-time">06</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">07</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">08</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">09</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">10</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">11</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">12</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">13</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">14</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">15</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">16</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">17</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">18</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">19</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">20</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">21</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">22</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+          </view>
+          <!-- 今天 -->
+          <view class="time-box-list">
+            <view class="list-day-title">今天</view>
+            <block wx:for="{{timeList[0]}}" wx:for-item="item" wx:key="timeindex">
+              <view class="list-day-view {{item.state==1?'active':''}}"></view>
+            </block>
+          </view>
+          <!-- 今天END -->
+
+          <!-- 明天 -->
+          <view class="time-box-list">
+            <view class="list-day-title">明天</view>
+            <block wx:for="{{timeList[1]}}" wx:for-item="item" wx:key="timeindex">
+              <view class="list-day-view {{item.state==1?'active':''}}"></view>
+            </block>
+          </view>
+          <!-- 明天END -->
+          <!-- 后天 -->
+          <view class="time-box-list">
+            <view class="list-day-title">后天</view>
+            <block wx:for="{{timeList[2]}}" wx:for-item="item" wx:key="timeindex">
+              <view class="list-day-view {{item.state==1?'active':''}}"></view>
+            </block>
+          </view>
+          <!-- 后天END -->
+        </view>
+      <!-- 时间列表END -->      
+    </view>
+    <!--可约时间 END-->
+    <!--上课场地-->
+    <view class="tui-box">
+      <view class="tui-title">
+        <text class="tui-title-text">上课场地</text>
+        <!-- <text bind:tap="openStoreList" class="tui-titie-more" style="font-size: 24rpx;">共2个 ></text> -->
+        <text class="tui-titie-more" style="font-size: 24rpx;">共 {{storeList.length}} 个</text>
+      </view>
+      <view class="tui-course">
+        <block wx:for="{{storeList}}" wx:for-item="storeItem" wx:key="storeindex">
+        <view class="tui-course-item">
+          <image src="{{storeItem.poster}} " class="tui-course-img"></image>
+          <view class="tui-course-info tui-area-info">
+            <view class="tui-course_title">
+              {{storeItem.title}} 
+            </view>
+            <ald-icon size="1" customClass="" unit="rem" name="location" color="#555555" content="{{storeItem.address}} " contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+            <view class="store-score">
+            <tui-rate current="{{storeItem.score}}" bindchange="change" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{14}}"></tui-rate></view>
+          </view>
+        </view>
+        </block>
+
+      </view>
+    </view>
+    <!--上课场地 END-->
+    
+  </view>
+</view>
+<!-- 场地弹窗 -->
+<tui-bottom-popup show="{{storePopupShow}}" bindclose="hideStoreList">
+  <view class="store-popup-box">
+    <view class="store-popup-title">共有2个服务门店</view>
+    <scroll-view scroll-y class="store-popup-scroll">
+      <!-- 门店列表 -->
+   
+        <view class="tui-course-item">
+          <image src="{{globalURL}}/miniprogram/url-img/coach-home/course-2.png" class="tui-course-img"></image>
+          <view class="tui-course-info tui-area-info">
+            <view class="tui-course_title">
+              昆山市祖冲之路店 <text style="font-size: 24rpx; color: #555555;">12.12km</text>
+            </view>
+            <ald-icon size="1" customClass="" unit="rem" name="location" color="#555555" content="祖冲之路1699号阳澄湖科技园" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+          </view>
+        </view>
+   
+      <!-- 门店列表END -->  
+      <!-- 门店列表 -->
+     
+        <view class="tui-course-item">
+          <image src="{{globalURL}}/miniprogram/url-img/coach-home/course-2.png" class="tui-course-img"></image>
+          <view class="tui-course-info tui-area-info">
+            <view class="tui-course_title">
+              昆山市祖冲之路店 <text style="font-size: 24rpx; color: #555555;">12.12km</text>
+            </view>
+            <ald-icon size="1" customClass="" unit="rem" name="location" color="#555555" content="祖冲之路1699号阳澄湖科技园" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+          </view>
+        </view>
+    
+      <!-- 门店列表END -->  
+          
+    </scroll-view>
+    <view class="bottom-popup-close">
+      <tui-icon name="close-fill" color="#999" size="20" bindclick="hideStoreList"></tui-icon>
+    </view>
+  </view>
+
+</tui-bottom-popup>
+
+<view class="tui-tabbar" style="padding-bottom: env(safe-area-inset-bottom);">
+    <view class="tui-tabbar_pay">
+        <tui-button disabled="{{false}}" class="buttom-this" flexdirection preventClick="{{true}}" shape="circle" type="warning" width="100%" height="80rpx" size="24" bindclick="dSubscribe">
+            <view class="buttom-price-noop">立即约课</view>
+        </tui-button>
+    </view>
+</view>
+
+<!-- 时间选择弹 -->
+<tui-bottom-popup show="{{timePopupShow}}" bindclose="hideTimeList">
+  <view class="time-popup-box">
+    <view class="time-popup-title">可约时间</view>
+    <scroll-view scroll-y class="time-popup-scroll">
+ <!-- 时间列表 -->
+ <view class="time-box">
+          <view class="time-box-circle">
+            <view class="time-title-dot"></view>可约
+          </view>
+          <view class="time-box-list">
+            <view class="list-day-title">时段</view>
+            <view class="list-day-time">06</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">07</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">08</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">09</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">10</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">11</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">12</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">13</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">14</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">15</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">16</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">17</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">18</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">19</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">20</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">21</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+            <view class="list-day-time">22</view>
+            <view class="list-day-dot">
+              <view class="dot-circle"></view>
+            </view>
+          </view>
+          <!-- 今天 -->
+          <view class="time-box-list">
+            <view class="list-day-title">今天</view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+          </view>
+          <!-- 今天END -->
+
+          <!-- 明天 -->
+          <view class="time-box-list">
+            <view class="list-day-title">明天</view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+          </view>
+          <!-- 明天END -->
+          <!-- 后天 -->
+          <view class="time-box-list">
+            <view class="list-day-title">后天</view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+          </view>
+          <!-- 后天END -->
+          <!-- 后天 -->
+          <view class="time-box-list">
+            <view class="list-day-title">09.29</view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view active"></view>
+            <view class="list-day-view"></view>
+            <view class="list-day-view"></view>
+          </view>
+          <!-- 后天END -->
+        </view>
+      <!-- 时间列表END -->   
+    </scroll-view>
+    <view class="bottom-popup-close">
+      <tui-icon name="close-fill" color="#999" size="20" bindclick="hideTimeList"></tui-icon>
+    </view>
+  </view>
+
+</tui-bottom-popup>

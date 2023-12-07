@@ -1,0 +1,134 @@
+<!--
+此文件为开发者工具生成，生成时间: 2023/10/23上午10:46:53
+使用方法：
+在 E:\公司项目2023\瑜伽项目\瑜伽小程序\pages\user\level\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 E:\公司项目2023\瑜伽项目\瑜伽小程序\pages\user\level\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="tui-container">
+      <view class="tui-header">
+        <view class="tui-info__box">
+          <image class="tui-avatar sk-image"></image>
+          <view class="tui-info__inner">
+            <view class="tui-name__box sk-transparent sk-text-14-2857-362 sk-text">弓长2，早上好!</view>
+            <view class="tui-descr sk-transparent sk-text-14-2857-209 sk-text">感谢您的惠顾,将为您提供更优质的服务.</view>
+          </view>
+          <view class="tui-explain sk-transparent sk-text-14-2857-508 sk-text">LV.1</view>
+        </view>
+        <view class="tui-bg__box">
+          <image class="tui-bg sk-image" mode="widthFix" style="height: 84.75px;"></image>
+          <view class="tui-vip__box">
+            <text class="sk-transparent sk-text-14-2857-35 sk-text">年卡会员</text>
+            <view class="tui-vip__due">
+              <text class="sk-transparent sk-text-14-2857-641 sk-text">2024-09-22 到期</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="tui-body">
+        <view class="tui-title__box">
+          <image class="tui-ornament sk-image" mode="widthFix" style="height: 12.1px;"></image>
+          <view class="tui-tit sk-transparent sk-text-14-2857-311 sk-text">我的会员权益</view>
+          <image class="tui-ornament sk-image" mode="widthFix" style="height: 12.1px;"></image>
+        </view>
+        <view class="tui-sub__text sk-transparent sk-text-14-2857-598 sk-text" style="background-position-x: 50%;">开启会员认证畅享会员权益</view>
+        <view class="tui-outer__box tui-list">
+          <view class="tui-item">
+            <view class="tui-icon__box">
+              <image class="tui-icon sk-image" mode="widthFix" style="height: 31.36px;"></image>
+            </view>
+            <text class="sk-transparent sk-text-14-2857-539 sk-text">器械不限用</text>
+          </view>
+          <view class="tui-item">
+            <view class="tui-icon__box">
+              <image class="tui-icon__md sk-image" mode="widthFix" style="height: 30.7606px;"></image>
+            </view>
+            <text class="sk-transparent sk-text-14-2857-581 sk-text">爱心保障</text>
+          </view>
+          <view class="tui-item">
+            <view class="tui-icon__box">
+              <image class="tui-icon__sm sk-image" mode="widthFix" style="height: 28.6567px;"></image>
+            </view>
+            <text class="sk-transparent sk-text-14-2857-776 sk-text">多馆随心练</text>
+          </view>
+          <view class="tui-item">
+            <view class="tui-icon__box">
+              <image class="tui-icon sk-image" mode="widthFix" style="height: 28px;"></image>
+            </view>
+            <text class="sk-transparent sk-text-14-2857-363 sk-text">团课优惠</text>
+          </view>
+        </view>
+        <view class="tui-ad__box">
+          <image class="tui-ad__img sk-image" mode="widthFix" style="height: 99.2349px;"></image>
+          <view class="tui-ad__inner">
+            <text class="tui-ad__tit sk-transparent sk-text-14-2857-735 sk-text">618瑜伽会员日</text>
+            <text class="sk-transparent sk-text-14-2857-244 sk-text">500份红包等你来拿，先到先得</text>
+          </view>
+        </view>
+        <view class="tui-title__box">
+          <image class="tui-ornament sk-image" mode="widthFix" style="height: 12.1px;"></image>
+          <view class="tui-tit sk-transparent sk-text-14-2857-805 sk-text">会员任务</view>
+          <image class="tui-ornament sk-image" mode="widthFix" style="height: 12.1px;"></image>
+        </view>
+        <view class="tui-sub__text sk-transparent sk-text-14-2857-835 sk-text" style="background-position-x: 50%;">开启会员认证畅享会员权益</view>
+        <view class="tui-outer__box tui-task__flex">
+          <view class="tui-task__icon-box">
+            <image class="tui-task__icon sk-image" mode="widthFix" style="height: 28.7273px;"></image>
+          </view>
+          <view>
+            <view class="tui-task__intro sk-transparent sk-text-14-2857-286 sk-text">宣传场馆随心得</view>
+            <text class="tui-task__explain sk-transparent sk-text-14-2857-784 sk-text">好友开通您得现金</text>
+          </view>
+          <view class="tui-btn__right">
+            <view is="components/thorui/tui-button/tui-button">
+              <view class="tui-button--tui-button__wrap tui-button--tui-button__hover" style="width: 68px;height:30px;margin:0">
+                <button app-parameter="true" class="tui-button--tui-btn tui-button--tui-btn-default sk-transparent sk-button sk-pseudo sk-pseudo-circle" form-type="true" open-type="true" style="width: 68px; height: 30px; line-height: 30px; font-size: 12px;background:#319fa6;color: #fff;box-shadow: none;">去完成</button>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="tui-outer__box tui-task__flex">
+          <view class="tui-task__icon-box">
+            <image class="tui-task__icon-sm sk-image" mode="widthFix" style="height: 29.5862px;"></image>
+          </view>
+          <view>
+            <view class="tui-task__intro sk-transparent sk-text-14-2857-539 sk-text">每日运动两小时</view>
+            <text class="tui-task__explain sk-transparent sk-text-14-2857-128 sk-text">即可获得5.8%加息券</text>
+          </view>
+          <view class="tui-btn__right">
+            <view is="components/thorui/tui-button/tui-button">
+              <view class="tui-button--tui-button__wrap tui-button--tui-button__hover" style="width: 68px;height:30px;margin:0">
+                <button app-parameter="true" class="tui-button--tui-btn tui-button--tui-btn-default sk-transparent sk-button sk-pseudo sk-pseudo-circle" form-type="true" open-type="true" style="width: 68px; height: 30px; line-height: 30px; font-size: 12px;background:#319fa6;color: #fff;box-shadow: none;">去完成</button>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="tui-outer__box tui-task__flex">
+          <view class="tui-task__icon-box">
+            <image class="tui-task__icon sk-image" mode="widthFix" style="height: 28.7273px;"></image>
+          </view>
+          <view class="tui-btn__right">
+            <view is="components/thorui/tui-button/tui-button">
+              <view class="tui-button--tui-button__wrap tui-button--tui-button__hover" style="width: 68px;height:30px;margin:0">
+                <button app-parameter="true" class="tui-button--tui-btn tui-button--tui-btn-default sk-transparent sk-button sk-pseudo sk-pseudo-circle" form-type="true" open-type="true" style="width: 68px; height: 30px; line-height: 30px; font-size: 12px;background:#319fa6;color: #fff;box-shadow: none;">去完成</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="submit-bottom"></view>
+    </view>
+  </view>
+</template>

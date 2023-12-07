@@ -1,0 +1,23 @@
+<view class="container" wx:if="{{!preventOnShow}}">
+    <view class="wallet-top-box">
+        <view class="top-box-title">我的包内余额(元)</view>
+        <view class="top-box-price">0.00</view>
+        <view class="top-box-extract">
+            <tui-button type="white" plain="{{false}}" width="160rpx" height="56rpx" size="26" shape="circle" bind:tap="extractAction">立即提现</tui-button>
+        </view>
+    </view>
+    <view class="tui-mtop">
+        <tui-list-cell bindclick="detail" arrow="{{true}}" hover="{{false}}"  data-url="../log_wallet/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+            <view class="tui-item-box">
+                <ald-icon name="pay" size="{{24}}" color="#ff7900"></ald-icon>
+                <text class="tui-list-cell_name">我的钱包</text>
+            </view>
+        </tui-list-cell>
+        <tui-list-cell bindclick="detail" arrow="{{true}}" hover="{{false}}"  data-url="../log_extract/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+            <view class="tui-item-box">
+                <ald-icon name="edit-form" size="{{24}}" color="#ff7900"></ald-icon>
+                <text class="tui-list-cell_name">提现记录</text>
+            </view>
+        </tui-list-cell>
+    </view>
+</view>

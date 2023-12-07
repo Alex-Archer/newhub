@@ -1,0 +1,435 @@
+<privacy-dialog fixedbottom="25vh" mask="true" bottomShowType="{{1}}" bind:agree="agree" bind:disagree="disagree"></privacy-dialog>
+<!-- <view> -->
+<!-- 隐掉滚动条 https://juejin.cn/post/6844903984629563400 -->
+<!-- 全屏加载 -->
+<!-- <view class="mask" hidden="{{flag}}" bind:tap="maskTapOnLoad">
+  <image class='load_image' src='/static/img/loading.png'></image>
+</view> -->
+
+
+
+<!-- 加载动画层 -->
+<view class="mask" hidden="{{flag}}" bind:tap="maskTapOnLoad">
+  <view class="container_app">
+    <view class="circle">
+		<image class="circle-img"  src="/static/img/loading.png" mode=""></image>
+    </view>
+    <view class="dot"></view>
+  </view>
+</view>
+<!-- 加载动画层END -->
+
+
+
+
+
+
+<!-- <view wx:if="{{flag}}"> -->
+<!-- pannel -->
+<view class="pannel" wx:if="{{flag}}">
+  <!-- gif背景效果 -->
+  <!-- <view class="pannel-inner"> -->
+  <scroller isBackBtn="{{false}}" bind:loadmore="indexLoadmore" bind:scroll="indexScroll" bind:refresh="indexRefresh" bind:restore="indexRestore" id="index-scroller" style="height: calc(120vh - env(safe-area-inset-bottom) - 440rpx)">
+    <refresh slot="refresh" config="{{gifSetting}}" type="diy" />
+    <!-- <view class="tui-mybg-box" style="background-image:url({{globalURL}}/miniprogram/url-img/home/bg159.png);background-repeat: repeat-x;"> -->
+      <view class="scroller-box">
+      <view class="tui-mybg-box">
+      <view class="tui-header-center">
+
+        <!-- <image data-url="/pages/map/point/index" data-navigate="{{true}}" data-wechatinfo="{{true}}" bind:tap="toJumpUser" src="{{user.headimgurl}}" class="tui-avatar"></image>
+        <image data-url="/pages/map/point/index" data-navigate="{{true}}" data-wechatinfo="{{true}}" bind:tap="toJumpUser" class="tui-edit-ic" src="/miniprogram/url-img/my/icon_edit_3x.png" bindtap="toJumpUser"></image>
+        <view class="tui-info">
+          <view data-url="/pages/map/point/index" data-navigate="{{true}}" data-wechatinfo="{{true}}" bind:tap="toJumpUser" class="tui-nickname">{{user.nickname}}
+            <tui-tag padding="4px 10px" margin="0 0 0 10rpx" size="22rpx" shape="circle" type="warning" bindclick="show">普通会员</tui-tag> 
+          </view>
+          <view class="tui-explain">
+            <view class="tui-explain-item">{{thought_count}} 关注</view>
+            <view class="tui-explain-item">{{fans_count}} 粉丝</view>
+            <view class="tui-explain-item">{{love_count}} 获赞</view>
+          </view>
+        </view> -->
+        <image data-url="/pages/map/point/index"  bind:tap="toJumpUser" src="{{user.headimgurl}}" class="tui-avatar"></image>
+        <image data-url="/pages/map/point/index"  bind:tap="toJumpUser" class="tui-edit-ic" src="{{globalURL}}/miniprogram/url-img/my/icon_edit_3x.png" bindtap="toJumpUser" wx:if="{{firstEdit}}"></image>
+        <view class="tui-info">
+          <view data-url="/pages/map/point/index" class="tui-nickname">
+            <view class="nickname" bind:tap="toJumpUser">{{user.nickname}}</view>
+            <tui-tag wx:if="{{user.vipName}}" padding="4px 10px" margin="0 0 0 20rpx" size="22rpx" shape="circle" type="warning" bindclick="jumpLevel">
+            {{user.vipName}}
+            </tui-tag>
+          </view>
+          <view class="tui-explain">
+            <view class="tui-explain-item">{{thought_count}}关注</view>
+            <!-- <view class="tui-explain-item">{{integral}} 粉丝</view>
+            <view class="tui-explain-item">{{love_count}} 获赞</view> -->
+            <view class="tui-explain-item">{{integral}} 积分</view>
+          </view>
+        </view>
+
+
+        <view class="tui-set-box">
+
+          <view class="tui-icon-box tui-icon-message" style="position: relative;"  bind:tap="goMSG">
+            <ald-icon padding="0 0 0 0" size="24" unit="px" name="message" color="#000000"></ald-icon>
+            <text class="tui-label">消息</text>
+            <view class="tui-badge tui-badge-white" wx:if="{{!tourist&&msg_badge}}">{{msg_badge<99?msg_badge:''}}</view>
+          </view>
+
+          <view class="tui-icon-box" bind:tap="goSetting">
+            <!-- <tui-icon name="setup" size="26" color="#000000"></tui-icon> -->
+            <ald-icon padding="0 0 0 0" size="24" unit="px" name="set" color="#000000"></ald-icon>
+            <text class="tui-label">设置</text>
+          </view>
+          <!-- <view class="tui-icon-box" style="position: relative;">
+          <button class="tui-icon-box-btn" style="width: 100%;" open-type="contact"></button>
+            <ald-icon padding="0 0 0 0" size="24" unit="px" name="service" color="#000000"></ald-icon>
+            <text class="tui-label">客服</text>
+          </view> -->
+
+
+
+
+
+
+        </view>
+      </view>
+    </view>
+    <view class="tui-content-box" style="height:80vh;margin-bottom: 200rpx;">
+      <!-- 旧版 /pages/user/level/index -->
+      <view class="tui-vip" data-url="/packageB/pages/Member/buyCard/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+        <view class="tui-title">
+          <!-- logo1240X685.svg -->
+          <image src="https://ssl.aoben.yoga/miniprogram/20231127/logo2.svg?v=202311271721" mode="widthFix" class="tui-icon"></image>
+          <!-- <text class="tui-name">瑜伽会员 </text> -->
+          <tui-tag padding="5px 12px" width="" margin="0 0 0 0" size="22rpx" color="#469ea3" shape="circle" type="white">
+          {{user.vipExpireTime>0?'查看特权':'成为会员'}}
+          
+          </tui-tag>
+        </view>
+        <!-- <text class="tui-desc">{{user.vipExpireTime>0?'感谢成为会员':'开通会员'}}，随时随地开始健身</text> -->
+        <text class="tui-desc">{{user.vipExpireTime>0?'感谢成为会员':'开通会员'}}，让瑜伽更自由</text>
+      </view>
+      <!-- 今日运动和身体数据
+    <view class="tui-sport">
+      <view class="tui-sport-left">
+        <tui-card title="{{card[0].title}}" tag="{{card[0].tag}}" header="{{card[0].header}}" margin="0" padding="15rpx 20rpx" class="tui-card-yellow">
+          <view class="tui-default" slot="body">
+            <text style="font-size: 48rpx; padding-right: 10rpx;">0</text>千卡
+          </view>
+          <view class="tui-default" slot="footer">
+            <text>今天还没有约课哦~</text>
+            <text style="font-size: 24rpx; margin: 10rpx 0 20rpx 0; display: block;">快去约课吧 ></text>
+          </view>
+        </tui-card>
+        <tui-card margin="30rpx 0 0 0" padding="20rpx 30rpx" class="tui-card-small">
+          <view slot="body">
+            <view class="tui-default">
+              <text>累计运动</text>
+              <text>累计消耗</text>
+            </view>
+            <view class="arrow">></view>
+          </view>
+          <view slot="footer">
+            <view class="tui-default">
+              <text>0天</text>
+              <text>0千卡</text>
+            </view>
+          </view>
+        </tui-card>
+      </view>
+      
+      <view class="tui-sport-right">
+        <tui-card title="{{card[1].title}}" tag="{{card[1].tag}}" margin="0 0 0 30rpx" padding="15rpx 20rpx" class="tui-card-big">
+          <view class="tui-default" slot="body">
+            <tui-list-view unlined="all" margin-top="20rpx">
+              <tui-list-cell bindclick="detail" unlined size="{{24}}" padding="15rpx 0 0 20rpx" hover="{{false}}">
+                体重：50kg
+              </tui-list-cell>
+              <tui-list-cell bindclick="detail" unlined size="{{24}}" padding="15rpx 0 0 20rpx" hover="{{false}}">
+                身高：170
+              </tui-list-cell>
+              <tui-list-cell bindclick="detail" unlined size="{{24}}" padding="15rpx 0 0 20rpx" hover="{{false}}">
+                心率：？
+              </tui-list-cell>
+              <tui-list-cell bindclick="detail" unlined size="{{24}}" padding="15rpx 0 0 20rpx" hover="{{false}}">
+                血氧：？
+              </tui-list-cell>
+              <tui-list-cell bindclick="detail" unlined size="{{24}}" padding="15rpx 0 0 20rpx" hover="{{false}}">
+                体脂数：？
+              </tui-list-cell>
+            </tui-list-view>
+            <image src="/static/urlimg/hqq/img-1.png" class="tui-img-1" mode="widthFix"></image>
+          </view>
+          <view class="tui-default" slot="footer">
+            <tui-button margin="40rpx auto 26rpx auto" type="warning" plain shape="circle" width="180rpx" height="50rpx" size="26" bindclick="detail">立即检测</tui-button>
+          </view>
+        </tui-card>
+      </view>
+    </view>
+     今日运动和身体数据end -->
+      <view class="tui-box tui-order-list tui-flex-wrap">
+        <view class="tui-tool-item" data-url="/packageA/pages/myCourse/index/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+          <view class="tui-icon-box">
+            <!-- <image src="/static/urlimg/hqq/icon-grid-1.png" class="tui-tool-icon"></image> -->
+            <ald-icon padding="0 0 0 0" size="65" unit="rpx" name="time" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text">已约课程</view>
+        </view>
+        <view class="tui-tool-item" data-url="/packageA/pages/listCourse/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+          <view class="tui-icon-box">
+            <!-- <image src="/static/urlimg/hqq/icon-grid-2.png" class="tui-tool-icon"></image> -->
+            <ald-icon padding="0 0 0 0" size="65" unit="rpx" name="cart" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text">已购课程</view>
+        </view>
+        <view class="tui-tool-item" data-url="/packageA/pages/order/list/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+          <view class="tui-icon-box">
+            <!-- <image src="/static/urlimg/hqq/icon-grid-3.png" class="tui-tool-icon"></image> -->
+            <ald-icon padding="0 0 0 0" size="65" unit="rpx" name="order" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text">我的订单</view>
+        </view>
+        <view class="tui-tool-item" data-url="/packageA/pages/Setting/accessControl/passAndFace/index" data-navigate="{{true}}" data-islogin="{{true}}" bind:tap="topJump">
+          <view class="tui-icon-box">
+            <!-- <image src="/static/urlimg/hqq/icon-grid-4.png" class="tui-tool-icon"></image> -->
+            <ald-icon padding="0 0 0 0" size="65" unit="rpx" name="qr-code" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text">门禁设置</view>
+        </view>
+        <!-- <view class="tui-tool-item">
+              <view class="tui-icon-box">
+                <image  src="/static/urlimg/hqq/icon-grid-5.png" class="tui-tool-icon"></image>
+              </view>
+              <view class="tui-tool-text">优惠卡券</view>
+            </view>
+            <view class="tui-tool-item">
+              <view class="tui-icon-box">
+                <image src="/static/urlimg/hqq/icon-grid-6.png" class="tui-tool-icon"></image>
+              </view>
+              <view class="tui-tool-text">兑换码</view>
+            </view>
+            <view class="tui-tool-item">
+              <view class="tui-icon-box">
+                <image src="/static/urlimg/hqq/icon-grid-7.png" class="tui-tool-icon"></image>
+              </view>
+              <view class="tui-tool-text">已收藏</view>
+            </view>
+            <view class="tui-tool-item">
+              <view class="tui-icon-box">
+                <image src="/static/urlimg/hqq/icon-grid-8.png" class="tui-tool-icon"></image>
+              </view>
+              <view class="tui-tool-text">教练无忧换</view>
+            </view> -->
+      </view>
+      <!-- 购卡项 -->
+      <view class="buy-card-box tui-box tui-order-list tui-flex-wrap">
+        <view class="buy-card-t">
+        <view class="card-title">购买课卡</view>  
+          <!-- <image src="https://ssl.aoben.yoga/miniprogram/20231127/buy-card.png?v=202311271721" class="buy-card-logo"></image> -->
+        </view>
+        <view class="buy-card-d">
+          <view class="card-d-item" data-cla="1" bindtap="detailShow">
+            
+            <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico1.png?v=202311271722" class="card-ico-img"></image></view>
+            <view class="card-des">
+                <view class="card-des-title">初阶团课</view>
+                <view class="card-des-ms">适合新手入门</view>
+            </view>
+          </view>
+          <view class="card-d-item" data-cla="2" bindtap="detailShow">
+            <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico2.png?v=202311271722" class="card-ico-img"></image></view>
+            <view class="card-des">
+                <view class="card-des-title">进阶团课</view>
+                <view class="card-des-ms">有瑜伽基础人群</view>
+            </view>
+          </view>
+          <view class="card-d-item" data-cla="3" bindtap="detailShow">
+            <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico3.png?v=202311271722" class="card-ico-img"></image></view>
+            <view class="card-des">
+                <view class="card-des-title">集训营</view>
+                <view class="card-des-ms" style="font-size: 14rpx;letter-spacing:-2rpx;">小班教学 快速高效</view>
+            </view>
+          </view>
+          <view class="card-d-item" data-cla="4" bindtap="detailShow">
+            <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico4.png?v=202311271722" class="card-ico-img"></image></view>
+            <view class="card-des">
+                <view class="card-des-title">初阶私教</view>
+                <view class="card-des-ms">适合所有人群</view>
+            </view>
+          </view>
+          <view class="card-d-item" data-cla="5" bindtap="detailShow">
+            <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico5.png?v=202311271722" class="card-ico-img"></image></view>
+            <view class="card-des">
+                <view class="card-des-title">进阶私教</view>
+                <view class="card-des-ms">轻松易练高效</view>
+            </view>
+          </view>
+          <view class="card-d-item" data-cla="6" bindtap="detailShow">
+            <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico6.png?v=202311271722" class="card-ico-img"></image></view>
+            <view class="card-des">
+                <view class="card-des-title">高级定制</view>
+                <view class="card-des-ms">轻松易练高效</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 购卡项END -->
+
+      <!-- <view class="tui-box tui-order-list tui-redbag">
+        <view class="tui-box-text">
+          <text>邀请好友免费领红包</text>
+          <text style="font-size: 26rpx; color: #3e445b;">3天会员待领取 > {{version}}</text>
+        </view>
+        <image src="{{globalURL}}/miniprogram/url-img/hqq/icon-2.png" mode="widthFix" class="tui-redbag-icon"></image>
+      </view> -->
+
+<view class="banner-box">
+<image src="https://aoben.kshot.com/miniprogram/url-img/banner.png?v=202311271721" mode="widthFix" class="banner-icon"></image>
+
+</view>
+
+      
+
+
+      <!-- <tui-list-view margin-top="30rpx" border-radius="10rpx" class="tui-list-box">
+        <tui-list-cell bindclick="detail" arrow="{{true}}">
+          <view class="tui-item-box">
+            <image src="/static/urlimg/hqq/icon-yellow-1.png" class="tui-tool-icon"></image>
+            <text class="tui-list-cell_name">瑜伽币</text>
+          </view>
+        </tui-list-cell>
+        <tui-list-cell bindclick="detail" arrow="{{true}}">
+          <view class="tui-item-box">
+            <image src="/static/urlimg/hqq/icon-yellow-2.png" class="tui-tool-icon"></image>
+            <text class="tui-list-cell_name">社区打卡</text>
+          </view>
+        </tui-list-cell>
+        <tui-list-cell bindclick="detail" arrow="{{true}}">
+          <view class="tui-item-box">
+            <image src="/static/urlimg/hqq/icon-yellow-3.png" class="tui-tool-icon"></image>
+            <text class="tui-list-cell_name">自由训练</text>
+          </view>
+        </tui-list-cell>
+      </tui-list-view> -->
+
+
+      <view class="tui-box tui-order-list tui-flex-wrap">
+        <view class="tui-tool-item"  data-href="/packageB/pages/form/ApplyToCoach/index" bind:tap="NavigateTo">
+          <view class="tui-icon-box">
+            <!-- <image src="/static/urlimg/hqq/icon-black-1.png" class="tui-tool-icon"></image> -->
+            <ald-icon padding="0 0 0 0" size="2" unit="rem" name="education" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text">成为教练</view>
+        </view>
+
+        <!-- <view class="tui-tool-item" data-href="/packageB/pages/form/examCoach/index" bind:tap="NavigateTo">
+          <view class="tui-icon-box">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="identity" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text">考教练证</view>
+        </view> -->
+
+
+
+        <view class="tui-tool-item" data-href="/packageB/pages/form/joinUS/index" bind:tap="NavigateTo">
+          <view class="tui-icon-box">
+            <!-- <image src="/static/urlimg/hqq/icon-black-3.png" class="tui-tool-icon"></image> -->
+            <ald-icon padding="0 0 0 0" size="2" unit="rem" name="trust" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text">加盟招募</view>
+        </view>
+
+        <view class="tui-tool-item" data-href="/packageB/pages/form/personalTrainers/index" bind:tap="NavigateTo">
+          <view class="tui-icon-box">
+            <!-- <image src="/static/urlimg/hqq/icon-black-2.png" class="tui-tool-icon"></image> -->
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="identity" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text">教练认证</view>
+        </view>
+        <!-- <view class="tui-tool-item">
+          <view class="tui-icon-box">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="team" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text text-decoration">加入我们</view>
+        </view>
+        <view class="tui-tool-item">
+          <view class="tui-icon-box">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="company" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text text-decoration">企业服务</view>
+        </view> -->
+        <!-- <view class="tui-tool-item">
+          <view class="tui-icon-box">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="shop" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text text-decoration">商城招商</view>
+        </view>
+        <view class="tui-tool-item">
+          <view class="tui-icon-box">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="pay" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text text-decoration">自动续费</view>
+        </view> -->
+        <!-- <view class="tui-tool-item">
+          <view class="tui-icon-box">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="praise" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text text-decoration">满意度调查</view>
+        </view> -->
+        <view class="tui-tool-item">
+
+          <!-- <view class="tui-icon-box">
+                <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="service" color="#5f5f5f"></ald-icon>
+              </view>
+              <view class="tui-tool-text">联系客服</view> -->
+
+          <view class="thorui-flex-wechat">
+            <button class="tui-btn-wechat" style="width: 100%;" open-type="contact"></button>
+
+            <view class="tui-icon-box">
+              <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="service" color="#5f5f5f"></ald-icon>
+            </view>
+            <view class="tui-tool-text">联系客服</view>
+          </view>
+
+
+        </view>
+
+        <view class="tui-tool-item" data-url="/packageA/pages/Setting/help/index/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+          <view class="tui-icon-box">
+            <!-- <image src="/static/urlimg/hqq/icon-black-10.png" class="tui-tool-icon"></image> -->
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="help" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text">帮助中心</view>
+        </view>
+        <!-- <view class="tui-tool-item">
+          <view class="tui-icon-box">
+            <ald-icon padding="0 0 0 0" size="1.9" unit="rem" name="refund" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text text-decoration">余额</view>
+        </view>
+        <view class="tui-tool-item">
+          <view class="tui-icon-box">
+            <ald-icon padding="0 0 0 0" size="1.8" unit="rem" name="medical" color="#5f5f5f"></ald-icon>
+          </view>
+          <view class="tui-tool-text text-decoration">运动顾问</view>
+        </view> -->
+      </view>
+      
+
+    </view>
+    <view class="blogo"><image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/blogo.png?v=202311272032"></image></view>
+  </view>
+  </scroller>
+
+</view>
+<!-- 开始下拉END -->
+
+<!-- </view> -->
+<!-- pannel END -->
+<!-- </view> -->
+<!-- </view>
+<view class="tui-seize__seat"></view> -->
+
+<tui-userinfo nickname="{{user.nickname}}" headimgurl="{{user.headimgurl}}" titleSize="40" titleColor="#000" fontWeight="400" title="申请获取您的昵称、头像" btnText="确认修改" list="{{list}}" show="{{loginShow}}" bindconfirm="confirm" bindclose="onClose" zindex="999999"></tui-userinfo>
+
+<tui-tabbar paddingBottom="24rpx" wx:if="{{tabbarShow&&agreeClick}}" id="tui-tabbar" bind:goToTop="indexGoTop" indexPage="{{indexPage}}" tabBar="{{tabBar}}" isFixed="{{true}}" current="{{current}}" bind:click="tabbarSwitch"></tui-tabbar>

@@ -1,0 +1,2 @@
+<view class="tui-popup__transition {{[ani.in]}}" style="{{'transform:' + transform + ';' + stylesObject}}" bindtap="change" wx:if="{{isShow}}"><slot></slot>
+</view>

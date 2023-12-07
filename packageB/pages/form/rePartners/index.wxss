@@ -1,0 +1,228 @@
+.container {
+  /* padding-bottom: 98rpx; */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tui-box {
+  padding: 0 4% 60rpx 4%;
+  box-sizing: border-box;
+  position: relative;
+ 
+  z-index: 3;
+}
+.coach-img
+{
+  height: 200rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content:flex-end;
+  
+}
+.coach-title
+{
+  color: #fff;
+
+}
+.img-base
+{
+  width: 400rpx;
+  height: 375rpx;
+  top:-30rpx;
+  position: absolute;
+}
+
+
+.tui-goods-title {
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 20rpx 20rpx 0 0;
+  background-color: #fff;
+  padding: 16rpx 30rpx;
+}
+
+.tui-list-cell {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 60rpx 34rpx 30rpx !important;
+  box-sizing: border-box;
+  font-size: 30rpx;
+}
+.title-a {
+  font-size: 30rpx;
+  color: #666;
+
+}
+.tui-content {
+  font-size: 26rpx;
+  color: rgb(158, 158, 158);
+}
+.tui-list-desc
+{
+  line-height: 60rpx;
+  padding: 10rpx 30rpx;
+  color: #999;
+  padding: 20rpx 0 20rpx 40rpx;
+}
+
+.row-flex {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title {
+  font-size: 30rpx;
+  color: #666;
+  padding: 24rpx 60rpx 24rpx 30rpx !important;
+}
+
+
+.tui-input {
+
+  height: 88rpx;
+  border: 1rpx solid #e6e6e6;
+  border-radius: 4rpx;
+  padding: 0 15rpx;
+  margin: 10rpx 20rpx 0 20rpx;
+  box-sizing: border-box;
+
+
+  color: #666;
+  font-size: 28rpx;
+}
+
+
+.thorui-input-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+}
+.thorui-input-title {
+  min-width: 140rpx;
+  padding-right: 12rpx;
+  flex-shrink: 0;
+}
+.thorui-input {
+  flex: 1;
+  font-size: 32rpx;
+  padding-right: 12rpx;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+
+.tui-left__icon {
+  padding-right: 20rpx;
+}
+
+.tui-ptop{
+
+        position: absolute;
+        width: 60%;
+        margin: 10rpx 20%;
+        left: 0;
+        bottom:40rpx;
+        /* background-color: #666; */
+        box-sizing: border-box;
+
+}
+.thorui-phcolor {
+	color: var(--thorui-text-color-placeholder, #ccc);
+	font-size: 30rpx;
+	overflow: visible;
+}
+
+/* 申请显示 */
+.verify-box
+{
+  width: 90%;
+  box-sizing: border-box;
+  margin: 10rpx 5%;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  
+}
+.tui-title {
+  width: 100%;
+  padding: 10rpx 30rpx 30rpx 10rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #2e7175;
+}
+.tui-default {
+  font-size: 28rpx;
+  color:#999;
+  padding: 20rpx 30rpx;
+}
+.tui-flex {
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+}
+/* 申请显示END */
+
+
+.img-box
+{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.img-box-li
+{
+    width: 100%;
+    display: flex;
+    flex: 1;
+}
+.box-img-base
+{
+    width: 100%;
+    margin: 0;
+    display: block;
+}
+.tui-cover-back {
+    width: 60rpx;
+    height: 60rpx;
+    position: fixed;
+    /* top: 60rpx; */
+    /* top: 100rpx; 移到动态获取*/
+    left: 30rpx;
+    z-index: 9999;
+  }
+
+  .input-parent{
+      position: relative;
+      
+  }
+  .input-box
+  {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top:0;
+      display: flex;
+      align-items: center;
+      /* background-color: #666; */
+      box-sizing: border-box;
+      margin: 55rpx 0 0 0;
+      
+  }
+  .input-box-l
+  {
+      width: 252rpx;
+  }
+  .input-box-r
+  {
+      margin: 0 100rpx 0 0;
+  }

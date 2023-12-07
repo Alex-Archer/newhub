@@ -1,0 +1,24 @@
+{
+  "usingComponents": {
+    "tui-list-view":"/components/thorui/tui-list-view/tui-list-view",
+    "tui-list-cell":"/components/thorui/tui-list-cell/tui-list-cell",
+    "tui-actionsheet": "/components/thorui/tui-actionsheet/tui-actionsheet",
+    "tui-tag":"/components/thorui/tui-tag/tui-tag",
+
+
+    "tui-loadmore": "/components/thorui/tui-loadmore/tui-loadmore",
+    "tui-nomore": "/components/thorui/tui-nomore/tui-nomore",
+    "t-order-item":"/components/views/t-order-item/t-order-item",
+    "tui-badge": "/components/thorui/tui-badge/tui-badge",
+    "tui-no-data":"/components/thorui/tui-no-data/tui-no-data"
+  },
+  "navigationBarTitleText": "消息列表",
+
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+  "navigationBarTextStyle": "black"
+}
+

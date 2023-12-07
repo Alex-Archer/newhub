@@ -1,0 +1,24 @@
+{
+  "usingComponents": {
+    "add-tips": "/components/weplug-add-tips/index",
+    "refresh": "/components/coolui-scroller/refresh/index",
+    "scroller": "/components/coolui-scroller/scroller/index",
+    "parallax": "/components/coolui-scroller/parallax/index",
+    
+    "tui-tabbar": "/components/thorui/tui-tabbar/tui-tabbar",
+    "tui-waterfall":"/components/thorui/tui-waterfall-index/tui-waterfall",
+    "t-goods-item":"/components/views/t-goods-item-index/t-goods-item-index",
+
+    "tui-landscape":"/components/thorui/tui-landscape/tui-landscape",
+
+    "popup": "/components/ksald/popup/index",
+    "privacy-dialog": "/components/privacy-dialog/privacy-dialog"
+
+    
+  },
+  "navigationBarTitleText": "奥本运动",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#81c2c6",
+  "enablePullDownRefresh": false,
+  "onReachBottomDistance": 100
+}

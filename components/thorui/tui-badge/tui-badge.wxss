@@ -1,0 +1,23 @@
+.tui-badge-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+}
+
+.tui-badge {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  height: 36rpx;
+  min-width: 36rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  border-radius: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.tui-badge-scale {
+  transform-origin: center center;
+}

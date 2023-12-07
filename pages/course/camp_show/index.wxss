@@ -1,0 +1,251 @@
+@import "./index.skeleton.wxss";
+page {
+  background-color: #f4f4f4;
+}
+.tui-content-box_he{  
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 0 200rpx 0;
+}
+/*********banner************/
+.tui-banner-swiper {
+  width: 100%;
+  height: 447rpx;
+  overflow: hidden;
+  transform: translateY(0);
+}
+.tui-slide-image {
+  width: 100%;
+  height: 447rpx;
+  display: block;
+}
+.tui-banner-swiper .wx-swiper-dot {
+  width: 8rpx;
+  height: 8rpx;
+  display: inline-flex;
+  background: none;
+  justify-content: space-between;
+}
+.tui-banner-swiper .wx-swiper-dot::before {
+  content: '';
+  flex-grow: 1;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.tui-banner-swiper .wx-swiper-dot-active::before {
+  background-color: #fff;
+}
+.tui-banner-swiper .wx-swiper-dot.wx-swiper-dot-active {
+  width: 16rpx;
+}
+.trainingCamp-data{
+  padding: 40rpx 50rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+	justify-content: space-between;
+	align-content: space-between; 
+}
+.trainingCamp-data .trainingCamp-data_time{
+	display: flex;
+  flex-direction: column;
+  line-height: 50rpx;
+}
+.trainingCamp-data .trainingCamp-data_price{
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #fe4f09;
+}
+.tui-box_he{
+  margin: 30rpx 30rpx 0 30rpx;
+  padding: 30rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+}
+.tui-box_he .coach{
+  display: flex;
+  align-items: center;  
+  padding-bottom: 30rpx;
+  margin-bottom: 30rpx;
+  border-bottom: 2rpx solid #f6f6f6;
+
+}
+.coach-location
+{
+    margin-top: 20rpx;
+    /* 文字太长...号 */
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    /*  行数   */
+}
+.tui-box_he .coach:last-child{
+  border: none;
+  margin-bottom: 0;
+  padding-bottom: 10rpx;
+}
+.tui-box_he .tui-avatar {
+  flex-shrink: 0;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  margin: 0 20rpx 0 0;
+  display: inline-block;
+}
+.tui-box_he .border{
+  background-color: #1b8389;
+  font-size: 28rpx;
+  color: #ffffff;
+  border-radius: 0 15rpx 0 15rpx;
+  padding: 3rpx 12rpx;
+  margin-left: 30rpx;
+}
+.tui-box_he .coach_address{
+  display: flex;
+  align-items: center;
+	justify-content: space-between;
+  align-content: space-between;  
+  flex: 1;
+}
+.tui-box_he .coach_address text{
+  display: block;
+}
+.tui-box_he .title{
+  font-size: 30rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 20rpx;
+}
+.des-content,.coach-des
+{
+    font-size: 28rpx;   
+    color: #666;
+}
+.coach-title
+{
+  font-size: 30rpx;
+  font-weight: bold;    
+}
+.tui-box_he .content{
+  font-size: 28rpx;
+  color: #666;
+  line-height: 45rpx;
+}
+/***********tabbar***************/
+.tui-tabbar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid #dddddd;
+  }
+  .tui-tabbar .clicked{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+  }
+  .tui-tabbar .clicked view{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-right: 30rpx;
+    color: #000000;
+  }
+  .tui-tabbar .clicked text{
+    font-size: 28rpx;
+  }
+  .tui-tabbar_pay{
+    display: flex; 
+    align-items: flex-start;
+    justify-content: space-between; 
+    padding: 10px 60rpx;
+    color: #666666;
+  }
+  .buttom-this
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.buttom-price{
+    width: 100%;
+    height: 30rpx;
+    font-size: 28rpx;
+    margin: 5rpx 0; 
+}
+.buttom-price-noop{
+    width: 100%;
+    font-size:30rpx;
+}
+
+.buttom-discount{
+    width: 100%;
+    font-weight: normal;
+    text-decoration: line-through;
+
+}
+/* tabbar end */
+
+.trainingCamp-data-l{
+  display: flex;
+  align-items: center;
+  justify-content:left;
+  font-size: 28rpx;
+  color: #535151;
+  height: 32rpx;
+  line-height: 32rpx;
+  margin: 10rpx 0;
+  font-weight: normal;
+}
+.trainingCamp-data-l .lesson{
+  border-right: 1rpx solid #999; 
+  padding: 0 10rpx 0 0;
+}
+.lesson-leave
+{
+    padding: 0 0 0 10rpx;
+}
+.trainingCamp-data-l .condition{
+  padding: 0 10rpx;
+  background: #f3f3f3;
+  border-radius: 12rpx;
+  padding: 5rpx  20rpx;
+  margin: 0 0 0 20rpx;
+
+  /* border-left: 1px solid #dddddd; */
+}
+.address-title
+{
+  color: #000;
+}
+.address-des{
+  font-size: 26rpx; 
+  color: #666;
+  margin: 10rpx 0;
+    /* 文字太长...号 */
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;/* 行数 */
+}
+
+.box-des-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    color: #666;
+    line-height: 45rpx;
+    margin: 6rpx 0 0 10rpx;
+    
+}

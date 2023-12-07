@@ -1,0 +1,11 @@
+<view>
+  <view class="tui-selected-class tui-dropdown-list" style="height: {{selectHeight ? selectHeight + 'rpx' : '' }}">
+    <slot name="selectionbox"></slot>
+    <view class="tui-dropdown-view {{show?'tui-dropdownlist-show': ''}}" style="background-color: {{backgroundColor}}; height: {{show?height:0}}rpx;top: {{top}}rpx">
+      <slot name="dropdownbox"></slot>
+    </view>
+  </view>
+  <view class="tui-dropdown__mask" style="background-color: {{maskBackground}};" wx:if="{{isMask && show}}"
+			bindtap="maskClick">
+		</view>
+</view>

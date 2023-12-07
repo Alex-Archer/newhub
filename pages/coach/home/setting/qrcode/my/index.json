@@ -1,0 +1,17 @@
+{
+
+    "navigationBarTitleText": "我的专属码",
+    "navigationBarTextStyle": "white",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#68a9ad",
+    
+    "enablePullDownRefresh": false,
+  
+  
+    "usingComponents": {
+      "coach-tabbar": "/components/ksald/coach-tabbar/coach-tabbar",
+      "tui-badge": "/components/thorui/tui-badge/tui-badge",
+      "scroller": "/components/coolui-scroller/scroller/index",
+      "tui-list-cell": "/components/thorui/tui-list-cell/tui-list-cell"
+    }
+  }

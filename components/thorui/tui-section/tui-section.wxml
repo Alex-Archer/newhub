@@ -1,0 +1,15 @@
+<view class="tui-section" style="margin:{{margin}};background:{{background}};padding:{{padding}}">
+		<view class="tui-section__title" bindtap="handleClick">
+			<view class="tui-section__decorate" wx:if="{{isLine}}"
+				style="background:{{lineColor || g_lineColor}};width:{{lineWidth}}rpx;left:-{{lineRight}}rpx;top:{{lineGap}}rpx;bottom:{{lineGap}}rpx;border-radius:{{lineCap==='circle'?lineWidth:0}}rpx">
+			</view>
+			<slot name="left"></slot>
+			<text style="font-size:{{size}}rpx;color:{{color}};font-weight:{{fontWeight}}" wx:if="{{title}}">{{title}}</text>
+			<slot></slot>
+		</view>
+		<view class="tui-section__sub" style="padding-top:{{descrTop}}rpx" wx:if="{{descr}}">
+      <text class="tui-section__descr" style="font-size:{{descrSize}}rpx;color:{{descrColor}}"
+				>{{descr}}</text>
+		</view>
+		<slot name="descr"></slot>
+	</view>

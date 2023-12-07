@@ -1,0 +1,149 @@
+<view class="container">
+  <!--头部背景色 -->
+  <tui-banner-arc height="400" background="-webkit-linear-gradient(#2e7175,#2e7175)"></tui-banner-arc>
+  <!--头部背景色 END-->
+  <view class="tui-box">
+    <tui-list-cell hover="{{false}}" lineLeft="0" padding="0" backgroundColor="">
+      <view class="tui-goods-title">课程信息</view>
+    </tui-list-cell>
+    <tui-list-cell hover="{{false}}" unlined padding="0">
+      <view class="tui-goods-item">
+        <!-- <image src="/static/images/mall/product/{{index+3}}.jpg" class="tui-goods-img"></image> -->
+        <image src="{{globalURL}}/miniprogram/url-img/coach-home/course-1.png" class="tui-goods-img"></image>
+        <view class="tui-goods-center">
+          <view class="tui-goods-name">空中瑜伽-打造完美曲线</view>
+          <view class="tui-goods-attr">
+            <tui-tag margin="0 15rpx 0 0" padding="9rpx 12rpx 9rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">力量训练</tui-tag>
+            <tui-tag margin="0 15rpx 0 0" padding="9rpx 12rpx 9rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">全身增肌</tui-tag>
+          </view>
+        </view>
+        <view class="tui-price-right">
+          <view class="tui-price-right-a">￥298.00</view>
+          <view>/节</view>
+        </view>
+      </view>
+
+      <view class="tui-bg-line">
+        <view class="tui-bg-line-l"></view>
+        <view class="tui-bg-line-c"></view>
+        <view class="tui-bg-line-r"></view>
+
+      </view>
+    </tui-list-cell>
+
+
+    <view class="tui-top tui-goods-info">
+      <!-- <tui-list-cell arrow="{{hasCoupon}}" hover="{{false}}" bindclick="selectCoupon"> -->
+        <tui-list-cell arrow="{{true}}" hover="{{false}}" bindclick="selectStore">
+        <view class="tui-padding tui-flex">
+          <view class="title-font">上课场地</view>
+          <view class="{{storeSelectTitle?'tui-color-red':'tui-color-default'}}">{{storeSelectTitle?storeSelectTitle:'请选择'}}</view>
+        </view>
+      </tui-list-cell>
+
+
+      <tui-list-cell hover="{{false}}" lineLeft="0">
+        <view class="tui-padding tui-flex">
+          <view class="title-font">上课教练</view>
+          <view>陈教练</view>
+        </view>
+      </tui-list-cell>
+
+      <tui-list-cell arrow="{{true}}" hover="{{false}}" bindclick="selectCoachType">
+        <view class="tui-padding tui-flex">
+          <view class="title-font">授课模式</view>
+          <view class="{{hasCoupon?'tui-color-red':''}}">{{coachTypeSelectTitle}}</view>
+        </view>
+      </tui-list-cell>
+
+      <tui-list-cell hover="{{false}}" lineLeft="0"  padding="26rpx 30rpx 0 30rpx"  unlined="{{claAct==0?true:false}}">
+        <view class="tui-padding tui-flex">
+          <view class="title-font">课次(8节起售)</view>
+          <view class="tui-padding-class">
+            <view class="cla-a {{claAct==0&&'cla-act'}}" data-val="0" bind:tap="tapAlaAct">推荐</view>
+            <view class="cla-b {{claAct==1&&'cla-act'}}" data-val="1" bind:tap="tapAlaAct">自定义</view>
+          </view>
+        </view>
+
+        <view class="class-item-box {{claAct==1&&'tui-order-custom-flex'}}">
+
+          <!-- 优惠列表 -->
+          <view class="tui-order-type" wx:if="{{claAct==0}}">
+          
+           <block wx:for="{{classCouponList}}" wx:key="index" wx:for-item="couponitem">
+            <view class="tui-order-type-li {{classCouponIndex==index&&'clicked'}}" data-index="{{index}}" bind:tap="selectClassNumber">
+              <text>{{couponitem.title}}</text>
+              <text class="color-gray">{{couponitem.des}}</text>
+            </view>
+            </block>
+            <!-- <view class="tui-order-type-li clicked">
+              <text>35节</text>
+              <text class="color-gray">立减¥600</text>
+            </view>
+            <view class="tui-order-type-li">
+              <text>50节</text>
+              <text class="color-gray">立减¥1000</text>
+            </view> -->
+          </view>
+          <!-- 优惠列表END -->
+          <!-- 自定义 参 vip\pages\extend\numberbox\numberbox.wxml -->
+          <view class="tui-order-custom"  wx:if="{{claAct==1}}">
+            <!-- <tui-numberbox min="{{1}}" max="{{10}}" value="{{value2}}" bindchange="change2"></tui-numberbox> -->
+            <tui-numberbox height="{{50}}" width="{{100}}" iconSize="{{20}}" min="{{10}}" max="{{15}}" step="1" color="#000" iconColor="#fff" iconBgColor="rgba(23,129,136,1)" radius="0" value="{{numberBoxValue}}" bindchange="change"></tui-numberbox>
+          </view>
+          <!-- 自定义END -->
+        </view>
+
+        
+      </tui-list-cell>
+      <tui-list-cell hover="{{false}}"  lineLeft="0" padding="0" wx:if="{{claAct==0}}">
+          <view class="tui-order-sale">
+          <view class="text">
+            <text class="tag">减</text>
+            已减<text style="color: #e54201;">¥600</text> 再任意购买5节课可再减¥100
+          </view>
+        </view>
+      </tui-list-cell>
+
+      <tui-list-cell hover="{{false}}" unlined>
+        <view class="tui-padding tui-flex tui-total-flex">
+          <view class="tui-flex-end tui-color-red">
+            <view class="tui-black">合计： </view>
+            <view class="tui-size-26">￥</view>
+            <view class="tui-price-large">1192</view>
+            <view class="tui-size-26">.00</view>
+          </view>
+        </view>
+      </tui-list-cell>
+    </view>
+
+    <view class="tui-top">
+      <tui-list-cell unlined hover="{{insufficient}}" radius arrow="{{insufficient}}">
+        <view class="tui-flex">
+          <view class="tui-balance">余额支付<text class="tui-gray">(￥2019.00)</text></view>
+          <switch color="#fe8e61" class="tui-scale-small" hidden="{{insufficient}}" />
+          <view class="tui-pr-30 tui-light-dark" hidden="{{!insufficient}}">余额不足, 去充值</view>
+        </view>
+      </tui-list-cell>
+    </view>
+  </view>
+  <view class="tui-safe-area"></view>
+  <view class="tui-tabbar">
+    <view class="tui-flex-end tui-color-red tui-pr-20">
+      <view class="tui-black">实付金额: </view>
+      <view class="tui-size-26">￥</view>
+      <view class="tui-price-large">1192</view>
+      <view class="tui-size-26">.00</view>
+    </view>
+    <view class="tui-pr25">
+      <tui-button width="200rpx" height="70rpx" size="28" type="danger" shape="circle" bindclick="btnPay">确认支付</tui-button>
+    </view>
+  </view>
+  
+  <t-pay-way show="{{show}}" bindclose="popupClose"></t-pay-way>
+
+  <t-select-coupons show="{{couponShow}}" bindclose="couponClose"></t-select-coupons>
+  <!-- 授课模式 -->
+  <t-select-coach-type typeList="{{typeList}}" typeListIndex="{{typeListIndex}}" show="{{coachTypeShow}}" bindclose="coachTypeClose"></t-select-coach-type>
+  <t-select-store storeList="{{storeList}}" storeListIndex="{{storeSelectID}}" show="{{storeShow}}" bindclose="storeClose"></t-select-store>  
+</view>

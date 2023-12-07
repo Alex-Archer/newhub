@@ -1,0 +1,27 @@
+<view class="privacy-box" wx:if="{{innerShow}}" style="transform: translateY(-{{fixedbottom}});background:{{backgroundColor}};border-radius:{{radius}};left:{{leftright}};right: {{leftright}};">
+    <view class="tui-dialog">
+        <view class="tui-dialog__hd">
+            <view class="tui-dialog__title" style="color:{{titleColor}}">{{title}}
+                <slot name="title"></slot>
+            </view>
+        </view>
+        <view class="tui-dialog__bd" style="color:{{contentColor}}">
+            <!-- <slot name="content"></slot> -->
+
+            <text>{{desc1}}</text>
+            <text style="color: #ff7900;" bind:tap="openPrivacyContract">{{urlTitle}}</text>
+            <text>{{desc2}}</text>
+
+        </view>
+        <view class="tui-dialog__ft" wx:if="{{bottomShowType===0}}">
+            <button style="color:{{disagreecolor}}" class="tui-dialog__btn-a" type="default" bindtap="handleDisagree">不同意并退出</button>
+            <button id="agree-btn" style="color: {{agreecolor}};" class="tui-dialog__btn-a" open-type="agreePrivacyAuthorization" bindagreeprivacyauthorization="handleAgree">同意并继续</button>
+        </view>
+        <view class="tui-dialog__fr" wx:if="{{bottomShowType===1}}">
+            
+            <button id="agree-btn"  class="tui-dialog__btn-b btn-agree" open-type="agreePrivacyAuthorization" bindagreeprivacyauthorization="handleAgree">我已阅读并同意</button>
+            <button class="tui-dialog__btn-b btn-disagree" bindtap="handleDisagree">不同意,仅浏览</button>
+        </view>
+    </view>
+</view>
+    <view bindtap="close" class="tui-dialog__mask {{!innerShow?'tui-mask_hidden':''}}" wx:if="{{mask}}"></view>

@@ -1,0 +1,46 @@
+<view class="container" wx:if="{{!preventOnShow}}">
+    <view style="padding: {{statusBar + 5}}px 0 5px 15px;" bind:tap="goBack">
+        <ald-icon size="1.4" customClass="" unit="rem" name="left" content="" color="#fff"></ald-icon>
+    </view>
+
+
+
+    <view class="tui-box">
+        <view class="qrcode-box">
+
+              <view class="qrcode">
+                <view wx:if="{{loadingCodes}}" class="qrcode-loading">请稍候</view>
+                <!--显示图片用的标签-->
+                  <image class="qrcode-creat-img" src="{{imagePath}}"></image>
+                  <!--创建一个画布 ,为了兼容性，画好再callback 给 imagePath-->
+                  <canvas class="qrcode-code" canvas-id="myQrcode" style="width:200px; height:200px;display:block;" />
+              </view>
+            <view class="qrcode-head">
+                <view class="qrcode-img">
+                    <image class="qrcode-img-src" src="{{headimgurl}}" />
+                </view>
+                <view class="qrcode-name">{{nickname}}</view>
+                <view wx:if="{{formScene==2}}" class="qrcode-des">学员扫码即可签到</view>
+            </view>
+
+        </view>
+        <view class="aoben-box">
+            aoben shared yoga
+        </view>
+
+
+
+
+
+
+
+
+    </view>
+
+
+    <!--背景图片 可用 headimgurl-->
+    <view class="bgImage">
+        <image src="https://ss2.meipian.me/users/2593844/f082312710eb45cfb88753d7239aae04.jpg?imageView2/2/w/750/h/1400/q/80" />
+    </view>
+
+</view>

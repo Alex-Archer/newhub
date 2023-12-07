@@ -1,0 +1,50 @@
+  <view class="tui-box" bindtap="bindClick">
+      <view class="tui-course">
+        <view class="tui-course-item">
+          <image src="/miniprogram/url-img/order/coach-home/course-1.png" class="tui-course-img"></image>
+          <view class="tui-course-info">
+            <view class="tui-course_title">{{ entity.title }}<text class="tui--course_tag">待支付</text></view>
+            <view>进阶强化 重塑s曲线</view>
+            <view class="tui-course_tag">
+              <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">力量训练</tui-tag>
+              <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">全身增肌</tui-tag>
+              <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">减压放松</tui-tag>
+            </view>
+          </view>
+          <view class="tui-course-button">
+            <view class="tui-course_price">¥98.0</view>
+            <view class="tui-course_num">×1</view>
+          </view>
+        </view>
+        <view class="tui-course-total">
+          <text>共一件商品</text>
+          <text class="tui-course-total_num">总计：<text>¥98.0</text></text>
+        </view>
+      </view>
+    </view>
+<!-- 
+    <view class="tui-box" bind:tap="showDetail" data-id="2">
+      <view class="tui-course">
+        <view class="tui-course-item">
+          <image src="/miniprogram/url-img/order/coach-home/course-1.png" class="tui-course-img"></image>
+          <view class="tui-course-info">
+            <view class="tui-course_title">空中瑜伽-打造完美曲线<text class="tui--course_tag">待支付</text></view>
+            <view>进阶强化 重塑s曲线</view>
+            <view class="tui-course_tag">
+              <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">力量训练</tui-tag>
+              <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">全身增肌</tui-tag>
+              <tui-tag margin="0 15rpx 0 0" padding="10rpx 12rpx 10rpx 12rpx" shape="circle" size="20rpx" type="btn-gray" bindclick="show">减压放松</tui-tag>
+            </view>
+          </view>
+          <view class="tui-course-button">
+            <view class="tui-course_price">¥98.0</view>
+            <view class="tui-course_num">×1</view>
+          </view>
+        </view>
+        <view class="tui-course-total">
+          <text>共一件商品</text>
+          <text class="tui-course-total_num">总计：<text>¥98.0</text></text>
+        </view>        
+      </view>
+    </view> 
+    订单列表 END   -->

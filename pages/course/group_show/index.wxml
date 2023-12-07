@@ -1,0 +1,147 @@
+<wxs src="/wxs/utils.wxs" module="parse"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<import src="index.skeleton.wxml"/>  
+<template is="skeleton" wx:if="{{loading}}" />
+<view class="tui-content-box_he"  wx:if="{{!loading}}" >
+    <!--banner-->
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" indicator-color="rgba(255, 255, 255, 0.8)" indicator-active-color="#fff">
+        <swiper-item wx:for="{{groupInfo.picture}}" wx:key="index" catchtap="detail">
+            <image src="{{item.poster}}" class="tui-slide-image" mode="widthFix" />
+        </swiper-item>
+    </swiper>
+    <!--banner END-->
+    <view class="trainingCamp-data">
+        <view class="trainingCamp-data_time">
+            <view class="data-li">
+             
+              <tui-tag wx:if="{{groupInfo.enrollstate==0}}" plain="{{true}}" padding="4px 4px" margin="0 20rpx 0 0" size="26rpx" type="red" bindclick="show">排队中</tui-tag>
+              <view class="data-title">{{groupInfo.title}}</view>
+              <view wx:if="{{!buyed}}" class="data-start">满 {{groupInfo.peoplenummin}} 人开课</view>
+              <tui-tag wx:if="{{buyed}}" plain="{{false}}" padding="4px 4px" margin="0 20rpx 0 20rpx" size="26rpx" type="green" bindclick="show">已购买</tui-tag>
+            </view>
+            <view class="data-des">
+              <view class="data-des-min">
+                  <text class="des-title">{{groupInfo.duration}}</text>
+                  <text class="des-unit">Min</text>
+              </view>
+              <view class="data-des-kcal kcal-margin">
+                  <text class="des-title">{{groupInfo.kcal}}</text>
+                  <text class="des-unit des-margin">Kcal</text>
+              </view>
+            </view>
+
+
+<!-- 
+            <text style="font-size: 30rpx; font-weight: bold;">{{groupInfo.title}}<text class="border">满 {{groupInfo.peoplenummin}} 人开课</text></text>
+            <text class="title-des-font">{{groupInfo.duration}}Min<text style="margin-left: 50rpx;">{{groupInfo.kcal}}Kcal</text></text> -->
+        </view>
+        <view class="trainingCamp-data_price">¥{{parse.formatRMB(groupInfo.price)}}/节</view>
+    </view>
+    <view class="tui-box_he">
+        <view class="coach-user" bind:tap="coachPopup" data-mode="zoom-in,fade" data-mask="1"  wx:if="{{groupInfo.coachName}}">
+            <image src="{{groupInfo.coachHeadimgurl}}" class="tui-avatar" mode="widthFix" />
+            <text>{{groupInfo.coachName}}<text class="desc">{{groupInfo.content}}</text></text>
+            <ald-icon size="1" customClass="" unit="rem" name="right" content="" color="#ccc"></ald-icon>
+        </view>
+        <view class="coach">
+            <text class="coach-title">分类</text> 
+            <text class="coach-des">{{groupInfo.type1Name}}</text>
+        </view>
+        <view class="coach">
+            <text class="coach-title">时间</text>
+            <text class="coach-des">{{date.format(groupInfo.startdate*1000,'yyyy.MM.dd EE')}} {{parse.secondToHm(groupInfo.starttime)}}~{{parse.secondToHm(groupInfo.endtime)}}</text>
+            <!-- <text style="font-size: 36rpx;">></text> -->
+        </view>
+        <view class="coach" style="align-items: flex-start;">
+            <text class="coach-title">地址</text>
+            <view class="coach_address" data-lng="{{groupInfo.storefrontLng}}" data-lat="{{groupInfo.storefrontLat}}" bind:tap="goToStore">
+                <text>{{groupInfo.storefrontAddress}}</text>
+                <view>
+                    <ald-icon size="1.2" customClass="" unit="rem" name="map" color="#666" content="" contentsize="" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+                </view>
+            </view>
+        </view>
+        <view class="coach">
+            <text class="coach-title">教室</text>
+            <text class="coach-des">{{groupInfo.roomName}}</text>
+        </view>
+        <view class="coach">
+            <text class="coach-title">用户</text>
+            <view class="coach_address">
+                <text>已约 {{registerednum}}人</text>
+
+                <view wx:if="{{registerednum>0}}">
+                    <tui-image-group showMore="{{registerednum>=8}}" imageList="{{groupUser}}" isGroup width="60rpx" height="60rpx"></tui-image-group>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="tui-box_he">
+        <text class="title">课程介绍</text>
+
+            <!-- 介绍长文 -->
+            <tui-overflow-hidden type="{{2}}" height="200rpx" padding="10rpx 0 0 0" gradientColor="#f8f8f8" removeGradient="{{removeGradientContent}}">
+                <rich-text class="des-content" nodes="{{groupInfo.content}}"></rich-text>
+            </tui-overflow-hidden>
+            <view class="tui-btn__box">
+                <tui-button wx:if="{{!removeGradientContent}}" size="{{22}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="40rpx auto" bindclick="readmoreContent">展开全部</tui-button>
+            </view>
+              <!-- 介绍长文END -->  
+ 
+      
+    </view>
+    <view class="tui-box_he">
+        <text class="title">约课规则</text>
+
+            <!-- 介绍长文 -->
+            <tui-overflow-hidden type="{{2}}" height="300rpx" padding="10rpx 0 0 0" gradientColor="#f8f8f8" removeGradient="{{removeGradient}}">
+                <rich-text class="des-content"  nodes="{{groupInfo.rule}}"></rich-text>
+            </tui-overflow-hidden>
+            <view class="tui-btn__box">
+        <!-- <tui-button size="{{22}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="40rpx auto" bindclick="readmore">{{removeGradient?'点击收起':'展开全部'}}
+        </tui-button> -->
+        <tui-button wx:if="{{!removeGradient}}" size="{{22}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="40rpx auto" bindclick="readmore">展开全部</tui-button>
+    </view>
+    <!-- 介绍长文END -->
+
+    </view>
+
+
+</view>
+<!--tabbar-->
+<view wx:if="{{!buyed&&!ISCOACH}}" class="tui-tabbar" style="padding-bottom: env(safe-area-inset-bottom);">
+    <view class="tui-tabbar_pay">
+        <!-- <view class="clicked">
+            <view>
+                <ald-icon size="1.5" customClass="" unit="rem" name="star" color="#000000" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+                <text>收藏</text>
+            </view>
+        </view> -->
+        <tui-button disabled="{{subDisabled}}" class="buttom-this" flexdirection preventClick="{{true}}" shape="circle" type="warning" width="100%" height="80rpx" size="24" bindclick="detailBuy">
+            <block wx:if="{{groupInfo.originalprice>groupInfo.price}}">
+              <view class="buttom-price">立即预约购买课程 ¥{{parse.formatRMB(groupInfo.price)}}</view>
+              <view class="buttom-discount">原价 ¥{{parse.formatRMB(groupInfo.originalprice)}}</view>
+            </block>
+            <block wx:else>
+              <view class="buttom-price-noop">立即预约购买课程 ¥{{parse.formatRMB(groupInfo.price)}}</view>
+            </block>
+
+        </tui-button> 
+    </view>
+
+</view>
+<!--tabbar END-->
+<tui-modal show="{{modalShow}}" bindclick="modalClick" bindcancel="modalhide" content="您有时间段冲突课程，无法购买!" button="{{button}}" maskClosable="{{false}}"></tui-modal>
+<!-- 弹窗 -->
+<tui-popup duration="{{0}}" modeClass="{{mode}}" styles="{{styles}}" show="{{transShow}}" bindclick="onTap" bindchange="change">
+    <view class="popup-box">
+        <view class="popup-close">
+            <ald-icon size="1.5" customClass="" unit="rem" name="close-circle" color="#000000" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+        </view>
+        <view class="popup-head">
+            <image class="popup-head-img" src="{{groupInfo.coachHeadimgurl}}" mode="widthFix" />
+        </view>
+        <view class="popup-name">{{groupInfo.coachName}}</view>
+        <view class="popup-des">{{groupInfo.coachSignature}}</view>
+    </view>
+</tui-popup>

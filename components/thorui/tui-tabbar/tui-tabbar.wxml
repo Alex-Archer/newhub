@@ -1,0 +1,65 @@
+<view class="tui-tabbar {{isFixed?'tui-tabbar-fixed':''}} {{unlined?'tui-unlined':''}} {{backdropFilter?'tui-backdrop__filter':''}}" style="background: {{backgroundColor}};z-index:{{isFixed ? zIndex : 'auto'}};  padding-bottom: calc( constant(safe-area-inset-bottom) + {{paddingBottom}});padding-bottom: calc( env(safe-area-inset-bottom) + {{paddingBottom}});">
+  
+  <block wx:if="{{indexPage}}">
+  <view class="tui-tabbar-item-fish"  bindtap="goTop">
+    <!-- /static/img/tabbar/top.png -->
+    <block wx:if="{{homeShow}}">
+      <image src="/static/img/loading.png" class="tui-tabbar-icon-fish"></image>
+    </block>
+    <block wx:else>
+      <image src="/static/img/tabbar/top.png" class="tui-tabbar-icon-fish"></image>
+    </block>
+  </view>
+</block>
+
+  <block wx:for="{{tabBar}}" wx:key="index">
+
+    <view class="tui-tabbar-item {{item.hump?'tui-item-hump':''}}" style="background-color: {{item.hump && !backdropFilter ? backgroundColor : 'none'}}" bindtap="tabbarSwitch" data-index="{{index}}"  data-navigate="{{item.navigate}}" data-hump="{{item.hump}}" data-pagepath="{{item.pagePath}}" data-verify="{{item.verify}}" data-action="{{item.action}}" data-coachpath="{{item.coachPath}}"  >
+      <view class="tui-icon-box {{item.hump?'tui-tabbar-hump':''}}">
+        
+        <!-- 隐藏第一个按钮
+        <block wx:if="{{index==0&&!homeShow}}">
+          <image src="" class="{{item.hump ? '' : 'tui-tabbar-icon'}}"></image>
+        </block>
+        <block wx:else> -->
+          <block wx:if="{{!item.ico}}">
+                <image class="tui-tabbar-hump-img" src="{{current == index ? item.selectedIconPath : item.iconPath}}" class="{{item.hump ? '' : 'tui-tabbar-icon'}}"></image>
+          </block>
+          <block wx:else>
+            <ald-icon size="{{item.icoSize?item.icoSize:'1.8'}}" customClass="" unit="{{item.icoSizeUnit?item.icoSizeUnit:'rem'}}" name="{{current == index ? item.selectedIco : item.ico}}" content="" color="{{current == index ? selectedColor : color}}"></ald-icon>
+          </block>
+          <!-- <ald-icon size="1.8" customClass="" unit="rem" name="{{current == index ? item.selectedIco : item.ico}}" content="" color="{{current == index ? selectedColor : color}}"></ald-icon> -->
+          <!-- <ald-tab-icon padding="0 0 0 0" size="1.8" unit="rem" name="dingdan" color="#fff"></ald-tab-icon> -->
+
+          
+        <!-- </block> -->
+        
+        <!-- <image src="{{current == index ? item.selectedIconPath : item.iconPath}}" class="{{item.hump ? '' : 'tui-tabbar-icon'}}"></image> -->
+        <view class="{{item.isDot ? 'tui-badge-dot' : 'tui-badge'}}" style="color: {{badgeColor}}; background-color: {{badgeBgColor}}" wx:if="{{item.num}}">
+          {{ item.isDot ? '' : item.num }}
+        </view>
+      </view>
+      
+      <!-- <view class="tui-text-scale {{item.hump?'tui-text-hump':''}}" style="color:{{current == index ? selectedColor : color}}">{{ item.text }}</view> -->
+
+<!-- 临时用 -->
+<block wx:if="{{item.text=='活动'}}">
+  <view class="tui-text-scale {{item.hump?'tui-text-hump':''}}" style="color:#ccc; text-decoration: line-through;">{{ item.text }}</view>
+</block>
+<block wx:else>
+  <view class="tui-text-scale {{item.hump?'tui-text-hump':''}}" style="color:{{current == index ? selectedColor : color}}">{{ item.text }}</view>
+</block>
+<!-- 临时用END -->
+
+
+      <!-- <block wx:if="{{index==0&&!homeShow}}">
+        <view class="tui-text-scale {{item.hump?'tui-text-hump':''}}" style="color:{{current == index ? selectedColor : color}}"></view>
+        </block>
+        <block wx:else>
+          <view class="tui-text-scale {{item.hump?'tui-text-hump':''}}" style="color:{{current == index ? selectedColor : color}}">{{ item.text }}</view>
+        </block> -->
+
+    </view>
+  </block>
+  <view style="background-color:{{backgroundColor}}" class="{{hump?'tui-hump-box':''}}" wx:if="{{hump && !unlined  && !backdropFilter}}"></view>
+</view>

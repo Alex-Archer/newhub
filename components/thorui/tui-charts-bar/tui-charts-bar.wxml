@@ -1,0 +1,71 @@
+<view class="tui-charts__bar-wrap" style="width:{{width+'rpx'}}">
+  <view class="tui-bar__legend" wx:if="{{legend.show}}">
+    <view class="tui-bar__legend-item" wx:for="{{dataset}}" wx:key="index">
+      <view class="tui-legend__circle" style="background-color:{{item.color}}"></view>
+      <text
+        style="font-size:{{(legend.size || 24)+'rpx'}};line-height:{{(legend.size || 24)+'rpx'}};color:{{legend.color || '#333'}}">{{item.name}}</text>
+    </view>
+  </view>
+  <view class="tui-charts__bar-box" style="border-left-color:{{yAxisLine.color}};border-bottom-color:{{xAxisLineColor}}"
+    wx:if="{{yAxis.length>0 && dataset.length>0}}">
+    <view
+      class="tui-charts__bar-item {{isStack?'tui-bar__item-stack':''}} {{activeIndex===index && clickEffect==1?'tui-column__item-active':''}} {{clickEffect==2?'tui-column__bar-active':''}} {{clickEffect==2 && activeIndex==index?'tui-column__bar-opacity':''}}"
+      wx:for="{{yAxis}}" wx:key="index" style="padding:{{yAxisLine.itemPadding ||'30rpx 0'}}">
+      <view class="tui-charts__bar {{columnCap==='round'?'tui-charts__bar-round':''}}" wx:for-items="{{dataset}}"
+        wx:for-item="bar" wx:for-index="idx" wx:key="idx"
+        style="height:{{columnBarHeight+'rpx'}};border-right-color:{{bar.colors[index]}};background:{{bar.colors[index]}};width:{{parse.getBarWidth(bar.source[index], dataset,min,isMinus,isStack,maxValue,width)}}rpx;margin-left:{{parse.getMarginLeft(bar.source[index],isMinus,isStack,min,maxValue,width)}}rpx"
+        catchtap="onBarTap" data-index="{{index}}" data-idx="{{idx}}">
+      </view>
+      <view class="tui-bar__val"
+        wx:if="{{(yAxisVal.show && clickEffect!=2 ) || (yAxisVal.show && clickEffect==2 && activeIndex===index)}}"
+        style="color:{{yAxisVal.color}};font-size:{{(yAxisVal.size || 24)+'rpx'}};white-space: {{yAxisVal.nowrap?'nowrap':'normal'}};left:{{leftArr[index]}}">
+        {{xAxisValArr[index] || ''}}
+      </view>
+      <view class="tui-bar__yAxis-text"
+        style="color:{{yAxisLabel.color || '#333'}};font-size:{{(yAxisLabel.size || 24)+'rpx'}}">
+        {{item}}
+      </view>
+      <view class="tui-yAxis__tickmarks"
+        style="width:{{yAxisTick.width || '12rpx'}};background-color:{{yAxisTick.color || '#e3e3e3'}}"></view>
+    </view>
+    <view class="tui-bar__yAxis-linebox">
+      <view class="tui-bar__yAxis-line {{idx===0?'tui-yAxis__line-first':''}}" wx:for="{{xAxisData}}" wx:for-index="idx"
+        wx:key="idx" style="border-left-style:{{splitLine.type}};border-left-color:{{splitLine.color}}">
+        <text class="tui-xAxis__val"
+          style="color:{{item.color || xAxisLabel.color}};font-size:{{(xAxisLabel.size||24)+'rpx'}}"
+          wx:if="{{xAxisLabel.show}}">{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="tui-column__tooltip {{tooltipShow?'tui-column__tooltip-show':''}}">
+    <view class="tui-tooltip__title">{{yAxis[activeIndex] || ''}}</view>
+    <view class="tui-column__tooltip-item" wx:for="{{tooltips}}" wx:key="index">
+      <view class="tui-legend__circle" style="background-color:{{item.color}}"></view>
+      <text class="tui-tooltip__val">{{item.name}}</text>
+      <text class="tui-tooltip__val tui-tooltip__val-ml">{{item.val}}</text>
+    </view>
+  </view>
+</view>
+
+<wxs module="parse">
+	module.exports = {
+    getBarWidth:function(val, dataset,min,isMinus,isStack,maxValue,width) {
+				// ((bar.source[index]-(isStack?(min/dataset.length):min))/(maxValue-min))*width +'rpx'
+        var minVal = min
+        var value = val
+				if (isMinus && !isStack) {
+					value = Math.abs(value)
+					minVal = 0
+				}
+				return ((value - (isStack ? (minVal / dataset.length) : minVal)) / (maxValue - min)) * width
+			},
+			getMarginLeft:function(value,isMinus,isStack,min,maxValue,width) {
+				var ml = 0
+				if (isMinus && !isStack && min < 0) {
+					var minVal = value > 0 ? Math.abs(min) : (value - min)
+					ml = minVal / (maxValue - min) * width
+				}
+        return ml
+			}
+	}
+</wxs>

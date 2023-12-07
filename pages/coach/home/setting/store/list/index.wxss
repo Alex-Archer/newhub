@@ -1,0 +1,151 @@
+.container {
+    padding: 40rpx 0 280rpx 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* 列表拿来 */
+.tui-order-list {
+    width: 100%;
+    padding: 0 25rpx;
+
+    box-sizing: border-box;
+}
+
+.tui-order-item {
+    margin-bottom: 40rpx;
+    border-radius: 12rpx;
+    box-shadow: 0 5rpx 10rpx 0 rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+
+.tui-goods-title {
+    width: 100%;
+    font-size: 28rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.store-box
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.store-box-l{
+    width: 160rpx;
+    height: 160rpx;
+    background-color:beige;
+    flex: 0;
+    margin: 0 10rpx 0 0;
+}
+
+.store-l-img
+{
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 16rpx;
+}
+.store-box-c{
+
+    flex:6;
+    height: 160rpx;
+}
+/* .store-box-title,.store-box-address,.store-box-tel
+{
+    height: 45rpx;
+} */
+.store-box-title
+{
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #666;
+    min-height: 60rpx;
+
+    line-height: 40rpx;
+    margin-left: 5rpx;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.store-box-text
+{
+      font-size: 28rpx;
+      margin-left: 10rpx;
+    /* 文字太长...号 */
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    /* 行数 */
+}
+.store-box-address,.store-box-tel
+{
+
+    color: #666;
+    height: 40rpx;
+    display: flex;
+    align-items: center;
+    margin-right: 10rpx;
+}
+.store-box-tel
+{
+    font-size: 28rpx;
+    color: #666;
+    height: 60rpx;
+}
+.store-box-r{
+
+    flex:1;
+    height: 160rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.store-add
+{
+    height: 80rpx;
+    line-height: 80rpx;
+    width: 100%;
+
+    margin: 40rpx 0 80rpx 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.store-add-text{
+    font-size: 26rpx;
+    color: #666;
+    margin-left:10rpx;
+}
+
+.boot-box {
+	display: flex;
+    align-items: center;
+    justify-content: flex-end;
+	margin-top: 32rpx;
+	padding-bottom: 8rpx;
+	font-size: 26rpx;
+	color: var(--thorui-text-color-grey);
+	line-height: 1em;
+	list-style: none;
+	overflow: hidden
+}
+.boot-box-meta
+{
+    font-size: 24rpx;
+}
+
+.boot-box-extra {
+	padding-left: 1em;
+	/* border-left: 1rpx solid var(--thorui-text-color-grey) */
+}

@@ -1,0 +1,456 @@
+/* 不显示滚动条*/
+.container {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+  padding-bottom: 50rpx; 
+}
+.container::-webkit-scrollbar {
+  display: none;
+}
+.page-scroll
+{
+  height:100vh ;/*底部菜单高，也可以放style中计算*/
+  width: 100vw;
+  
+}
+/* 不显示滚动条END */
+
+
+.time-box{
+  width: 100%;
+ padding: 30rpx 10rpx 250rpx 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  flex: 1 !important;
+
+}
+
+.time-box-li{
+/* flex: 1; */
+flex-basis: 15.8%;
+   width: 15.8%; 
+  box-sizing: border-box;
+ margin: 15rpx 2%;
+  padding: 5rpx 0;
+  
+  border: 1px solid #666;
+  color: #666;
+  /* margin: 15rpx 3% 0 0; */
+  /* padding: 5rpx 5rpx; */
+  /* flex-basis: 15%; */
+
+  text-align: center;
+}
+.li-active
+{
+  border: 1px solid #ff7900;
+  color: #ff7900;
+  background-color:#ff7900;
+  color: #fff;
+}
+.li-active-no
+{
+  border: 1px solid #666;
+  color: #ff7900;
+  background-color:#999;
+  color: #fff;
+}
+
+
+.tui-cell-header {
+  width: 100%;
+  height: 84rpx;
+  padding: 0 26rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tui-cell-title {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.tui-cell-sub {
+  font-size: 26rpx;
+  font-weight: 400;
+  color: #999;
+  padding-right: 28rpx;
+}
+
+/* 排课日期 */
+.tui-box {
+  width: 100%;
+  background: #fff;
+  /* box-shadow: 0 3rpx 20rpx rgba(183, 183, 183, 0.1);
+  border-radius: 16rpx; */
+  overflow: hidden;
+}
+
+/* ============日期选择模块===================== */
+
+.select-data{
+  /* height: 120rpx; */
+  box-sizing: border-box;
+  width: 100%;
+  top:auto;
+
+  flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+  /* background-color: #fafafa; */
+  /* height: 100%; */
+  border-bottom: 1px solid #f6f6f6;
+  min-height: 660rpx;
+  
+ 
+}
+.select-date-title{
+  height: 130rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 3% 40rpx 3%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f8f8f8;
+    margin-bottom: 15rpx;
+
+}
+.select-date-title .title-date{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title-date .date-day{
+  color: #319fa6;
+  font-size:50rpx;
+  margin-right: 16rpx;
+  font-weight: bold;
+}
+.title-date .date-all
+{
+  display: flex;
+  align-items:flex-start;
+  flex-direction: column;
+  font-size:26rpx;
+  margin-right: 10rpx;
+  color: #888;
+}
+ .date-all .day-week{
+   margin-bottom: 6rpx;
+ }
+.select-date-title .title-menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #888;
+}
+
+.title-menu .menu-addclass
+{
+    margin: 0 0 0 20rpx;
+    display: flex;
+    align-items: center;
+}
+.title-menu .restToday
+{
+    
+    line-height: 60rpx;
+    display: flex;
+    align-items: center;
+}
+.restToday-active
+{
+    /* font-size: 30rpx; */
+    color:red;
+}
+.restToday-no
+{
+    /* font-size: 26rpx; */
+    color:#319fa6;
+}
+
+.select-data .tui-scroll-h {
+	width: 100%;
+	height: 150rpx;
+	/* background-color: #ffffff; */
+	display: flex;
+	flex-direction: row;
+  white-space: nowrap;
+  padding: 0 3% 0 3%;
+  box-sizing: border-box;
+  
+}
+
+.select-data .tui-line-h {
+  position: relative;
+  background-color: rgb(243, 243, 243);
+  height: 1rpx;
+}
+.select-data .tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+}
+
+.select-data .tui-tab-item {
+	display: inline-block;
+	flex-wrap: nowrap;
+  /* padding:0 22rpx; */
+  
+  /* margin:0 22rpx; */
+  /* margin:0 5rpx; */
+
+  
+}
+.select-data .tui-tab-item-active{
+  background-color: #319fa6;/*#cbfcff;*/
+  
+  border-radius: 12rpx;
+}
+
+
+.select-data .tui-badge-item {/* 角标 */
+
+  position: relative;
+  margin-top: 20rpx; /* 不然角标出不来 */
+}
+
+.select-data .tui-tab-item-week
+{
+  font-size: 12px;
+  color: #888;
+	height: 30rpx;
+	line-height: 30rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select-data .tui-tab-item-title {
+	color: #555;
+	font-size: 30rpx;
+  height: 60rpx;
+  width: 60rpx;
+	line-height: 60rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  font-weight: bold;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 0 0 0;
+
+}
+.select-data  .tui-tab-item-title-active {/* 选中是圆形 */
+  color: #fff;
+  
+  background: #ff7900;/*#ff7900;*/
+  border-radius: 50%;
+  /* border-bottom: 6rpx solid #fe8e61; 
+  box-sizing: border-box;
+  这是下划线*/
+}
+
+.select-data  .tui-tab-item-title-noclick {/* 选中是圆形 */
+  color: #cfcfcf;
+}
+.tui-data-list {
+  width: 100%;
+  margin: 10rpx 0;
+  /* padding: 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+/* 日期选择模块 End*/
+
+.tui-cell-menu {
+  font-size:30rpx;
+  font-weight: bold;
+  color: #ff7900;
+  padding-right: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: 2rpx;
+}
+.menu-select-all{
+  margin-right: 30rpx;
+  color: #319fa6;
+}
+.menu-other{
+  color: #319fa6;
+}
+.select-this
+{
+    font-size: 28rpx;
+    font-weight: bolder;
+}
+
+/* 日期2 */
+/* ============团课日期选择愉===================== */
+.tui-tabs {
+	/* flex: 1; */
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+  background-color: #fafafa;
+  /* height: 100%; */
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.tui-scroll-h {
+	width: 100%;
+	height: 180rpx;
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: row;
+  white-space: nowrap;
+  padding: 0 3% 0 3%;
+  box-sizing: border-box;
+}
+
+.tui-line-h {
+  position: relative;
+  background-color: rgb(243, 243, 243);
+  height: 1rpx;
+}
+.tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+}
+
+.tui-tab-item {
+	display: inline-block;
+	flex-wrap: nowrap;
+  padding:0 22rpx;
+  
+}
+/* 角标 */
+
+.tui-badge-item {
+  position: relative;
+  margin-top: 20rpx; /* 不然角标出不来 */
+}
+
+.tui-tab-item-week
+{
+  font-size: 12px;
+  color: #888;
+	height: 30rpx;
+	line-height: 30rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tui-tab-item-title {
+	color: #555;
+	font-size: 30rpx;
+  height: 60rpx;
+  width: 60rpx;
+	line-height: 60rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  font-weight: bold;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 0 0 0;
+
+}
+/* 选中是圆形 */
+.tui-tab-item-title-active {
+  color: #fff;
+  
+  background: #ff7900;
+  border-radius: 50%;
+  /* border-bottom: 6rpx solid #fe8e61; 
+  box-sizing: border-box;
+  这是下划线*/
+}
+
+
+.tui-swiper-box {
+ flex: 1 !important;
+ /* height: auto;  */
+min-height:620rpx;
+}
+
+
+/* 日期2 END */
+
+.des-box{
+  display: flex;
+  flex-direction: column;
+  width: 94%;
+  margin: 10rpx 3% 180rpx 3%;
+}
+.des-box .title{
+  color: #888;
+  font-size: 30rpx;
+}
+.des-box .des{
+  color: #777;
+  font-size: 28rpx;
+  padding: 5rpx 0 5rpx 20rpx;
+}
+.tui-ptop{
+    width: 96%;
+    margin: 0 2%;
+	padding: 10rpx 0 30rpx 0;
+}
+
+
+
+.button-box-t{
+    width: 100%;
+    font-weight: normal;
+    line-height: 30rpx;
+    height: 30rpx;
+
+
+}
+.button-box-d{
+    width: 100%;
+    font-size: 24rpx;
+    font-weight: normal;
+    line-height: 40rpx;
+    height: 40rpx;
+
+}
+
+.tui-loading-more {
+	width: 100%;
+	padding-bottom: 1rpx;
+}

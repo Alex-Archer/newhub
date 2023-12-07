@@ -1,0 +1,251 @@
+{/* <wxs src="./utils.wxs" module="parse"></wxs> */}
+
+// var test = 200;
+
+//秒时间格成时间，如21600 格成：6:00
+function secondToHm(seconds) {
+      seconds = Number(seconds);
+      var h = Math.floor(seconds / 3600);
+      var m = Math.floor(seconds % 3600 / 60);
+      //var s = Math.floor(seconds % 3600 % 60);
+      var hDisplay = h;
+      var mDisplay = m > 0 ? ":" + m : ":00";
+      //var sDisplay = s > 0 ? s : "";
+
+      //return hDisplay + mDisplay + sDisplay;
+      return hDisplay + mDisplay;
+}
+/*
+米转公里
+*/
+function getDistance(_addressDistan) {
+  var distance = _addressDistan || 0;
+  var result = '';
+  if (distance < 1000) {
+      result = distance + ' m';
+  } else {
+      result = (distance / 1000).toFixed(2) + ' km';
+  }
+  return result;
+}
+/*
+数字格式成 1.0 2.0 这样的一位小数
+formatNumber(num1); // 1.0
+*/
+function formatNumber(num) {
+    num = Number(num);
+    if (isNaN(num)) {
+        return 'N/A';
+    }
+    return num.toFixed(1); 
+}
+
+//获取门店 教练 已选择个数，加  私教训练难度4
+function getArrFilterLength(arr,type=1) 
+{
+  var count = 0;
+  for(var i = 0; i < arr.length; i++) {
+    if(arr[i].selected === true) {
+      count++
+    }
+  }
+  var allText = "全部门店"
+  var filterText = "筛选门店" 
+  if(type==3){
+    allText = "教练"
+    filterText = "筛选教练" 
+  }else if(type ==4 ){
+    allText = "训练难度"
+    filterText = "筛选难度" 
+  }
+  if(count>0){
+    return filterText+" ("+count+")";
+  }else{
+    return allText;
+  }
+  
+}
+
+//排序的文字
+function getOrderText(arr) 
+{
+  var selectText = "默认排序";
+  for(var i = 0; i < arr.length; i++) {
+    if(arr[i].selected === true) {
+      selectText = arr[i].title
+    }
+  }
+  return selectText;
+  
+}
+//将人民币从分转换成元,保留2位小数
+function formatRMB(fen) {
+    var yuan = fen / 100; 
+    return yuan.toFixed(2);
+}
+/**
+ *  59600 输出：
+ *  <view class="tui-size-24">￥</view>
+    <view class="tui-price-large">596</view>
+    <view class="tui-size-24">.00</view>
+   
+    因为wxml中禁止wxs输出<view></view>等，所以只能用输出数组出去组合
+    前端页使用
+    <view class="tui-size-24">￥</view>
+    <block wx:for="{{parse.formatDomRMB((orderItem.originalprice*orderItem.quantity),'tui-price-large','tui-size-24')}}" wx:for-item="domItem" wx:for-index="indexDom" wx:key="indexDom">
+        <view class="{{domItem.class}}">{{domItem.value}}</view>
+    </block>
+ * @param fen 钱 1元为100
+ * @param integerClass 整数部份 CLASS
+ * @param decimalClass 小数部份 CLASS
+ */
+function formatDomRMB(fen,integerClass="tui-price-large",decimalClass="tui-size-24") 
+{
+    var yuan = fen / 100;
+    var amount =  yuan.toFixed(2);
+
+    // 获取整数部分
+    var  integer = amount.split('.')[0];
+    // 获取小数部分
+    var  decimal = amount.split('.')[1];
+    // 拼接html,小数部分用小字体
+    return [
+        {
+            class:integerClass,
+            value:integer
+        },
+        {
+            class:decimalClass,
+            value:"."+decimal
+        }
+    ]
+
+
+
+}
+//时间戳1695312000,会输出2023-1-24
+// function formatDate(timestamp) 
+// {
+//     var date = new Date(timestamp * 1000)
+//     var year = date.getFullYear()
+//     var month = date.getMonth() + 1
+//     var day = date.getDate()
+  
+//     return year + '-' + month + '-' + day
+// }
+
+//和当前时间比 是否过期
+// function validateDateExpires(accessExpires) {
+//     //return getDate();
+//     const currentTime = Date.now(); //13位时间戳 1693376939413
+//     let _accessExpires = new Date(Date.parse(accessExpires.replace(/-/g, "/"))).getTime(); //加上000为13位的时间戳 1693372853000
+//     if (currentTime > _accessExpires) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+// }
+//
+/**
+ * 和当前时间比 是否过期
+ * 小鱼写 不知准不准  20230922
+ */
+function validateDateExpires(accessExpires) {
+
+    var _accessExpires=accessExpires;
+    var numLength = _accessExpires.toString().length;
+    if(numLength==10){
+        _accessExpires=_accessExpires*1000;
+    }
+    var  currentTime = getDate().getTime(); //13位时间戳 1693376939413
+    if (currentTime > _accessExpires) {
+      return true;
+    } else {
+      return false;
+    }
+}
+// 时间格式化输出，如11天03小时25分钟19秒
+/*
+function dateformat(micro_second) {
+  // 总秒数
+  var second = Math.floor(micro_second / 1000);
+  // 天数
+  var day = Math.floor(second / 3600 / 24);
+  // 小时
+  var hr = Math.floor(second / 3600 % 24);
+  // 分钟
+  var min = Math.floor(second / 60 % 60);
+  // 秒
+  var sec = Math.floor(second % 60);
+  return day + "天" + hr + "小时" + min + "分钟" + sec + "秒";
+}*/
+/*
+根据上面写的倒计时天
+thatTime 到期时间戳
+*/
+function countdownDay(thatTimeStamp)
+{
+  // 假设这是当前时间戳和目标时间戳
+  //测试用var  currentTimestamp = Math.floor(getDate("2023-10-21 19:00:01").getTime()/1000); // 当前时间戳，以秒为单位 转为10位时间戳 
+  var  currentTimestamp = Math.floor(getDate().getTime()/1000); // 当前时间戳，以秒为单位 转为10位时间戳 
+  var targetTimestamp = thatTimeStamp; // 请将其替换为你的目标时间戳
+  // 计算时间差
+  var timeDiffSeconds = targetTimestamp - currentTimestamp;
+  var timeDiffDays = timeDiffSeconds / (24 * 3600);
+
+  //console.log(`剩余天数: ${timeDiffDays} 天`);
+  //Math.ceil( 向上取整
+  //负数时 要用 floor
+  if (timeDiffDays > 0 && timeDiffDays < 1) {
+    return "明天"
+  } else if (timeDiffDays <= 0 && timeDiffDays > -1) {
+    return "今天"
+  } else if (timeDiffDays < -1) {
+    return "过期" + Math.floor(-timeDiffDays) + "天"
+  } else {
+    return Math.ceil(timeDiffDays) + "天后";
+  }
+}
+/*
+根据上面写的倒计时 返回 数字
+thatTime 到期时间戳
+*/
+function countdownDayNum(thatTimeStamp)
+{
+  // 假设这是当前时间戳和目标时间戳
+  //var  currentTimestamp = Math.floor(getDate("2023-10-22 00:00:01").getTime()/1000); // 当前时间戳，以秒为单位 转为10位时间戳 
+  var  currentTimestamp = Math.floor(getDate().getTime()/1000); // 当前时间戳，以秒为单位 转为10位时间戳 
+  var targetTimestamp = thatTimeStamp; // 请将其替换为你的目标时间戳
+  // 计算时间差
+  var timeDiffSeconds = targetTimestamp - currentTimestamp;
+  var timeDiffDays = timeDiffSeconds / (24 * 3600);
+
+  //console.log(`剩余天数: ${timeDiffDays} 天`);
+  //Math.ceil( 向上取整
+  //负数时 要用 floor
+  if (timeDiffDays > 0 && timeDiffDays < 1) {
+    return 1;//明天
+  } else if (timeDiffDays <= 0 && timeDiffDays > -1) {
+    return 0;//今天
+  } else if (timeDiffDays < -1) {//负数 过期
+    return -Math.floor(-timeDiffDays);//已过期-2天
+  } else {//正数大于1
+    return Math.ceil(timeDiffDays) ;//+ "天后";
+  }
+
+}
+module.exports = {
+  secondToHm: secondToHm,
+  getDistance: getDistance,  //米转公里
+  formatNumber: formatNumber,  //数字格式成 1.0 2.0 这样的一位小数
+
+  getArrFilterLength: getArrFilterLength,  //获取门店 教练 已选择个数
+  getOrderText: getOrderText,  //排序的文字
+  formatRMB: formatRMB,  //将人民币从分转换成元,保留2位小数
+  formatDomRMB: formatDomRMB,  //将人民币从分转换成元,保留2位小数 输出到
+
+  //formatDate: formatDate,//时间戳1695312000,会输出2023-1-24
+  validateDateExpires:validateDateExpires,//时间戳是否过期
+  countdownDay:countdownDay,//根据到期时间戳返回还余多少天  
+  countdownDayNum:countdownDayNum,//根据到期时间戳返回还余多少 数字    
+}

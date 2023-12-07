@@ -1,0 +1,151 @@
+<!--
+此文件为开发者工具生成，生成时间: 2023/11/10下午12:36:01
+使用方法：
+在 E:\公司项目2023\瑜伽项目\瑜伽小程序\pages\coach\index\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 E:\公司项目2023\瑜伽项目\瑜伽小程序\pages\coach\index\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="container">
+      <view class="arc--tui-banner-arc" style="height:50px">
+        <view class="arc--tui-banner--box sk-image1" style="background:-webkit-linear-gradient(#2e7175,#2e7175);height:50px;width:120%;padding-left:10%;padding-right:10%;left:-10%"></view>
+      </view>
+      <view class="tui-coachInfo">
+        <image class="tui-avatar sk-image"></image>
+        <text style="font-size: 18px; background-position-x: 50%;" class="sk-transparent sk-text-9-0909-8 sk-text">夏季</text>
+        <text style="font-size: 11px; background-position-x: 50%;" class="sk-transparent sk-text-25-0000-434 sk-text">初级认证教练</text>
+        <view class="divide-list">
+          <view is="components/thorui/tui-divide-list/tui-divide-list">
+            <view class="list--tui-divide-list" style="background:#f4f4f4">
+              <view class="list--tui-divide--item" data-index="0" style="padding-top:10px;padding-bottom:10px">
+                <view class="list--tui-divide--value">
+                  <view class="list--tui-divide--val sk-transparent sk-text-14-2857-36 sk-text" style="color: rgb(51, 51, 51); font-size: 16px; font-weight: 400; background-position-x: 50%;">
+                    4节
+                  </view>
+                </view>
+                <view class="list--tui-divide--text sk-transparent sk-text-14-2857-463 sk-text" style="color: rgb(153, 153, 153); font-size: 12px; font-weight: 400; background-position-x: 50%;">
+                  累计上课
+                </view>
+                <view class="list--tui-divide--line" style="background:#d6d6d6;height:60%;top:20%"></view>
+              </view>
+              <view class="list--tui-divide--item" data-index="1" style="padding-top:10px;padding-bottom:10px">
+                <view class="list--tui-divide--value">
+                  <view class="list--tui-divide--val sk-transparent sk-text-14-2857-577 sk-text" style="color: rgb(51, 51, 51); font-size: 16px; font-weight: 400; background-position-x: 50%;">
+                    0本
+                  </view>
+                </view>
+                <view class="list--tui-divide--text sk-transparent sk-text-14-2857-944 sk-text" style="color: rgb(153, 153, 153); font-size: 12px; font-weight: 400; background-position-x: 50%;">
+                  证书
+                </view>
+                <view class="list--tui-divide--line" style="background:#d6d6d6;height:60%;top:20%"></view>
+              </view>
+              <view class="list--tui-divide--item" data-index="2" style="padding-top:10px;padding-bottom:10px">
+                <view class="list--tui-divide--value">
+                  <view class="list--tui-divide--val sk-transparent sk-text-14-2857-288 sk-text" style="color: rgb(51, 51, 51); font-size: 16px; font-weight: 400; background-position-x: 50%;">
+                    5%
+                  </view>
+                </view>
+                <view class="list--tui-divide--text sk-transparent sk-text-14-2857-63 sk-text" style="color: rgb(153, 153, 153); font-size: 12px; font-weight: 400; background-position-x: 50%;">
+                  好评率
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="tui-content-box">
+        <view class="tui-box">
+          <view class="tui-title">
+            <text class="tui-title-text sk-transparent sk-text-14-2857-993 sk-text">教练介绍</text>
+          </view>
+          <view class="tui-content-text sk-transparent sk-text-20-4545-264 sk-text">汗水与决心的熏陶下，塑造出柔韧与优雅并存的体型之美...</view>
+        </view>
+        <view class="tui-box">
+          <view class="tui-title">
+            <text class="tui-title-text sk-transparent sk-text-14-2857-102 sk-text">课程</text>
+          </view>
+          <view class="tui-course">
+            <view class="tui-course-item">
+              <image class="tui-course-img sk-image"></image>
+              <view class="tui-course-info">
+                <view class="tui-course_title sk-transparent sk-text-14-2857-822 sk-text">打开心轮</view>
+                <view class="tui-course_item sk-transparent sk-text-23-9130-56 sk-text">课程时间:10:30~11:30</view>
+                <view class="tui-course_tag">
+                  <view is="components/thorui/tui-tag/tui-tag">
+                    <view class="tag--tui-tag tag--tui-tag-fillet tag--tui-btn-gray sk-transparent sk-text-0-0000-35 sk-text" hover-class="true" hover-stay-time="150" style="transform:scale(1); padding: 5px 3px 5px 3px; margin: 0 3px 0 0; font-size: 9px; line-height: 9px;background: #ededed;color: #999;min-width: ;">线条塑形</view>
+                  </view>
+                  <view is="components/thorui/tui-tag/tui-tag">
+                    <view class="tag--tui-tag tag--tui-tag-fillet tag--tui-btn-gray sk-transparent sk-text-0-0000-32 sk-text" hover-class="true" hover-stay-time="150" style="transform:scale(1); padding: 5px 3px 5px 3px; margin: 0 3px 0 0; font-size: 9px; line-height: 9px;background: #ededed;color: #999;min-width: ;">适合新手</view>
+                  </view>
+                  <view is="components/thorui/tui-tag/tui-tag">
+                    <view class="tag--tui-tag tag--tui-tag-fillet tag--tui-btn-gray sk-transparent sk-text-0-0000-216 sk-text" hover-class="true" hover-stay-time="150" style="transform:scale(1); padding: 5px 3px 5px 3px; margin: 0 3px 0 0; font-size: 9px; line-height: 9px;background: #ededed;color: #999;min-width: ;">提升体能</view>
+                  </view>
+                </view>
+              </view>
+              <view class="tui-course-button">
+                <view class="tui-course_price">
+                  <text class="sk-transparent sk-text-14-2857-796 sk-text">¥0.08</text>
+                </view>
+                <view is="components/thorui/tui-button/tui-button" data-enrollstate="1" data-id="14" data-peoplenum="5" data-registerednum="0">
+                  <view class="tui-button--tui-button__wrap tui-button--tui-fillet tui-button--tui-button__hover" style="width: 60px;height:22px;margin:5px 0 0 0">
+                    <button app-parameter="true" class="tui-button--tui-btn tui-button--tui-btn-warning tui-button--tui-fillet sk-transparent sk-button sk-pseudo sk-pseudo-circle" form-type="true" open-type="true" style="width: 60px; height: 22px; line-height: 22px; font-size: 11px;background:#ff7900;color: #fff;box-shadow: none;">立即购买</button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="tui-box down-time-box">
+          <view class="tui-title">
+            <text class="tui-title-text sk-transparent sk-text-14-2857-458 sk-text">可约时间</text>
+          </view>
+          <view class="time-box"></view>
+        </view>
+        <view class="tui-box">
+          <view class="tui-title">
+            <text class="tui-title-text sk-transparent sk-text-14-2857-685 sk-text">上课场地</text>
+            <text class="tui-titie-more sk-transparent sk-text-14-2857-603 sk-text" style="font-size: 12px;">共 1 个</text>
+          </view>
+          <view class="tui-course">
+            <view class="tui-course-item">
+              <image class="tui-course-img sk-image"></image>
+              <view class="tui-course-info tui-area-info">
+                <view class="tui-course_title sk-transparent sk-text-14-2857-435 sk-text">
+                  阳科园店
+                </view>
+                <view is="components/ksald/ald-icon/ald-icon">
+                  <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-location ald-icon--tn-icon-location sk-pseudo sk-pseudo-circle" style="color: #555555;font-size: 1rem;font-weight:normal;margin:0;padding:0;"><text style="padding: 0px 0px 0px 4px; margin: 0px; font-size: 12px; background-position-x: 50%;" class="sk-transparent sk-text-14-2857-595 sk-text">江苏省苏州市昆山市博士路 </text></text>
+                </view>
+                <view class="store-score">
+                  <view is="components/thorui/tui-rate/tui-rate">
+                    <view class=" rate--tui-rate-box">
+                      <view class="rate--tui-icon rate--tui-relative rate--tui-icon-collection-fill sk-pseudo sk-pseudo-circle" data-index="0" style="font-size:14px;color:#ff7900;"></view>
+                      <view class="rate--tui-icon rate--tui-relative rate--tui-icon-collection-fill sk-pseudo sk-pseudo-circle" data-index="1" style="font-size:14px;color:#ff7900;"></view>
+                      <view class="rate--tui-icon rate--tui-relative rate--tui-icon-collection-fill sk-pseudo sk-pseudo-circle" data-index="2" style="font-size:14px;color:#ff7900;"></view>
+                      <view class="rate--tui-icon rate--tui-relative rate--tui-icon-collection-fill sk-pseudo sk-pseudo-circle" data-index="3" style="font-size:14px;color:#ccc;">
+                        <view class="rate--tui-icon rate--tui-icon-main rate--tui-icon-collection-fill sk-pseudo sk-pseudo-circle" style="font-size:14px;color:#ff7900;width:100%"></view>
+                      </view>
+                      <view class="rate--tui-icon rate--tui-relative rate--tui-icon-collection-fill sk-pseudo sk-pseudo-circle" data-index="4" style="font-size:14px;color:#ccc;"></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,479 @@
+
+.container {
+    padding: 0;
+    padding-bottom: 100rpx;
+  
+    height: 100vh;
+    width: 100vw;
+  }
+  .tui-order-list {
+	width: 100%;
+	padding: 0 25rpx;
+	margin-top: 40rpx;
+	box-sizing: border-box;
+}
+.tui-order-item {
+	margin-top: 20rpx;
+	border-radius: 12rpx;
+	box-shadow: 0 5rpx 10rpx 0 rgba(0, 0, 0, 0.06);
+	overflow: hidden;
+}
+
+.tui-goods-title {
+	width: 100%;
+	font-size: 28rpx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.schedule-title-box
+{
+
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 20rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.schedule-title
+{
+    font-size: 30rpx;
+    font-weight: bold;
+}
+.schedule-des
+{
+    font-size: 24rpx;
+    color: rgb(173, 173, 173);
+
+}
+.schedule-item-box
+{
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 20rpx 10rpx;
+    align-items: center;
+}
+.class-item-li
+{
+    background-color: #f5f5f5;
+    color: #333;
+    height: 120rpx;
+    width: 260rpx;
+    border-radius: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.li-title{
+    font-size: 30rpx;
+    font-weight: bold;
+    line-height: 50rpx;
+    height: 50rpx;
+
+}
+.li-des{
+    font-size: 24rpx;
+    line-height: 42rpx;
+    height: 42rpx;
+}
+.class-item-li.active,.store-item-box.active{
+    color: #ec6b4c;
+    background-color: #fcefec;
+}
+/* 门店 */
+.store-item-box
+{
+    
+    margin-top:20rpx;
+    width: 100%;
+    height: 200rpx;
+    background-color: #f5f5f5;
+    color: #333;
+    border-radius: 20rpx;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding:15rpx 20rpx;
+}
+.store-item-box-none{
+  margin-top:20rpx;
+  width: 100%;
+  height: 200rpx;
+  background-color: #f5f5f5;
+  color: #333;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content:center;
+  flex-direction: column;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding:15rpx 20rpx;
+
+
+
+}
+
+
+.item-box-ico
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    line-height: 50rpx;
+
+}
+.item-box-none{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color:rgb(173, 173, 173);
+  padding: 10rpx 0;
+
+  font-size: 28rpx;
+  line-height: 40rpx;
+
+}
+.item-box-animation{
+    animation: scale 1s infinite;/* 定义keyframe动画，命名为blink */
+    -webkit-animation: scale .5s 1;/* 定义keyframe动画，命名为blink */
+
+}
+/* 定义keyframe动画，命名为blink */
+@keyframes scale{
+    0%{color: rgb(173, 173, 173);font-size: 28rpx;}
+    50%{color: rgb(173, 173, 173);font-size: 30rpx;}
+    100%{color: rgb(173, 173, 173);font-size: 28rpx;}
+  }
+  
+  @-webkit-keyframes scale{
+    0%{color: rgb(173, 173, 173);font-size: 28rpx;}
+    50%{color: rgb(173, 173, 173);font-size: 30rpx;}
+    100%{color: rgb(173, 173, 173);font-size: 28rpx;}
+  }
+
+.item-box-l
+{
+    width: 170rpx;
+    height: 170rpx;
+    flex:2;
+}
+.item-box-r
+{
+
+    flex:5;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20rpx;
+
+}
+.store-img
+{
+    width: 170rpx;
+    height: 170rpx;
+    border-radius: 20rpx;
+}
+.box-r-title
+{
+    height: 80rpx;
+    line-height: 40rpx;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+.box-r-star,.box-r-address
+{
+    height: 50rpx;
+    line-height: 50rpx;
+}
+/* 教练选择 */
+.coach-item-box{
+  height: 240rpx;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 100%;
+}
+.tui-scroll-h {
+	width: 100%;
+	height: 240rpx;
+  background-color: #ffffff;
+  
+	display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+
+  padding: 0 3% 0 0;
+  box-sizing: border-box;
+}
+.coach-item
+{
+  display: inline-block;
+  flex-wrap: nowrap;
+  /* padding:0 22rpx; */
+  height: 200rpx;
+  width: 140rpx ;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 20rpx 20rpx;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+   border-radius: 6rpx; 
+
+}
+.coach-item.active{
+  color: #ec6b4c;
+  background-color: #fcefec;
+}
+.item-img-box{
+  height: 180rpx;
+  width: 140rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0;
+  
+}
+.item-img
+{
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.item-name
+{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+/* ============日期选择模块===================== */
+.data-list
+{
+  height: 150rpx;
+  width: 100%;
+  border-bottom: 1px solid rgb(230, 230, 230);
+}
+.tui-tab-item {
+	display: inline-block;
+	flex-wrap: nowrap;
+	padding:0 16rpx;
+}
+
+.select-data{
+  height: 150rpx;
+  box-sizing: border-box;
+  width: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+  /* border-bottom: 1px solid #f6f6f6; */
+
+  background-color: #fff;
+overflow: hidden;
+ 
+}
+.select-date-title{
+  height: 130rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 3% 40rpx 3%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f8f8f8;
+    margin-bottom: 15rpx;
+
+}
+.select-date-title .title-date{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title-date .date-day{
+  color: #4184db;
+  font-size:50rpx;
+  margin-right: 16rpx;
+}
+.title-date .date-all
+{
+  display: flex;
+  align-items:flex-start;
+  flex-direction: column;
+  font-size:26rpx;
+  margin-right: 10rpx;
+  color: #888;
+}
+ .date-all .day-week{
+   margin-bottom: 6rpx;
+ }
+.select-date-title .title-menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #888;
+}
+.title-menu .menu-thisdate,.title-menu .menu-addclass
+{
+  margin: 0 0 0 20rpx;
+}
+.title-menu .menu-addclass
+{
+  /* color: #f74d54; */
+}
+
+
+
+
+
+.select-data .tui-line-h {
+  position: relative;
+  background-color: rgb(243, 243, 243);
+  height: 1rpx;
+}
+.select-data .tui-line-h::after {
+	content: '';
+	position: absolute;
+	border-bottom: 1rpx solid #eaeef1;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transform-origin: 0 100%;
+}
+
+
+.select-data .tui-tab-item-active{
+  background-color: #319fa6;/*#cbfcff;*/
+  
+  border-radius: 12rpx;
+}
+
+
+.select-data .tui-badge-item {/* 角标 */
+
+  position: relative;
+  margin-top: 20rpx; /* 不然角标出不来 */
+}
+
+.select-data .tui-tab-item-week
+{
+  font-size: 12px;
+  color: #888;
+	height: 30rpx;
+	line-height: 30rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select-data .tui-tab-item-title {
+	color: #555;
+	
+  height: 60rpx;
+  width: 60rpx;
+	line-height: 60rpx;
+	flex-wrap: nowrap;
+  white-space: nowrap;
+  font-weight: bold;
+  box-sizing: border-box;
+  display: flex;
+  align-items:baseline;
+  justify-content: center;
+  margin: 20rpx 0 0 0;
+
+}
+.tab-item-mon
+{
+    font-size: 20rpx;
+    font-weight:normal;
+}
+.tab-item-day
+{
+    font-size: 26rpx;
+}
+.select-data  .tui-tab-item-title-active {/* 选中是圆形 */
+  color: #fff;
+  
+  background: #ec6b4c;/*#ff7900;*/
+  border-radius: 20rpx;
+  /* border-bottom: 6rpx solid #fe8e61; 
+  box-sizing: border-box;
+  这是下划线*/
+}
+.tui-data-list {
+  width: 100%;
+  margin: 10rpx 0;
+  /* padding: 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+/* 日期选择模块 End*/
+
+
+/* 排课时间 */
+.tui-box {
+  width: 100%;
+  background: #fff;
+  /* box-shadow: 0 3rpx 20rpx rgba(183, 183, 183, 0.1);
+  border-radius: 16rpx; */
+  overflow: hidden;
+}
+.time-box{
+  width: 100%;
+ padding: 30rpx 10rpx 20rpx 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  flex: 1 !important;
+
+}
+
+.time-box-li{
+/* flex: 1; */
+flex-basis: 15.8%;
+   width: 15.8%; 
+  box-sizing: border-box;
+ margin: 15rpx 2%;
+  padding: 5rpx 0;
+  
+  border: 1px solid #666;
+  color: #666;
+  /* margin: 15rpx 3% 0 0; */
+  /* padding: 5rpx 5rpx; */
+  /* flex-basis: 15%; */
+
+  text-align: center;
+}
+.li-active
+{
+  border: 1px solid #ff7900;
+  color: #ff7900;
+  background-color:#ff7900;
+  color: #fff;
+}
+.li-active-no
+{
+  border: 1px solid #666;
+  color: #ff7900;
+  background-color:#999;
+  color: #fff;
+}
+.sub-bottom-box
+{
+  margin: 40rpx 0 100rpx 0;
+}
+
+.tui-loading-more {
+  width: 100%;
+
+}

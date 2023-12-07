@@ -1,0 +1,39 @@
+.tui-list-cell {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tui-radius {
+  overflow: hidden;
+}
+
+.tui-cell-hover:active {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.tui-cell__line {
+  position: absolute;
+  border-bottom: 1px solid #eaeef1;
+  -webkit-transform: scaleY(0.5) translateZ(0);
+  transform: scaleY(0.5) translateZ(0);
+  transform-origin: 0 100%;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.tui-cell__arrow {
+  height: 10px;
+  width: 10px;
+  border-width: 2px 2px 0 0;
+  border-color: #c0c0c0;
+  border-style: solid;
+  -webkit-transform: matrix(0.5, 0.5, -0.5, 0.5, 0, 0);
+  transform: matrix(0.5, 0.5, -0.5, 0.5, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -6px;
+  right: 30rpx;
+}

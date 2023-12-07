@@ -1,0 +1,254 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <view is="components/privacy-dialog/privacy-dialog">
+      <view class="dialog--tui-dialog__mask dialog--tui-mask_hidden"></view>
+    </view>
+    <view class="tui-maps-container">
+      <view class="tui-cover-back" style="top: 48px;">
+        <view is="components/ksald/ald-icon/ald-icon">
+          <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-left ald-icon--tn-icon-left sk-pseudo sk-pseudo-circle" style="color: #000;font-size: 22px;font-weight:normal;margin:0;padding:0;"></text>
+        </view>
+      </view>
+      <view class="cover-menu" style="top: 48px;">
+        <view class="menu-item active sk-transparent sk-text-16-0000-501 sk-text">列表</view>
+        <view class="menu-item sk-transparent sk-text-20-0000-535 sk-text">地图</view>
+      </view>
+      <view class="action-box">
+        <view class="action-l">
+          <view class="tui-drop-input-box">
+            <view is="components/thorui/tui-dropdown-list/tui-dropdown-list">
+              <view>
+                <view class=" list--tui-dropdown-list" style="height: 25px">
+                  <view>
+                    <view class="tui-button-box sk-transparent" data-index="-1">
+                      全部门店
+                      <view class="tui-animation">
+                        <view is="components/thorui/tui-icon/tui-icon">
+                          <text class="tui-icon tui-icon--tui-icon tui-icon-turningdown tui-icon--tui-icon-turningdown sk-pseudo sk-pseudo-circle" style="color: #999;font-size: 20px;font-weight:normal;margin:0;padding:0"></text>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="list--tui-dropdown-view" style="background-color: transparent; height: 0px;top: 26px">
+                    <view>
+                      <view class="tui-selected-list">
+                        <scroll-view scroll-y="true" class="tui-dropdown-scroll" style="height: 150px;">
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="0">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-60 sk-text">昆山市</text>
+                              </view>
+                              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+                            </view>
+                          </view>
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="1">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-158 sk-text">常熟市 </text>
+                              </view>
+                              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+                            </view>
+                          </view>
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="2">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-900 sk-text">姑苏区 </text>
+                              </view>
+                              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+                            </view>
+                          </view>
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="3">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-140 sk-text">虎丘区</text>
+                              </view>
+                              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+                            </view>
+                          </view>
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="4">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-658 sk-text">太仓市 </text>
+                              </view>
+                              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+                            </view>
+                          </view>
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="5">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-884 sk-text">吴江区 </text>
+                              </view>
+                              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+                            </view>
+                          </view>
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="6">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-13 sk-text">吴中区</text>
+                              </view>
+                              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+                            </view>
+                          </view>
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="7">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-682 sk-text">相城区 </text>
+                              </view>
+                              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+                            </view>
+                          </view>
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="8">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-442 sk-text">张家港市</text>
+                              </view>
+                              <view class="cell--tui-cell__line" style="border-bottom-color:#eaeef1;left:15px;right:0px"></view>
+                            </view>
+                          </view>
+                          <view is="components/thorui/tui-list-cell/tui-list-cell" data-index="9">
+                            <view class=" cell--tui-list-cell cell--tui-cell-hover" style="background-color: #fff;font-size: 14px;color:#333;padding:0;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+                              <view class="tui-cell-class">
+                                <text class="sk-transparent sk-text-14-2857-467 sk-text">苏州工业园区 </text>
+                              </view>
+                            </view>
+                          </view>
+                        </scroll-view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="action-r">
+          <view class="search-bar">
+            <view class="search-bar-form">
+              <view class="search-bar-box">
+                <icon class="icon-search-in-box sk-image" color="#EFEFEF" size="14px" type="search"></icon>
+                <view class="search-bar-input sk-image" placeholder="请输入门店关键字" value="true"></view>
+              </view>
+              <view class="search-bar-label">
+                <icon class="icon-search sk-image" color="#EFEFEF" size="14px" type="search"></icon>
+                <view class="search-bar-text sk-transparent sk-text-0-0000-851 sk-text">请输入门店关键字</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <scroll-view enable-back-to-top="true" refresher-enabled="true" scroll-y="true" class="tui-scroll-v" refresher-background="#fafafa" refresher-threshold="100" style="height:calc(92vh - env(safe-area-inset-bottom) - 77px)">
+        <view class="tui-list">
+          <view class="store-list-cell" data-id="2" data-lat="31.375381" data-lng="120.972822">
+            <image class="store-bg sk-image"></image>
+            <view class="store-select">
+              <view class="btn_box" data-address="昆山市开发区黄河中路金鹰国际购物中心8F" data-distanc="1.35km" data-id="2" data-index="0" data-lat="31.375381" data-lng="120.972822" data-poster="https://files.aoben.yoga/web-images/2023/11/16/20231116%5C18687318ef785ba7a3a68d2757c384ac.jpg"
+                data-score="3" data-title="金鹰国际购物中心店">
+                <view is="components/ksald/ald-icon/ald-icon">
+                  <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-success-square ald-icon--tn-icon-success-square sk-pseudo sk-pseudo-circle" style="color: #fff;font-size: 20px;font-weight:normal;margin:0 0 0 0;padding:0;"></text>
+                </view>
+                <text class="btn_box-text false sk-transparent sk-text-14-2857-56 sk-text">切换</text>
+              </view>
+            </view>
+            <view class="store-mask-skeleton">
+              <view class="store-l">
+                <view class="store-l-title sk-transparent sk-opacity">金鹰国际购物中心店</view>
+                <view class="store-l-address line-one sk-transparent sk-opacity">昆山市开发区黄河中路金鹰国际购物中心8F</view>
+              </view>
+              <view class="store-r">
+                <view class="store-distance sk-transparent sk-text-18-7500-5 sk-text">距您约: 1.35km</view>
+                <view class="store-time">
+                  <view is="components/ksald/ald-icon/ald-icon">
+                    <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-time ald-icon--tn-icon-time sk-pseudo sk-pseudo-circle" style="color: #fff;font-size: 11px;font-weight:normal;margin:0 4px 0 0;padding:0;"></text>
+                  </view>
+                  <text class="sk-transparent sk-text-12-5000-552 sk-text">00:00 ~ 23:59</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="store-list-cell" data-id="1" data-lat="31.402875" data-lng="120.979816">
+            <image class="store-bg sk-image"></image>
+            <view class="store-select">
+              <view class="btn_box" data-address="昆山市周市镇萧林东路5018号都汇广场2号楼4室" data-distanc="2.03km" data-id="1" data-index="1" data-lat="31.402875" data-lng="120.979816" data-poster="https://files.aoben.yoga/web-images/2023/11/16/20231116%5Cedd2af8144b29aa602bd3157fc42913f.jpg"
+                data-score="4" data-title="中楠都汇店">
+                <view is="components/ksald/ald-icon/ald-icon">
+                  <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-success-square ald-icon--tn-icon-success-square sk-pseudo sk-pseudo-circle" style="color: #fff;font-size: 20px;font-weight:normal;margin:0 0 0 0;padding:0;"></text>
+                </view>
+                <text class="btn_box-text false sk-transparent sk-text-14-2857-130 sk-text">切换</text>
+              </view>
+            </view>
+            <view class="store-mask-skeleton">
+              <view class="store-l">
+                <view class="store-l-title sk-transparent sk-opacity">中楠都汇店</view>
+                <view class="store-l-address line-one sk-transparent sk-opacity">昆山市周市镇萧林东路5018号都汇广场2号楼4室</view>
+              </view>
+              <view class="store-r">
+                <view class="store-distance sk-transparent sk-text-18-7500-701 sk-text">距您约: 2.03km</view>
+                <view class="store-time">
+                  <view is="components/ksald/ald-icon/ald-icon">
+                    <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-time ald-icon--tn-icon-time sk-pseudo sk-pseudo-circle" style="color: #fff;font-size: 11px;font-weight:normal;margin:0 4px 0 0;padding:0;"></text>
+                  </view>
+                  <text class="sk-transparent sk-text-12-5000-847 sk-text">00:00 ~ 23:59</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="store-list-cell" data-id="5" data-lat="31.404616" data-lng="120.962323">
+            <image class="store-bg sk-image"></image>
+            <view class="store-select">
+              <view class="btn_box" data-address="昆山市紫竹路九方城内街1-10室" data-distanc="2.88km" data-id="5" data-index="2" data-lat="31.404616" data-lng="120.962323" data-poster="https://files.aoben.yoga/web-images/2023/11/16/20231116%5C568ea2d4ef3e032829e81ad376f220bc.jpg"
+                data-score="5" data-title="九方店">
+                <view is="components/ksald/ald-icon/ald-icon">
+                  <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-success-square ald-icon--tn-icon-success-square sk-pseudo sk-pseudo-circle" style="color: #fff;font-size: 20px;font-weight:normal;margin:0 0 0 0;padding:0;"></text>
+                </view>
+                <text class="btn_box-text false sk-transparent sk-text-14-2857-983 sk-text">切换</text>
+              </view>
+            </view>
+            <view class="store-mask-skeleton">
+              <view class="store-l">
+                <view class="store-l-title sk-transparent sk-opacity">九方店</view>
+                <view class="store-l-address line-one sk-transparent sk-opacity">昆山市紫竹路九方城内街1-10室</view>
+              </view>
+              <view class="store-r">
+                <view class="store-distance sk-transparent sk-text-18-7500-92 sk-text">距您约: 2.88km</view>
+                <view class="store-time">
+                  <view is="components/ksald/ald-icon/ald-icon">
+                    <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-time ald-icon--tn-icon-time sk-pseudo sk-pseudo-circle" style="color: #fff;font-size: 11px;font-weight:normal;margin:0 4px 0 0;padding:0;"></text>
+                  </view>
+                  <text class="sk-transparent sk-text-12-5000-593 sk-text">00:00 ~ 23:59</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="store-list-cell" data-id="8" data-lat="31.390817" data-lng="120.940512">
+            <image class="store-bg sk-image"></image>
+            <view class="store-select">
+              <view class="btn_box" data-address="昆山市玉山镇冠军路8号昆玉九里会所一楼" data-distanc="3.98km" data-id="8" data-index="3" data-lat="31.390817" data-lng="120.940512" data-poster="https://files.aoben.yoga/web-images/2023/11/16/20231116%5C872fee61225181b3f069758ce4e29cdf.jpg"
+                data-score="0" data-title="昆玉九里店">
+                <view is="components/ksald/ald-icon/ald-icon">
+                  <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-success-square ald-icon--tn-icon-success-square sk-pseudo sk-pseudo-circle" style="color: #fff;font-size: 20px;font-weight:normal;margin:0 0 0 0;padding:0;"></text>
+                </view>
+                <text class="btn_box-text false sk-transparent sk-text-14-2857-964 sk-text">切换</text>
+              </view>
+            </view>
+            <view class="store-mask-skeleton">
+              <view class="store-l">
+                <view class="store-l-title sk-transparent sk-opacity">昆玉九里店</view>
+                <view class="store-l-address line-one sk-transparent sk-opacity">昆山市玉山镇冠军路8号昆玉九里会所一楼</view>
+              </view>
+              <view class="store-r">
+                <view class="store-distance sk-transparent sk-text-18-7500-576 sk-text">距您约: 3.98km</view>
+                <view class="store-time">
+                  <view is="components/ksald/ald-icon/ald-icon">
+                    <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-time ald-icon--tn-icon-time sk-pseudo sk-pseudo-circle" style="color: #fff;font-size: 11px;font-weight:normal;margin:0 4px 0 0;padding:0;"></text>
+                  </view>
+                  <text class="sk-transparent sk-text-12-5000-833 sk-text">00:00 ~ 23:59</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="store-list-cell" data-id="9" data-lat="31.390817" data-lng="120.940512"></view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</template>

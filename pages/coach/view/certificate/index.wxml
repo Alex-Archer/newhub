@@ -1,0 +1,25 @@
+<view class="container">
+    <view class="tui-order-list">
+        
+        <tui-loadmore wx:if="{{loading}}" index="3" ></tui-loadmore>
+        <tui-no-data wx:if="{{!loading&&noDataShow}}" bindtap="addCertificate" backgroundColor="#ff7900" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_nodata.png" contentColor="#999" contentSize="24rpx">暂无相关证书!</tui-no-data>
+
+        <view wx:if="{{!loading}}" class="tui-order-item" wx:for="{{storeList}}" wx:for-item="item" wx:for-index="index" wx:key="index" bindtap="detail">
+            <!-- 循环区 -->
+            <view class="thorui-panel" wx:if="{{item.state==1}}">
+                <view class="thorui-panel__hd box-panel">
+                    <view class="box-title">{{item.type.title}}</view> 
+     
+                </view>
+                <view class="thorui-media-box-this thorui-unlined">
+                    <view class="thorui-media-box__bd">
+                        <image class="certificate-img" src="{{item.poster}}" mode="widthFix"></image>
+                    </view>
+                </view>
+            </view>
+            <!-- 循环区EDN -->
+        </view>
+
+
+    </view>
+</view>

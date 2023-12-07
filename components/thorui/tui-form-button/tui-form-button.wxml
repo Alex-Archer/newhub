@@ -1,0 +1,30 @@
+<button	class="tui-form-button {{bold ? 'tui-text-bold' : ''}} {{time && !plain && !link ? 'tui-button__active' : ''}} {{time && (plain || link) ? 'tui-button__opacity' : ''}} {{disabled && !disabledBackground ? 'tui-button__opacity' : ''}}" style="width: {{parse.getWidth(width,btnSize)}};height: {{parse.getHeight(height,btnSize,g_height)}};	line-height: {{parse.getHeight(height,btnSize,g_height)}};font-size: {{size || g_size}}rpx;margin: {{margin}};	background: {{disabled && disabledBackground ? disabledBackground : plain || link ? 'transparent' : (background || g_background)}};	border-color: {{borderColor ? borderColor : disabled && disabledBackground ? disabledBackground : link ? 'transparent' : (background || g_background)}};color: {{disabled && disabledBackground ? disabledColor : (color || g_color)}};border-radius: {{radius || g_radius}};border-width: {{borderWidth}};" loading="{{loading}}" form-type="{{formType}}" app-parameter="{{appParameter}}"	open-type="{{openType}}"	bindgetuserinfo="bindgetuserinfo"	bindgetphonenumber="bindgetphonenumber" bindchooseavatar="bindchooseavatar" bindlaunchapp="bindlaunchapp"	bindcontact="bindcontact"	binderror="binderror"	disabled="{{disabled}}"	bindtouchstart="handleStart" bindtouchend="handleClick"	bindtouchcancel="handleEnd" bindopensetting="bindopensetting"><slot></slot></button>
+
+<wxs module="parse">
+  module.exports={
+    getWidth:function(width,btnSize) {
+        //medium 184*40 / small 120 40/ mini 58*32 
+      var btnWidth = width
+				if (btnSize && btnSize !== true) {
+					btnWidth = {
+						'medium': '368rpx',
+						'small': '240rpx',
+						'mini': '116rpx'
+					} [btnSize] || width
+				}
+				return btnWidth
+			},
+			getHeight:function(height,btnSize,g_height) {
+				//medium 184*40 / small 120 40/ mini 58*32
+				var btnHeight = height || g_height;
+				if (btnSize && btnSize !== true) {
+					btnHeight = {
+						'medium': '80rpx',
+						'small': '80rpx',
+						'mini': '64rpx'
+					} [btnSize] || btnHeight
+				}
+				return btnHeight
+			}
+  }
+</wxs>

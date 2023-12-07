@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "privacy-dialog": "/components/privacy-dialog/privacy-dialog"
+  },
+  "navigationBarTitleText": "",
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff"
+
+}
+

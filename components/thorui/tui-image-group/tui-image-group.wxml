@@ -1,0 +1,7 @@
+<view class="tui-image-container {{direction == 'column'?'tui-image-direction':''}} {{multiLine?'tui-image__warp':''}}" style="margin-bottom: {{multiLine ?'-'+ distance+'rpx' : 0 }}">
+	<view wx:for="{{imageList}}" wx:key="index" class="tui-image-item_box" style="width: {{width}};height: {{height}};border-radius: {{radius}};margin-left: {{direction == 'column' || multiLine  ? 0 : (index && distance) + 'rpx'}};margin-top: {{direction == 'row' ? 0 : (index && distance) + 'rpx'}};margin-right:{{multiLine ? distance + 'rpx' : 0}};margin-bottom:{{multiLine ? distance + 'rpx' : 0}}" bindtap="bindClick" data-index="{{index}}" data-id="{{item.id}}">
+		<image class="tui-image-item" mode="{{mode}}" lazy-load="{{lazyLoad}}" fade-show="{{fadeShow}}" webp="{{webp}}" show-menu-by-longpress="{{longpress}}" binderror="error" bindload="load" style="width: {{width}}; height: {{height}}; border-radius: {{radius}}; border-width: {{borderWidth}}; border-color: {{borderColor}}" src="{{item.src}}"></image>
+		<!-- <slot /> 报错 More than one slot named "" are found inside a single component instance -->
+	</view>
+    <view wx:if="{{showMore}}" class="more" style="height: {{height}};line-height: {{height}};width:{{width}};font-size: 40rpx;margin-left: -15px;">...</view>
+</view>

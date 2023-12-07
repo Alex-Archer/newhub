@@ -1,0 +1,83 @@
+<privacy-dialog fixedbottom="25vh" mask="true" bottomShowType="{{1}}" bind:agree="agree" bind:disagree="disagree"></privacy-dialog>
+<wxs src="/wxs/utils.wxs" module="utilParse"></wxs>
+<view class="tui-maps-container" wx:if="{{!preventOnShow}}">
+        <map id="maps" class="tui-map" show-location longitude="{{lng}}" latitude="{{lat}}" scale="{{scale}}" bindregionchange="regionchange" markers="{{covers}}" bindmarkertap="marker" id="map" min-scale="{{minScale}}" max-scale="{{maxScale}}" setting="{{setting}}" enable-overlooking="{{isOverLooking}}">
+        <cover-image style="top: {{statusBar}}px;" class="tui-cover-back" src="/static/img/map/icon_back_3x.png" catchtap="back" />
+        <cover-image wx:if="{{!showActionSheet}}" src="/static/img/map/icon_location_3x.png" class="tui-current-img" catchtap="currentLocation"></cover-image>
+        <cover-view wx:if="{{!showActionSheet}}" class="cover-des">拖动地图可搜索周边门店</cover-view>
+    </map>
+    <view class="search-bar">
+        <view class="search-bar-form">
+            <view class="search-bar-box">
+                <icon class="icon-search-in-box" type="search" size="{{14}}" color="#999"></icon>
+                <input confirm-type="search" class="search-bar-input" placeholder="请输入门店关键字" value="{{inputVal}}" focus="{{inputShowed}}" bindconfirm="bindInput" bindinput="inputTyping" />
+                <view class="icon-clear" wx:if="{{inputVal}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <view class="search-bar-label" wx:if="{{!inputShowed}}" bindtap="showInput">
+                <icon class="icon-search" type="search" size="14" color="#999"></icon>
+                <view class="search-bar-text">请输入门店关键字</view>
+            </view>
+        </view>
+        <view class="cancel-btn" bindtap="hideInput" wx:if="{{inputShowed}}">取消</view>
+    </view>
+   
+    <scroll-view scroll-y class="tui-scroll-view" style="height:60vh" bindscrolltolower="pullUp">
+        <view class="tui-list">
+            <block wx:for="{{address}}" wx:for-item="item" wx:key="index">
+                <view class="tui-list-cell {{index == address.length - 1 ? 'tui-cell-last' : ''}}" bind:tap="toLocation" data-lat="{{item.latitude}}" data-lng="{{item.longitude}}" data-id="{{item.id}}">
+                    <view class="tui-item-box">
+                        <view class="tui-msg-box">
+                            <image src="{{item.poster}}" class="tui-msg-pic"></image>
+                            <view class="tui-msg-item">
+                                <view class="tui-msg-name">{{ item.title }}</view>
+                                <view class="tui-msg-score">
+                                    <text>{{utilParse.formatNumber(item.score)}} 分</text>
+                                    <tui-rate size="{{14}}" current="{{item.score}}" active="#ff7900" hollow="{{true}}" disabled="{{true}}" score="{{1}}"></tui-rate>
+                                    <text style="color: #696d6e;margin-left: 10rpx;">{{item.commentnum>0?item.commentnum+'条评价':''}}</text>
+                                </view>
+                                <view class="tui-msg-address">{{ item.address }}</view>
+                                <view class="tui-msg-tag">
+                                    <block wx:for="{{item.label}}" wx:for-item="tag" wx:for-index="idx" wx:key="idx">
+                                        <tui-tag margin="20rpx 10rpx 0 0" padding="5rpx" size="24rpx" type="{{idx%2==1?'light-blue':'light-orange'}}">{{tag}}</tui-tag>
+                                    </block>
+
+                                    
+                                </view>
+                            </view>
+                        </view>
+                        <view class="tui-msg-right">
+                            <view class="tui-msg-time">{{parse.getDistance(addressDistanc,index) }}</view>
+                            <view  class="btn_box" catchtap="selectLocation" data-poster="{{item.poster}}" data-index="{{index}}" data-distanc="{{parse.getDistance(addressDistanc,index) }}" data-score="{{item.score}}" data-title="{{item.title}}" data-lat="{{item.latitude}}" data-lng="{{item.longitude}}" data-id="{{item.id}}" data-address="{{item.address}}">
+                                <ald-icon margin="0 0 0 0" size="1.5" unit="rem" name="success-square" color="{{paramStoreID==item.id?'red':'#999'}}"></ald-icon>
+                                <text class="btn_box-text {{paramStoreID==item.id&&'active'}}">{{paramStoreID==item.id?'当前':'选择'}}</text>
+                            </view>
+                            <tui-badge type="danger" class="tui-badge">
+
+                            </tui-badge>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <tui-loadmore index="{{3}}" wx:if="{{loading}}"></tui-loadmore>
+        </view>
+    </scroll-view>
+</view>
+<tui-actionsheet show="{{showActionSheet}}" tips="{{tips}}" item-list="{{actionItemList}}" mask-closable="{{maskClosable}}" color="{{color}}" size="{{size}}" is-cancel="{{isCancel}}" bindclick="actionItemClick" bindcancel="closeActionSheet"></tui-actionsheet>
+<wxs module="parse">
+    module.exports = {
+        getDistance: function (_addressDistanc, _i) {
+
+            distance = _addressDistanc[_i] || 0;
+            var result = '';
+            if (distance < 1000) {
+                result = distance + 'm';
+            } else {
+                result = (distance / 1000).toFixed(2) + 'km';
+            }
+            return result;
+        }
+    }
+
+</wxs>

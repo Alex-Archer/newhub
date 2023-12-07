@@ -1,0 +1,110 @@
+<wxs src="/wxs/utils.wxs" module="parseUtils"></wxs>
+<wxs src="/wxs/date.wxs" module="date" />
+<view class="container">
+
+		<scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{scrollInto}}">
+    <view class="tab-item-box">
+			<view wx:for="{{tabBars}}"  wx:for-item="tab" wx:key="index" class="tui-tab-item" id="{{tab.id}}" data-current="{{index}}" bindtap="tabClick">
+				<view class="tui-tab-item-title {{tabIndex == index?'tui-tab-item-title-active':''}}" >{{ tab.name }}</view>
+			</view>
+    </view>
+		</scroll-view>
+		<!-- <view class="tui-line-h"></view> -->
+		<swiper current="{{tabIndex}}" class="tui-swiper-box" duration="300" bindchange="tabChange">
+			<swiper-item class="tui-swiper-item" wx:for="{{newsList}}"  wx:for-item="tab" wx:for-index="index1" wx:key="index1">
+				<scroll-view class="tui-scroll-v"	refresher-enabled	refresher-triggered="{{tab.refreshing}}"	refresher-background="#fafafa"	enable-back-to-top	refresher-threshold="{{100}}"	scroll-y	bindscrolltolower="loadMore"  data-index="{{index1}}"	bindrefresherrefresh="onrefresh">
+
+
+    <view class="tui-order-list">
+			<view class="tui-order-item" wx:for="{{tab.data}}" wx:for-item="item" wx:for-index="index" wx:key="index" bindtap="detail">
+
+<block wx:if="{{tabIndex==0}}">	
+        <!-- 循环区 -->
+        <view class="thorui-panel">
+				<view class="thorui-panel__hd">课程打卡到店提醒</view>
+				<view class="thorui-media-box thorui-unlined" hover-class="thorui-cell_active" hover-stay-time="{{150}}">
+					<view class="thorui-media-box__bd">
+						<view class="thorui-media-box__desc">减脂塑形A款 30节</view>
+						<view class="thorui-media-box__info">
+							<view class="thorui-info__meta">昨天</view>
+							<view class="thorui-info__meta">15:30</view>
+							<view class="thorui-info__extra">其它信息</view>
+						</view>
+					</view>
+				</view>
+			</view>
+        <!-- 循环区EDN -->
+</block>
+<block wx:if="{{tabIndex==1}}">
+<!-- 循环区 -->
+<view class="thorui-panel">
+            <view class="thorui-panel__hd">{{item.title}}</view>
+            <view class="thorui-media-box thorui-unlined" hover-class="thorui-cell_active" hover-stay-time="{{150}}">
+              <view class="thorui-media-box__bd">
+                <view class="thorui-media-box__desc">{{item.content}}</view>
+                <view class="thorui-media-box__info">
+                  <!-- <view class="thorui-info__meta">昨天</view> -->
+                  <view class="thorui-info__meta">{{date.format(item.add_time*1000,'yyyy.MM.dd EE')}}</view>
+                  <view class="thorui-info__extra">{{msgParse.getMsgType(item.type)}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+<!-- 循环区EDN -->
+</block>
+
+			</view>
+                    <!-- 更多 -->
+                    <view class="tui-loading-more">
+                        <tui-loadmore wx:if="{{tab.isLoading}}" index="3" ></tui-loadmore>
+                        <block wx:if="{{!tab.isLoading}}">
+                            <tui-no-data wx:if="{{tab.noData}}" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无相关消息</tui-no-data>
+                            <tui-nomore wx:if="{{!tab.noData&&tab.pageIndex >= tab.lastPage}}"  backgroundColor="#fafafa"></tui-nomore>
+                        </block>
+                    </view>
+                    <!-- 更多END --> 
+		</view>
+
+        
+
+
+          <!-- 内END -->    
+
+				</scroll-view>
+			</swiper-item>
+		</swiper>
+
+</view>
+
+<coach-tabbar selectedColor="#ff7900" isFixed="{{true}}" tabBar="{{tabBar}}" hump="{{true}}" current="{{tabBarCurrent}}" bindclick="tabbarSwitch"></coach-tabbar>
+<wxs module="msgParse">
+    module.exports = {
+        getMsgType: function (_type) {
+
+            var result = '';
+            switch(_type){
+              case 0:
+                result = "系统通知"
+                break;
+              case 1:
+                result = "客服消息"
+                break;
+              case 2:
+                result = "发货通知"
+                break;
+              case 3:
+                result = "收货通知"
+                break;
+              case 4:
+                result = "付款通知"
+                break;
+              default:
+                result = "系统通知"
+                break;
+            }
+
+            return result;
+        }
+    }
+
+</wxs>

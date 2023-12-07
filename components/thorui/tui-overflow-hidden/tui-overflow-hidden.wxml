@@ -1,0 +1,8 @@
+<view
+  class="tui-overflow__text {{type==1?'tui-overflow__hidden':''}} {{type==2 && !removeGradient?'tui-gradient__hidden':''}} {{lineClamp==1 && type==1?'tui-text__nowrap':''}}"
+  style="border-radius: {{radius}};width:{{width}};height:{{type==1?'auto':(removeGradient?'auto':height)}};padding:{{type==2?padding:'0'}};background:{{backgroundColor}};font-size:{{size}}rpx;color:{{color}};font-weight:{{bold?'bold':'normal'}};-webkit-line-clamp:{{type==1?lineClamp:'none'}};text-overflow:{{textOverflow}}"
+  bindtap="handleClick">
+  <slot></slot>
+  <view class="tui-gradient__box" style="background:-webkit-linear-gradient(top,rgba(255,255,255,0), {{gradientColor}} 100%)"
+    wx:if="{{type==2 && !removeGradient}}"></view>
+</view>

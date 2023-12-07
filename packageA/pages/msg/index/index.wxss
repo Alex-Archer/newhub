@@ -1,0 +1,67 @@
+.container {
+  padding: 20rpx 0 48rpx;
+}
+
+.tui-message-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.tui-title {
+  font-size: 32rpx;
+}
+
+.tui-sub-title {
+  font-size: 24rpx;
+  color: #999;
+  padding-top: 4rpx;
+}
+
+.tui-title-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tui-icon-box {
+  width: 66rpx;
+  height:66rpx;
+  color: #fff;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.tui-bg-danger {
+  background-color: #EB0909;
+}
+
+.tui-bg-warning {
+  background-color: #ff7900;
+}
+
+.tui-bg-success {
+  background-color: #19be6b;
+}
+
+.tui-bg-primary {
+  background-color: #5677fc;
+}
+
+.tui-bg-pink {
+  background-color: #f74d54
+}
+
+.tui-bg-blue {
+  background-color: #007AFF;
+}
+
+
+.tui-top {
+  margin-top: 20rpx;
+}

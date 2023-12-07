@@ -1,0 +1,29 @@
+<view class="container">
+
+  <tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="教练中心" backgroundColor="#fff" color="#333"></tui-navigation-bar>
+  <view class="bg-box">
+    <view class="activity-box" bindtap="activityShow">
+      99元新人礼包
+    </view>
+    <view class="content-list">
+      
+      <view class="list-menu">
+        <view class="menu-item" data-cla="1"   bindtap="detailShow">初级团课</view>
+        <view class="menu-item" data-cla="2"   bindtap="detailShow">进阶团课</view>
+        <view class="menu-item" data-cla="3"   bindtap="detailShow">集训营</view>
+      </view>
+      <view class="list-menu">
+        <view class="menu-item" data-cla="4"   bindtap="detailShow">初级私教</view>
+        <view class="menu-item" data-cla="5"   bindtap="detailShow">进阶私教</view>
+        <view class="menu-item" data-cla="6"   bindtap="detailShow">高级定制</view>
+      </view>
+
+      <view class="adv-cover">
+      推荐广告位
+      </view>
+
+
+    </view>
+  </view>
+
+</view>

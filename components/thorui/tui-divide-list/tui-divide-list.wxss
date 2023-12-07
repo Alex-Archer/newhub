@@ -1,0 +1,58 @@
+.tui-divide-list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tui-divide--item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.tui-divide--line {
+  position: absolute;
+  right: 0;
+  width: 1px;
+  transform: scaleX(0.5);
+  transform-origin: 100% 0;
+}
+
+.tui-divide--text {
+  padding-top: 8rpx;
+}
+
+.tui-divide--value {
+  position: relative;
+}
+
+.tui-badge {
+  position: absolute;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  height: 32rpx;
+  min-width: 20rpx;
+  padding: 0 6rpx;
+  border-radius: 40rpx;
+  right: 0;
+  top: -8rpx;
+  transform: translateX(88%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tui-badge-dot {
+  position: absolute;
+  height: 16rpx;
+  width: 16rpx;
+  border-radius: 50%;
+  right: -8rpx;
+  top: -4rpx;
+  flex-shrink: 0;
+}
