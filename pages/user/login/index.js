@@ -162,6 +162,7 @@ Page({
                     } else {
                         wx.showToast({
                             title: '登录失败，请重试!',
+                            icon: "none"
                         })
                     }
                 }).catch((err) => {
@@ -176,6 +177,7 @@ Page({
             } else {
                 wx.showToast({
                     title: '登录失败，请重试!',
+                    icon: "none"
                 })
 
             }

@@ -11,182 +11,78 @@
   <!-- 类型选择END -->
 
   <!-- 搜索 -->
-  <view class="tui-searchbox {{isSearchFixed&&'fixed'}}" id="searchNavTop">
+  <!-- <view class="tui-searchbox {{isSearchFixed&&'fixed'}}" id="searchNavTop">
 
     <view class="search-bar">
-			<view class="search-bar-form">
-				<view class="search-bar-box">
-					<icon class="icon-search-in-box" type="search" size="{{14}}" color="#999"></icon>
-					<input confirm-type="search" class="search-bar-input" placeholder="请输入搜索关键词" value="{{word}}" focus="{{inputShowed}}"
-					 bindconfirm="bindInput" bindinput="inputTyping" />
-					<view class="icon-clear" wx:if="{{word}}" bindtap="clearInput">
-						<icon type="clear" size="14"></icon>
-					</view>
-				</view>
-				<view class="search-bar-label" wx:if="{{!inputShowed}}" bindtap="showInput">
-					<icon class="icon-search" type="search" size="14" color="#999"></icon>
-					<view class="search-bar-text">请输入搜索关键词</view>
-				</view>
-			</view>
-			<view class="cancel-btn" bindtap="hideInput" wx:if="{{inputShowed}}">取消</view>
-		</view>
+      <view class="search-bar-form">
+        <view class="search-bar-box">
+          <icon class="icon-search-in-box" type="search" size="{{14}}" color="#999"></icon>
+          <input confirm-type="search" class="search-bar-input" placeholder="请输入搜索关键词" value="{{word}}" focus="{{inputShowed}}" bindconfirm="bindInput" bindinput="inputTyping" />
+          <view class="icon-clear" wx:if="{{word}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <view class="search-bar-label" wx:if="{{!inputShowed}}" bindtap="showInput">
+          <icon class="icon-search" type="search" size="14" color="#999"></icon>
+          <view class="search-bar-text">请输入搜索关键词</view>
+        </view>
+      </view>
+      <view class="cancel-btn" bindtap="hideInput" wx:if="{{inputShowed}}">取消</view>
+    </view>
 
-  </view>
+  </view> -->
   <!-- 搜索end -->
 
   <!-- 广告 -->
   <view class="adv-top">
     <!-- <image class="adv-top-img" src="{{globalURL}}/miniprogram/url-img/banner/course/2.jpg" mode="widthFix"></image> -->
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" previous-margin="10rpx" next-margin="10rpx">
-        <swiper-item wx:for="{{banner}}" wx:key="index" class="tui-banner-item">
-          <image src="{{item}}" class="tui-slide-image" mode="scaleToFill" />
-        </swiper-item>
-      </swiper>
+      <swiper-item wx:for="{{banner}}" wx:key="index" class="tui-banner-item">
+        <image src="{{item}}" class="tui-slide-image" mode="scaleToFill" />
+      </swiper-item>
+    </swiper>
   </view>
   <!-- 广告END  -->
 
   <!-- 日期选择===================== -->
-    <view class="select-data " id="dataNavTop">
-<!-- 类别选择 -->
-<view class="type-list" wx:for="{{typeList}}" wx:for-item="typelist" wx:key="index" bindtap="TypeListClick" data-index="{{index}}" data-current="{{typelist}}">
-    <view class="{{clicknum==index?'activeType':''}} list-item">{{typelist.name}}</view>
-  <!-- <view class="list-item">进阶团课</view>
-  <view class="list-item">集训营</view> -->
-</view>
-<!-- 类别选择END -->
+  
+  <view class="select-data " id="dataNavTop">
+    <!-- 类别选择 -->
+    <view class="buy-card-d" wx:for="{{typeList}}" wx:for-item="typelist" wx:key="index" >
+      <view class="{{clicknum==index?'activeType':''}} card-d-item list-item" bindtap="detailShow" data-current="{{typelist}}" data-index="{{index}}">
+        <view class="card-ico">
+          <image src="{{typelist.list_poster}}" class="card-ico-img"></image>
+        </view>
+        <view class="card-des">
+          <view class="card-des-title">{{typelist.title}}</view>
+          <view class="card-des-ms">{{typelist.content}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 类别选择END -->
   </view>
   <!-- 日期选择END ===================== -->
-  <!--下部两块 -->
-  <view class="body-container {{isTypeNavFixed&&'pt'}}">
-    <!-- 左边 -->
-    <view class="left-box">
-      <scroll-view scroll-y scroll-with-animation class="tab-view" scroll-into-view="{{scrollViewId}}" style="height: calc(120vh - env(safe-area-inset-bottom) - 460rpx)">
-        <block wx:for="{{leftBars}}" wx:key="index">
-            <view wx:if="{{item.grade!=0}}" id="id_{{index}}"  class="tab-bar-item {{tabLeftIndex == index ? 'active' : ''}}" data-current="{{index}}" data-id="{{ item.id }}" catchtap="swichNav">
-                <text>{{ item.title }}</text>
-            </view>
-        </block>
-
-      </scroll-view>
-    </view>
-    <!-- 左边 END -->
-    <!-- 右边  -->
-    <view class="right-box">
-    <view class="courseView">
-      <view class="courseTyle">
-        <text>初学</text>
+  <view class="dibu">
+    <view class="dibu_title">
+      <!-- titleImg.png -->
+      <view class="dibu_flx">
+        <image class="title_img" src="{{globalURL}}/miniprogram/sys_images/titleImg.png"></image>{{course_name}}
       </view>
-      <view class="courseBott">
-        <view class="imag">
-          <image mode="scaleToFill" src="https://ssl.aoben.yoga/miniprogram/20231127/caper-l-t.png?v=202311272032" mode=""/>
-        </view>
-        <view class="bottRight">
-          <view class="bottTitle">
-            <view class="title">维度雕刻</view>
-            <view class="price">￥398.00/节</view>
-          </view>
-          <view class="di_flx">
-            <view>
-              <view class="futitle">1节起售 60分钟/次</view>
-              <view class="tag">
-                <view>适合新手</view>
-                <view>塑形</view>
-              </view>
-            </view>
-            <view>
-              <tui-button margin="0 0 0 10rpx" type="warning" shape="circle" width="90rpx" height="40rpx" size="22">详情</tui-button>
-            </view>
-          </view>
+      <button open-type="contact" class="kefuTitle"><text>咨询客服</text></button>
+    </view>
+    <!-- {{clicknum==index?'activeType':''}} -->
+    <view wx:if="{{listData.length!=0}}">
+      <view wx:for="{{listData}}" wx:key="index" class="dibu_kuai" bindtap="contClick" data-current="{{item.id}}">
+        <view class="dibu_cont">{{item.title}}</view>
+        <view class="xiang">
+          <view class="yuan"></view>详情
         </view>
       </view>
     </view>
-      <block wx:for="{{leftBars}}" wx:key="index">
-        <!-- <scroll-view scroll-y class="right-box-scroll" style="height: calc(100vh - env(safe-area-inset-bottom) - 180rpx)" wx:if="{{tabLeftIndex == index}}"> -->
-        <scroll-view class="right-box-scroll" refresher-triggered="{{newsList[0].refreshing}}" refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" style="height: calc(120vh - env(safe-area-inset-bottom) - 440rpx)" wx:if="{{tabLeftIndex == index}}">
-          <!--内容部分 start 自定义可删除-->
-          <view class="page-view">
-            <view class="class-box" style="min-height:101%">
-              <view wx:if="{{loadingData}}" class="no-data">
-                  <text class="no-data-txt">数据加载中</text>
-              </view>
-              <!-- 无数据 -->
-              <view wx:if="{{!loadingData&&courseList.data.length<=0}}" class="no-data">
-                  <text class="no-data-txt">正在加紧排课中</text>
-                  <text class="no-data-txt">看看其他日期的课程吧</text>
-              </view>
-              <!-- 无数据END -->
+    <tui-no-data wx:else imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无课程</tui-no-data>
 
-              <block wx:if="{{!loadingData}}" wx:for="{{courseList.data}}" wx:for-item="courseitem" wx:for-index="courseIndex" wx:key="courseIndex">
-                <!-- 开始列表 -->
-                <view class="tui-class-title-h" bind:tap="goToStore">
-                  <text>{{courseitem.title}} </text>
-
-                  <text style="font-size:20rpx; font-weight:normal; color:#afb1bd;">距离{{parse.getDistance(courseitem.distance)}}</text>
-                  <ald-icon size="1" customClass="" unit="rem" name="like" color="#b1b4bf" content="" contentsize="" contentunit="" contentpadding="0 0 0 8rpx"></ald-icon>
-
-                </view>
-                <view class="tui-content-box-h">
-                  <block wx:for="{{courseitem.course}}" wx:for-item="courseLi" wx:for-index="index" wx:key="index">
-                    <view class="tui-box-h">
-                      <view class="tui-title-h">
-
-                        <tui-section color="#ff591f" title="{{parse.secondToHm(courseLi.starttime)}} ~ {{parse.secondToHm(courseLi.endtime)}}" is-line background="#fff" line-color="#fe8e61" margin="0" size="24" font-weight="bold"></tui-section>
-                        <text class="tui-person-h">{{courseLi.registerednum}} / {{courseLi.peoplenum}}</text>
-                      </view>
-                      <view class="tui-course">
-
-                        <!--课程列表-->
-                        <view class="tui-course-item-h"  data-id="{{courseLi.id}}" bind:tap="groupShow" data-enrollstate="{{courseLi.enrollstate}}" data-registerednum="{{courseLi.registerednum}}" data-peoplenum="{{courseLi.peoplenum}}">
-                          <image src="{{courseLi.listposter}}" class="tui-course-img-h"></image>
-                          <view class="tui-course-info-h">
-                            <view class="tuicourseLi.-course_title word-break" style="-webkit-line-clamp: 2;">{{courseLi.title}}.{{courseLi.id}}</view>
-                            <view class="tui-course_rate">
-                              <text style="margin: 0 10rpx 0 0 ;">{{parse.formatNumber(courseitem.score)}} 分</text>
-                              <tui-rate margin="50rpx" current="{{courseitem.score}}" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{10}}"></tui-rate>
-                            </view>
-                          </view>
-                          <view class="tui-course-button">
-                            <block wx:if="{{courseLi.enrollstate==1}}">
-                                <block wx:if="{{courseLi.registerednum>=courseLi.peoplenum}}">
-                                    <tui-button margin="0 0 0 10rpx" type="gray" shape="circle" width="90rpx" height="40rpx" size="22">已满</tui-button>
-                                </block>
-                                <block wx:else>
-                                    <tui-button margin="0 0 0 10rpx" type="warning" shape="circle" width="90rpx" height="40rpx" size="22">预约</tui-button>
-                                </block>
-                            </block>
-                            <block wx:elif="{{courseLi.enrollstate==0}}">
-                                <tui-button plain margin="0 0 0 10rpx" type="warning" shape="circle" width="90rpx" height="40rpx" size="22">排队</tui-button>
-                            </block>
-                          </view>
-                        </view>
-
-                        <!--课程列表 END-->
-
-                      </view>
-                    </view>
-                  </block>
- 
-
-                </view>
-
-                <!-- 开始列表END -->
-              </block>
-              <view class="tui-loading-more" wx:if="{{courseList.data.length>0}}">
-                <tui-loadmore wx:if="{{!loadingData&&courseList.isLoading}}" index="50"></tui-loadmore>
-                <tui-nomore wx:if="{{!loadingData&&courseList.pageIndex >= courseList.lastPage&&!courseList.isLoading}}" backgroundColor="#fafafa"></tui-nomore>
-              </view>
-
-            </view>
-
-          </view>
-          <!--内容部分 end 自定义可删除-->
-        </scroll-view>
-      </block>
-    </view>
-    <!-- 右边 -->
   </view>
-  <!--下部两块 END -->
-
+  <view class="blogo"><image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/blogo.png?v=202311272032"></image></view>
 </view>
 
 <tui-tabbar paddingBottom="24rpx" wx:if="{{tabbarShow&&agreeClick}}" id="tui-tabbar" bind:goToTop="indexGoTop" indexPage="{{indexPage}}" tabBar="{{tabBar}}" isFixed="{{true}}" current="{{current}}" bind:click="tabbarSwitch"></tui-tabbar>

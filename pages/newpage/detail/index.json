@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "wxParse": "/components/parse/wxParse/wxParse",
+    "tui-bottom-popup": "/components/thorui/tui-bottom-popup/tui-bottom-popup",
+    "tui-tab": "/components/thorui/tui-tab/tui-tab",
+    "tui-overflow-hidden": "/components/thorui/tui-overflow-hidden/tui-overflow-hidden",
+    "tui-rate": "/components/thorui/tui-rate/tui-rate"
+  },
+  "navigationBarTitleText": "课程详情",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "backgroundColorTop": "#fcfcfc",
+  "backgroundColorBottom": "#fcfcfc",
+  "navigationStyle": "default"
+}

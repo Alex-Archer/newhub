@@ -4,9 +4,9 @@
   },
 
   "navigationBarTitleText": "购卡项",
-  "navigationBarTextStyle": "white",
+  "navigationBarTextStyle": "black",
   "navigationStyle": "default",
-  "backgroundColorTop": "#f97c39",
-  "backgroundColorBottom": "#fcfcfc",
-  "navigationBarBackgroundColor": "#f97c39"
+  "backgroundColorTop": "#FFF",
+  "backgroundColorBottom": "#FFF",
+  "navigationBarBackgroundColor": "#FFF"
 }

@@ -1,0 +1,147 @@
+<!--
+此文件为开发者工具生成，生成时间: 2023/12/19上午9:40:21
+使用方法：
+在 D:\phpstudy_pro\WWW\newhub\packageB\pages\card\detailShow\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 D:\phpstudy_pro\WWW\newhub\packageB\pages\card\detailShow\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="container">
+      <tui-navigation-bar></tui-navigation-bar>
+      <view class="bg-box">
+        <view class="content-list">
+          <view class="card-box">
+            <image class="bgImg sk-image"></image>
+            <view class="card-title sk-transparent sk-text-27-5000-992 sk-text">
+              导师私教
+            </view>
+          </view>
+          <view class="price-box">
+            <view class="price-item" data-index="0" data-obj="[object Object]">
+              <view class="item-t">
+                <view class="item-t-l sk-transparent sk-text-14-2857-171 sk-text">399/节(1节)</view>
+                <view class="item-t-r sk-transparent sk-text-14-2857-79 sk-text">¥399</view>
+              </view>
+              <view class="item-d">
+                <view class="item-d-l sk-transparent sk-text-14-2857-595 sk-text">有效期：1个月</view>
+                <view class="item-d-r sk-transparent sk-text-14-2857-230 sk-text">已减0元</view>
+              </view>
+            </view>
+            <view class="price-item" data-index="1" data-obj="[object Object]">
+              <view class="item-t">
+                <view class="item-t-l sk-transparent sk-text-14-2857-86 sk-text">1288/10节(10节)</view>
+                <view class="item-t-r sk-transparent sk-text-14-2857-809 sk-text">¥1288</view>
+              </view>
+              <view class="item-d">
+                <view class="item-d-l sk-transparent sk-text-14-2857-905 sk-text">有效期：3个月</view>
+                <view class="item-d-r sk-transparent sk-text-14-2857-822 sk-text">已减20000元</view>
+              </view>
+            </view>
+            <view class="active price-item" data-index="2" data-obj="[object Object]">
+              <view class="item-t">
+                <view class="item-t-l sk-transparent sk-text-14-2857-348 sk-text">加强(20节)</view>
+                <view class="item-t-r sk-transparent sk-text-14-2857-576 sk-text">¥0.5</view>
+              </view>
+              <view class="item-d">
+                <view class="item-d-l sk-transparent sk-text-14-2857-609 sk-text">有效期：1年</view>
+                <view class="item-d-r sk-transparent sk-text-14-2857-686 sk-text">已减0元</view>
+              </view>
+            </view>
+          </view>
+          <view class="cell-li">
+            <view class="cell-li-l sk-transparent sk-text-14-2857-505 sk-text">会员折扣</view>
+            <view class="cell-li-r sk-transparent sk-text-14-2857-190 sk-text">暂无折扣</view>
+          </view>
+          <view class="cell-li">
+            <view class="cell-li-l sk-transparent sk-text-14-2857-831 sk-text">可用优惠券</view>
+            <view is="components/views/t-select-coupon-type/t-select-coupon-type">
+              <view>
+                <view is="components/thorui/tui-bottom-popup/tui-bottom-popup">
+                  <view>
+                    <view class="popup--tui-popup-mask" style="z-index:996"></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="cell-li-r sk-transparent sk-text-14-2857-622 sk-text" style="color: #333;">无可使用优惠券</view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell cell--tui-radius" style="background-color: #fff;font-size: 14px;color:#333;padding:10px  10px;border-radius:14rpxrpx;margin-top: 7px;margin-bottom: 7px;">
+              <view class="cell-li-t">
+                <view class="cell-li-l sk-transparent sk-text-14-2857-981 sk-text">我的专属顾问码</view>
+                <view class="cell-li-r">
+                  <view is="components/ksald/ald-icon/ald-icon">
+                    <text class="tn-icon-class ald-icon--tn-icon-class tn-icon-scan ald-icon--tn-icon-scan sk-pseudo sk-pseudo-circle" style="color: #6c6c6c;font-size: 28px;font-weight:normal;margin:0;padding:0 0 0 0;"></text>
+                  </view>
+                  <view class="scan-text sk-transparent sk-text-4-1667-183 sk-text">扫码录入</view>
+                </view>
+              </view>
+              <view class="cell-li-d">
+                <view class="input--tui-input__wrap" style="padding:4px 7px;background-color:#FFFFFF;border-radius: 0px;margin-top: 0px;">
+                  <view class="input--tui-input__border" style="border-color:;border-radius:0px"></view>
+                  <view class="input--tui-input__self sk-image" cursor="-1" maxlength="140" value="true" name="true" placeholder="如有专属顾问码请输入,或扫码录入" placeholder-class="tui-input__placeholder" placeholder-style="font-size:13px;" selection-end="-1"
+                    selection-start="-1" style="font-size:16px;color:#333" type="text"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view is="components/thorui/tui-list-cell/tui-list-cell">
+            <view class=" cell--tui-list-cell" style="background-color: #fff;font-size: 14px;color:#333;padding:0 0 0 10px;border-radius:0px;margin-top: 0px;margin-bottom: 0px;">
+              <view class="tui-padding tui-pd-title">
+                <view class="tui-pd-agree sk-transparent sk-text-8-8235-561 sk-text">我已阅读并同意《会员卡协议》</view>
+                <view class="tui-pd-radio">
+                  <checkbox-group>
+                    <label class="agree-label">
+                      <checkbox value="agree" color="#EFEFEF"></checkbox>
+                    </label>
+                  </checkbox-group>
+                </view>
+              </view>
+              <view class="tui-padding tui-flex-pd">
+                <view is="components/thorui/tui-overflow-hidden/tui-overflow-hidden">
+                  <view class="hidden--tui-overflow__text hidden--tui-gradient__hidden" style="border-radius: 10px 10px 0 0;width:100%;height:150px;padding:10px;background:#f3f3f3;font-size:13px;color:#000;font-weight:normal;-webkit-line-clamp:none;text-overflow:ellipsis">
+                    <rich-text nodes="1.参与aoben shared yoga集训营的用户，具有完全的法律行为能力，同意遵守相关管理规章制度，应接受aoben shared yoga集训营的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守aoben shared yoga集训营的相关规定。1.参与aoben shared yoga集训营的用户，具有完全的法律行为能力，同意遵守相关管理规章制度，应接受aoben shared yoga集训营的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守aoben shared yoga集训营的相关规定。"></rich-text>
+                    <view class="hidden--tui-gradient__box sk-image" style="background:-webkit-linear-gradient(top,rgba(255,255,255,0), #fff 100%)"></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="tui-safe-area"></view>
+        <view class="tui-tabbar">
+          <view class="tui-flex-end tui-color-red tui-pr-20">
+            <view class="tui-bar-t">
+              <view class="tui-black sk-transparent sk-text-6-6667-708 sk-text">实付金额: </view>
+              <view class="tui-size-26 sk-transparent sk-opacity">￥</view>
+              <view class="tui-price-large sk-transparent sk-text--3-1250-764 sk-text">0.5</view>
+            </view>
+            <view class="tui-bar-d">
+              <view class="sk-transparent sk-text-14-2857-997 sk-text">次数：</view>
+              <view class="sk-transparent sk-text-14-2857-494 sk-text">20节，</view>
+              <view class="sk-transparent sk-text-14-2857-893 sk-text">有效期：1年</view>
+            </view>
+          </view>
+          <view class="tui-pr25">
+            <view is="components/thorui/tui-button/tui-button">
+              <view class="tui-button--tui-button__wrap tui-button--tui-fillet tui-button--tui-button__hover" style="width: 100px;height:35px;margin:0">
+                <button app-parameter="true" class="tui-button--tui-btn tui-button--tui-btn-danger tui-button--tui-fillet sk-transparent sk-button sk-pseudo sk-pseudo-circle" form-type="true" open-type="true" style="width: 100px; height: 35px; line-height: 35px; font-size: 14px;background:#EB0909;color: #fff;box-shadow: none;">确认支付</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

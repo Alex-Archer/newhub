@@ -4,6 +4,7 @@
     "tui-loadmore":"/components/thorui/tui-loadmore/tui-loadmore",
 
     "tui-tab":"/components/thorui/tui-tab/tui-tab",    
+    "tui-overflow-hidden":"/components/thorui/tui-overflow-hidden/tui-overflow-hidden",    
 
     "tui-rate": "/components/thorui/tui-rate/tui-rate",
     "tui-grid":"/components/thorui/tui-grid/tui-grid",
@@ -18,17 +19,5 @@
     "tui-week-date": "/components/thorui/tui-week-date/tui-week-date",
      "ald-coach": "/components/ksald/ald-coach/ald-coach",
      "privacy-dialog": "/components/privacy-dialog/privacy-dialog"
-  },
-
-
-  "navigationBarTitleText": "",
-
-  "backgroundTextStyle": "dark",
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationStyle": "default",
-  "backgroundColorTop": "#ffffff",
-  "backgroundColorBottom": "#ffffff",
-
-
-  "navigationBarTextStyle": "black"
+  }
 }

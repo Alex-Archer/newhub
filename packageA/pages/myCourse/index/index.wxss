@@ -70,9 +70,9 @@
 }
 
 .tui-tab-item-title-active {
-	color: #fe8e61;
-	font-size: 36rpx;
-	font-weight: bold;
+	/* color: #fe8e61; */
+	/* font-size: 36rpx; */
+	/* font-weight: bold; */
 	border-bottom: 6rpx solid #fe8e61;
 	box-sizing: border-box;
 	text-align: center;
@@ -136,15 +136,15 @@
 
 .tui-order-status {
 	color: #eb0909;
-	font-size: 26rpx;
+	/* font-size: 26rpx; */
 }
 .tui-order-status-none {
 	color: #999;
-	font-size: 26rpx;
+	/* font-size: 26rpx; */
 }
 .tui-goods-item {
 	width: 100%;
-	padding: 20rpx 30rpx;
+	padding: 10rpx 30rpx 20rpx;
 	box-sizing: border-box;
 	display: flex;
 	justify-content: space-between;
@@ -157,12 +157,12 @@
   flex-shrink: 0;
   /* padding: 20rpx 20rpx 20rpx 0; */
   border-radius: 10rpx;
-  margin:20rpx 10rpx 0 0;
+  margin:10rpx 10rpx 0 0;
 }
 
 .tui-goods-center {
 	flex: 1;
-	padding: 20rpx 8rpx;
+	padding: 10rpx 8rpx;
 	box-sizing: border-box;
 }
 
@@ -189,20 +189,31 @@
 } */
 
 .tui-goods-name {
-
-
   display:flex;
   align-items:center;
-  
-	
-	font-size: 26rpx;
+	font-size: 28rpx;
   line-height: 36rpx;
-  font-weight: bolder;
-  margin-bottom: 14rpx;
-
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  justify-content: space-between;
+}
+.state{
+  color:#ED3737;
+  font-size: 24rpx;
+}
+.buttype{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-end;
+}
+.yuyue{
 
 }
-
+.paidui{
+  background:#514D60;
+  color: #FFF;
+  border-radius: 50rpx;
+}
 .tui-goods-attr {
 	font-size: 22rpx;
 	color: #888888;
@@ -312,6 +323,13 @@
 }
 .tui-goods-date{
   font-weight: bolder;
+}
+.tui-time{
+  color: #666666;
+  font-size: 28rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .tui-goods-address {

@@ -5,6 +5,42 @@
  * @FinalChanges Fisher 2023 04 02
  **/
 const utils = {
+  // 获取当前时间
+  getNowDate () {
+    let now = new Date();
+    let year = now.getFullYear(); //获取完整的年份(4位,1970-????)
+    let month = now.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+    let today = now.getDate(); //获取当前日(1-31)
+    let nowData = ''
+    nowData = year + '-' + this.fillZero(month) + '-' + this.fillZero(today)
+    return nowData
+  },
+  // 日期处理,前面补0
+  fillZero (str) {
+    var realNum;
+    if (str < 10) {
+      realNum = '0' + str;
+    } else {
+      realNum = str;
+    }
+    return realNum;
+  },
+  // 在线支付调起付款
+  wxPayment(params) {
+    return new Promise((resolve, reject) => {
+      wx.requestPayment({
+        ...params,
+        signType:'RSA',
+        success: (result) => {
+          resolve(result);
+        },
+        fail: (error) => {
+          wx.showToast({ title: '支付失败，请重新尝试',icon: 'none', duration: 1500 });
+          reject(error);
+        }
+      });
+    })
+  },
   //去空格
   trim: function (value) {
     return value.replace(/(^\s*)|(\s*$)/g, "");
@@ -62,100 +98,100 @@ const utils = {
   //     return "";
   //   }
   // },
-  
+
   //#region 日期格式化
   /**
-	 * @desc 日期格式化
-	 * @param formatStr 格式化字符串(y-m-d h:i:s)
-	 * @param fdate 需要格式化日期
-	 * @param type  fdate的格式：1-日期字符串(2017/12/04 12:12:12) 2-时间戳(1603676514690) 3-日期字符串，无连接符(20171204121212) 
-	 * 4-new Date()时间格式(Thu Oct 01 2020 00:00:00 GMT+0800 (中国标准时间))
-	 * @param isMs  时间戳精度是否为毫秒（精度是秒时传false），type=2时有效
-	 **/
-	formatDate: function (formatStr, fdate, type = 1, isMs = true) {
-		let date = ""
-		if (type === 3) {
-			date = utils._formatTimeStr(fdate, formatStr)
-		} else {
-			date = utils._formatDate(formatStr, fdate, type, isMs)
-		}
-		return date;
-	},
-	_formatDate(formatStr, fdate, type = 1, isMs = true) {
-		if (!fdate) return;
-		let fTime, fStr = 'ymdhis';
-		if (type === 4) {
-			fTime = fdate;
-		} else {
-			fdate = fdate.toString()
-			if (~fdate.indexOf('.')) {
-				fdate = fdate.substring(0, fdate.indexOf('.'));
-			}
-			fdate = fdate.replace('T', ' ').replace(/\-/g, '/'); 
-			if (!formatStr)
-				formatStr = "y-m-d h:i:s";
-			if (fdate) {
-				if (type === 2) {
-           fdate = isMs ? Number(fdate) : Number(fdate) * 1000
-          
-				}
-				fTime = new Date(fdate);
-			} else {
-				fTime = new Date();
-			}
-		}
-		console.log(fTime)
-		var month = fTime.getMonth() + 1;
-		var day = fTime.getDate();
-		var hours = fTime.getHours();
-		var minu = fTime.getMinutes();
-		var second = fTime.getSeconds();
-		month = month < 10 ? '0' + month : month;
-		day = day < 10 ? '0' + day : day;
-		hours = hours < 10 ? ('0' + hours) : hours;
-		minu = minu < 10 ? '0' + minu : minu;
-		second = second < 10 ? '0' + second : second;
-		var formatArr = [
-			fTime.getFullYear().toString(),
-			month.toString(),
-			day.toString(),
-			hours.toString(),
-			minu.toString(),
-			second.toString()
-		]
-		for (var i = 0; i < formatArr.length; i++) {
-			formatStr = formatStr.replace(fStr.charAt(i), formatArr[i]);
-		}
-		return formatStr;
-	},
-	/**
-	 * @desc 格式化时间
-	 * @param timeStr 时间字符串 20191212162001
-	 * @param formatStr 需要的格式 如 y-m-d h:i:s | y/m/d h:i:s | y/m/d | y年m月d日 等
-	 **/
-	_formatTimeStr: function (timeStr, formatStr) {
-		if (!timeStr) return;
-		timeStr = timeStr.toString()
-		if (timeStr.length === 14) {
-			let timeArr = timeStr.split('')
-			let fStr = 'ymdhis'
-			if (!formatStr) {
-				formatStr = 'y-m-d h:i:s'
-			}
-			let formatArr = [
-				[...timeArr].splice(0, 4).join(''),
-				[...timeArr].splice(4, 2).join(''),
-				[...timeArr].splice(6, 2).join(''),
-				[...timeArr].splice(8, 2).join(''),
-				[...timeArr].splice(10, 2).join(''),
-				[...timeArr].splice(12, 2).join('')
-			]
-			for (let i = 0; i < formatArr.length; i++) {
-				formatStr = formatStr.replace(fStr.charAt(i), formatArr[i])
-			}
-			return formatStr
-		}
-		return timeStr
+   * @desc 日期格式化
+   * @param formatStr 格式化字符串(y-m-d h:i:s)
+   * @param fdate 需要格式化日期
+   * @param type  fdate的格式：1-日期字符串(2017/12/04 12:12:12) 2-时间戳(1603676514690) 3-日期字符串，无连接符(20171204121212) 
+   * 4-new Date()时间格式(Thu Oct 01 2020 00:00:00 GMT+0800 (中国标准时间))
+   * @param isMs  时间戳精度是否为毫秒（精度是秒时传false），type=2时有效
+   **/
+  formatDate: function (formatStr, fdate, type = 1, isMs = true) {
+    let date = ""
+    if (type === 3) {
+      date = utils._formatTimeStr(fdate, formatStr)
+    } else {
+      date = utils._formatDate(formatStr, fdate, type, isMs)
+    }
+    return date;
+  },
+  _formatDate(formatStr, fdate, type = 1, isMs = true) {
+    if (!fdate) return;
+    let fTime, fStr = 'ymdhis';
+    if (type === 4) {
+      fTime = fdate;
+    } else {
+      fdate = fdate.toString()
+      if (~fdate.indexOf('.')) {
+        fdate = fdate.substring(0, fdate.indexOf('.'));
+      }
+      fdate = fdate.replace('T', ' ').replace(/\-/g, '/');
+      if (!formatStr)
+        formatStr = "y-m-d h:i:s";
+      if (fdate) {
+        if (type === 2) {
+          fdate = isMs ? Number(fdate) : Number(fdate) * 1000
+
+        }
+        fTime = new Date(fdate);
+      } else {
+        fTime = new Date();
+      }
+    }
+    console.log(fTime)
+    var month = fTime.getMonth() + 1;
+    var day = fTime.getDate();
+    var hours = fTime.getHours();
+    var minu = fTime.getMinutes();
+    var second = fTime.getSeconds();
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+    hours = hours < 10 ? ('0' + hours) : hours;
+    minu = minu < 10 ? '0' + minu : minu;
+    second = second < 10 ? '0' + second : second;
+    var formatArr = [
+      fTime.getFullYear().toString(),
+      month.toString(),
+      day.toString(),
+      hours.toString(),
+      minu.toString(),
+      second.toString()
+    ]
+    for (var i = 0; i < formatArr.length; i++) {
+      formatStr = formatStr.replace(fStr.charAt(i), formatArr[i]);
+    }
+    return formatStr;
+  },
+  /**
+   * @desc 格式化时间
+   * @param timeStr 时间字符串 20191212162001
+   * @param formatStr 需要的格式 如 y-m-d h:i:s | y/m/d h:i:s | y/m/d | y年m月d日 等
+   **/
+  _formatTimeStr: function (timeStr, formatStr) {
+    if (!timeStr) return;
+    timeStr = timeStr.toString()
+    if (timeStr.length === 14) {
+      let timeArr = timeStr.split('')
+      let fStr = 'ymdhis'
+      if (!formatStr) {
+        formatStr = 'y-m-d h:i:s'
+      }
+      let formatArr = [
+        [...timeArr].splice(0, 4).join(''),
+        [...timeArr].splice(4, 2).join(''),
+        [...timeArr].splice(6, 2).join(''),
+        [...timeArr].splice(8, 2).join(''),
+        [...timeArr].splice(10, 2).join(''),
+        [...timeArr].splice(12, 2).join('')
+      ]
+      for (let i = 0; i < formatArr.length; i++) {
+        formatStr = formatStr.replace(fStr.charAt(i), formatArr[i])
+      }
+      return formatStr
+    }
+    return timeStr
   },
   //#endregion 日期格式化
 
@@ -236,7 +272,7 @@ const utils = {
   },
 
 
-  toast(text, duration, success,callback) {
+  toast(text, duration, success, callback) {
     wx.showToast({
       title: text,
       icon: success ? 'success' : 'none',
@@ -346,13 +382,13 @@ const utils = {
    * 使用中发现 JSON中 数字字符串判定会有问题
    * 判断是否为数字类型，是为true，否则为false
    */
-//   isNumber(value) {
-//     return value != null && value != undefined && value.constructor == Number
-//   },
+  //   isNumber(value) {
+  //     return value != null && value != undefined && value.constructor == Number
+  //   },
   isNumber(value) {
     //return value != null && value != undefined && value.constructor == Number
     return Number.isInteger(Number(value));
-  },  
+  },
   /**
    * 判断是否为布尔类型，是为true，否则为false
    */
@@ -383,86 +419,84 @@ const utils = {
    正常：{"code":1,"message":"感谢您的反馈，我们的工作人员将尽快处理"} 
    有上传图片时反回不正常了："{\"code\":1,\"message\":\"感谢您的反馈，我们的工作人员将尽快处理\"}"
   */
-  jsonTestParse(value)
-  {
+  jsonTestParse(value) {
     //先查看是不是字符串
-    if(value != null && value != undefined && value.constructor == String)
-    {
-      let str = value.replace(/\\/g, '');//去掉反斜
-       return JSON.parse(str);
+    if (value != null && value != undefined && value.constructor == String) {
+      let str = value.replace(/\\/g, ''); //去掉反斜
+      return JSON.parse(str);
     }
     return value;
   },
-  
+
   //和当前时间比 是否过期
- validateDateExpires(accessExpires) {
-  const currentTime = Date.now(); //13位时间戳 1693376939413
-  let _accessExpires = new Date(Date.parse(accessExpires.replace(/-/g, "/"))).getTime(); //加上000为13位的时间戳 1693372853000
-  if (currentTime > _accessExpires) {
-    return true;
-  } else {
-    return false;
-  }
-},
- //和当前时间比 是否过期  -  使用时间戳 10位的
-validateDateExpiresByStamp(accessExpiresStamp) {
-  const currentTime = Date.now(); //13位时间戳 1693376939413
-  let _accessExpires =accessExpiresStamp*1000; 
-  if (currentTime > _accessExpires) {
-    return true;
-  } else {
-    return false;
-  }
-},
+  validateDateExpires(accessExpires) {
+    const currentTime = Date.now(); //13位时间戳 1693376939413
+    let _accessExpires = new Date(Date.parse(accessExpires.replace(/-/g, "/"))).getTime(); //加上000为13位的时间戳 1693372853000
+    if (currentTime > _accessExpires) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+  //和当前时间比 是否过期  -  使用时间戳 10位的
+  validateDateExpiresByStamp(accessExpiresStamp) {
+    const currentTime = Date.now(); //13位时间戳 1693376939413
+    let _accessExpires = accessExpiresStamp * 1000;
+    if (currentTime > _accessExpires) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   /**
-	 * @desc 时间段欢迎语
-	 * @param message_title 欢迎头部，如：小张   ，最终组成：小张,早上好!
-	 **/
-welcomeMessage(message_title){
-  let greetings = ['早上好!', '中午好!', '下午好!', '晚上好!'];
-  let now = new Date();
-  let hours = now.getHours();
-  
-  let greetingIndex = 0;
-  if(hours >= 12 && hours < 17) greetingIndex = 1; 
-  else if(hours >= 17 && hours < 19) greetingIndex = 2;
-  else if(hours >= 19) greetingIndex = 3;
-  if(message_title){
-    return message_title+"，"+greetings[greetingIndex];
-  }else{
-    return greetings[greetingIndex];
-  }
-},
-/*
-粉丝格式化
-let fans = 1999;
-console.log(formatFans(fans)); // 1.9K+
-fans = 29999;
-console.log(formatFans(fans)); // 29.9K+ 
-fans = 102345;
-console.log(formatFans(fans)); // 102.3K+
-fans = 1234567  
-console.log(formatFans(fans)); // 123.4W+
-*/
-formatFans(num) {
-  if(num < 100) {
-    return num; 
-  }
-  if(num >= 1000 && num < 10000) {
-    // 显示成1K+
-    return (num/1000).toFixed(1) + 'K+';
-  }
-  if(num >= 10000) {
-    // 显示成1W+
-    return (num/10000).toFixed(1) + 'W+';
-  }
-},
+   * @desc 时间段欢迎语
+   * @param message_title 欢迎头部，如：小张   ，最终组成：小张,早上好!
+   **/
+  welcomeMessage(message_title) {
+    let greetings = ['早上好!', '中午好!', '下午好!', '晚上好!'];
+    let now = new Date();
+    let hours = now.getHours();
+
+    let greetingIndex = 0;
+    if (hours >= 12 && hours < 17) greetingIndex = 1;
+    else if (hours >= 17 && hours < 19) greetingIndex = 2;
+    else if (hours >= 19) greetingIndex = 3;
+    if (message_title) {
+      return message_title + "，" + greetings[greetingIndex];
+    } else {
+      return greetings[greetingIndex];
+    }
+  },
+  /*
+  粉丝格式化
+  let fans = 1999;
+  console.log(formatFans(fans)); // 1.9K+
+  fans = 29999;
+  console.log(formatFans(fans)); // 29.9K+ 
+  fans = 102345;
+  console.log(formatFans(fans)); // 102.3K+
+  fans = 1234567  
+  console.log(formatFans(fans)); // 123.4W+
+  */
+  formatFans(num) {
+    if (num < 100) {
+      return num;
+    }
+    if (num >= 1000 && num < 10000) {
+      // 显示成1K+
+      return (num / 1000).toFixed(1) + 'K+';
+    }
+    if (num >= 10000) {
+      // 显示成1W+
+      return (num / 10000).toFixed(1) + 'W+';
+    }
+  },
 
   /*小鱼区END */
 
-//#region 与util.wxs 同步
-//秒时间格成时间，如21600 格成：6:00
-secondToHm(seconds) {
+  //#region 与util.wxs 同步
+  //秒时间格成时间，如21600 格成：6:00
+  secondToHm(seconds) {
     seconds = Number(seconds);
     var h = Math.floor(seconds / 3600);
     var m = Math.floor(seconds % 3600 / 60);
@@ -473,35 +507,35 @@ secondToHm(seconds) {
 
     //return hDisplay + mDisplay + sDisplay;
     return hDisplay + mDisplay;
-},
-/*
-米转公里
-*/
-getDistance(_addressDistan) {
-var distance = _addressDistan || 0;
-var result = '';
-if (distance < 1000) {
-    result = distance + ' m';
-} else {
-    result = (distance / 1000).toFixed(2) + ' km';
-}
-return result;
-},
-/*
-数字格式成 1.0 2.0 这样的一位小数
-formatNumber(num1); // 1.0
-*/
-formatNumber(num) {
-  num = Number(num);
-  if (isNaN(num)) {
+  },
+  /*
+  米转公里
+  */
+  getDistance(_addressDistan) {
+    var distance = _addressDistan || 0;
+    var result = '';
+    if (distance < 1000) {
+      result = distance + ' m';
+    } else {
+      result = (distance / 1000).toFixed(2) + ' km';
+    }
+    return result;
+  },
+  /*
+  数字格式成 1.0 2.0 这样的一位小数
+  formatNumber(num1); // 1.0
+  */
+  formatNumber(num) {
+    num = Number(num);
+    if (isNaN(num)) {
       return 'N/A';
-  }
-  return num.toFixed(1); 
-},
-//#endregion 与util.wxs 同步
+    }
+    return num.toFixed(1);
+  },
+  //#endregion 与util.wxs 同步
 
-//时间戳1695312000,会输出2023-1-24
- formatTimestamp(timestamp) {
+  //时间戳1695312000,会输出2023-1-24
+  formatTimestamp(timestamp) {
     const date = new Date(timestamp * 1000);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -510,6 +544,9 @@ formatNumber(num) {
   }
 }
 module.exports = {
+  getNowDate: utils.getNowDate,
+  fillZero: utils.fillZero,
+  wxPayment: utils.wxPayment,
   trim: utils.trim,
   replaceAll: utils.replaceAll,
   formatNumber: utils.formatNumber,
@@ -529,30 +566,30 @@ module.exports = {
 
   //isNull: utils.isNull, //是否为空
 
-    //小鱼转来
-    isNull: utils.isNull,
-    isNumber: utils.isNumber,
-    isString: utils.isString,
-    booleanTry: utils.booleanTry,
-    isArray: utils.isArray,
-    isObject: utils.isObject,
-    isFunction: utils.isFunction,
+  //小鱼转来
+  isNull: utils.isNull,
+  isNumber: utils.isNumber,
+  isString: utils.isString,
+  booleanTry: utils.booleanTry,
+  isArray: utils.isArray,
+  isObject: utils.isObject,
+  isFunction: utils.isFunction,
 
-    jsonTestParse: utils.jsonTestParse,    
-    validateDateExpires: utils.validateDateExpires,//时间是否过期
-    validateDateExpiresByStamp: utils. validateDateExpiresByStamp,//和当前时间比 是否过期  -  使用时间戳 10位的
- 
+  jsonTestParse: utils.jsonTestParse,
+  validateDateExpires: utils.validateDateExpires, //时间是否过期
+  validateDateExpiresByStamp: utils.validateDateExpiresByStamp, //和当前时间比 是否过期  -  使用时间戳 10位的
 
-    welcomeMessage: utils.welcomeMessage,//欢迎词
-    formatFans: utils.formatFans,//粉丝格式化
+
+  welcomeMessage: utils.welcomeMessage, //欢迎词
+  formatFans: utils.formatFans, //粉丝格式化
   /*旧的移来======END=========== */
 
   //#region 与util.wxs 同步
-  secondToHm: utils.secondToHm,//秒转时间
-  formatTimestamp: utils.formatTimestamp,//时间戳1695312000,会输出2023-1-24
+  secondToHm: utils.secondToHm, //秒转时间
+  formatTimestamp: utils.formatTimestamp, //时间戳1695312000,会输出2023-1-24
 
-  getDistance: utils.getDistance,  //米转公里
-  formatNumber: utils.formatNumber,  //数字格式成 1.0 2.0 这样的一位小数
+  getDistance: utils.getDistance, //米转公里
+  formatNumber: utils.formatNumber, //数字格式成 1.0 2.0 这样的一位小数
 
 
 

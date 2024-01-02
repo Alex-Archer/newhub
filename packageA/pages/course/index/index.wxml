@@ -1,6 +1,0 @@
-<!--pages/course/index/index.wxml-->
-<view class="contain">
-<image src="/packageA/static/course.jpg" mode="widthFix"></image>
-</view>
-
-<tui-tabbar wx:if="{{tabbarShow}}" id="tui-tabbar" bind:goToTop="indexGoTop" indexPage="{{indexPage}}"  tabBar="{{tabBar}}" isFixed="{{true}}" current="{{current}}" bind:click="tabbarSwitch"></tui-tabbar>

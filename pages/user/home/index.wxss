@@ -222,7 +222,7 @@ https://www.cnblogs.com/xiaolinye/p/17337067.html
 }
 .tui-order-list {
   width: 100%;
-  margin-top: 30rpx;
+  margin-bottom: 30rpx;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -433,20 +433,21 @@ https://www.cnblogs.com/xiaolinye/p/17337067.html
 .buy-card-d
 {
   width: 95%;
-  height:200rpx;
+  /* height:200rpx; */
 
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 10rpx 0 0 0;
 }
 
 .card-d-item
 {
-  width: 210rpx;
+  width: 31%;
   height: 77rpx;
-  /* margin: 0 0 20rpx 0; */
+  margin-right: 14rpx;
+  margin-bottom: 10rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;

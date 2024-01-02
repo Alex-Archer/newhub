@@ -1,0 +1,15 @@
+<!--packageB/pages/Member/myCard/index.wxml-->
+<wxs src="/wxs/date.wxs" module="date"/>
+  <scroll-view scroll-y class="store-popup-scroll">
+    <block wx:for="{{cardList}}" wx:key="index">
+      <view class="thorui-flex__between">
+        <view class="radio_flx">
+          <image class="radio_img" src="{{item.poster}}" mode="" />
+          <view>
+            <view class="radio_name">{{item.title}}</view>
+            <view class="xiao_title">有效期至:{{date.format(item.expire_time*1000,'yyyy-MM-dd')}} 剩余:{{item.remaining}}节</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>

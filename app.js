@@ -157,11 +157,11 @@ axios.interceptors.response.use(
         }
         //405 就必须重新登，哪怕是刷新页
         if (error.response.status === 405) {
-            store.remove(TOKEN_LOCAL_STORAGE);
+            //store.remove(TOKEN_LOCAL_STORAGE);
             queue.forEach(item => item.cancel());
-            wx.redirectTo({
-                url: '/pages/user/login/index?url=' + getApp().globalData.baseURL,
-            })
+            // wx.redirectTo({
+            //     url: '/pages/user/login/index?url=' + getApp().globalData.baseURL,
+            // })
             return;
         }
         if (error.response.status === 401 && !authorUtils.validateAuthenticationURL(error.response.config.url)) {

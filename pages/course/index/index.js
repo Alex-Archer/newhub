@@ -62,11 +62,11 @@ typeBars:
   //   id:"3",
   //   path: '/pages/course/personalMon/index',
   // },
-  {
-    name: '集训营',
-    id:"4",
-    path: '/pages/course/camp/index',
-  }
+  // {
+  //   name: '集训营',
+  //   id:"4",
+  //   path: '/pages/course/camp/index',
+  // }
 ],
 //顶部类型选择END
 tabIndex: -1, 

@@ -103,223 +103,42 @@
 	width: 100%;
 	padding-bottom: 1rpx;
 }
-
-/* 列表拿来 */
-.tui-order-list {
-	width: 100%;
-	padding: 0 25rpx;
-	margin-top: 40rpx;
-	box-sizing: border-box;
-}
-
-.tui-order-item {
-	margin-top: 20rpx;
-	border-radius: 12rpx;
-	box-shadow: 0 5rpx 10rpx 0 rgba(0, 0, 0, 0.06);
-	overflow: hidden;
-}
-
-.tui-goods-title {
-	width: 100%;
-	font-size: 28rpx;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-.tui-flex {
-	display: flex;
-	align-items: center;
-}
-.tui-flex text {
-	padding-right: 12rpx;
-}
-
-.tui-order-status {
-	color: #fe8e61;
-	font-size: 26rpx;
-}
-.tui-goods-date.red{
-    color: #fe8e61;
-    font-size: 28rpx;
-}
-.tui-goods-item {
-	width: 100%;
-	padding: 20rpx 30rpx;
-	box-sizing: border-box;
-  display: flex;
-	justify-content: space-between;
-}
-
-
-.goods-img
+.store-popup-scroll
 {
-  height: 120rpx;
-  width: 120rpx;
-}
-
-/* .tui-goods-img {
-	width: 160rpx;
-	height: 160rpx;
-	display: block;
-  flex-shrink: 0;
-  padding: 20rpx 20rpx 20rpx 0;
-} */
-
-.tui-goods-center {
-	flex: 1;
-	padding: 20rpx 8rpx;
+  font-size: 26rpx;
   box-sizing: border-box;
+  padding: 30rpx 30rpx;
+
+}
+.thorui-flex__between{
+  margin: 30rpx 50rpx;
+  background: #f4f4f4;
+  border-radius: 30rpx;
+  padding: 0 30rpx;
+}
+.radio_flx
+{
   display: flex;
-  flex-direction: column;
-
+  align-items: center;
+  /* justify-content: center; */
+}
+.radio_img{
+  width: 100rpx;
+  height: 100rpx;
+  /* border-radius: 50%; */
+  margin-right: 15rpx;
+}
+.radio_name{
+  color: #38b138;
+  height: 41rpx;
+  line-height: 41rpx;
+  font-size: 28rpx;
+}
+.xiao_title{
+  font-size: 26rpx;
 }
 
-.tui-goods-name {
-	font-size: 32rpx;
-  line-height: 36rpx;
-  font-weight: bolder;
-  margin-bottom: 14rpx;
-  display: flex;
-
-  /* text-decoration:line-through; */
-
-}
-.tui-goods-name.baseline{
-    align-items:baseline;
-}
-.class-all
-{
-  color: #555;
-  font-size: 34rpx;
-  
-}
-.class-all.red
-{
-  color: red;
-
-}
-.class-surplus
-{
-  color: #8b8b8b;
-  font-size: 24rpx;
-  margin-right: 20rpx;
-}
-
-.tui-goods-attr {
-	font-size: 22rpx;
-	color: #888888;
-	line-height: 32rpx;
-	padding-top: 20rpx;
-
-}
-
-.tui-price-right {
-	text-align: right;
-	font-size: 24rpx;
-	color: #888888;
-	line-height: 30rpx;
-	padding-top: 20rpx;
-}
-
-.tui-color-red {
-	color: #e41f19;
-	padding-right: 30rpx;
-}
-
-.tui-goods-price {
-	width: 100%;
-	display: flex;
-	align-items: flex-end;
-	justify-content: flex-end;
-	font-size: 24rpx;
-}
-
-.tui-size-24 {
-	font-size: 24rpx;
-	line-height: 24rpx;
-}
-
-.tui-price-large {
-	font-size: 32rpx;
-	line-height: 30rpx;
-	font-weight: 500;
-}
-
-.tui-order-btn {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	background: #fff;
-	padding: 10rpx 30rpx 20rpx;
-	box-sizing: border-box;
-}
-
-/* 列表拿来END */
-
-.tui-coupon-week{
 
 
-  font-size: 22rpx;
-  line-height: 32rpx;
 
-  margin: 0 10rpx 0 20rpx;
-  background:chocolate;
-}
-.tui-coupon-btn{
-
-
-    font-size: 25rpx;
-    line-height: 32rpx;
-    width: 32rpx;
-    height: 32rpx;
-
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    border-radius: 6rpx;
-    margin: 0 10rpx 0 0;
-}
-.tui-coupon-btn.tuan{
-  background: rgb(69, 154, 0,.2);
-  color: rgb(69, 154, 0,1);
-}
-.tui-coupon-btn.shi{
-  background: rgb(112,48,160,.2);
-  color: rgb(112,48,160,1);
-}
-.tui-coupon-btn.ji{
-  background: rgb(0, 112, 192,.2);
-  color: rgb(0, 112, 192);
-}
-.tui-goods-title-l{
-    display: flex;
-    align-items:baseline;
-    justify-content: center; 
-
-}
-.tui-goods-date{
-  font-weight: bolder;
-  font-size: 32rpx;
-}
-.tui-goods-state{
-  margin-left:20rpx;
-}
-
-.tui-goods-address {
-	font-size: 26rpx;
-	color: #888888;
-	line-height: 32rpx;
-	padding-top: 10rpx;
-
-  display: flex;
-  align-items:baseline;
-
-  line-height: 42rpx;
-
-}
-.tui-goods-address-title
-{
-   line-height: 38rpx;
-}
 

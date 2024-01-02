@@ -36,10 +36,10 @@
           <view class="item-color color-c"></view>
           <view class="item-title">私教</view>
         </view>
-        <view class="ico-item" style="flex-grow: 1;">
+        <!-- <view class="ico-item" style="flex-grow: 1;">
           <view class="item-color color-d"></view>
           <view class="item-title">集训营</view>
-        </view>
+        </view> -->
       </view>
       <!-- 头部 -->
       <view class="table-head">

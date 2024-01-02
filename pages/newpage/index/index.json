@@ -5,7 +5,8 @@
     "tui-dropdown-list": "/components/thorui/tui-dropdown-list/tui-dropdown-list",
     "tui-top-dropdown": "/components/thorui/tui-top-dropdown/tui-top-dropdown",
     "tui-loadmore": "/components/thorui/tui-loadmore/tui-loadmore",
-
+    "tui-no-data": "/components/thorui/tui-no-data/tui-no-data",
+    "tui-toast": "/components/thorui/tui-toast/tui-toast",
     "tui-rate": "/components/thorui/tui-rate/tui-rate",
     "tui-button": "/components/thorui/tui-button/tui-button",
     "tui-section":"/components/thorui/tui-section/tui-section",

@@ -257,9 +257,9 @@ image{height:auto}
 checkbox .wx-checkbox-input {
   width: 30rpx;
   height:30rpx;
-  border-radius: 10rpx;
+  border-radius: 50%;
 
-  border: 0px solid #CCCCCC !important;
+  border: 1px solid #CCCCCC !important;
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -377,14 +377,10 @@ switch {
   
   .tui-tabbar {
     width: 100%;
-    height: 98rpx;
     background: #fff;
     position: fixed;
     left: 0;
     bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
     font-size: 26rpx;
     box-shadow: 0 0 1px rgba(0, 0, 0, .3);
     padding-bottom: env(safe-area-inset-bottom);
@@ -458,6 +454,65 @@ switch {
     color: #6c6c6c;
     font-size: 22rpx;
     margin-top: 6rpx;
+  }
+
+  .tui-bottom{
+    height: 98rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .vanpop .kuai{
+    padding: 30rpx;
+    font-size: 25rpx;
+    line-height: 40rpx;
+  }
+  .vanpop .title{
+    font-weight: bold;
+    text-align: center;
+    font-size: 35rpx;
+    margin-bottom: 20rpx;
+  }
+  .vanpop .bottom{
+    /* position: fixed;
+    bottom: 0; */
+    background: #FFFFFF;
+    width: 100%;
+  }
+  .vanpop .btn{
+    background: #F95938;
+    color: #ffffff;
+    border-radius: 50rpx;
+    font-size: 26rpx;
+    height: 80rpx;
+    line-height: 50rpx;
+    margin-top: 20rpx;
+    width: 100%;
+    border-top: 1px solid #e7e7e7;
+  }
+  #xieyidialog{
+    position: fixed;
+    top: 16%;
+    width: 80%;
+    margin: 0 48rpx;
+    padding: 30rpx;
+    background-color:#fff;
+    z-index: 9999;
+    overflow: hidden;
+    border-radius: 30rpx;
+  }
+  .xieyimodedialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, .5);
+    z-index: 999;
+    padding: 4vw;
+    box-sizing: border-box;
   }
   /* 购买 END*/
   /* ===== */

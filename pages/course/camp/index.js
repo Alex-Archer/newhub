@@ -34,7 +34,7 @@ Page({
         typeBars: [{
                 name: '推荐',
                 id: "0",
-                path: '/pages/course/index/index',
+                path: '/pages/newpage/index/index',
             },
             {
                 name: '团课',
@@ -51,11 +51,11 @@ Page({
             //     id: "3",
             //     path: '/pages/course/personalMon/index',
             // },
-            {
-                name: '集训营',
-                id: "4",
-                path: '/pages/course/camp/index',
-            }
+            // {
+            //     name: '集训营',
+            //     id: "4",
+            //     path: '/pages/course/camp/index',
+            // }
         ],
         //顶部类型选择END
 

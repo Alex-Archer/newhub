@@ -8,207 +8,23 @@
       </view>
     </scroll-view>
     <view class="tui-line-h"></view>
-    <swiper current="{{tabIndex}}" class="tui-swiper-box" duration="300" bindchange="tabChange">
-      <swiper-item class="tui-swiper-item" wx:for="{{newsList}}" wx:for-item="tab" wx:for-index="index1" wx:key="index1">
-        <scroll-view class="tui-scroll-v" refresher-enabled refresher-triggered="{{tab.refreshing}}" refresher-background="#fafafa" enable-back-to-top refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" data-index="{{index1}}" bindrefresherrefresh="onrefresh">
-
-          <view class="tui-order-list">
-            <view class="tui-order-item" wx:for="{{tab.data}}" wx:for-item="item" wx:for-index="index2" wx:key="index2">
-              <!-- <block wx:for="{{tab.data}}"  wx:for-item="newsitem"  wx:for-index="index2"  wx:key="index2"></block> -->
-
-              <!-- 循环区-->
-              <tui-list-cell hover="{{false}}" lineLeft="0">
-                <view class="tui-goods-title">
-                  <view class="tui-goods-title-l">
-                    <block wx:if="{{item.source==0}}">
-                      <view class="tui-coupon-btn tuan">团</view>
-                    </block>
-                    <block wx:if="{{item.source==1}}">
-                      <view class="tui-coupon-btn shi">私</view>
-                    </block>
-                    <block wx:if="{{item.source==2}}">
-                      <view class="tui-coupon-btn ji">营</view>
-                    </block>
-
-                    
-                    <!-- <block wx:if="{{item.source==1}}">
-                      <view class="tui-goods-date">{{item.title}}</view>
-                    </block>
-                    <block wx:else>
-                      <view wx:if="{{item.starttime>0&&item.endtime>0}}" class="tui-goods-date">{{parseUtils.secondToHm(item.starttime)}} - {{parseUtils.secondToHm(item.endtime)}}</view>
-                    </block> -->
-                    <!-- 左上角区 -->
-                    <block wx:if="{{item.source==1}}"><!-- 私教 -->
-                        <view class="tui-goods-date">{{item.title}}</view>
-                    </block>
-                    <block wx:else><!-- 团课或训练营 -->
-                      <view wx:if="{{item.starttime>0&&item.endtime>0}}" class="tui-goods-date">{{parseUtils.secondToHm(item.starttime)}} - {{parseUtils.secondToHm(item.endtime)}}</view>
-                    </block>
-                    <!-- 左上角区  end-->
-                  </view>
-
-
-
-                  <!-- <view wx:if="{{item.starttime>0&&item.endtime>0}}" class="tui-order-status">
-                    {{date.format(item.startdate*1000,'yyyy-MM-dd EE')}}
-                  </view>
-                  <tui-button wx:if="{{item.source==1&&item.starttime<=0&&item.endtime<=0&&item.used_quantity>item.quantity}}" data-orderno="{{item.orderno}}" data-orderid="{{item.id}}" data-courseid="{{item.courseid}}" bind:tap="scheduleCourses" wx:if="{{item.source==1&&item.starttime<=0&&item.endtime<=0}}" type="green" plain width="152rpx" height="52rpx" size="26" shape="circle">立即约课</tui-button>
-                   -->
-                    <!-- 右上角区 -->
-                    <block wx:if="{{item.source==1}}"><!-- 私教 -->
-                        <block wx:if="{{item.course_expiration_time>0&&parseUtils.validateDateExpires(item.course_expiration_time)}}">
-                          <!-- 虽然过期了，还有余课，官方说 可续约 -->
-                          <tui-button wx:if="{{item.used_quantity<item.quantity}}" data-orderno="{{item.orderno}}" data-orderid="{{item.id}}" data-courseid="{{item.courseid}}" bind:tap="renewalCourses" type="warning" plain width="152rpx" height="52rpx" size="26" shape="circle">续约课程</tui-button>
-                        </block>
-                        <block wx:else>
-                              <!-- 还有课呢，可以约 -->
-                              <tui-button wx:if="{{item.used_quantity<item.quantity}}" data-orderno="{{item.orderno}}" data-orderid="{{item.id}}" data-courseid="{{item.courseid}}" bind:tap="scheduleCourses"  type="green" plain width="152rpx" height="52rpx" size="26" shape="circle">立即约课</tui-button>
-                        </block>
-                      
-                    </block>
-                    <block wx:else><!-- 团课或训练营 -->
-                          <!-- 1.是否过期 {{date.format((item.startdate+item.starttime)*1000,'yyyy-MM-dd HH:mm:ss')}} -->
-                          <view wx:if="{{item.starttime>0&&item.endtime>0&&parseUtils.validateDateExpires((item.startdate+item.starttime)*1000)}}" class="tui-order-status" style="color: #ccc;">{{date.format(item.startdate*1000,'yyyy-MM-dd EE')}}</view>
-                          <view wx:else class="tui-order-status" style="color: #5677fc;">{{date.format(item.startdate*1000,'yyyy-MM-dd EE')}}</view>
-                    </block>
-                    <!-- 右上角区  end-->
-                </view>
-              </tui-list-cell>
-
-              <tui-list-cell padding="0" hover="{{false}}">
-                <view class="tui-goods-item">
-                  
-                  <view class="tui-goods-center">
-                    <!-- 标题 或 课时区 -->
-                    <!--一、 私教课 -->
-                    <block wx:if="{{item.source==1}}">
-                      <view class="tui-goods-name baseline">
-                        <view class="class-surplus">剩余课时</view>
-                        <view class="class-all {{item.quantity-item.used_quantity>0?'red':''}}">{{item.quantity-item.used_quantity>0?item.quantity-item.used_quantity:0}}/{{item.quantity}}</view>
-                        <!-- <tui-badge absolute="{{true}}" top="16rpx" right="" margin="0" translateX="-10rpx" type="warning"  scaleRatio="1">进行中</tui-badge> -->
-                        <!-- 1.是否过期 -->
-                        <block wx:if="{{item.course_expiration_time>0&&parseUtils.validateDateExpires(item.course_expiration_time)}}">
-                          <tui-badge absolute="{{false}}" margin="0" translateX="20rpx" type="warning"  scaleRatio="1">已过期</tui-badge>
-                        </block>
-                        <block wx:else>
-                              <!-- 2.已用课时大于总课时 -->
-                              <block wx:if="{{item.used_quantity>=item.quantity}}">
-                                <tui-badge absolute="{{false}}" margin="0" translateX="20rpx" type="gray"  scaleRatio="1">已结束</tui-badge>
-                              </block>
-                              <block wx:else>
-                                <tui-badge absolute="{{false}}" margin="0" translateX="20rpx" type="primary"  scaleRatio="1">进行中</tui-badge>
-                              </block>
-                        </block>
-
-                      </view>
-                    </block>
-                    <!--二 、团课或训练营-->
-                    <block wx:else>
-                      <view class="tui-goods-name ">
-                        <view class="class-title">{{item.title}}</view>
-                        <!-- 1.是否过期 {{date.format((item.startdate+item.starttime)*1000,'yyyy-MM-dd HH:mm:ss')}} -->
-                        <block wx:if="{{item.starttime>0&&item.endtime>0&&parseUtils.validateDateExpires((item.startdate+item.starttime)*1000)}}">
-                          <tui-badge absolute="{{false}}" margin="0" translateX="20rpx" type="gray"  scaleRatio="1.2">已结束</tui-badge>
-                        </block>
-                        <block wx:else>
-                           <tui-badge absolute="{{false}}" margin="0" translateX="20rpx" type="primary"  scaleRatio="1">待上课</tui-badge>
-                           <tui-badge absolute="{{false}}" margin="0" translateX="40rpx" type="warning"  scaleRatio="1">{{parseUtils.countdownDay(item.startdate)}}</tui-badge>                           
-                        </block>
-                      </view>
-                    </block>
-                    <!-- 标题 或 课时区 END -->
-
-                    <!-- 描述区 -->
-                    <view class="tui-goods-address">
-                      <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="time" content="" color="#000"></ald-icon>
-                      <view class="tui-goods-address-title">购买时间: {{date.format(item.addtime*1000,'yyyy-MM-dd HH:mm:ss')}}</view>
-                    </view>
-                    <!--一、 描述区 私教 -->
-                    <block wx:if="{{item.source==1}}">
-                      <view class="tui-goods-address" wx:if="{{item.course_expiration_time>0}}">
-                        <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="creative" content="" color="#000"></ald-icon>
-                        <view class="tui-goods-address-title">到期时间:{{date.format(item.course_expiration_time*1000,'yyyy-MM-dd HH:mm:ss')}} </view>
-                      </view>
-                      <view class="tui-goods-address">
-                        <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="creative" content="" color="#000"></ald-icon>
-                        <view class="tui-goods-address-title line-two">使用说明:课程在有效期内可约教练上课.</view>
-                      </view>
-
-                    </block>
-                    <!--二 、 团课或训练营 -->
-                    <block wx:else>
-                        <view wx:if="{{item.roomName}}" class="tui-goods-address">
-                            <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="creative" content="" color="#000"></ald-icon>
-                            <view class="tui-goods-address-title">上课教室: {{item.source==1&&item.starttime<=0&&item.endtime<=0?'待约...':item.roomName}}</view>
-                        </view>
-                        
-                        <view wx:if="{{item.storeName}}"  class="tui-goods-address">
-                            <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="map" content="" color="#000"></ald-icon>
-                            <view class="tui-goods-address-title">上课地址: {{item.source==1&&item.starttime<=0&&item.endtime<=0?'待约...':item.storeName}}</view>
-                        </view>
-                        <view  wx:if="{{item.source==1}}" class="tui-goods-address">
-                            <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="star" content="" color="#000"></ald-icon>
-                            <view class="tui-goods-address-title">上课教练: {{item.source==1&&item.starttime<=0&&item.endtime<=0?'待约...':'李教练'}}</view>
-                        </view>
-                    
-                    </block>
-                    <!-- 描述区 END -->
-
-
-
-
-
-                    <!-- <view wx:if="{{item.roomName}}" class="tui-goods-address">
-                            <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="creative" content="" color="#000"></ald-icon>
-                            <view class="tui-goods-address-title">上课教室: {{item.source==1&&item.starttime<=0&&item.endtime<=0?'待约...':item.roomName}}</view>
-                        </view>
-                        
-                        <view wx:if="{{item.storeName}}"  class="tui-goods-address">
-                            <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="map" content="" color="#000"></ald-icon>
-                            <view class="tui-goods-address-title">上课地址: {{item.source==1&&item.starttime<=0&&item.endtime<=0?'待约...':item.storeName}}</view>
-                        </view>
-                        <view  wx:if="{{item.source==1}}" class="tui-goods-address">
-                            <ald-icon margin="0 10rpx 0 0" size=".8" customClass="" unit="rem" name="star" content="" color="#000"></ald-icon>
-                            <view class="tui-goods-address-title">上课教练: {{item.source==1&&item.starttime<=0&&item.endtime<=0?'待约...':'李教练'}}</view>
-                        </view>-->
-                  </view>
-                  <!-- <view class="tui-price-right">
-                    <tui-button type="black" plain width="152rpx" height="52rpx" size="26" shape="circle">取消预约</tui-button>
-                  </view> -->
-                </view>
-              </tui-list-cell>
-              <!-- <tui-list-cell  wx:if="{{item.starttime<=0&&item.endtime<=0&&item.source==1}}" :hover="false" unlined>
-                <view class="tui-goods-price">
-                  <tui-button type="green" plain width="152rpx" height="52rpx" size="26" shape="circle">立即约课</tui-button>
-                 <tui-button type="green" plain width="152rpx" height="52rpx" size="26" shape="circle">立即预约</tui-button>
-                  <tui-button type="warning" plain width="152rpx" height="52rpx" size="26" shape="circle">取消预约</tui-button>
-                  <tui-button type="warning" plain width="152rpx" height="52rpx" size="26" shape="circle">取消排队</tui-button>
-                  <tui-button type="gray" plain width="152rpx" height="52rpx" size="26" shape="circle">禁止动作</tui-button>
-                  <view class="tui-size-24">￥</view>
-						<view class="tui-price-large">596</view>
-						<view class="tui-size-24">.00</view>
-                </view>
-              </tui-list-cell> -->
-              <!-- <view class="tui-order-btn">
-					<tui-button type="danger" plain width="152rpx" height="52rpx" size="26" shape="circle" wx:if="{{tabIndex == 1}}">邀请好友</tui-button>
-					<tui-button type="black"  plain width="152rpx" height="52rpx" size="26" shape="circle" wx:else>拼团详情</tui-button>
-				</view> -->
-              <!-- </block> -->
+    <scroll-view scroll-y style="height: 100vh;">
+      <block wx:if="{{cardList.length != 0}}">
+        <view class="thorui-flex__between" wx:for="{{cardList}}" wx:key="index">
+          <view class="radio_flx">
+            <image class="radio_img" src="{{item.poster}}" mode="" />
+            <view>
+              <view class="radio_name">{{item.title}}</view>
+              <view class="xiao_title">有效期至:{{date.format(item.expire_time*1000,'yyyy-MM-dd')}} 剩余节数:{{item.remaining}}节</view>
             </view>
-            <!-- 循环区END -->
-                    <!-- 更多 -->
-                    <view class="tui-loading-more">
-                        <tui-loadmore wx:if="{{tab.isLoading}}" index="3" ></tui-loadmore>
-                        <block wx:if="{{!tab.isLoading}}">
-                            <tui-no-data wx:if="{{tab.noData}}" bindtap="gobuy" btnText="购买课程" backgroundColor="#ff7900" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无相关课程,快去购买吧!</tui-no-data>
-                            <tui-nomore wx:if="{{!tab.noData&&tab.pageIndex >= tab.lastPage}}"  backgroundColor="#fafafa"></tui-nomore>
-                        </block>
-                    </view>
-                    <!-- 更多END -->
           </view>
-          <!-- 内END -->
-        </scroll-view>
-      </swiper-item>
-    </swiper>
+        </view>
+        <tui-nomore backgroundColor="#fafafa"></tui-nomore>
+      </block>
+      <block wx:if="{{cardList.length == 0}}">
+        <tui-no-data bindtap="gobuy" btnText="去购卡" backgroundColor="#ff7900" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无课卡,快去购买吧!</tui-no-data>
+      </block>
+      <view class="blogo" style="background: #FFF;"></view>
+    </scroll-view>
   </view>
 </view>

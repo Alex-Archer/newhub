@@ -10,6 +10,36 @@
       </view>
       <scroll-view scroll-y class="tui-coupon__list">
         <radio-group bindchange='radiochange' id="radioGroup">
+        <!-- 优惠券的 -->
+        <block wx:if="{{typename=='copon'}}">
+        <label wx:for="{{typeList}}" wx:key="index">
+
+          <view class="tui-coupon-item tui-top20">
+            <!-- <view class="tui-coupon-item-left">
+              <view class="tui-coupon-price-box">
+                <image src="{{typeList[index].poster}}" class="tui-coupon-img"></image>
+              </view>
+              <view class="tui-coupon-intro">{{typeList[index].cardTitle}}</view>
+            </view> -->
+            <view class="tui-coupon-item-right">
+              <view class="tui-coupon-content">
+                <view class="tui-coupon-title-box">
+                  <view class="tui-coupon-title">优惠券名称:{{typeList[index].title}}</view>
+                </view>
+                <view class="tui-coupon-rule">
+                  <view class="tui-rule-box tui-padding-btm">
+                    <view class="tui-coupon-circle"></view>
+                    <view class="tui-coupon-text">到期时间:{{date.format(typeList[index].user_use_expire_time*1000,'yyyy-MM-dd')}}</view>
+                  </view>
+
+                </view>
+              </view>
+              <radio value="{{index}}" class="tui-coupon-radio" color="#e41f19" checked="{{index==selectIndex?true:false}}" />
+            </view>
+          </view>
+          </label>
+        </block>
+
           <!-- <label wx:for="{{typeList}}" wx:key="index"> -->
           <!-- 模式
 <label wx:for="{{typeList}}" wx:key="index"> 
@@ -35,38 +65,39 @@
             </view>
           </label>
 模式END -->
+          <block wx:else >
+            <label wx:for="{{typeList}}" wx:key="index">
 
-          <label wx:for="{{typeList}}" wx:key="index">
-
-            <view class="tui-coupon-item tui-top20">
-              <!-- <image src="{{typeList[index].poster}}" class="tui-coupon-bg" mode="widthFix"></image>背景图 -->
-              <view class="tui-coupon-item-left">
-                <view class="tui-coupon-price-box">
-                  <image src="{{typeList[index].poster}}" class="tui-coupon-img"></image>
-                  <!-- <view class="tui-coupon-price-sign" wx:if="{{index % 2 == 0}}">￥</view>
-      <view class="tui-coupon-price" >{{ index % 2 == 0 ? 50 * (index + 1) : 2.5 }}</view>
-      <view class="tui-coupon-price-sign" wx:if="{{index % 2 != 0}}">折</view> -->
-                </view>
-                <view class="tui-coupon-intro">{{typeList[index].cardTitle}}</view>
-              </view>
-              <view class="tui-coupon-item-right">
-                <view class="tui-coupon-content">
-                  <view class="tui-coupon-title-box">
-                    <!-- <view class="tui-coupon-btn">指定</view> -->
-                    <view class="tui-coupon-title">还可兑换:{{typeList[index].separateGiveResidue+typeList[index].giveResidue}} 节课</view>
+              <view class="tui-coupon-item tui-top20">
+                <!-- <image src="{{typeList[index].poster}}" class="tui-coupon-bg" mode="widthFix"></image>背景图 -->
+                <view class="tui-coupon-item-left">
+                  <view class="tui-coupon-price-box">
+                    <image src="{{typeList[index].poster}}" class="tui-coupon-img"></image>
+                    <!-- <view class="tui-coupon-price-sign" wx:if="{{index % 2 == 0}}">￥</view>
+        <view class="tui-coupon-price" >{{ index % 2 == 0 ? 50 * (index + 1) : 2.5 }}</view>
+        <view class="tui-coupon-price-sign" wx:if="{{index % 2 != 0}}">折</view> -->
                   </view>
-                  <view class="tui-coupon-rule">
-                    <view class="tui-rule-box tui-padding-btm">
-                      <view class="tui-coupon-circle"></view>
-                      <view class="tui-coupon-text">到期时间:{{date.format(typeList[index].expiredTime*1000,'yyyy-MM-dd')}}</view>
+                  <view class="tui-coupon-intro">{{typeList[index].cardTitle}}</view>
+                </view>
+                <view class="tui-coupon-item-right">
+                  <view class="tui-coupon-content">
+                    <view class="tui-coupon-title-box">
+                      <!-- <view class="tui-coupon-btn">指定</view> -->
+                      <view class="tui-coupon-title">还可兑换:{{typeList[index].separateGiveResidue+typeList[index].giveResidue}} 节课</view>
                     </view>
-    
+                    <view class="tui-coupon-rule">
+                      <view class="tui-rule-box tui-padding-btm">
+                        <view class="tui-coupon-circle"></view>
+                        <view class="tui-coupon-text">到期时间:{{date.format(typeList[index].expiredTime*1000,'yyyy-MM-dd')}}</view>
+                      </view>
+      
+                    </view>
                   </view>
+                  <radio value="{{index}}" class="tui-coupon-radio" color="#e41f19" checked="{{index==selectIndex?true:false}}" />
                 </view>
-                <radio value="{{index}}" class="tui-coupon-radio" color="#e41f19" checked="{{index==selectIndex?true:false}}" />
               </view>
-            </view>
-          </label>
+            </label>
+          </block>
           <!-- </label> -->
         </radio-group>
         <view class="tui-seat__box tui-top20"></view>

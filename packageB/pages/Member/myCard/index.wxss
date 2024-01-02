@@ -1,0 +1,32 @@
+.store-popup-scroll
+{
+  font-size: 26rpx;
+  box-sizing: border-box;
+  padding: 30rpx 30rpx;
+
+}
+.thorui-flex__between{
+  margin: 30rpx 50rpx;
+  background: #f4f4f4;
+  border-radius: 30rpx;
+  padding: 0 30rpx;
+}
+.radio_flx
+{
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+.radio_img{
+  width: 100rpx;
+  height: 100rpx;
+  /* border-radius: 50%; */
+  margin-right: 15rpx;
+}
+.radio_name{
+  color: #38b138;
+  height: 41rpx;
+}
+.xiao_title{
+  font-size: 26rpx;
+}

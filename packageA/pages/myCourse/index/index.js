@@ -36,12 +36,16 @@ Page(filter.loginCheck(true, app, {
               name: '待上课',
               id: 'yule'
             },
+            // {
+            //   name: '排队中',
+            //   id: 'paidui'
+            // },
             {
-              name: '已完成',
+              name: '已上课',
               id: 'sports'
             },
             {
-              name: '已旷课',
+              name: '已取消',
               id: 'domestic'
             }
           ],
@@ -70,7 +74,11 @@ Page(filter.loginCheck(true, app, {
     detailShow(e) {
         
     },
-
+    yueClick(){
+      wx.redirectTo({
+        url: '/pages/newpage/index/index',
+      })
+    },
     onShow(e) {
         if (this.data.preventOnShow) return; //5.登录验证  需要登录时，阻止ONSHOW 
 
@@ -129,6 +137,9 @@ Page(filter.loginCheck(true, app, {
                 },
             }).then(res => {
                 if (res.data.code == 1) {
+                    this.setData({
+                      status:_state
+                    })
                     let _data = util.jsonTestParse(res.data.data); //解决返回为字符串型JSON问题
                     resolve(util.jsonTestParse(_data));
                 } else {

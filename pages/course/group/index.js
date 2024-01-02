@@ -5,15 +5,12 @@ import _ from '../../../libs/we-lodash'
 import axios from '../../../libs/axios-miniprogram/axios-miniprogram.cjs';
 var util = require('../../../utils/util.js')
 var md5util = require('../../../utils/md5.js') 
+var apis = require('../../../utils/apis') 
 
 Page({
   data: {
     globalURL: app.globalData.globalURL,
-    
     agreeClick:false, //隐私是点击过的，不管是否同意的
-
-
-
     //底部菜单
     flag: false, //首页加载动画
     tabbarShow: true, //底部菜单不与其它冲突默认关闭
@@ -31,17 +28,17 @@ Page({
     typeScrollInto: '', //选择后运动到的位置
     tabTypeIndex: 1, //顶部大分类 默认认选择项
     typeBars: [{
-        name: '推荐',
+        name: '全部课程',
         id: "0",
-        path: '/pages/course/index/index',
+        path: '/pages/newpage/index/index',
       },
       {
-        name: '团课',
+        name: '约团课',
         id: "1",
         path: '/pages/course/group/index',
       },
       {
-        name: '私教',
+        name: '约私教',
         id: "2",
         path: '/pages/course/personal/index',
       },
@@ -50,30 +47,22 @@ Page({
       //   id: "3",
       //   path: '/pages/course/personalMon/index',
       // },
-      {
-        name: '集训营',
-        id: "4",
-        path: '/pages/course/camp/index',
-      }
+      // {
+      //   name: '集训营',
+      //   id: "4",
+      //   path: '/pages/course/camp/index',
+      // }
     ],
     //顶部类型选择END
-
-
-
     // cacheTab: [],
     dateScrollInto: '', //选择后运动到的位置
     //日期选择块END
 
-
     //小鱼下面抽整过来
     storeListData: [], //1.门店列表 首次在下拉时填充
-    orderListData:[{id:0,title: "默认排序",selected: true}, {id:1,title: "按门店评分排序",selected: false}], //2.排序
-    coachListData:[], //3.关注的教练列表 首次在下拉时填充
-    thisDropIndex:0,//当前proDropData填充的是哪一个 0没有 1门店 2排序 3教练
     proDropData: [], //3个菜单 共用体部份
     dropShow: false,
     dropHeaderShow:false,//下拉闪屏小鱼试解决
-
 
     scrollTop: 0,
     dropdownShow: false,
@@ -86,14 +75,10 @@ Page({
     //1.顶部类型选择
     typeNavTop: 0, //顶部距离
     isTypeNavFixed: false, //是否吸顶
-    //2.搜索框的定位
-    isSearchFixed: false,
-    searchNavTop: 0,
     //3.日期选择块
     isDataFixed: false,
     dataNavTop: 0,
     //4.筛选
-    isDropdowFixed: false,
     dropdowNavTop: 0,
     //吸顶区==================END
 
@@ -119,39 +104,81 @@ Page({
     lat: null, //纬度坐标
     word: '', //关健词搜
     typeId: 0, //指定课程类别
-    storeId: 0, //指定门店ID
+    
+    storeId: '', //指定门店ID
+    branchName: '', //门店名称
+
     coachId: 0, //指定教练ID
+    cardid: '', // 选中的卡id
     dateTime: '', //日期，可以是时间戳，也可是具体的日期2023-08-22
     //陈建给还有时分，暂时不用
-
     dateBars: [], //周日期选择
     tabDateIndex: 0, //周日期选择模块 日期默认选中项 今天
-
-    // 左边类型选择 TAB
-    tabLeftIndex: 0, //左边分类 默认选中 预设当前项的值
-    scrollViewId: "id_0", //左边TAB滚动到的位置 scroll-into-view
-    leftBars: [{
-        "id": "0",
-        "title": "全部课程",
-        "grade":-1
-      },
-      {
-        "id": "-1",
-        "title": "热门推荐",
-        "grade":-1
-      }
-    ],
-    // 左边类型选择 TAB end
-
-    // 搜索框
-    inputShowed: false,
-
-
-
-
-
-
-
+  },
+  branchClick(){
+    wx.navigateTo({
+      url: `/pages/map/pointListView/index?typeid=1`,
+    }) 
+  },
+  getCardList(){
+    wx.showLoading({
+      title: '加载中...',
+      icon: 'none',
+    })
+    let _timestamp = (new Date()).valueOf();
+    let _coursePackageType = 1
+    let _config={
+      userID: wx.getStorageSync('USERID'),
+      coursePackageType: _coursePackageType.toString(),
+      TIMESTAMP: _timestamp,
+      FKEY: md5util.md5(wx.getStorageSync('USERID') + _timestamp.toString() + app.globalData.APP_INTF_SECRECT),
+    }
+    apis.get('/CardItemOrderApi/getUserCardItem',_config,{
+      "Content-Type": 'applciation/json'
+    },true).then(val => {
+      val.forEach(el => {
+        // 算出剩余多少节
+        el.remaining = el.course_quantity - el.course_used_quantity 
+      });
+      this.setData({
+        cardList:val
+      })
+      wx.hideLoading()
+    },function(err){
+      console.log(err);
+    })
+  },
+  yueClick(e){
+    let _Location = wx.getStorageSync('Location');
+    let _id = (e.currentTarget.dataset.currid)
+    let _storeId = this.data.storeId
+    if(!_storeId){
+      _storeId = _Location.id||0
+      this.setData({
+        branchName: _Location.title
+      })
+    }
+    console.log(_storeId);
+    wx.navigateTo({
+      url: `/pages/newpage/detail/index?editid=${_id}&typeid=1&branchid=${_storeId}`,
+    })
+    // }else{
+    //   wx.navigateTo({
+    //     url: `/pages/map/pointListView/index?editid=${_id}&typeid=1&tiao=1`,
+    //   }) 
+  },
+  // 选课程携带到下一个页面需要的参数，实现进页面展示当前卡项的参数
+  keClick(e){
+    wx.redirectTo({
+      url: `/pages/newpage/index/index?clicknum=0`,
+    })
+  },
+  // 去购卡
+  addClick(e){
+    wx.navigateTo({
+      // url: `/packageB/pages/card/detailShow/index?cla=1`,
+      url: `/packageB/pages/card/index/index`,
+    })
   },
   agree(e){
     console.log("用户同意隐私授权, 接下来可以调用隐私协议中声明的隐私接口")
@@ -190,28 +217,41 @@ Page({
     })
 
   },
-  //整理搜索参数
-  initParam(_pageIndex = 1) {
+  cardClick(e){
+    let _cardid = e.currentTarget.dataset.cardid
+    this.setData({
+      cardid: _cardid
+    })
+    this.getData()
+  },
+  getData(page_index = 1) {
     let that = this;
+    that.setData({
+      loadingData: true
+    })
+    let _storeId = that.data.storeId
+    let _Location = wx.getStorageSync('Location');
+      
+    if(!_storeId){
+      _storeId = _Location.id||0
+      this.setData({
+        branchName: _Location.title
+      })
+    }
     let _timestamp = (new Date()).valueOf();
     let config = {
       userID: wx.getStorageSync('USERID'),
       TIMESTAMP: _timestamp
     };
-
-    _.assign(config, {
-      typeClass: that.data.typeClass 
-    });
     _.assign(config, {
       pageSize: that.data.pageSize
     });
-    _.assign(config, {
-      //   pageIndex: that.data.pageIndex
-      pageIndex: _pageIndex
-    });
-    _.assign(config, {
-      orderSet: that.data.orderSet
-    });
+    if (!util.isNull(page_index) && page_index > 1) {
+      _.assign(config, {
+        //   pageIndex: that.data.pageIndex
+        pageIndex: _pageIndex
+      });
+    }
     if (!util.isNull(that.data.lng)) {
       _.assign(config, {
         lng: that.data.lng
@@ -222,73 +262,23 @@ Page({
         lat: that.data.lat
       });
     }
-    if (!util.isNull(that.data.word)) {
-      _.assign(config, {
-        word: that.data.word
-      });
-    }
     _.assign(config, {
       typeId: that.data.typeId
     });
     _.assign(config, {
-      storeId: that.data.storeId
+      storeId: _storeId
     });
     _.assign(config, {
-      coachId: that.data.coachId
+      cardid: that.data.cardid
     });
+    
     if (!util.isNull(that.data.dateTime)) {
       _.assign(config, {
         dateTime: that.data.dateTime
       });
     }
-
-    //门店选择 //storeId
-    let _storeListData = that.data.storeListData;
-    if(!util.isNull(_storeListData))
-    {
-      let  selectedIds = _.filter(_storeListData, item => item.selected).map(item => item.id).join(',');
-      _.assign(config, {
-        storeId: selectedIds
-      });
-    }
-    
-
-    //coachId  教练
-    let _coachListData = that.data.coachListData;
-    if(!util.isNull(_coachListData))
-    {
-      let  selectedIds = _.filter(_coachListData, item => item.selected).map(item => item.id).join(',');
-      _.assign(config, {
-        coachId: selectedIds
-      }); 
-    }
-
-    //orderSet  排序
-    let _orderListData = that.data.orderListData;
-    if(!util.isNull(_orderListData))
-    {
-      let  selectedIds = _.filter(_orderListData, item => item.selected).map(item => item.id).join(',');
-      _.assign(config, {
-        orderSet: selectedIds
-      });
-    }
-
-
-    return config;
-  },
-  getData(page_index = 1) {
-    let that = this;
-    let getConfig = this.initParam(page_index);
-    that.setData({
-      loadingData: true
-    })
-    if (!util.isNull(page_index) && page_index > 1) {
-      _.assign(getConfig, {
-        pageIndex: page_index
-      });
-    }
     return new Promise((resolve, reject) => {
-      axios.get("Course/coursePub", getConfig, {
+      axios.get("Course/coursePub", config, {
         headers: {
           "Content-Type": 'applciation/json',
         },
@@ -310,18 +300,23 @@ Page({
       }).catch((err) => {
         reject([]);
       });
-    }).catch(err => {
-      reject([]);
     })
 
   },
-
+  changeLocation: function (locationJson, LocationDistance) {
+    this.setData({
+      Location: locationJson,
+      locationDistance: LocationDistance
+    })
+    //地图定位选择操作区====================END
+  },
   //初始状态
   initLoad() {
     const that = this;
 
     this.getData().then(_data => {
-      let _courseList = that.data.courseList;
+      let _courseList = []
+      _courseList = that.data.courseList;
       _.assign(_courseList, {
         lastPage: _data.lastPage,
         total: _data.total,
@@ -375,8 +370,6 @@ Page({
       }
     });
   },
-
-
 
   //用户设置中查看定位功能是否打开
   getLocationSetting() {
@@ -437,39 +430,6 @@ Page({
       //#endregion 拉取用户是否开启了定位
     })
   },
-  //左菜单列表
-  getClassList(_type = 1) {
-    return new Promise((resolve, reject) => {
-      axios.get("Course/typePub", {
-        id: _type
-      }, {
-        headers: {
-          "Content-Type": 'applciation/json',
-        },
-        interceptors: {
-          request: false, 
-          response: false 
-        },
-        
-        validateStatus(status) {
-          return status === 200;
-        },
-      }).then(res => {
-
-        if (res.data.code == 1) {
-          resolve(res.data.data);
-        } else {
-          reject();
-        }
-
-      }).catch((err) => {
-        reject();
-      });
-    }).catch(err => {
-      reject();
-    })
-
-  },
   //4.菜单 - 门店列表
   getStoreList(_pagesize = 10) {
     /*
@@ -512,50 +472,17 @@ Page({
     })
 
   },
-  //4.菜单 - 关注的教练列表
-  getCoachList() {
-    const that = this;
-    
-    return new Promise((resolve, reject) => {
-
-      let _timestamp = (new Date()).valueOf();
-      axios.get("User/concernCoachPub", {
-        TIMESTAMP: _timestamp,
-        userID: wx.getStorageSync('USERID')||"",//有用户返回关注教练，没有用户ID则返回空
-        FKEY: md5util.md5(wx.getStorageSync('USERID')||"" + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
-      }, {
-      headers: {
-        "Content-Type": 'applciation/json',
-      },
-        interceptors: {
-          request: false, 
-          response: false 
-        },
-        
-        validateStatus(status) {
-          return status === 200;
-        },
-      }).then(res => {
-
-        if (res.data.code == 1) {
-          resolve(res.data.data);
-        } else {
-          resolve([]);
-        }
-
-      }).catch((err) => {
-        reject();
-      });
-    }).catch(err => {
-      reject();
-    })
-
+  onShow(){
+    this.initLoad()
   },
   onLoad: function (options) {
+    this.setData({
+      storeId:options.branchid,
+      branchName:options.title
+    })
     let that = this;
-
+    that.getCardList()
     wx.hideHomeButton(); //隐HOME
- 
     //2.获取周几菜单
     new Promise((resolve, reject) => {
       // const today = new Date();
@@ -570,14 +497,7 @@ Page({
         resolve();
       })
     })
-    //3.获取左菜单
-    this.getClassList(1).then(res => {
-      let _leftBars = that.data.leftBars;
-      let mergedList = _.union(_leftBars, res);
-      that.setData({
-        leftBars: mergedList
-      })
-    }).catch(c => {})
+    // that.btnDropStore()
   },
 
  // 底部菜单点击
@@ -587,7 +507,7 @@ Page({
     let _navigate = e.detail.navigate||false;
     let isLogin = false;
     //"coachPath":"/pages/coach/home/index/index",//教练中心地址，不为空则需要验证身份,暂时放在集训营中来测试
-    
+    let that = this
 
     if (e.detail.verify && !isLogin) {
       wx.showToast({
@@ -602,6 +522,7 @@ Page({
             onlyFromCamera: false, //禁止相册
             scanType: ['qrCode'], //只识别二维码
             success: (res) => {
+              app.getOpenID(false).then(resOpenID => {
                 wx.showLoading();
                 // 获取到扫描到的二维码内容
                 const qrCodeContent = res.result;
@@ -621,12 +542,58 @@ Page({
                 }
                 let _action=util.getURLParam(qrCodeContent,"s");
                 let _actionTitle="";
+                let _param =util.getURLParam(qrCodeContent,"param");
+                console.log(_param);
+                let _timestamp = (new Date()).valueOf();
+                let _uid = wx.getStorageSync('USERID')||resOpenID;
+                let config = {
+                  userID: _uid,
+                  TIMESTAMP: _timestamp,
+                  key: _param,
+                  FKEY: md5util.md5(_uid + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
+                }
                 switch(_action)
                 {
-                    case "door"://开门 https://yoga.aoben.yoga/s=door&param=mac
-                        _actionTitle="开门动作";
-                        break;
-                    case "getpass"://获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
+                  case "door"://开门 https://yoga.aoben.yoga/s=door&param=mac
+                  _actionTitle="开门动作";
+                  apis.gets("Door/qrCode",config,false).then(val=>{
+                    that.setData({
+                      openID:resOpenID,
+                      openDoorHtml:"开门成功",
+                      returnHtml:"CODE1正常："+JSON.stringify(val)
+                    });
+                  },function(err)
+                  {
+                    that.setData({
+                      openID:resOpenID,
+                      openDoorHtml:"开门失败",
+                      openErrMessage:'这是失败原因',
+                      returnHtml:"CODE 0出错："+JSON.stringify(err)
+                    });
+            
+                  })
+                  break;
+              case "locker"://开柜 https://yoga.aoben.yoga/s=locker&param=mac
+                  _actionTitle="开柜动作";
+                  // https://aoben.kshot.com
+                  apis.gets("Locker/qrCode",config,false).then(val=>{
+                    console.log(val);
+                    that.setData({
+                      openID:resOpenID,
+                      openDoorHtml:"开柜成功",
+                      returnHtml:"CODE1正常："+JSON.stringify(val)
+                    });
+                  },function(err)
+                  {
+                    that.setData({
+                      openID:resOpenID,
+                      openDoorHtml:"开柜失败",
+                      openErrMessage:'这是失败原因',
+                      returnHtml:"CODE 0出错："+JSON.stringify(err)
+                    });
+                  })
+                  break;
+              case "getpass"://获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
                         _actionTitle="获取用户密码";
                         break;
                     case "cabinet"://开柜 https://yoga.aoben.yoga/s=cabinet&param=mac
@@ -642,13 +609,14 @@ Page({
                         _actionTitle="啥都不是";
                         break;
                 }
-
                 //联网去处理
                 wx.showToast({
                     title: _actionTitle,
                     icon: 'none'
                 })
                 return;
+              })
+
 
             },
             fail: (error) => {
@@ -720,22 +688,11 @@ Page({
 
   },
 
-
   //日期选择点击
   tabClick(e) {
 
     let index = e.target.dataset.current || e.currentTarget.dataset.current;
     this.switchTab(index);
-  },
-
-  screen() {
-    
-  },
-
-  popup: function () {
-    this.setData({
-      popupShow: !this.data.popupShow
-    })
   },
 
   // 右下角滚动 
@@ -819,35 +776,6 @@ Page({
 
   //#region  菜单点击区
 
-  //1.左边菜单
-  swichNav: function (e) {
-    let that = this;
-    let cur = e.currentTarget.dataset.current; //索引
-    let classID = e.currentTarget.dataset.id; //类ID
-    if (this.data.tabLeftIndex == cur) {
-      return false;
-    } else {
-      this.setData({
-        tabLeftIndex: cur,
-        typeId: classID
-      }, () => {
-        this.checkCor();
-        this.initLoad();
-      })
-    }
-  },
-  //判断当前滚动超过一屏时，设置tab标题滚动条。
-  checkCor: function () {
-    if (this.data.tabLeftIndex > 3) {
-      this.setData({
-        scrollViewId: `id_${this.data.tabLeftIndex - 2}`
-      })
-    } else {
-      this.setData({
-        scrollViewId: 'id_0'
-      })
-    }
-  },
   //2.选择日期
   switchTab(index) {
     let that = this;
@@ -868,50 +796,6 @@ Page({
 
 
   },
-  //3.搜索框动作 start=================
-  showInput() { //搜索框点击
-    this.setData({
-      inputShowed: true
-    })
-  },
-  hideInput() { //取消搜索
-    this.setData({
-      word: '',
-      inputShowed: false
-    }, () => {
-      this.initLoad();
-    })
-    wx.hideKeyboard(); //强行隐藏键盘
-  },
-  clearInput() { //清除搜索文字
-    this.setData({
-      word: ''
-    }, () => {
-      this.initLoad();
-    })
-  },
-  inputTyping: function (e) { //监听到当前输入框的值
-    this.setData({
-      word: e.detail.value
-    })
-  },
-  bindInput: function (e) { //确认搜索了
-    let that = this;
-    let keyWord = e.detail.value;
-    if (!util.isNull(keyWord)) {
-      if (that.data.word === keyWord) {
-        this.initLoad();
-      } else {
-        that.setData({
-          word: keyWord
-        }, () => {
-          this.initLoad();
-        })
-      }
-    }
-
-  },
-  //搜索框动作 END
 
   //#endregion 菜单点击区
 
@@ -993,170 +877,14 @@ Page({
       that.getStoreList(10).then(res => {
         that.setData({
           storeListData: res.data, //第一次获取的数据存起来 
-
           proDropData: res.data,
-          //proDropIndex: index,
-          dropShow: true,
-          dropHeaderShow:true,
-          
-          dropdownShow: false,
-          thisDropIndex:1,//当前proDropData填充的是哪一个 0没有 1门店 2排序 3教练
         })
       }).catch(c => {})
     } else {
       that.setData({
         proDropData: that.data.storeListData,
-        dropShow: true,
-          dropHeaderShow:true,
-          
-        dropdownShow: false,
-        thisDropIndex:1,//当前proDropData填充的是哪一个 0没有 1门店 2排序 3教练
-        
       })
     }
-  },
-  //2.排序下拉
-  btnDropOrderBy(e) {  
-    let that = this;
-    that.setData({
-      proDropData: that.data.orderListData,
-      dropShow: true,
-      dropHeaderShow:true,
-      
-      dropdownShow: false,
-      thisDropIndex:2,//当前proDropData填充的是哪一个 0没有 1门店 2排序 3教练
-    })
-  },
-  //3.教练下拉
-  btnDropCoach(e) {
-    let that = this;
-    
-    if (util.isNull(that.data.coachListData)) { //第一次获取的数据存起来 是否存在
-      that.getCoachList().then(res => {
-        that.setData({
-          coachListData: res, //第一次获取的数据存起来 
-
-          proDropData: res,
-          //proDropIndex: index,
-          dropShow: true,
-          dropHeaderShow:true,
-          
-          dropdownShow: false,
-          thisDropIndex:3,//当前proDropData填充的是哪一个 0没有 1门店 2排序 3教练
-        })
-      }).catch(c => {
-
-      })
-    } else {
-      that.setData({
-        proDropData: that.data.coachListData,
-        dropShow: true,
-          dropHeaderShow:true,
-          
-        dropdownShow: false,
-        thisDropIndex:3,//当前proDropData填充的是哪一个 0没有 1门店 2排序 3教练
-      })
-    }
-  },
-  //弹窗 - 内容选择点击
-  btnSelected: function (e) {
-
-    let index = e.currentTarget.dataset.index;
-    if(this.data.thisDropIndex===2)//只能单选
-    {
-      let arr = this.data.proDropData;
-      for(let i=0;i<arr.length;i++)
-      {
-        if(i==index){
-          arr[i].selected = true;
-        }else{
-          arr[i].selected = false;
-        }
-      }
-      this.setData({
-        proDropData: arr
-      })
-
-    }else{//原来 多选
-      let obj = this.data.proDropData[index];
-      let key = `proDropData[${index}].selected`
-      this.setData({
-        [key]: !obj.selected
-      })
-    }
-
-
-    if(this.data.thisDropIndex===1){
-      this.setData({
-        storeListData:this.data.proDropData
-      })
-    }else if(this.data.thisDropIndex===2)
-    {
-      this.setData({
-        orderListData:this.data.proDropData
-      })
-    }
-    else if(this.data.thisDropIndex===3)
-    {
-      this.setData({
-        coachListData:this.data.proDropData
-      })
-    }
-
-
-  },
-  //弹窗 - 重置
-  reset() {
-    let arr = this.data.proDropData;
-    for (let item of arr) {
-      item.selected = false;
-    }
-    this.setData({
-      proDropData: arr
-    })
-
-  },
-  //弹窗 - 确认
-  btnCloseDrop() {
-
-    this.setData({
-        scrollTop: 0,
-        dropShow: false,
-        //proDropIndex: -1
-      },()=>{ //小鱼解决闪屏
-          setTimeout(() => {
-              this.setData({
-                  dropHeaderShow:false
-              })
-              
-          }, 200);
-      })
-
-    switch(this.data.thisDropIndex){
-      case 1:
-        this.setData({
-          storeListData:this.data.proDropData
-        })
-        break;
-      case 2:
-        this.setData({
-          orderListData:this.data.proDropData
-        })
-        break;
-      case 3:
-        this.setData({
-          coachListData:this.data.proDropData
-        })
-        break;
-      default:
-        break;
-    }
-    if(!util.isNull(this.data.proDropData)){
-    this.initLoad();//重新加载
-    }
-
-
-
   },
   goToStore() {
     wx.navigateTo({

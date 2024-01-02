@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+  },
+  "navigationBarTitleText": "我的券",
+  "backgroundTextStyle": "light",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#008000",
+  "navigationStyle": "default",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff"
+}

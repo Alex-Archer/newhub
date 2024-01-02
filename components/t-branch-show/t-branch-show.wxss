@@ -1,0 +1,83 @@
+.locateHost {
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-top: 10rpx;
+  background: #fff;
+  /* 
+  https://blog.csdn.net/qq_40259641/article/details/118700712
+  距离顶部的吸顶距离  top:0  时才会生效；
+  吸顶元素的父元素必须是page元素；
+  父元素page不能设置height:100%;否则滑动过程中消失 
+  */
+  /* 要配前端 <view class="locateHost" style="{{scrollTop > 10 ? 'background-color: #fff;' : ''}}">
+  position: sticky;
+  top: 60rpx; */
+}
+
+.locate-ico {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  float: left;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.locate-txt {
+  width: 400rpx;
+  padding-left: 15rpx;
+  display: flex;
+  flex-direction:column;
+}
+
+.locate-txt-t {
+  float: left;
+  height: 35rpx;
+  line-height: 35rpx;
+  font-size: 1rem;
+  padding-top: 2rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.locate-txt-d {
+  width: 100%;
+  float: left;
+  font-size: 22rpx;
+  height: 25rpx;
+  line-height: 25rpx;
+  margin: 10rpx 0 0 4rpx;
+
+}
+.locate-txt-text {
+
+
+  /* height: 25rpx;
+  line-height: 25rpx; */
+  font-size: 30rpx;
+
+}
+/* 文字太长...号 */
+.locate-txt-text,.locate-txt-d 
+{    
+  
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.locate-dorp-ico {
+  width: 5%;
+  height: 20rpx;
+  line-height: 20rpx;
+  float: left;
+  padding-top: 10rpx;
+}

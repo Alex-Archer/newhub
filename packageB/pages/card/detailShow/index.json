@@ -5,7 +5,8 @@
     "tui-input": "/components/thorui/tui-input/tui-input",
     "ald-icon": "/components/ksald/ald-icon/ald-icon",
     "tui-overflow-hidden":"/components/thorui/tui-overflow-hidden/tui-overflow-hidden",
-    "wxParse": "/components/parse/wxParse/wxParse"
+    "wxParse": "/components/parse/wxParse/wxParse",
+    "t-select-coupon-type": "/components/views/t-select-coupon-type/t-select-coupon-type"
   },
   "navigationBarTitleText": "购卡项",
 

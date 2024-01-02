@@ -56,6 +56,7 @@
     "pages/mini/scan/index",
     "pages/map/pointListView/index",
     "pages/newpage/index/index",
+    "pages/newpage/detail/index",
     "components/ksald/ald-loading/ald-loading"
   ],
   "subPackages": [
@@ -66,7 +67,6 @@
         "pages/index/index",
         "pages/order/list/index",
         "pages/order/detail/index",
-        "pages/course/index/index",
         "pages/activity/index/index",
         "pages/Setting/index/index",
         "pages/Setting/accounts/index",
@@ -110,7 +110,9 @@
         "pages/card/activityShow/index",
         "pages/Member/buyCard/index",
         "pages/Member/level/index",
-        "pages/Member/myRights/index"
+        "pages/Member/myRights/index",
+        "pages/Member/myCard/index",
+        "pages/Member/myPackage/index"
       ],
       "independent": true
     }

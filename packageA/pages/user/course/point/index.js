@@ -290,7 +290,7 @@ Page(filter.loginCheck(true, app, {
 
     },
     
-    //https://aoben.kshot.com/api/store/indexPub
+    //https://ssl.aoben.yoga/api/store/indexPub
     getStoreData(_pageIndex = 1) {
         return new Promise((resolve, reject) => {
             let _timestamp = (new Date()).valueOf();

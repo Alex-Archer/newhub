@@ -9,13 +9,14 @@
       <view class="card-box">
         <image class="box-img-base card" style="min-height: 335rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/card.png" mode="widthFix"></image>
       </view>
-      <view class="card-des">首次入会 立减300元</view>
+      <view class="card-des">首次入会 立减{{reduce}}元</view>
     </view>
     <view class="img-box-li qy-center">
       <view class="qy-split">
         <image style="min-height: 44rpx;width: 36rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/xie.png" mode="widthFix"></image>
       </view>
-      <view class="qy-title" bindtap="myRights">奥本会员 专属权益</view>
+      <!-- bindtap="myRights" 开发时用的 -->
+      <view class="qy-title" >奥本会员 专属权益</view>
       <view class="qy-split">
         <image style="min-height: 44rpx;width: 36rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/xie.png" mode="widthFix"></image>
       </view>
@@ -47,57 +48,49 @@
       </view>
     </view>
     <view class="img-box-li img-center">
-      <image class="box-img-base" style="min-height:154rpx;width: 650rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/adv800X189.png"></image>
+      <!-- https://ssl.aoben.yoga/miniprogram/20231127/packageB/adv800X189.png {{poster}}-->
+      <image class="box-img-base" style="min-height:154rpx;width: 650rpx;border-radius: 20rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/adv800X189.png"></image>
     </view>
 
   </view>
 
-<!-- 协议 -->
-  <view class="agreement-box">
-    <tui-list-cell marginTop="40" radius="20" backgroundColor="#000" padding="0 0 0 20rpx" lineLeft="0" arrow="{{false}}" hover="{{false}}" unlined>
-    
-        <view class="tui-pd-title">
-            <view class="tui-pd-agree">《会员卡协议》</view>
-            <!-- <view class="tui-pd-des">上下滚动可阅读全部</view> -->
-        </view>
-        <view class="tui-padding tui-flex-pd">
-        <tui-overflow-hidden type="{{2}}"  lineClamp="5" size="28" color="#000" backgroundColor="#dadada"  width="100%" height="300rpx" radius="20rpx 20rpx 0 0" padding="20rpx" gradientColor="#000" removeGradient="{{removeGradientContent}}">
-            <rich-text nodes="{{agreeContent}}"></rich-text>
-        </tui-overflow-hidden>
-        <view class="tui-btn__box">
-                <tui-button wx:if="{{!removeGradientContent}}" size="{{22}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="40rpx auto" bindclick="readmoreContent">查看全部</tui-button>
-        </view>
-
-        </view>
-        <view class="tui-se-title">
-            <view class="tui-se-agree">
-              <checkbox-group bindchange="checkboxChange">
-                <label class="agree-label"  >
-                  <checkbox value="agree" checked="{{agreeCheckbox}}"   />
-                  <text>我已阅读并接受《会员卡协议》</text>
-                </label>
-            </checkbox-group>
-            </view>
-        </view>
-    </tui-list-cell>
-  </view>
-<!-- 协议END -->
-
-
-		<view class="tui-tabbar">
-			<view class="tui-flex-end tui-color-red tui-pr-20">
+  <view class="tui-tabbar">
+    <view class="tui-se-title" style="color:#848484">
+      <view class="tui-se-agree">
+        <checkbox-group bindchange="checkboxChange">
+          <label class="agree-label">
+            <checkbox value="agree" checked="{{agreeCheckbox}}" />
+            <text catchtap="xieyiClick" data-num="1" style="color:#848484;font-size:22rpx">同意<text style="color: #5D5D5D;">《奥本AOBEN课程服务协议》</text> 及 <text catchtap="xieyiClick" data-num="2" style="color: #5D5D5D;">《奥本AOBEN售后规则-平台》</text></text>
+          </label>
+        </checkbox-group>
+      </view>
+    </view>
+    <view class="tui-bottom">
+      <view class="tui-flex-end tui-color-red tui-pr-20">
         <view class="tui-bar-t">
           <view class="tui-black">实付金额: </view>
           <view class="tui-size-26">￥</view>
-          <view class="tui-price-large">20</view>
-          <view class="tui-size-26">.00</view>
+          <view class="tui-price-large">{{price}}</view>
+          <!-- <view class="tui-size-26">.00</view> -->
         </view>
-			</view>
-			<view class="tui-pr25">
-				<tui-button  width="200rpx" height="70rpx" size="28" type="{{subDisabled?'gray':'danger'}}" shape="circle"  bindclick="btnPay">{{thisPay<=0?'确认兑换':'确认支付'}}</tui-button>
-			</view>
-		</view> 
+      </view>
+      <view class="tui-pr25">
+        <tui-button width="300rpx" height="80rpx" size="28" type="danger" shape="circle" bindclick="btnPay">{{firstbuy!=0?'开通会员￥399/年':'首次支付99元'}}</tui-button>
+      </view>
+    </view>
 
-    <view class="tui-safe-area"></view>
-  
+  </view>
+
+  <view class="tui-safe-area"></view>
+
+</view>
+<view wx:if="{{show}}" class="xieyimodedialog"></view>
+<view id="xieyidialog" class="vanpop" wx:if="{{show}}">
+  <view class="title">{{title==1?'奥本AOBEN课程服务协议':'奥本AOBEN售后规则'}}</view>
+  <view style="height: 750rpx;overflow: scroll;">
+    <rich-text nodes="{{agreeContent}}"></rich-text>
+  </view>
+  <view>
+    <button class="btn" type="primary" hover-class="none" disabled="{{countdown!=0}}" bindtap="handyue">已阅读<text>《{{title==1?'奥本AOBEN课程服务协议':'奥本AOBEN售后规则'}}》</text><text wx:if="{{countdown>0}}">{{countdown}}</text></button>
+  </view>
 </view>

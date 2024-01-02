@@ -6,7 +6,8 @@ let config = {
   }; 
   config = Object.assign(config, wx.getExtConfigSync ? wx.getExtConfigSync() : {})
   //测试开发域名
-  let dev_host = 'https://aoben.kshot.com';
+  let dev_host = 'https://ssl.aoben.yoga';
+  // let dev_host = 'https://aoben.kshot.com';
   if(config.env === 'development')
   {
     config.host = dev_host

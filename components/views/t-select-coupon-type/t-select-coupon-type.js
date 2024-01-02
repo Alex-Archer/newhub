@@ -25,10 +25,14 @@ Component({
     page: {
       type: Number,
       value: 1
+    },
+    typename: {
+      type: String,
     }
   },
   data: {
     selectIndex:0,
+    itemData: '',
     tempIndex:0,//只是选择，但是没有确定时
   },
   //定义生命周期
@@ -91,7 +95,7 @@ Component({
       let sIndex = that.data.tempIndex;
       //this.close();
       this.triggerEvent('close', {
-        selectIndex:sIndex
+        selectIndex:sIndex,
       });
     }
   }

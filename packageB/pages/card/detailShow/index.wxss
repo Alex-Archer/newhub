@@ -1,4 +1,4 @@
-
+@import "index.skeleton.wxss";
 page{
   background-color: #faf8f9;
   height: 100%;
@@ -27,8 +27,14 @@ background-color: #f4f4f4;
   /* background-color: #f7e6de; */
   position: absolute;
 }
+.bgImg{
+  position: relative;
+  width: 100%;
+  height: 308rpx;
+}
 .card-box
 {
+  position: relative;
   width: 675rpx;
   height: 308rpx;
   background-color: #fff;
@@ -41,6 +47,7 @@ background-color: #f4f4f4;
 }
 .card-title
 {
+  position: absolute;
   height: 80rpx;
   line-height: 80rpx;
   margin: 60rpx 0 0 60rpx;
@@ -54,12 +61,12 @@ background-color: #f4f4f4;
 }
 
 
-.card-des
+/* .card-des
 {
   height: 300rpx;
   width: 265rpx;
   margin: 6rpx 20rpx 0 0;
-}
+} */
 .price-item
 {
   height: 130rpx;
@@ -110,8 +117,7 @@ background-color: #f4f4f4;
   height: 80rpx;
   margin-top: 16rpx;
   padding: 0 20rpx;
-
-border-radius: 14rpx;
+  border-radius: 14rpx;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -155,13 +161,6 @@ border-radius: 14rpx;
   margin-left: 6rpx;
 }
 
-.tui-goods-title {
-  font-size: 30rpx;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-}
-
 
 /* 购前必读 */
 .tui-pd-agree
@@ -173,36 +172,6 @@ border-radius: 14rpx;
     line-height: 35rpx;
 
 }
-
-/*swtich整体大小及背景色*/
-.wx-switch-input {
-    width: 80rpx !important;
-    height: 35rpx !important;
-    box-sizing: border-box;
-    position: relative;
-    border: 0px !important;
-}
-   /* false的样式 */
-  .wx-switch-input::before {
-    width: 45px !important;
-    height: 35rpx !important;
-    background: #CCCCCC !important;
-    border: 0px solid #CCCCCC !important;
-    box-shadow: none !important;
-    left: 0px;
-    top: 0px;
-  }
-   /* 中间的圆 true样式 */
-  .wx-switch-input::after {
-    width: 40rpx !important;
-    height: 35rpx !important;
-    /* top: 2px !important;
-    left: 2px !important; */
-    opacity: 1 !important;
-    box-sizing: border-box;
-    box-shadow: none !important;
-    border: 0px !important;
-  }
   .tui-pd-title
 {
   font-size: 30rpx;
@@ -222,7 +191,7 @@ border-radius: 14rpx;
   line-height:45rpx;
   color: #989898;
   /* padding: 0 10rpx; */
-  padding-bottom: 200rpx;
+  margin-bottom: 200rpx;
 }
   /* 购前必读 END */
 
@@ -253,18 +222,10 @@ border-radius: 14rpx;
   padding-right: 25rpx;
 }
 
-
-
-.tui-black {
-  color: #222;
-  line-height: 30rpx;
-}
 .tui-size-26 {
   font-size: 26rpx;
   line-height: 26rpx;
 }
-
-
 
 .tui-flex-end {
   display: flex;
@@ -286,8 +247,7 @@ border-radius: 14rpx;
   line-height: 32rpx;
   font-weight: 600;
 }
-.tui-color-red,
-.tui-invoice-text {
+.tui-color-red {
   color: #e95314;
   padding-right: 30rpx;
 }
@@ -356,3 +316,77 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {/* 选中后勾�
   border: 0px solid #CCCCCC !important;
 }
 /* 同意协议 */
+
+
+.icon-share {
+  position: relative;
+}
+.icon-share::after{
+  content: "";
+  width: 12rpx;
+  height: 12rpx;
+  border:  solid #666;
+  border-width: 1px 0 0 1px;
+  transform: translate(-50%, -50%) rotate(135deg);
+  position: absolute;
+  top: 22rpx;
+  right:4rpx;
+}
+.xuan{
+  padding: 20rpx 30rpx;
+  background: #efefef;
+  color: #666;
+  font-size: 28rpx;
+}
+
+#xieyidialog{
+  position: fixed;
+  top: 16%;
+  width: 80%;
+  margin: 0 auto;
+  padding: 30rpx;
+  background-color:#fff;
+  z-index: 9999;
+  overflow: hidden;
+  border-radius: 30rpx;
+}
+.xieyimodedialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(0, 0, 0, .5);
+  z-index: 999;
+  padding: 4vw;
+  box-sizing: border-box;
+}
+.vanpop .kuai{
+  padding: 30rpx;
+  font-size: 25rpx;
+  line-height: 40rpx;
+}
+.vanpop .title{
+  font-weight: bold;
+  text-align: center;
+  font-size: 35rpx;
+  margin-bottom: 20rpx;
+}
+.vanpop .bottom{
+  /* position: fixed;
+  bottom: 0; */
+  background: #FFFFFF;
+  width: 100%;
+}
+.vanpop .btn{
+  background: #F95938;
+  color: #ffffff;
+  border-radius: 50rpx;
+  font-size: 26rpx;
+  height: 80rpx;
+  line-height: 50rpx;
+  margin-top: 20rpx;
+  width: 100%;
+  border-top: 1px solid #e7e7e7;
+}

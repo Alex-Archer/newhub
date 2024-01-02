@@ -1,29 +1,54 @@
 <view class="container">
 
-  <tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="教练中心" backgroundColor="#fff" color="#333"></tui-navigation-bar>
+  <!-- <tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="购卡项" backgroundColor="#fff" color="#333"></tui-navigation-bar> -->
   <view class="bg-box">
-    <view class="activity-box" bindtap="activityShow">
-      99元新人礼包
-    </view>
-    <view class="content-list">
-      
-      <view class="list-menu">
-        <view class="menu-item" data-cla="1"   bindtap="detailShow">初级团课</view>
-        <view class="menu-item" data-cla="2"   bindtap="detailShow">进阶团课</view>
-        <view class="menu-item" data-cla="3"   bindtap="detailShow">集训营</view>
+    <swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" previous-margin="0" next-margin="0">
+      <swiper-item bind:tap="cardClick" wx:for="{{topBanner}}" wx:key="index" class="top-banner-item">
+        <image src="{{item}}" class="top-slide-image" />
+      </swiper-item>
+    </swiper> 
+  <!-- <view class="activity-box" bindtap="activityShow">
+    99元新人礼包
+  </view> -->
+   <!-- 购卡项 -->
+   <view class="buy-card-box">
+        <view class="buy-card-t">
+        <view class="card-title">全部卡项</view>
+        <button open-type="contact" class="kefuTitle"><text>咨询客服</text></button>
+        <!-- <tui-button open-type="contact" class="kefuTitle" type="warning" plain shape="circle" width="120rpx" height="45rpx" size="24" bindclick="detail">咨询客服</tui-button> -->
+        </view>
+        <view class="buy-card-d">
+          <view class="porFlex" wx:for="{{newarrList}}" wx:key="index"  >
+            <view class="card-d-item" bindtap="detailShow" data-cla="{{item.id}}" data-packagetype="{{item.course_package_type_id}}" data-title="{{item.title}}">
+              <view class="card-ico"><image src="{{item.list_poster}}" class="card-ico-img"></image></view>
+              <view class="card-des">
+                  <view class="card-des-title">{{item.title}}</view>
+                  <view class="card-des-ms">{{item.content}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
       </view>
-      <view class="list-menu">
-        <view class="menu-item" data-cla="4"   bindtap="detailShow">初级私教</view>
-        <view class="menu-item" data-cla="5"   bindtap="detailShow">进阶私教</view>
-        <view class="menu-item" data-cla="6"   bindtap="detailShow">高级定制</view>
-      </view>
+      <!-- 购卡项END -->
+  <!-- <view class="content-list">
 
-      <view class="adv-cover">
+    <view class="list-menu">
+      <view class="menu-item" data-cla="1" bindtap="detailShow">初级团课</view>
+      <view class="menu-item" data-cla="2" bindtap="detailShow">进阶团课</view>
+      <view class="menu-item" data-cla="3" bindtap="detailShow">集训营</view>
+    </view>
+    <view class="list-menu">
+      <view class="menu-item" data-cla="4" bindtap="detailShow">初级私教</view>
+      <view class="menu-item" data-cla="5" bindtap="detailShow">进阶私教</view>
+      <view class="menu-item" data-cla="6" bindtap="detailShow">高级定制</view>
+    </view>
+
+    <view class="adv-cover">
       推荐广告位
-      </view>
-
-
     </view>
-  </view>
+
+
+  </view> -->
+</view>
 
 </view>

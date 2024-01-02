@@ -11,6 +11,7 @@
   color:transparent;
 }
 
+@import './styles/iconfont.wxss';
 @import './static/style/extend.wxss';
 page {
 	background-color: #F8F8F8;

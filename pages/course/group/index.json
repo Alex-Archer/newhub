@@ -2,6 +2,7 @@
   "usingComponents": {
     "tui-badge": "/components/thorui/tui-badge/tui-badge",
     "tui-tabbar": "/components/thorui/tui-tabbar/tui-tabbar",
+    "t-branch-show": "/components/t-branch-show/t-branch-show",
     "tui-dropdown-list": "/components/thorui/tui-dropdown-list/tui-dropdown-list",
     "tui-top-dropdown": "/components/thorui/tui-top-dropdown/tui-top-dropdown",
     "tui-loadmore": "/components/thorui/tui-loadmore/tui-loadmore",
@@ -18,6 +19,5 @@
   "navigationBarTextStyle": "black",
   "backgroundColorTop": "#fcfcfc",
   "backgroundColorBottom": "#fcfcfc",
-
   "navigationStyle": "default"
 }

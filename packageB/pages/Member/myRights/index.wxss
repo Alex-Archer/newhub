@@ -3,7 +3,10 @@ page{
 }
 
 image{height:auto}
-
+.navigator-hover {
+  color:#FFF;
+  background: none;
+}
 .img-box
 {
     width: 100%;
@@ -100,8 +103,13 @@ image{height:auto}
     left: 90rpx;
     display: flex;
     justify-content:flex-start;
-    width: 570rpx;
-
+    width: 600rpx;
+  }
+  .card-bottom-time{
+    position: absolute;
+    bottom: 20rpx;
+    font-size: 26rpx;
+    margin-right: 20rpx;
   }
   .card-des
   {
@@ -114,7 +122,6 @@ image{height:auto}
     display: flex;
     align-items: center;
     justify-content: space-between;
-
   }
   .card-header
   {
@@ -132,7 +139,7 @@ image{height:auto}
   {
     height: 230rpx;
     width: 200rpx;
-    margin-left: 10rpx;
+    margin: 0 26rpx;
 
   }
   .card-user-name
@@ -151,9 +158,10 @@ image{height:auto}
   }
   .level-photo
   {
-    width: 49rpx;
+    width: 52rpx;
     height: 54rpx;
     display: block;
+    border-radius: 50%;
     position: absolute;
     top: 63rpx;
 
@@ -200,7 +208,6 @@ image{height:auto}
     top:470rpx;
     display: flex;
     align-items: center;
-    
     color: #fff;
 }
 .card-bottom-title
@@ -311,6 +318,15 @@ image{height:auto}
     align-items: center;
     padding: 24rpx 30rpx;
     font-size: 30rpx;
+    justify-content: space-between;
+  }
+  .tui-list-left{
+    display: flex;
+    align-items: center;
+  }
+  .num{
+    margin-right: 10px;
+    font-size: 28rpx;
   }
   .list-cell-ico
   {

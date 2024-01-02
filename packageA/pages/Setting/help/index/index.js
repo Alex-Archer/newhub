@@ -9,7 +9,7 @@ Page(filter.loginCheck(true, app, {
   data: {
     preventOnShow: true, 
 
-    webURL: 'https://aoben.kshot.com/extend/help/',
+    webURL: 'https://ssl.aoben.yoga/extend/help/',
     show: false, 
     question: [], //文章列表 
     answer: "", //回答 infoShow

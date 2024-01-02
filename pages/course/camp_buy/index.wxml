@@ -171,6 +171,6 @@
 		<!-- <t-pay-way show="{{show}}"  bindclose="popupClose"></t-pay-way> -->
 
 		<!-- <t-select-coupons show="{{couponShow}}" bindclose="couponClose"></t-select-coupons> -->
-    <t-select-coupon-type typeList="{{typeList}}" typeListIndex="{{typeListIndex}}" show="{{couponShow}}" bindclose="couponTypeClose"></t-select-coupon-type>
+    <t-select-coupon-type typeList="{{typeList}}" typeListIndex="{{typeListIndex}}" typename="card" show="{{couponShow}}" bindclose="couponTypeClose"></t-select-coupon-type>
 	</view>
   <tui-loading wx:if="{{PayLoading}}"  text="{{PayLoadingTxt}}" isMask="{{true}}" maskColor="rgba(0,0,0,.1)">asdfasd</tui-loading>

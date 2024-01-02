@@ -19,7 +19,7 @@ page{
   /* 移到主页里去控制了，可以随时改变变景 */
   /* background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAfQCAYAAAAD0DWNAAAAtUlEQVRoge2ZPQ5CMQyD3YgTcGWuxsChIGHoQ8CjE9OL7eVTpS6189NUxeV6qwAAbmRtAmuwSz0aqgoxxthWtuR/5MvJhJ1cYeZauc51G55aCrz17jeY5FNfHfmljSBus/yKTdYqZAyynH+Hx6rLN1LUdnDN3+P2sb35y6t/WyKYWqgGL+Yp0tqI0PracczlHeqN3fPhHoE4nwLIenx+loy5CnnDDHkY8jDkYcjDkIchj5YA8ATGVX1u2a6B7AAAAABJRU5ErkJggg=='); */
   /* background-repeat:repeat-x; */
-  background: linear-gradient(to bottom,#ec5413 10%,#f4f4f4 30%);
+  background: linear-gradient(to bottom,#FF334B 10%,#f4f4f4 30%);
 }
 
 /* tabbar位置返回顶部 */
@@ -658,4 +658,35 @@ padding: 0rpx 8% 30rpx 8%;
 
   margin-bottom: 30rpx;
 }
-
+.bottm_flx{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+.font_flx{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 44%;
+  height: 230rpx;
+  margin-top: 40rpx;
+  text-align: center;
+}
+.font_flx .img{
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+}
+.font_big{
+  font-weight: 600;
+  font-size: 28rpx;
+  color: #333;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.font_small{
+  font-size: 22rpx;
+  color: #666;
+}

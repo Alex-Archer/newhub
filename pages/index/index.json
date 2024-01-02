@@ -18,7 +18,7 @@
   },
   "navigationBarTitleText": "奥本运动",
   "backgroundTextStyle": "dark",
-  "navigationBarBackgroundColor": "#81c2c6",
+  "navigationBarBackgroundColor": "#FF334B",
   "enablePullDownRefresh": false,
   "onReachBottomDistance": 100
 }

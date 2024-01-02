@@ -1,0 +1,194 @@
+<wxs src="/wxs/date.wxs" module="parse"></wxs>
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}"/>
+<view class="container" wx:if="{{!loading}}">
+  <swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" previous-margin="0" next-margin="0">
+    <swiper-item wx:for="{{editData.poster||editCourse.poster}}" wx:key="index" class="top-banner-item">
+      <image src="{{item}}" class="top-slide-image" />
+    </swiper-item>
+  </swiper>
+  <view class="headers">
+    <view class="title">
+      <!-- titleImg -->
+      <image src="{{globalURL}}/miniprogram/sys_images/titleImg.png" />{{editData.title||editCourse.title}}
+    </view>
+    <view class="head_kuai">
+      <view class="head-box">
+        <view class="head_title">时长</view>
+        <view class="stats">{{editData.duration||editCourse.duration}}min</view>
+      </view>
+      <view class="head-box">
+        <view class="head_title">作用</view>
+        <view class="stats">{{editData.effect||editCourse.effect}}</view>
+      </view>
+      <view class="head-box">
+        <view class="head_title">难度</view>
+        <view class="stats">{{editData.difficulty.value||editCourse.difficulty.value}}</view>
+      </view>
+      <view class="head-box" bindtap="zhengClick">
+        <view class="head_title">燃脂</view>
+        <view class="stats">{{editData.kcal||editCourse.kcal}}cal</view>
+      </view>
+    </view>
+  </view>
+  <view class="intro" wx:if="{{typeid>0}}">
+    <view class="details">
+      <tui-icon name="gps" size="24rpx"></tui-icon>
+      <view class="address">{{editCourse.storefrontAddress}}</view>
+      <view class="biao" bind:tap="openLocation" data-lat="{{editCourse.storefrontLat}}" data-lng="{{editCourse.storefrontLng}}" data-title="{{editCourse.storefrontName}}" data-address="{{editCourse.storefrontAddress}}">
+        <image class="tui-img" src="/static/img/my/go.png"></image>
+        <!-- color="#eb5b1d"  -->
+        <ald-icon size="30" color="#333" customClass="" unit="rpx" name="" content="导航" contentsize="{{26}}" contentunit="rpx" contentpadding="0 0 0 0"></ald-icon>
+        <!-- <view>导航</view> cursor-fill-->
+      </view>
+      <view class="biao" bindtap='callPhone'>
+        <image class="tui-img" src="/static/img/my/call.png"></image>
+        <!-- <ald-icon class="tui-img" size="30" customClass="" unit="rpx" name="tel" color="#eb5b1d" contentsize="{{26}}" contentunit="rpx" contentpadding="0 0 0 0"></ald-icon> -->
+        <view>电话</view>
+      </view>
+    </view>
+    <tui-list-view hover="{{false}}" unlined="all">
+      <tui-list-cell unlined hover="{{false}}">
+        <view class="flx">
+          <view class="flx_title">上课门店</view>
+          <view>{{editCourse.storefrontName}}</view>
+        </view>
+      </tui-list-cell>
+      <tui-list-cell unlined hover="{{false}}" marginTop="-30">
+        <view class="flx">
+          <view class="flx_title">上课场地</view>
+          <view class="address">{{editCourse.storefrontAddress}}</view>
+        </view>
+      </tui-list-cell>
+      <tui-list-cell unlined hover="{{false}}" marginTop="-30">
+        <view class="flx">
+          <view class="flx_title">上课导师</view>
+          <view>{{editCourse.coachName}}</view>
+        </view>
+      </tui-list-cell>
+      <tui-list-cell unlined hover="{{false}}" marginTop="-30">
+        <view class="flx">
+          <view class="flx_title">上课时间</view>
+          <view>{{parse.format(editCourse.startdatetime*1000,'yyyy-MM-dd HH:ss')}}</view>
+        </view>
+      </tui-list-cell>
+      <tui-list-cell unlined hover="{{false}}" marginTop="-30">
+        <view class="flx">
+          <view class="flx_title">扣卡次数</view>
+          <view>1次</view>
+        </view>
+      </tui-list-cell>
+      <tui-list-cell unlined hover="{{false}}" marginTop="-30">
+        <view class="flx">
+          <view class="flx_title">课程难度</view>
+          <tui-rate current="{{editCourse.difficulty.id}}" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{18}}"></tui-rate>
+        </view>
+      </tui-list-cell>
+    </tui-list-view>
+    <view class="tip">
+      <tui-icon name="about-fill" color="green" size="44r"></tui-icon>
+      <view class="tip_font">距离开始时间{{editCourse.courseCancelTime}}小时内禁止取消预约</view>
+    </view>
+    <tui-list-cell unlined hover="{{false}}">
+      <view class="minge">
+        <view class="sheng">剩余名额</view>
+        <view>{{editCourse.peoplenum - editCourse.registerednum}}人</view>
+      </view>
+    </tui-list-cell>
+
+  </view>
+  <view class="intro" wx:if="{{editData.content != ''&&editCourse.content != ''}}">
+    <view class="title">详情介绍</view>
+    <tui-overflow-hidden type="{{2}}" height="400rpx" padding="30rpx 30rpx 0 30rpx" gradientColor="#f8f8f8" removeGradient="{{removeGradient}}">
+      <wxParse class="rich" nodes="{{editData.content||editCourse.content}}" language="html"></wxParse>
+    </tui-overflow-hidden>
+    <view class="tui-btn__box">
+      <tui-button wx:if="{{removeGradient}}" size="{{28}}" type="primary" plain link width="50rpx" height="40rpx" margin="0rpx auto" bindclick="readmore">
+        <view class="icon_down"></view>
+      </tui-button>
+      <tui-button wx:else size="{{28}}" type="primary" plain link width="50rpx" height="40rpx" margin="0rpx auto" bindclick="readmore">
+        <view class="icon_up"></view>
+      </tui-button>
+    </view>
+  </view>
+
+  <view class="intro">
+    <view class="title">约课规则</view>
+    <tui-overflow-hidden type="{{2}}" height="400rpx" padding="30rpx 30rpx 0 30rpx" gradientColor="#f8f8f8" removeGradient="{{rulearrow}}">
+      <wxParse class="rich" nodes="{{courseRule.content||editCourse.rule}}" language="html"></wxParse>
+    </tui-overflow-hidden>
+    <tui-button wx:if="{{rulearrow}}" size="{{28}}" type="primary" plain link width="50rpx" height="40rpx" margin="0rpx auto" bindclick="readRulmore">
+        <view class="icon_down"></view>
+      </tui-button>
+      <tui-button wx:else size="{{28}}" type="primary" plain link width="50rpx" height="40rpx" margin="0rpx auto" bindclick="readRulmore">
+        <view class="icon_up"></view>
+      </tui-button>
+  </view>
+  <view class="nowbuy" wx:if="{{typeid>0}}">
+    <view class="list_flx">
+      <view class="title" style="margin-bottom: 0;">
+        <image src="{{globalURL}}/miniprogram/sys_images/titleImg.png" />可选课卡
+        <view class="title_tap">选择当前支付课程的课卡</view>
+      </view>
+      <!-- 是否有课卡,决定是否可点击 -->
+      <tui-button wx:if="{{cardList.length == 0}}" plain link color="#333">
+        <tui-icon color="#333" size="40" unit="rpx" name="arrowright"></tui-icon>
+      </tui-button>
+      <tui-button wx:else plain link color="#333" bindtap="showPopup">
+        <view style="font-size: 28rpx;">{{resulut}}</view>
+        <tui-icon color="#333" size="40" unit="rpx" name="arrowright"></tui-icon>
+      </tui-button>
+      <!--  -->
+    </view>
+    <view wx:if="{{cardList.length == 0}}" class="title_tap" style="font-size: 25rpx;">当前暂无可用课卡，请购卡后再来预约课程吧~</view>
+    <checkbox-group bindchange="checkboxChange">
+      <label class="agree-label">
+        <checkbox value="agree" checked="{{agreecheckbox}}" />
+        <view class="font_agree">我已同意阅读<text catchtap="xieyiClick" data-num="1"><text class="font_red" >《会员卡协议》</text>及<text catchtap="xieyiClick" data-num="2" class="font_red">《约课协议》</text></text>
+        </view>
+      </label>
+    </checkbox-group>
+    <tui-button bind:tap="btnyuyue" width="650rpx" height="80rpx" size="28" type="danger" shape="circle">立即预约/立即购卡</tui-button>
+  </view>
+  <view class="blogo">
+    <!-- <image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/blogo.png?v=202311272032"></image> -->
+  </view>
+  <!--微信小程序-->
+  <tui-bottom-popup backgroundColor="#FFFFFF" height="{{600}}" show="{{popupShow}}" bindclose="hiddenPopup">
+    <view class="pop_title">
+      <view>我的课卡</view>
+      <view bind:tap="hiddenPopup" style="color: #ccc;">X</view>
+    </view>
+  <scroll-view scroll-y class="store-popup-scroll" style="height: 540rpx;">
+    <block wx:if="{{loadingData}}">
+      <view class="course-nodata">数据加载中...</view>
+    </block>
+    <radio-group wx:if="{{!loadingData}}" bindchange="radioChange" >
+      <tui-label wx:for="{{cardList}}" wx:key="index">
+        <view class="thorui-flex__between">
+          <view class="radio_flx">
+            <image class="radio_img" src="{{item.poster}}" mode="" />
+            <view>
+              <view class="radio_name">{{item.title}}</view>
+              <view class="xiao_title">有效期:{{item.months<0?0:item.months}}月 剩余节数:{{item.remaining}}节</view>
+            </view>
+          </view>
+          <radio color="#07c160" checked="true" value="{{item.order_number+'_'+item.title}}">
+          </radio>
+        </view>
+      </tui-label>
+    </radio-group>
+  </scroll-view>
+  </tui-bottom-popup>
+
+  <view wx:if="{{show}}" class="xieyimodedialog"></view>
+<view id="xieyidialog" class="vanpop" wx:if="{{show}}">
+  <view class="title">{{title==1?'会员卡协议':'约课协议'}}</view>
+  <view style="height: 750rpx;overflow: scroll;">
+    <rich-text nodes="{{agreeContent}}"></rich-text>
+  </view>
+  <view>
+    <button class="btn" type="primary" hover-class="none" disabled="{{countdown!=0}}" bindtap="handyue">已阅读<text>《{{title==1?'会员卡协议':'约课协议'}}》</text><text wx:if="{{countdown>0}}">{{countdown}}</text></button>
+  </view>
+</view>
+</view>

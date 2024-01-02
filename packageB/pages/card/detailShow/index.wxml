@@ -1,148 +1,118 @@
-<view class="container">
+<import src="index.skeleton.wxml" />
+<template is="skeleton" wx:if="{{loading}}" />
+<view class="container" wx:if="{{!loading}}">
 
   <tui-navigation-bar dropDownHide splitLine bindinit="initNavigation" scrollTop="{{scrollTop-48}}" title="团课名称" backgroundColor="#fff" color="#333"></tui-navigation-bar>
   <view class="bg-box">
     <view class="content-list">
 
       <view class="card-box">
+        <image class="bgImg" src="{{globalURL}}/miniprogram/sys_images/cardbg.png"></image>
         <view class="card-title">
           {{classTitle}}
         </view>
-        <view class="card-des">
+        <!-- <view class="card-des">
           <image class="card-bg" src="https://ssl.aoben.yoga/miniprogram/20231127/jmb.png?v=202311272032"></image>
-        </view>
+        </view> -->
       </view>
       <!-- 卡列 -->
-      <view class="price-box">
-        <view class="price-item">
+      <view>
+        <view wx:for="{{listData}}" wx:key="index" data-index="{{index}}" class="{{selected==index ? 'active' : ''}} price-item" bind:tap="xuanClick" data-obj="{{item}}">
           <view class="item-t">
-            <view class="item-t-l">2节</view>
-            <view class="item-t-r">¥398.00</view>
+            <view class="item-t-l">{{item.title}}({{item.class_num}}节)</view>
+            <view class="item-t-r">¥{{item.price}}</view>
           </view>
           <view class="item-d">
-            <view class="item-d-l">有效期:1个月</view>
-            <view class="item-d-r">已减100元</view>
-          </view>
-        </view>
-
-        <view class="price-item active">
-          <view class="item-t">
-            <view class="item-t-l">2节</view>
-            <view class="item-t-r">¥398.00</view>
-          </view>
-          <view class="item-d">
-            <view class="item-d-l">有效期:1个月</view>
-            <view class="item-d-r">已减100元</view>
-          </view>
-        </view>
-        <view class="price-item">
-          <view class="item-t">
-            <view class="item-t-l">2节</view>
-            <view class="item-t-r">¥398.00</view>
-          </view>
-          <view class="item-d">
-            <view class="item-d-l">有效期:1个月</view>
-            <view class="item-d-r">已减100元</view>
-          </view>
-        </view>
-        <view class="price-item">
-          <view class="item-t">
-            <view class="item-t-l">2节</view>
-            <view class="item-t-r">¥398.00</view>
-          </view>
-          <view class="item-d">
-            <view class="item-d-l">有效期:1个月</view>
-            <view class="item-d-r">已减100元</view>
-          </view>
-        </view>
-        <view class="price-item">
-          <view class="item-t">
-            <view class="item-t-l">2节</view>
-            <view class="item-t-r">¥398.00</view>
-          </view>
-          <view class="item-d">
-            <view class="item-d-l">有效期:1个月</view>
-            <view class="item-d-r">已减100元</view>
+            <view class="item-d-l">有效期：{{item.validity}}</view>
+            <view class="item-d-r">已减{{item.reduced_price?item.reduced_price:0}}元</view>
           </view>
         </view>
       </view>
       <!-- 卡列END -->
-      <view class="cell-li">
+      <view class="cell-li" wx:if="{{objData.id != 0}}">
         <view class="cell-li-l">会员折扣</view>
-        <view class="cell-li-r">白金卡<text class="red">9.7</text>折</view>
+        <view wx:if="{{objData.discount==100}}" class="cell-li-r">暂无折扣</view>
+        <view wx:else class="cell-li-r">{{objData.title}}<text class="red">{{objData.discount}}</text>折</view>
       </view>
       <view class="cell-li">
-        <view class="cell-li-l">优惠券折扣</view>
-        <view class="cell-li-r red">¥99.00</view>
+        <view class="cell-li-l">可用优惠券</view>
+        <t-select-coupon-type typeList="{{typeList}}" typeListIndex="{{typeListIndex}}" typename="copon" show="{{couponShow}}" bindclose="couponTypeClose"></t-select-coupon-type>
+        <view wx:if="{{getpackage == '1'}}" style="padding-right: 30rpx;" class="cell-li-r red icon-share" bind:tap="moreClick">{{cuponPrice?cuponPrice:'请选择'}}</view>
+        <view wx:else style="color: #333;" class="cell-li-r">暂无可使用优惠券</view>
       </view>
+      <view wx:if="{{cuponPrice}}" class="xuan">{{couponSelectTitle}}</view>
 
 
-      <tui-list-cell radius="14rpx" marginTop="15" marginBottom="15"  padding="20rpx  20rpx" lineLeft="0" arrow="{{false}}"  hover="{{false}}" unlined>
+      <tui-list-cell radius="14rpx" marginTop="15" marginBottom="15" padding="20rpx  20rpx" lineLeft="0" arrow="{{false}}" hover="{{false}}" unlined>
         <view class="cell-li-t">
-          <view class="cell-li-l">我的专属顾问码</view>
-          <view class="cell-li-r" bindtap="scanCode">
-            <ald-icon padding="0 0 0 0" size="28" unit="px" name="scan" color="#6c6c6c"></ald-icon>
-            <view class="scan-text">扫码录入</view>
-          </view>
+          <view class="cell-li-l">剩余瑜伽币</view>
+          <view class="cell-li-r">{{objData.balance/100}}</view>
         </view>
+        <!-- 先隐藏 -->
         <view class="cell-li-d">
-        <tui-input clearable="{{true}}" size="{{32}}" backgroundColor="" borderBottom="{{true}}" padding="8rpx 14rpx" placeholder="如有专属顾问码请输入,或扫码录入" placeholderStyle="font-size:26rpx;" inputBorder="{{true}}" borderColor="" ></tui-input></view>
+          <tui-input type="number" value="{{balanceNum}}" bindinput="inputMoney" clearable="{{true}}" size="{{32}}" borderBottom="{{true}}" padding="8rpx 14rpx" placeholder="请输入可使用的瑜伽币" placeholderStyle="font-size:26rpx;" inputBorder="{{true}}"></tui-input>
+        </view>
 
       </tui-list-cell>
+      <tui-list-cell radius="14rpx" marginTop="15" marginBottom="15" padding="20rpx  20rpx" lineLeft="0" arrow="{{false}}" hover="{{false}}" unlined>
+        <view class="cell-li-t">
+          <view class="cell-li-l">专属顾问手机号</view>
+          <!-- <view class="cell-li-r" bindtap="scanCode">
+            <ald-icon padding="0 0 0 0" size="28" unit="px" name="scan" color="#6c6c6c"></ald-icon>
+            <view class="scan-text">扫码录入</view>
+          </view> -->
+        </view>
+        <!-- 先隐藏 -->
+        <view class="cell-li-d">
+          <tui-input type="number" value="{{referralCode}}" bindinput="inputEven" clearable="{{true}}" size="{{32}}" borderBottom="{{true}}" padding="8rpx 14rpx" placeholder="如有专属顾问请输入专属顾问手机号" placeholderStyle="font-size:26rpx;" inputBorder="{{true}}"></tui-input>
+        </view>
 
-      
-      <tui-list-cell  padding="0 0 0 20rpx" lineLeft="0" arrow="{{false}}"  hover="{{false}}" unlined>
+      </tui-list-cell>
+      <tui-list-cell padding="0 0 0 20rpx" lineLeft="0" arrow="{{false}}" hover="{{false}}" unlined>
+        <view class="tui-padding tui-pd-title">
+          <view catchtap="xieyiClick" class="tui-pd-agree">我已阅读并同意《会员卡协议》</view>
+          <view class="tui-pd-radio">
+            <!-- <switch bindchange="agreeSwitch" checked="{{agreeChecked}}" color="#EB0909"/> -->
 
-                    <view class="tui-padding tui-pd-title">
-                        <view class="tui-pd-agree">我已阅读并同意《会员卡协议》</view>
-                        <view class="tui-pd-radio">
-                        <!-- <switch bindchange="agreeSwitch" checked="{{agreeChecked}}" color="#EB0909"/> -->
-         
-              <checkbox-group bindchange="checkboxChange">
-                <label class="agree-label"  >
-                  <checkbox value="agree" checked="{{agreeCheckbox}}"   />
-                </label>
+            <checkbox-group bindchange="checkboxChange">
+              <label class="agree-label">
+                <checkbox value="agree" checked="{{agreecheckbox}}" />
+              </label>
             </checkbox-group>
-            </view>
-
-
-
-                    </view>
-                    <view class="tui-padding tui-flex-pd">
-                        <tui-overflow-hidden type="{{2}}"  lineClamp="5" size="26" color="#000" backgroundColor="#f3f3f3"  width="100%" height="300rpx" radius="20rpx 20rpx 0 0" padding="20rpx" gradientColor="#fff" removeGradient="{{removeGradientContent}}">
-                          <rich-text nodes="{{agreeContent}}"></rich-text>
-                        </tui-overflow-hidden>
-                        <view class="tui-btn__box">
-                        <tui-button wx:if="{{!removeGradientContent}}" size="{{22}}" plain shape="circle" bold width="140rpx" height="46rpx" margin="40rpx auto" type="warning" bindclick="readmoreContent">查看全部</tui-button>
-                        </view>
-                    
-                    </view>
-                </tui-list-cell>
+          </view>
+        </view>
+        <view class="tui-padding tui-flex-pd"></view>
+      </tui-list-cell>
+      <view wx:if="{{show}}" class="xieyimodedialog"></view>
+      <view id="xieyidialog" class="vanpop" wx:if="{{show}}">
+        <view class="title">会员购卡协议</view>
+        <view style="height: 750rpx;overflow: scroll;">
+          <rich-text nodes="{{agreeContent}}"></rich-text>
+        </view>
+        <view>
+          <button class="btn" type="primary" hover-class="none" disabled="{{countdown!=0}}" bindtap="handyue">已阅读<text>《会员购卡协议》</text><text wx:if="{{countdown>0}}">{{countdown}}</text></button>
+        </view>
+      </view>
     </view>
 
     <view class="tui-safe-area"></view>
-		<view class="tui-tabbar">
-			<view class="tui-flex-end tui-color-red tui-pr-20">
-				<!-- <view class="tui-black">实付金额: </view>
-				<view class="tui-size-26">￥</view>
-				<view class="tui-price-large">20</view>
-				<view class="tui-size-26">.00</view> -->
+    <view class="tui-tabbar">
+      <view class="tui-flex-end tui-color-red tui-pr-20">
         <view class="tui-bar-t">
           <view class="tui-black">实付金额: </view>
           <view class="tui-size-26">￥</view>
-          <view class="tui-price-large">20</view>
-          <view class="tui-size-26">.00</view>
+          <view class="tui-price-large">{{nowmoney}}</view>
+          <!-- <view class="tui-size-26">.00</view> -->
         </view>
         <view class="tui-bar-d">
-         <view>次数：</view>
-         <view>2节,</view>
-         <view>有效效：1个月.</view>
+          <view>次数：</view>
+          <view>{{messData.class_num}}节，</view>
+          <view>有效期：{{messData.validity}}</view>
         </view>
-			</view>
-			<view class="tui-pr25">
-				<tui-button  width="200rpx" height="70rpx" size="28" type="{{subDisabled?'gray':'danger'}}" shape="circle"  bindclick="btnPay">{{thisPay<=0?'确认兑换':'确认支付'}}</tui-button>
-			</view>
-		</view>  
+      </view>
+      <view class="tui-pr25">
+        <tui-button width="200rpx" height="70rpx" size="28" type="{{subDisabled?'gray':'danger'}}" shape="circle" bindclick="btnPay">{{thisPay<=0?'确认兑换':'确认支付'}}</tui-button>
+      </view>
+    </view>
   </view>
-
 </view>

@@ -1,5 +1,6 @@
 const app = getApp();
-const logs = require("../../../utils/logs"); 
+const logs = require("../../../utils/logs");
+var apis = require('../../../utils/apis.js')
 const version = require('../../../config').version;
 import _ from '../../../libs/we-lodash'
 import axios from '../../../libs/axios-miniprogram/axios-miniprogram.cjs';
@@ -12,29 +13,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    agreeClick:false, //隐私是点击过的，不管是否同意的 
+    agreeClick: false, //隐私是点击过的，不管是否同意的 
     globalURL: app.globalData.globalURL,
 
-    version:version,
+    version: version,
     uOpenID: null,
     loginShow: false, //登录窗
 
-    tourist:true,//游客
+    tourist: true, //游客
     user: {
+      balance: '', // 消费金
+      vipPoster: '', // vip图片
       nickname: null,
       mobile: null,
       headimgurl: null,
       //姓别sex:0=未设置，1=男，2=女
-      // vip: 0, //0普通 1 VIP
-
-      vipName:'',
-      vipExpireTime:0,//会员 到期时间
-      vipExpireTimeStr:'',//会员 到期时间 
+      isvip: 0, //0普通 1 VIP
+      isfirstBuyVip: 0, // 0第一次购买，1不是第一次购买
+      vipName: '',
+      vipExpireTime: 0, //会员 到期时间
+      vipExpireTimeStr: '', //会员 到期时间 
 
     },
-    msg_badge:0,//右上角消息数指示点
-    firstEdit:false,//是否是第一次修改 //头像那是否有修改图标，仅头像为空时显示
-    oldToken : wx.getStorageSync('Token'),//用于比较是否登录页过来
+    msg_badge: 0, //右上角消息数指示点
+    firstEdit: false, //是否是第一次修改 //头像那是否有修改图标，仅头像为空时显示
+    oldToken: wx.getStorageSync('Token'), //用于比较是否登录页过来
 
 
     msg_count: 0, //信息数
@@ -43,8 +46,8 @@ Page({
     love_count: 0, //点赞数
     order_count: 0, //定单数
 
-    integral:0,//瑜伽币
-    
+    integral: 0, //瑜伽币
+
 
     card: [{
         title: {
@@ -88,28 +91,28 @@ Page({
       height: 80,
       background: {
         color: '#eeeeee',
-        img:app.globalData.globalURL+'/miniprogram/loading_top.gif?v=202309192303'
+        img: app.globalData.globalURL + '/miniprogram/loading_top.gif?v=202309192303'
       },
     },
   },
-  agree(e){
+  agree(e) {
     this.setData({
-        agreeClick:true //隐私是点击过的，不管是否同意的
-    },()=>{
-        this.showMask(); //显示加载层 移AGREE中去
-        this.loadDefault();
+      agreeClick: true //隐私是点击过的，不管是否同意的
+    }, () => {
+      this.showMask(); //显示加载层 移AGREE中去
+      this.loadDefault();
     })
 
 
   },
-  disagree(e){
+  disagree(e) {
     util.toast("您将以游客身份浏览！")
 
     this.setData({
-        agreeClick:true //隐私是点击过的，不管是否同意的
-    },()=>{
-        this.showMask(); //显示加载层 移AGREE中去
-        this.loadDefault(true);
+      agreeClick: true //隐私是点击过的，不管是否同意的
+    }, () => {
+      this.showMask(); //显示加载层 移AGREE中去
+      this.loadDefault(true);
     })
 
   },
@@ -148,7 +151,7 @@ Page({
   maskTapOnLoad() {
     this.onLoad();
   },
-  loadDefault(unprivacy=false) {
+  loadDefault(unprivacy = false) {
     let _this = this;
     let timestamp = (new Date()).valueOf();
     //#region  拉取用户OPENID后加载首页数据
@@ -158,7 +161,7 @@ Page({
       })
 
       axios.get("/User/indexPub", { //首页数据获取 1.公共数据  页：/User/indexPub2 可以测试手机为FLASH
-        userID: unprivacy?resOpenID:wx.getStorageSync('USERID'),//有未授权的浏览
+        userID: unprivacy ? resOpenID : wx.getStorageSync('USERID'), //有未授权的浏览
         thisPage: "home",
         TIMESTAMP: timestamp,
         FKEY: md5util.md5("home" + timestamp.toString() + app.globalData.APP_INTF_SECRECT)
@@ -171,7 +174,7 @@ Page({
           request: false, //是否经过请求拦截
           // response: true 
         },
-        
+
         validateStatus(status) {
           return status === 200;
         },
@@ -182,80 +185,89 @@ Page({
 
           let obj = this.data.tabBar;
           let _dataUser = _resdata.data.user;
-          let _notice = _dataUser.notice;//消息体
-          
+          let _notice = _dataUser.notice; //消息体
+
           const total = _.sum(_.values(_notice));
 
           //更新个人信息
-          let isLogin = wx.getStorageSync("LOGING");//用加密的用户OPENID 暂时不加密
-          let tokenCache = wx.getStorageSync("Token");//用加密的用户OPENID 暂时不加密
+          let isLogin = wx.getStorageSync("LOGING"); //用加密的用户OPENID 暂时不加密
+          let tokenCache = wx.getStorageSync("Token"); //用加密的用户OPENID 暂时不加密
           let _nickname = _dataUser.nickname;
           let _headimgurl = _dataUser.headimgurl;
           let _firstEdit = false;
 
 
-          if(util.isNull(isLogin)|| isLogin!="true"||util.isNull(tokenCache)||util.validateDateExpires(tokenCache.refreshexpires))//定为游客
+          if (util.isNull(isLogin) || isLogin != "true" || util.isNull(tokenCache) || util.validateDateExpires(tokenCache.refreshexpires)) //定为游客
           {
-            _nickname ="游客";
-            _headimgurl = app.globalData.globalURL+"/miniprogram/url-img/my/mine_def_touxiang_3x.png"; 
-            _firstEdit =false;
-            
-          }else{
+            _nickname = "游客";
+            _headimgurl = app.globalData.globalURL + "/miniprogram/url-img/my/mine_def_touxiang_3x.png";
+            _firstEdit = false;
+            this.setData({
+              ['user.isfirstBuyVip']: 0,
+              ['user.isvip']: 0,
+            })
+          } else {
             if (util.isNull(_headimgurl)) {
-              _headimgurl = app.globalData.globalURL+"/miniprogram/url-img/my/mine_def_touxiang_3x.png"; 
+              _headimgurl = app.globalData.globalURL + "/miniprogram/url-img/my/mine_def_touxiang_3x.png";
               _firstEdit = true;
-            }else{
+            } else {
               _firstEdit = false;
             }
           }
 
           if (util.isNull(_nickname)) {
-            _nickname = _dataUser.username;
+            _nickname = _dataUser.nickname;
           }
           let _mobile = _dataUser.mobile;
-         let _vipName = _dataUser.vipName;
-         let _vipExpireTime = _dataUser.vipExpireTime;
+          let _balance = _dataUser.balance;
+          let _vipPoster = _dataUser.vipPoster;
+          let _vipName = _dataUser.vipName;
+          let _vipExpireTime = _dataUser.vipExpireTime;
 
           //消息大于99个就显示红点
           //let user_msg_count = _notice.user_msg; 
-          
-          if(_nickname!=='游客')
-          {
-            _.set(obj, '[4].num', total) ;//tb[3]["num"]=9; 同理
-            if(total > 0 && total < 100 ){
-                           
-                _.set(obj, '[4].isDot', false) ;//tb[3]["num"]=9; 同理
+
+          if (_nickname !== '游客') {
+            _.set(obj, '[4].num', total); //tb[3]["num"]=9; 同理
+            if (total > 0 && total < 100) {
+
+              _.set(obj, '[4].isDot', false); //tb[3]["num"]=9; 同理
             }
-            if(total >= 100 ){
-                
-                _.set(obj, '[4].isDot', true)//tb[3]["num"]=9; 同理
+            if (total >= 100) {
+
+              _.set(obj, '[4].isDot', true) //tb[3]["num"]=9; 同理
             }
             _this.setData({
-            
-                tabBar: obj, 
-                msg_badge:total,//右上角消息点点
-              })
+
+              tabBar: obj,
+              msg_badge: total, //右上角消息点点
+            })
           }
 
-         
+
           _this.setData({
             ['user.nickname']: _nickname, //多维数组要这样更新
             ['user.mobile']: _mobile, //多维数组要这样更新  
             ['user.headimgurl']: _headimgurl, //多维数组要这样更新     
-            ['user.vipName']: _nickname!=='游客'?_vipName:'普通游客', // 
-            ['user.vipExpireTime']: _nickname!=='游客'?_vipExpireTime:0, //   
-            ['user.vipExpireTimeStr']: _nickname!=='游客'&&_vipExpireTime>0?util.formatDate('y-m-d',_vipExpireTime,2,false):'',
+            ['user.isvip']: _nickname !== '游客' ? _dataUser.isvip : 0, //是否是vip     
+            ['user.isfirstBuyVip']: _nickname !== '游客' ? _dataUser.isfirstBuyVip : 0, //是否第一次购买     
+            ['user.vipName']: _nickname !== '游客' ? _vipName : '普通游客', // 
+            ['user.balance']: _balance, // 消费金，下个页面使用  
+            ['user.vipPoster']: _vipPoster, // 消费金，下个页面使用  
+            ['user.integral']: _nickname !== '游客' ? util.formatFans(_dataUser.integral) : 0, //瑜伽币   
+            ['user.vipExpireTime']: _nickname !== '游客' ? _vipExpireTime : 0, //   
+            ['user.vipExpireTimeStr']: _nickname !== '游客' && _vipExpireTime > 0 ? util.formatDate('y-m-d', _vipExpireTime, 2, false) : '',
 
-            integral:_nickname!=='游客'?util.formatFans(_dataUser.integral):0,//瑜伽币
-            thought_count: _nickname!=='游客'?util.formatFans(_dataUser.thought_count):0, //关注数
-            fans_count: _nickname!=='游客'?util.formatFans(_dataUser.fans_count):0, //粉丝数
-            love_count: _nickname!=='游客'?util.formatFans(_dataUser.love_count):0, //点赞数
+            integral: _nickname !== '游客' ? util.formatFans(_dataUser.integral) : 0, //瑜伽币
+            thought_count: _nickname !== '游客' ? util.formatFans(_dataUser.thought_count) : 0, //关注数
+            fans_count: _nickname !== '游客' ? util.formatFans(_dataUser.fans_count) : 0, //粉丝数
+            love_count: _nickname !== '游客' ? util.formatFans(_dataUser.love_count) : 0, //点赞数
 
-            tourist:_nickname==='游客'?true:false,
+            tourist: _nickname === '游客' ? true : false,
 
 
 
-            firstEdit:_firstEdit,//头像那是否有修改图标，仅头像为空时显示
+            firstEdit: _firstEdit, //头像那是否有修改图标，仅头像为空时显示
           })
           //隐藏加载动画
           _this.setData({
@@ -295,14 +307,14 @@ Page({
         "Content-Type": 'applciation/json',
         //"Authorization": "Bearer 3aa501cd651945a9b4829ae166fca518"
       },
-      
+
       validateStatus(status) {
 
         return status === 200;
       },
     }).then(res => {
       // 成功之后做些什么
-      
+
     }).catch((err) => {
       // 失败之后做些什么
     });
@@ -332,7 +344,7 @@ Page({
             mac: app.getMac(),
             uid: wx.getStorageSync('USERID')
           },
-          
+
           validateStatus: function (status) {
             return status.statusCode == 200 ? true : false; //状态码不等于200的都会进入catch error回调
           }
@@ -360,7 +372,7 @@ Page({
       } else {
         //有图片 微信上传
         wx.uploadFile({
-          url: "https://aoben.kshot.com/api/User/modifyFaceAndName",
+          url: "https://ssl.aoben.yoga/api/User/modifyFaceAndName",
           header: {
             mac: app.getMac(),
             uid: wx.getStorageSync('USERID'),
@@ -420,7 +432,7 @@ Page({
   //底部登录窗END
 
   //会员组别点击
-  jumpLevel(e){
+  jumpLevel(e) {
     wx.navigateTo({
       // url: '/pages/user/level/index',//旧
       url: '/packageB/pages/Member/level/index',
@@ -436,17 +448,25 @@ Page({
       url: '/packageA/pages/Setting/userInfo/index',
     })
   },
-  
+
   topJump(e) {
     let _this = this;
     let _dataset = e.currentTarget.dataset;
-
     let _islogin = _dataset.islogin;
     let _navigate = _dataset.navigate;
     let _url = _dataset.url;
+    let _item = _dataset.item;
+    console.log(_item);
+    if(_url==''){
+      if(_dataset.isuser == 0){
+        _url=`/packageB/pages/Member/buyCard/index?isvip=${_dataset.isuser}&firstbuy=${_dataset.firstbuy}`
+      }else{
+        _url = `/packageB/pages/Member/myRights/index?integral=${_item.integral}&price=${_item.balance}&vipname=${_item.vipName}&name=${_item.nickname}&avatar=${_item.headimgurl}&vipposter=${_item.vipPoster}`
+      }
+    }
     if (_islogin) {
       //检测用户头像、昵称、手机
-        let _uMobile = wx.getStorageSync('MOBILE');
+      let _uMobile = wx.getStorageSync('MOBILE');
       if (!_uMobile || util.isNull(_uMobile)) {
         wx.navigateTo({
           url: '/pages/user/login/index',
@@ -489,7 +509,26 @@ Page({
    */
   onLoad(options) {
     let that = this;
-
+    let _config = ''
+    apis.get('/CoursePackage/coursePackagePub', _config, {
+      "Content-Type": 'applciation/json'
+    }, false).then(obj => {
+      let arrList = [];
+      // 先遍历对象拿到里面的对象
+      for (let key in obj) {
+        arrList.push(obj[key].lowerLevel)
+      }
+      let newarrList = [];
+      // 再次遍历数组,然后拿到里层的对象
+      arrList.forEach(el => {
+        for (let key in el) {
+          newarrList.push(el[key])
+        }
+      });
+      this.setData({
+        newarrList: newarrList,
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面显示
@@ -501,31 +540,30 @@ Page({
     let oldToken = that.data.oldToken;
     let newToken = wx.getStorageSync('Token');
 
-    if(util.isNull(oldToken)){
-      if(util.isNull(newToken)){
+    if (util.isNull(oldToken)) {
+      if (util.isNull(newToken)) {
         return true;
-      }else{//原来没登，但是现在登了
+      } else { //原来没登，但是现在登了
         that.setData({
-          oldToken:newToken
+          oldToken: newToken
         })
         this.loadDefault();
       }
     }
     // 创建两个 Date 对象
-    const time1 = new Date(oldToken.refreshexpires); 
+    const time1 = new Date(oldToken.refreshexpires);
     const time2 = new Date(newToken.refreshexpires);
     //比较两个刷新时间
-    if(time1.getTime()!==time2.getTime())
-    {
+    if (time1.getTime() !== time2.getTime()) {
       that.setData({
-        oldToken:newToken
+        oldToken: newToken
       })
       this.loadDefault();
-    }else{
+    } else {
       return true;
     }
     //#endregion 检测是否是登录后过来的，如果是要更新基本的如头像昵称
-    
+
 
   },
   /**
@@ -576,14 +614,16 @@ Page({
     //上面的移过来的，必须在flag: true 后再用，不然找不到节点this.selectComponent('#index-scroller')
     const scroll = this.selectComponent('#index-scroller');
   },
-  
- // 底部菜单点击
- tabbarSwitch(e) {
+
+  // 底部菜单点击
+  tabbarSwitch(e) {
     //{"index":4,"pagePath":"/pages/my/my","verify":true}
     console.log('点击E:', JSON.stringify(e))
-    let _action = e.detail.action||"";//scanCode 为调用扫码
-    let _navigate = e.detail.navigate||false;
+    let _action = e.detail.action || ""; //scanCode 为调用扫码
+    let _navigate = e.detail.navigate || false;
     let isLogin = false;
+    let that = this
+
     //"coachPath":"/pages/coach/home/index/index",//教练中心地址，不为空则需要验证身份,暂时放在集训营中来测试
     if (e.detail.verify && !isLogin) {
       wx.showToast({
@@ -591,104 +631,148 @@ Page({
         icon: "none"
       })
     } else {
-      if(_action=="scanCode")
-      {
-          //https://developers.weixin.qq.com/miniprogram/dev/api/device/scan/wx.scanCode.html
-          wx.scanCode({
-            onlyFromCamera: false, //禁止相册
-            scanType: ['qrCode'], //只识别二维码
-            success: (res) => {
-                wx.showLoading();
-                // 获取到扫描到的二维码内容
-                const qrCodeContent = res.result;
-                //https://yoga.aoben.yoga/s=door&param=mac
-                //1.必须有网址
-                //2.必须有参数s
-                //3.必须有参数param
-                const arrUrl=app.globalData.scanURL;
-                const found = qrCodeContent.indexOf(arrUrl) > -1;
-                if(!found){
-                    wx.showToast({
-                        title: '啥都不是，不处理',
-                        icon: 'none'
-                    })
-                    return
-                }
-                let _action=util.getURLParam(qrCodeContent,"s");
-                let _actionTitle="";
-                switch(_action)
-                {
-                    case "door"://开门 https://yoga.aoben.yoga/s=door&param=mac
-                        _actionTitle="开门动作";
-                        break;
-                    case "getpass"://获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
-                        _actionTitle="获取用户密码";
-                        break;
-                    case "cabinet"://开柜 https://yoga.aoben.yoga/s=cabinet&param=mac
-                        _actionTitle="开柜";
-                        break;            
-                    case "coach"://教练分享 https://yoga.aoben.yoga/s=coach&param=2,str
-                        _actionTitle="教练分享码";
-                        break;
-                    case "sign"://用户签到 https://yoga.aoben.yoga/s=sign&param=2,str
-                        _actionTitle="用户签到";
-                        break;            
-                    default://啥都不是
-                        _actionTitle="啥都不是";
-                        break;
-                }
-
-                //联网去处理
-                wx.showToast({
-                    title: _actionTitle,
-                    icon: 'none'
-                })
-                return;
-
-            },
-            fail: (error) => {
-                console.log('扫描失败', error);
-
-                // 根据扫描到的内容跳转到对应的页面
-                wx.navigateTo({
-                    url: e.detail.pagePath,
-                    success: () => {
-                        console.log('跳转成功');
-                    },
-                    fail: (error) => {
-                        console.log('跳转失败', error);
-                        wx.showToast({
-                            title: '跳转失败，请稍后重试',
-                            icon: 'none'
-                        })
-                    }
-                });
+      if (_action == "scanCode") {
+        //https://developers.weixin.qq.com/miniprogram/dev/api/device/scan/wx.scanCode.html
+        wx.scanCode({
+          onlyFromCamera: false, //禁止相册
+          scanType: ['qrCode'], //只识别二维码
+          success: (res) => {
+            wx.showLoading();
+            // 获取到扫描到的二维码内容
+            const qrCodeContent = res.result;
+            //https://yoga.aoben.yoga/s=door&param=mac
+            //1.必须有网址
+            //2.必须有参数s
+            //3.必须有参数param
+            const arrUrl = app.globalData.scanURL;
+            const found = qrCodeContent.indexOf(arrUrl) > -1;
+            if (!found) {
+              wx.showToast({
+                title: '啥都不是，不处理',
+                icon: 'none'
+              })
+              return
             }
-          })
+            let _action = util.getURLParam(qrCodeContent, "s");
+            let _actionTitle = "";
+            let resOpenID = that.data.uOpenID
+            let _param =util.getURLParam(qrCodeContent,"param");
+            console.log(_param);
+            let _timestamp = (new Date()).valueOf();
+            let _uid = wx.getStorageSync('USERID')||resOpenID;
+            let config = {
+              userID: _uid,
+              TIMESTAMP: _timestamp,
+              key: _param,
+              FKEY: md5util.md5(_uid + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
+            }
+            switch (_action) {
+              case "door"://开门 https://yoga.aoben.yoga/s=door&param=mac
+            _actionTitle="开门动作";
+            apis.gets("Door/qrCode",config,false).then(val=>{
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开门成功",
+                returnHtml:"CODE1正常："+JSON.stringify(val)
+              });
+            },function(err)
+            {
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开门失败",
+                openErrMessage:'这是失败原因',
+                returnHtml:"CODE 0出错："+JSON.stringify(err)
+              });
+      
+            })
+            break;
+        case "locker"://开柜 https://yoga.aoben.yoga/s=locker&param=mac
+            _actionTitle="开柜动作";
+            // https://aoben.kshot.com
+            apis.gets("/Locker/qrCode",config,false).then(val=>{
+              console.log(val);
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开柜成功",
+                returnHtml:"CODE1正常："+JSON.stringify(val)
+              });
+            },function(err)
+            {
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开柜失败",
+                openErrMessage:'这是失败原因',
+                returnHtml:"CODE 0出错："+JSON.stringify(err)
+              });
+            })
+            break;
+        case "getpass"://获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
+                _actionTitle = "获取用户密码";
+                break;
+              case "cabinet": //开柜 https://yoga.aoben.yoga/s=cabinet&param=mac
+                _actionTitle = "开柜";
+                break;
+              case "coach": //教练分享 https://yoga.aoben.yoga/s=coach&param=2,str
+                _actionTitle = "教练分享码";
+                break;
+              case "sign": //用户签到 https://yoga.aoben.yoga/s=sign&param=2,str
+                _actionTitle = "用户签到";
+                break;
+              default: //啥都不是
+                _actionTitle = "啥都不是";
+                break;
+            }
+
+            //联网去处理
+            wx.showToast({
+              title: _actionTitle,
+              icon: 'none'
+            })
+            return;
+
+          },
+          fail: (error) => {
+            console.log('扫描失败', error);
+
+            // 根据扫描到的内容跳转到对应的页面
+            wx.navigateTo({
+              url: e.detail.pagePath,
+              success: () => {
+                console.log('跳转成功');
+              },
+              fail: (error) => {
+                console.log('跳转失败', error);
+                wx.showToast({
+                  title: '跳转失败，请稍后重试',
+                  icon: 'none'
+                })
+              }
+            });
+          }
+        })
         return;
       }
       //需要判断是否是教练
-      let _coachPath = e.detail.coachPath||"";//教练中心地址，不为空则需要验证身份,暂时放在集训营中来测试
-      if(!util.isNull(_coachPath)&&!util.isNull(wx.getStorageSync('ISCOACH')))
-      {
-          wx.reLaunch({
-            url: _coachPath
-          })
-          return;
+      let _coachPath = e.detail.coachPath || ""; //教练中心地址，不为空则需要验证身份,暂时放在集训营中来测试
+      if (!util.isNull(_coachPath) && !util.isNull(wx.getStorageSync('ISCOACH'))) {
+        wx.reLaunch({
+          url: _coachPath
+        })
+        return;
       }
-      
+
       //其它点击
       if (e.detail.index != this.data.current) {
         if (_navigate) {
-            wx.navigateTo({
-              url: e.detail.pagePath,
-            })
-  
-          } else {
-            wx.reLaunch({
-              url: e.detail.pagePath
-            })
-          }
+          wx.navigateTo({
+            url: e.detail.pagePath,
+          })
+
+        } else {
+          wx.reLaunch({
+            url: e.detail.pagePath
+          })
+        }
       }
     }
   },
@@ -712,45 +796,46 @@ Page({
 
 
   //其它更新返回
-//其它更新返回
-callBackReturn(_object) {
+  //其它更新返回
+  callBackReturn(_object) {
     //{"headimgurl":"https://temp-.....a589a0a8d9ee.jpg","nickname":"弓长23"} 
     let that = this;
-    if(!util.isNull(_object)){
-        if(_object.headimgurl!=that.data.user.headimgurl){
-            that.setData({
-                ['user.headimgurl']:_object.headimgurl
-            })
-        }
-        if(_object.nickname!=that.data.user.nickname){
-            that.setData({
-                ['user.nickname']:_object.nickname
-            })
-        }
+    if (!util.isNull(_object)) {
+      if (_object.headimgurl != that.data.user.headimgurl) {
+        that.setData({
+          ['user.headimgurl']: _object.headimgurl
+        })
+      }
+      if (_object.nickname != that.data.user.nickname) {
+        that.setData({
+          ['user.nickname']: _object.nickname
+        })
+      }
     }
-},
+  },
 
-//#region  菜单区
-NavigateTo(e){
-  let _url = e.currentTarget.dataset.href||e.target.dataset.href;
-  if(util.isNull(_url))
-  {
-    return;
-  }
-  wx.navigateTo({
-    url: _url,
-  })
-},
+  //#region  菜单区
+  NavigateTo(e) {
+    let _url = e.currentTarget.dataset.href || e.target.dataset.href;
+    if (util.isNull(_url)) {
+      return;
+    }
+    wx.navigateTo({
+      url: _url,
+    })
+  },
 
-//#endregion   菜单区
-detailShow(e) {
-  let _cla = e.currentTarget.dataset.cla||e.target.dataset.cla||0;
-  if(util.isNull(_cla)||_cla==0)
-  {
-    return;
-  }
-  wx.navigateTo({
-    url: '/packageB/pages/card/detailShow/index?cla='+_cla,
-  })
-},
+  //#endregion   菜单区
+  detailShow(e) {
+    console.log(e);
+    let _cla = e.currentTarget.dataset.cla || e.target.dataset.cla || 0;
+    let _title = e.currentTarget.dataset.title;
+    let type = e.currentTarget.dataset.packagetype;
+    if (util.isNull(_cla) || _cla == 0) {
+      return;
+    }
+    wx.navigateTo({
+      url: '/packageB/pages/card/detailShow/index?cla=' + _cla + '&title=' + _title + '&typeid=' + type,
+    })
+  },
 })

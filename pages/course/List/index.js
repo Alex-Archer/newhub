@@ -42,6 +42,7 @@ Page({
     lng: null, //经度坐标
     lat: null, //纬度坐标
     storeId: 0, //门店ID
+    branchname:'', // 门店名称
     coachId: 0, //指定教练ID
 
 
@@ -203,6 +204,12 @@ Page({
 
 
   onLoad: function (options) {
+    if(options.storid){
+      this.setData({
+        storeId: options.storid,
+        branchname: options.title,
+      })
+    }
     wx.hideHomeButton();
     this.swiper(true);
   },
@@ -215,7 +222,13 @@ Page({
     new Promise(() => {
       //本地定位
       const _location = wx.getStorageSync('Location'); //this.data.Location||
-      if (util.isNull(_location)) {
+      let _storeID = that.data.storeId
+      if(_storeID){
+        _storeID = that.data.storeId;
+      }else{
+        _storeID = _location.id;
+      }
+      if (!_storeID) {
         this.setData({
           DropOrderIndex: -1,
           Location: {
@@ -243,8 +256,8 @@ Page({
           }
         })
       } else {
+        
         //读取轮显图
-        let _storeID = _location.id;
         let _timestamp = (new Date()).valueOf();
         let _config = {
           storeId: _storeID,
@@ -402,7 +415,8 @@ Page({
 
   ToMapList: function (e) {
     wx.navigateTo({
-      url: '/pages/map/pointListView/index',
+      // 代表从教练列表跳转到选门店的
+      url: '/pages/map/pointListView/index?teach=1',
     })
   },
   changeLocation: function (locationJson, LocationDistance) {

@@ -14,7 +14,6 @@ var apis = require('../../utils/apis.js')
 
 Page({
   data: {
-
     containerTop: app.globalData.platform == 'android' ? "65rpx" : '100rpx', //安卓 苹果不一样
     //轮播主件
     topBanner: [
@@ -22,6 +21,8 @@ Page({
       app.globalData.globalURL + "/miniprogram/url-img/banner.png?v=202311271721",
       app.globalData.globalURL + "/miniprogram/url-img/banner.png?v=202311271721"
     ],
+    // reduce: '',// 立减
+    // price: '',// 最终价格
 
     qrShow: false,
     agreePrivacy: false, //是否同意了隐私
@@ -104,6 +105,12 @@ Page({
     overlayStyle: '',
 
     onHide: false,
+    id: '', // 传递的id
+  },
+  newuser(){
+    wx.navigateTo({
+      url: '/packageA/pages/Setting/help/index/index',
+    })
   },
   qrClose(e) {
     this.setData({
@@ -335,8 +342,30 @@ Page({
 
 
   },
-
+  tiaoClick(e){
+    console.log(e);
+    wx.navigateTo({
+      url: `/packageB/pages/Member/buyCard/index?id=${this.data.id}`,
+      // ?reduce=${this.data.reduce}&price=${this.data.price}
+    })
+  },
+  swipFunct(){
+    let _config ={}
+    let _topBanner = []
+    apis.get('/CouponPackageGroup/getVipCouponPackagePub', _config, {
+      "Content-Type": 'applciation/json'
+    }, false).then(val => {
+      _topBanner.push(val.poster)
+      this.setData({
+        // topBanner: _topBanner,
+        id: val.id
+        // reduce: Number(val.original_price)/100,
+        // price: Number(val.price)/100,
+      })
+    })
+  },
   onLoad(options) {
+    this.swipFunct()
     let _this = this;
     //#region  弹窗小提示，如果MSG不为空
     //'/packageA/pages/myCourse/index/index?msg='+encodeURIComponent("约课成功"),
@@ -387,7 +416,7 @@ Page({
     let _action = e.detail.action || ""; //scanCode 为调用扫码
     let _navigate = e.detail.navigate || false;
     let isLogin = false;
-
+    let that = this
 
     if (e.detail.verify && !isLogin) {
       wx.showToast({
@@ -422,11 +451,58 @@ Page({
             }
             let _action = util.getURLParam(qrCodeContent, "s");
             let _actionTitle = "";
+            let resOpenID = that.data.uOpenID;
+            let _param =util.getURLParam(qrCodeContent,"param");
+            console.log(_param);
+            let _timestamp = (new Date()).valueOf();
+            let _uid = wx.getStorageSync('USERID')||resOpenID;
+            let config = {
+              userID: _uid,
+              TIMESTAMP: _timestamp,
+              key: _param,
+              FKEY: md5util.md5(_uid + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
+            }
             switch (_action) {
-              case "door": //开门 https://yoga.aoben.yoga/s=door&param=mac
-                _actionTitle = "开门动作";
-                break;
-              case "getpass": //获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
+              case "door"://开门 https://yoga.aoben.yoga/s=door&param=mac
+            _actionTitle="开门动作";
+            apis.gets("/Door/qrCode",config,false).then(val=>{
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开门成功",
+                returnHtml:"CODE1正常："+JSON.stringify(val)
+              });
+            },function(err)
+            {
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开门失败",
+                openErrMessage:'这是失败原因',
+                returnHtml:"CODE 0出错："+JSON.stringify(err)
+              });
+      
+            })
+            break;
+        case "locker"://开柜 https://yoga.aoben.yoga/s=locker&param=mac
+            _actionTitle="开柜动作";
+            // https://aoben.kshot.com
+            apis.gets("/Locker/qrCode",config,false).then(val=>{
+              console.log(val);
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开柜成功",
+                returnHtml:"CODE1正常："+JSON.stringify(val)
+              });
+            },function(err)
+            {
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开柜失败",
+                openErrMessage:'这是失败原因',
+                returnHtml:"CODE 0出错："+JSON.stringify(err)
+              });
+            })
+            break;
+          case "getpass"://获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
                 _actionTitle = "获取用户密码";
                 break;
               case "cabinet": //开柜 https://yoga.aoben.yoga/s=cabinet&param=mac
@@ -442,14 +518,13 @@ Page({
                 _actionTitle = "啥都不是";
                 break;
             }
-
-            //联网去处理
-            // wx.showToast({
-            //     title: _actionTitle,
-            //     icon: 'none'
-            // })
-            util.toast(_actionTitle);
-            return;
+                //联网去处理
+              // wx.showToast({
+              //     title: _actionTitle,
+              //     icon: 'none'
+              // })
+              util.toast(_actionTitle);
+              return;
 
           },
           fail: (error) => {

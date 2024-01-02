@@ -13,6 +13,76 @@
       "list": [
         {
           "name": "",
+          "pathName": "pages/mini/scan/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageA/pages/course/detail/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/newpage/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/course/group/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/course/personal/index",
+          "query": "branchid=2",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/Member/buyCard/index",
+          "query": "isvip=0&firstbuy=0",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/Member/buyCard/index",
+          "query": "isvip=0",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/user/home/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageA/pages/myCourse/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "训练营-详情",
+          "pathName": "pages/course/camp_show/index",
+          "query": "detailID=5",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/newpage/index/index",
           "query": "",
           "launchMode": "default",
@@ -42,7 +112,7 @@
         {
           "name": "扫码-开门",
           "pathName": "pages/mini/scan/index",
-          "query": "q=HTTPS%3A%2F%2Fyoga.aoben.yoga%2Fmini%2F%3Fs%3Ddoor%26param%3Dkey&scancode_time=1698413286",
+          "query": "",
           "launchMode": "default",
           "scene": 1011
         },
@@ -106,13 +176,6 @@
           "name": "增加档期",
           "pathName": "pages/coach/home/surplus/add/index",
           "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "训练营-详情",
-          "pathName": "pages/course/camp_show/index",
-          "query": "detail=5",
           "launchMode": "default",
           "scene": null
         },
@@ -567,5 +630,5 @@
       ]
     }
   },
-  "libVersion": "3.2.2"
+  "libVersion": "3.2.4"
 }

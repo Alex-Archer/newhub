@@ -1,55 +1,67 @@
 <privacy-dialog fixedbottom="25vh" mask="true" bottomShowType="{{1}}" bind:agree="agree" bind:disagree="disagree"></privacy-dialog>
 <view class="container">
+  <cover-image style="top: {{statusBar}}px;" class="tui-cover-back" src="/static/img/map/icon_back_3x.png" catchtap="back" />
   <!--banner-->
   <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" indicator-color="rgba(255, 255, 255, 0.8)" indicator-active-color="#fff">
     <swiper-item wx:for="{{storeInfo.picture}}" wx:for-item="swiper" wx:key="index" catchtap="detail">
-      <image src="{{swiper.poster}}" class="tui-slide-image" mode="widthFix" />
+      <image src="{{swiper.poster}}" class="tui-slide-image" />
     </swiper-item>
   </swiper>
+  <!-- <scroll-view scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" class="scr"> -->
+  <!-- </scroll-view> -->
+
   <view class="tui-content-box">
     <view class="tui-box">
       <view class="tui-header-center">
-        <view class="tui-avatar">
+        <!-- <view class="tui-avatar">
 
           <image src="{{storeInfo.poster}}" bindtap="href" data-page="3"></image>
-        </view>
+        </view> -->
         <view class="tui-info">
           <view class="tui-nickname">{{storeInfo.title}}</view>
           <view class="tui-rate-container">
-            <text style="color: #fe8e60;">{{storeInfo.score}}.0分</text>
+            <!-- <text style="color: #fe8e60;">{{storeInfo.score}}.0分</text> -->
             <tui-rate current="{{storeInfo.score}}" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{18}}"></tui-rate>
-            <text></text>
+
+            <view class="fen_font">设施：<text class="fenColor">5.0</text></view>
+            <view class="fen_font">环境：<text class="fenColor">5.0</text></view>
+            <view class="fen_font">导师：<text class="fenColor">5.0</text></view>
+            <!-- <view class="icon-share"><text style="font-weight:600;">0</text> 条评价</view> -->
           </view>
         </view>
 
       </view>
+      <view class="noow">营业中|7*24小时营业</view>
       <view class="tui-box-list tui-address">
         <view class="tui-box-text">
           <text class="box-text-address">{{storeInfo.address}}</text>
-          <text  class="box-text-distance" >距您约:{{locationDistance}}</text>
+          <text class="box-text-distance">距离{{locationDistance}}</text>
         </view>
         <view class="tui-text-border" bind:tap="openLocation" data-lat="{{storeInfo.lat}}" data-lng="{{storeInfo.lng}}" data-title="{{storeInfo.title}}" data-address="{{storeInfo.introduce}}">
-          <ald-icon size="30" customClass="" unit="rpx" name="location" color="#68a6aa" content="导航" contentsize="{{26}}" contentunit="rpx" contentpadding="0 0 0 0"></ald-icon>
+          <ald-icon size="30" customClass="share" unit="rpx" name="share" color="#ff7900" content="导航" contentsize="{{26}}" contentunit="rpx" contentpadding="0 0 0 0"></ald-icon>
         </view>
       </view>
-      
+
     </view>
-    <image src="{{globalURL}}/miniprogram/url-img/store/img-2.png" mode="widthFix" style="width: 100%;"></image>
-
-    <view class="tui-box">
+    <!-- <image src="{{globalURL}}/miniprogram/url-img/store/img-2.png" mode="widthFix" style="width: 100%;"></image> -->
+    <!-- <view class="biaoti">
+      <view bindtap='jumpTo' data-opt="TOP0">课程表</view>
+      <view bindtap='jumpTo' data-opt="TOP1">私教</view>
+      <view bindtap='jumpTo' data-opt="TOP2">门店详情</view>
+  </view> -->
+  <!-- 团体课 -->
+    <!-- <view class="tui-box" id="TOP0">
       <view class="tui-title">
-        <text class="tui-title-text"><text style="font-weight: bold;">精彩好课 I </text>为您打造</text>
-        <text class="tui-titie-more" style="font-size: 24rpx;">更多团课 ></text>
+        <view class="tui-title-text">
+          <image src="{{globalURL}}/miniprogram/sys_images/titleImg.png" class="little-img" data-page="3"></image>
+          <text style="font-weight: bold;">团体课</text>
+        </view>
       </view>
-
-
       <view class="group-list">
         <view class="data-list">
-          <!-- 日期选择===================== -->
           <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
             <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="Into{{scrollInto}}">
               <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="Into{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
-                <!-- <view class="tui-tab-item-week" wx:if="{{index%2==0}}" >日</view> -->
                 <view class="tui-badge-item">
                   <view class="tui-tab-item-week">{{ tab.weekday }}</view>
                 </view>
@@ -58,16 +70,41 @@
             </scroll-view>
 
           </view>
-          <!-- 日期选择END ===================== -->
         </view>
-        <!-- 团课列表 -->
         <view class="group-item">
 
-          <!--课程列表-->
           <block wx:if="{{isLoadingCourse||noDataCourse}}">
             <view wx:if="{{noDataCourse}}" class="course-nodata">当日暂无排课</view>
             <view wx:else class="course-nodata">课程加载中...</view>
           </block>
+          <view class="courseView">
+            <view class="courseBott">
+              <view class="imag">
+                <image mode="scaleToFill" src="https://ssl.aoben.yoga/miniprogram/20231127/caper-l-t.png?v=202311272032" mode="" />
+              </view>
+              <view class="bottRight">
+                <view class="bottTitle">
+                  <view class="title">维度雕刻 <text class="keType jin">紧张/满员</text></view>
+                </view>
+                <view class="di_flx">
+                  <view>
+                    <view class="futitle">张教练
+                      <text class="fu_time">
+                        <text style="color: #d8d5d5;font-weight:600">|</text>19:00-20:00
+                      </text>
+                    </view>
+                    <view class="tag">
+                      <view class="fist">适合新手</view>
+                      <view>塑形</view>
+                    </view>
+                  </view>
+                  <view>
+                    <tui-button margin="0 0 0 10rpx" type="warning" shape="circle" width="120rpx" height="60rpx" size="22">预约</tui-button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
           <block wx:if="{{!isLoadingCourse&&!noDataCourse}}" wx:for="{{courseList}}" wx:for-item="courseItem" wx:for-key="courseIndex" wx:key="courseIndex">
             <view class="tui-box-h">
               <view class="tui-title-h">
@@ -86,41 +123,63 @@
                     </view>
                   </view>
                   <view class="tui-course-button">
-                    <tui-button margin="0 30rpx 0 10rpx" type="default" shape="circle" width="120rpx" height="44rpx" size="24" data-id="{{courseItem.id}}" data-registerednum="{{courseItem.registerednum}}" data-peoplenum="{{courseItem.peoplenum}}" bindclick="groupShow">立即预约</tui-button>
+                    <tui-button margin="0 30rpx 0 10rpx" type="default" shape="circle" width="98rpx" height="44rpx" size="24" data-id="{{courseItem.id}}" data-registerednum="{{courseItem.registerednum}}" data-peoplenum="{{courseItem.peoplenum}}" bindclick="groupShow">预约</tui-button>
                   </view>
                 </view>
               </view>
             </view>
-            <!--课程列表 END-->
           </block>
 
 
         </view>
 
       </view>
-      <!-- 团课 END============ -->
-
-    </view>
-    <view class="tui-box" style="margin-top: 30rpx;">
+    </view> -->
+    <!-- 名师 -->
+    <!-- <view class="tui-box" id="TOP1">
       <view class="tui-title">
-        <text class="tui-title-text"><text style="font-weight: bold;">名师 I </text>王牌导师带练</text>
-        <text class="tui-titie-more" style="font-size: 24rpx;">更多私教 ></text>
+        <view class="tui-title-text">
+          <image src="{{globalURL}}/miniprogram/sys_images/titleImg.png" class="little-img" data-page="3"></image>
+          <text style="font-weight: bold;">私教</text>
+        </view>
       </view>
 
-      <!-- 名师 -->
-      <ald-coach entity="{{storeInfo.coach}}"></ald-coach>
-
-      <!-- 名师END -->
-
-    </view>
-    <view class="tui-box" style="margin-top: 30rpx;">
-      <view class="tui-title">
-        <text class="tui-title-text"><text style="font-weight: bold;">训练营 I </text>入门减脂营</text>
-        <text class="tui-titie-more" style="font-size: 24rpx;">查看更多 ></text>
+      <view class="tui-teach-coach">
+        <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-coach" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{coachScrollInto}}">
+          <view wx:for="{{coachBars}}" wx:for-item="tab" wx:key="index" class="tui-teach-item-coach" data-current="{{index}}" bindtap="teachClick">
+            <view class="tui-teach-coach">
+              <image src="https://ssl.aoben.yoga/static/images/face.jpg" bindtap="href" data-page="3"></image>
+              <view class="tui-teach-font">
+                <view class="tui-teach-title">王丹丹 <text class="title_fen">4.9分</text></view>
+                <view class="hao">好评率:100.00%</view>
+                <view class="tui-teach-tag">
+                  <view>适合新手</view>
+                  <view>塑形</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
       </view>
+    </view> -->
+    <!-- 名师END -->
+    <view class="tui-box" id="TOP2">
+      <view class="tui-title">
+        <view class="tui-title-text">
+          <image src="{{globalURL}}/miniprogram/sys_images/titleImg.png" class="little-img" data-page="3"></image>
+          <text style="font-weight: bold;">门店详情 </text>
+        </view>
+        <!-- <text class="tui-titie-more" style="font-size: 24rpx;">查看更多 ></text> -->
+      </view>
+      <!-- 门店详情 -->
+      <tui-overflow-hidden type="{{2}}" padding="0rpx 30rpx 30rpx" gradientColor="#f8f8f8" removeGradient>
+        <rich-text class="des-content" nodes="{{content}}"></rich-text>
+      </tui-overflow-hidden>
+
+      <!-- 门店详情 END -->
       <!-- 集训营列表 -->
 
-      <view class="tui-address tui-trainingCamp" wx:for="{{campList}}" wx:key="campIndex">
+      <!-- <view class="tui-address tui-trainingCamp" wx:for="{{campList}}" wx:key="campIndex">
         <image src="{{globalURL}}/miniprogram/url-img/store/img-8.png" mode="widthFix" style="width: 100%; display: block;"></image>
         <view class="tui-box-list">
           <view class="tui-box-text">
@@ -131,12 +190,17 @@
             <ald-icon size="1" customClass="" unit="rem" name="" color="#FFFFFF" content="立即报名" contentsize="{{26}}" contentunit="rpx" contentpadding="0 0 0 0"></ald-icon>
           </view>
         </view>
-      </view>
+      </view> -->
 
 
       <!-- 集训营列表END -->
 
     </view>
-
+  </view>
+  <!-- <view class="blogo">
+    <image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/blogo.png?v=202311272032"></image>
+  </view> -->
+  <view class="nowbuy">
+    <tui-button bindtap='callPhone' width="650rpx" height="80rpx" size="28" type="danger" shape="circle">联系场馆主</tui-button>
   </view>
 </view>

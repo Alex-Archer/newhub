@@ -1,224 +1,157 @@
 <wxs src="/wxs/utils.wxs" module="parse"></wxs>
 <view class="container">
-  <!-- 类型选择 -->
-  <view class="select-type {{isTypeNavFixed&&'fixed'}}" id="typeNavTop">
+<!-- <t-branch-show></t-branch-show> -->
+<!-- 类型选择 -->
+<view class="select-type {{isTypeNavFixed&&'fixed'}}" id="typeNavTop">
     <scroll-view id="type-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{typeScrollInto}}">
       <view wx:for="{{typeBars}}" wx:for-item="typetab" wx:key="index" class="tui-tab-item" id="{{typetab.id}}" data-current="{{index}}" bindtap="tabTypeClick" data-path="{{typetab.path}}">
-        <view class="tui-tab-item-title {{tabTypeIndex == index?'tui-tab-item-title-active':''}}">{{ typetab.name }}</view>
+        <view class="tui-tab-item-titles {{tabTypeIndex == index?'tui-tab-item-titles-active':''}}">{{ typetab.name }}</view>
       </view>
     </scroll-view>
   </view>
   <!-- 类型选择END -->
-
-  <!-- 搜索 -->
-  <view class="tui-searchbox {{isSearchFixed&&'fixed'}}" id="searchNavTop">
-
-    <view class="search-bar">
-			<view class="search-bar-form">
-				<view class="search-bar-box">
-					<icon class="icon-search-in-box" type="search" size="{{14}}" color="#999"></icon>
-					<input confirm-type="search" class="search-bar-input" placeholder="请输入搜索关键词" value="{{word}}" focus="{{inputShowed}}"
-					 bindconfirm="bindInput" bindinput="inputTyping" />
-					<view class="icon-clear" wx:if="{{word}}" bindtap="clearInput">
-						<icon type="clear" size="14"></icon>
-					</view>
-				</view>
-				<view class="search-bar-label" wx:if="{{!inputShowed}}" bindtap="showInput">
-					<icon class="icon-search" type="search" size="14" color="#999"></icon>
-					<view class="search-bar-text">请输入搜索关键词</view>
-				</view>
-			</view>
-			<view class="cancel-btn" bindtap="hideInput" wx:if="{{inputShowed}}">取消</view>
-		</view>
-
-  </view>
-  <!-- 搜索end -->
-
-  <!-- 广告 -->
-  <view class="adv-top">
-    <image class="adv-top-img" src="{{globalURL}}/miniprogram/url-img/banner/course/2.jpg" mode="widthFix"></image>
-  </view>
-  <!-- 广告END -->
-
-  <!-- 日期选择===================== -->
-  <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
-    <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="into{{dateScrollInto}}">
-      <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="into{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
-
-        <view class="tui-badge-item">
-          <view class="tui-tab-item-week">{{ tab.weekday }}</view>
-        </view>
-        <view class="tui-tab-item-title {{tabDateIndex == index?'tui-tab-item-title-active':''}}">{{ tab.name }}</view>
-      </view>
-    </scroll-view>
-
-  </view>
-  <!-- 日期选择END ===================== -->
-
-  <!--筛选 下拉排序块-->
-  <view class="dropdown-box {{isDropdowFixed&&'fixed'}}" id="dropdowNavTop">
-    <!--header-->
-    <view class="tui-header {{dropHeaderShow?'tui-header-act':''}}">
-
-      <view class="tui-header-bottom">
-        <view class="tui-bottom-item {{proDropIndex==0?'tui-btmItem-active':''}}" data-index="0" bindtap="btnDropStore">
-          <view class="tui-bottom-text {{proDropIndex==0?'tui-active':''}}">{{parse.getArrFilterLength(storeListData)}}</view>
-          <tui-icon name="{{proDropIndex==0?'arrowup':'arrowdown'}}" size="{{14}}" color="{{proDropIndex==0?'#5677fc':'#444'}}"></tui-icon>
-        </view>
-        <view class="tui-bottom-item {{proDropIndex==1?'tui-btmItem-active':''}}" bindtap="btnDropOrderBy" data-index="1">
-          <view class="tui-bottom-text {{proDropIndex==1?'tui-active':''}}">{{parse.getOrderText(orderListData)}}</view>
-          <tui-icon name="{{proDropIndex==1?'arrowup':'arrowdown'}}" size="14" color="{{proDropIndex==1?'#5677fc':'#444'}}"></tui-icon>
-        </view>
-        <view class="tui-bottom-item {{proDropIndex==2?'tui-btmItem-active':''}}" bindtap="btnDropCoach" data-index="2">
-          <view class="tui-bottom-text {{proDropIndex==2?'tui-active':''}}">{{parse.getArrFilterLength(coachListData,3)}}</view>
-          <tui-icon name="{{proDropIndex==2?'arrowup':'arrowdown'}}" size="14" color="{{proDropIndex==2?'#5677fc':'#444'}}"></tui-icon>
-        </view>
-      </view>
-
+  <!-- 已购卡 -->
+  <view class="tui-box">
+    <view class="tui-title">
+      <view></view><image class="title_img" src="{{globalURL}}/miniprogram/sys_images/titleImg.png" mode=""/>
+      <text><text style="font-weight: bold;">已购课卡</text></text>
     </view>
-    <!--header-->
-    <view class="tui-top-dropdown-box">
-      <tui-top-dropdown show="{{dropShow}}" paddingbtm="110" translatey="100" bindclose="btnCloseDrop">
-        <scroll-view class="tui-scroll-box" scroll-y scroll-with-animation scroll-top="{{scrollTop}}">
-          <view class="tui-seizeaseat-20"></view>
-          <view class="tui-drop-item {{item.selected?'tui-bold':''}}" wx:for="{{proDropData}}" wx:key="index" catchtap="btnSelected" data-index="{{index}}" data-id="{{item.id}}">
-            <tui-icon name="check" size="16" color="#5677fc" bold="{{true}}" wx:if="{{item.selected}}"></tui-icon>
-            <text class="tui-ml tui-middle">{{item.title}}</text>
-          </view>
-          <view class="tui-seizeaseat-30"></view>
-        </scroll-view>
-        <view class="tui-drop-btnbox">
-          <view class="tui-drop-btn tui-button-white" hover-class="tui-button-white_hover" hover-stay-time="150" bindtap="reset">重置</view>
-          <view class="tui-drop-btn tui-button-primary" hover-class="tui-button-hover" hover-stay-time="150" bindtap="btnCloseDrop">确定</view>
-        </view>
-      </tui-top-dropdown>
-    </view>
-
-
-
-
-  </view>
-  <!--筛选 下拉排序块 END-->
-
-  <!--下部两块 -->
-  <view class="body-container {{isTypeNavFixed&&'pt'}}">
-    <!-- 左边 -->
-    <view class="left-box">
-      <scroll-view scroll-y scroll-with-animation class="tab-view" scroll-into-view="{{scrollViewId}}" style="height: calc(120vh - env(safe-area-inset-bottom) - 460rpx)">
-        <block wx:for="{{leftBars}}" wx:key="index">
-            <view wx:if="{{item.grade!=0}}" id="id_{{index}}"  class="tab-bar-item {{tabLeftIndex == index ? 'active' : ''}}" data-current="{{index}}" data-id="{{ item.id }}" catchtap="swichNav">
-                <text>{{ item.title }}</text>
+    <!-- 名师 -->
+      <!-- <ald-coach entity="{{storeInfo.coach}}"></ald-coach> -->
+      <view class="{{cardList.length!=0?'double':'tui-tab-coach'}}">
+       
+        <scroll-view wx:if="{{cardList.length!=0}}" id="tab-bar" scroll-with-animation class="tui-scroll-h-coach" scroll-x show-scrollbar="{{false}}" scroll-into-view="{{coachScrollInto}}">
+          <view wx:for="{{cardList}}" wx:key="index" class="tui-tab-item-coach" data-current="{{index}}" data-cardid="{{item.id}}" bindtap="cardClick">
+            <view class="tui-avatar-coach">
+              <view class="card_title">{{item.title}}</view>
+              <!-- <image src="https://ssl.aoben.yoga/static/images/face.jpg" data-page="3"></image> -->
+              <view class="tui-bott-font">
+                <view class="tui-bott-title">剩余{{item.remaining}}节</view>
+              </view>
             </view>
-        </block>
-
-      </scroll-view>
+          </view>
+        </scroll-view>
+        <!-- <view wx:else class="{{cardList.length!=0?'doubles':'bgbuy'}}" bindtap="keClick">
+          <view class="add">+</view>
+          <view class="goCard">选课程</view>
+        </view> -->
+        <view class="doubles" bindtap="addClick">
+          <view class="add">+</view>
+          <view class="goCard">去购卡</view>
+        </view>
+      </view>
+      <!-- 名师END -->
+  </view>
+  <!-- 课程内容 -->
+  <view class="tui-box">
+    <view class="tui-title flx_title">
+      <view class="flx">
+        <image class="title_img" src="{{globalURL}}/miniprogram/sys_images/titleImg.png" mode=""/>
+        <text><text style="font-weight: bold;">可约团体课</text></text>
+      </view>
+      <text bind:tap="branchClick" class="tui-titie-more">{{branchName==''?'选择门店 >':branchName + '>'}}</text>
     </view>
-    <!-- 左边 END -->
-    <!-- 右边  -->
-    <view class="right-box">
-      <block wx:for="{{leftBars}}" wx:key="index">
-        <scroll-view class="right-box-scroll" refresher-triggered="{{newsList[0].refreshing}}" refresher-threshold="{{100}}" scroll-y bindscrolltolower="loadMore" style="height: calc(120vh - env(safe-area-inset-bottom) - 440rpx)" wx:if="{{tabLeftIndex == index}}">
-          <!--内容部分 start 自定义可删除-->
-          <view class="page-view">
-            <!-- 广告 -->
-            <swiper indicator-dots autoplay circular interval="5000" duration="150" class="swiper">
-              <swiper-item wx:if="{{index % 2 === 0}}" catchtap="{{detail}}">
-                <image src="{{globalURL}}/miniprogram/url-img/banner/course/1.jpg" class="slide-image" />
-              </swiper-item>
-              <swiper-item catchtap="detail">
-                <image src="{{globalURL}}/miniprogram/url-img/banner/course/4.jpg" class="slide-image" />
-              </swiper-item>
-              <swiper-item catchtap="detail">
-                <image src="{{globalURL}}/miniprogram/url-img/banner/course/5.jpg" class="slide-image" />
-              </swiper-item>
-            </swiper>
-            <!-- 广告END -->
-
-            <view class="class-box" style="min-height:101%">
-
-              <view wx:if="{{loadingData}}" class="no-data">
-                  <text class="no-data-txt">数据加载中</text>
-              </view>
-
-              <!-- 无数据 -->
-              <view wx:if="{{!loadingData&&courseList.data.length<=0}}" class="no-data">
-                  <text class="no-data-txt">正在加紧排课中</text>
-                  <text class="no-data-txt">看看其他日期的课程吧</text>
-              </view>
-              <!-- 无数据END -->
 
 
-              <block wx:if="{{!loadingData}}" wx:for="{{courseList.data}}" wx:for-item="courseitem" wx:for-index="courseIndex" wx:key="courseIndex">
+    <view class="group-list">
+      <!-- 日期选择===================== -->
+      <view class="select-data {{isDataFixed&&'fixed'}}" id="dataNavTop">
+        <scroll-view id="tab-bar" scroll-with-animation class="tui-scroll-h" scroll-x show-scrollbar="{{false}}" scroll-into-view="into{{dateScrollInto}}">
+          <view wx:for="{{dateBars}}" wx:for-item="tab" wx:key="index" class="tui-tab-item" id="into{{tab.id}}" data-current="{{index}}" bindtap="tabClick" data-day="{{tab.date}}">
 
-                <!-- 开始列表 -->
-                <view class="tui-class-title-h" bind:tap="goToStore">
-                  <text>{{courseitem.title}} </text>
+            <view class="tui-badge-item">
+              <view class="tui-tab-item-week">{{ tab.weekday }}</view>
+            </view>
+            <view class="tui-tab-item-title {{tabDateIndex == index?'tui-tab-item-title-active':''}}">{{ tab.name }}</view>
+          </view>
+        </scroll-view>
 
-                  <text style="font-size:20rpx; font-weight:normal; color:#afb1bd;">距离{{parse.getDistance(courseitem.distance)}}</text>
-                  <ald-icon size="1" customClass="" unit="rem" name="like" color="#b1b4bf" content="" contentsize="" contentunit="" contentpadding="0 0 0 8rpx"></ald-icon>
+      </view>
+      <!-- 日期选择END ===================== -->
+      <!-- 团课列表 -->
+      <view class="group-item">
 
+        <!--课程列表-->
+        <block wx:if="{{loadingData}}">
+          <view class="course-nodata">数据加载中...</view>
+        </block>
+        <block wx:if="{{courseList.data.length==0&&!loadingData}}">
+          <view class="course-nodata">当日暂无排课</view>
+        </block>
+        <block wx:if="{{courseList.data.length!=0&&!loadingData}}" >
+          <view class="courseView" wx:for="{{courseList.data}}" wx:for-key="courseIndex" wx:key="courseIndex">
+            <block  wx:for="{{item.course}}" wx:for-item="courseItem"  wx:key="courseIndex">
+              <view class="courseBott">
+                <view class="imag">
+                  <image mode="scaleToFill" src="{{courseItem.list_poster}}" mode="" />
                 </view>
-                <view class="tui-content-box-h">
-                  <block wx:for="{{courseitem.course}}" wx:for-item="courseLi" wx:for-index="index" wx:key="index">
-                    <view class="tui-box-h">
-                      <view class="tui-title-h">
-
-                        <tui-section color="#ff591f" title="{{parse.secondToHm(courseLi.starttime)}} ~ {{parse.secondToHm(courseLi.endtime)}}" is-line background="#fff" line-color="#fe8e61" margin="0" size="24" font-weight="bold"></tui-section>
-                        <text class="tui-person-h">{{courseLi.registerednum}} / {{courseLi.peoplenum}}</text>
+                <view class="bottRight">
+                  <view class="bottTitle">
+                    <view class="title">{{courseItem.title}} 
+                      <!-- <text class="jin" wx:if="{{courseItem.peoplenum - courseItem.registerednum>0 }}">紧张</text>
+                      <text class="keType" wx:else >满员</text> -->
+                      <text class="jin tags" wx:if="{{courseItem.registerednum - courseItem.minum ==0 }}">已成团</text>
+                      <text class="notuan tags" wx:else>未成团</text>
+                    </view>
+                  </view>
+                  <view class="di_flx">
+                    <view>
+                      <view class="futitle">{{courseItem.coachName}}
+                        <text class="fu_time">
+                          <text style="color: #d8d5d5;font-weight:600">|</text>{{parse.secondToHm(courseItem.starttime)}} ~ {{parse.secondToHm(courseItem.endtime)}}
+                        </text>
                       </view>
-                      <view class="tui-course">
-
-                        <!--课程列表-->
-                        <view class="tui-course-item-h"  data-id="{{courseLi.id}}" bind:tap="groupShow" data-enrollstate="{{courseLi.enrollstate}}" data-registerednum="{{courseLi.registerednum}}" data-peoplenum="{{courseLi.peoplenum}}">
-                          <image src="{{courseLi.listposter}}" class="tui-course-img-h"></image>
-                          <view class="tui-course-info-h">
-                            <view class="tuicourseLi.-course_title word-break" style="-webkit-line-clamp: 2;">{{courseLi.title}}.{{courseLi.id}}</view>
-                            <view class="tui-course_rate">
-                              <text style="margin: 0 10rpx 0 0 ;">{{parse.formatNumber(courseitem.score)}} 分</text>
-                              <tui-rate margin="50rpx" current="{{courseitem.score}}" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{10}}"></tui-rate>
-                            </view>
-                          </view>
-                          <view class="tui-course-button">
-                            <block wx:if="{{courseLi.enrollstate==1}}">
-                                <block wx:if="{{courseLi.registerednum>=courseLi.peoplenum}}">
-                                    <tui-button margin="0 0 0 10rpx" type="gray" shape="circle" width="90rpx" height="40rpx" size="22">已满</tui-button>
-                                </block>
-                                <block wx:else>
-                                    <tui-button margin="0 0 0 10rpx" type="warning" shape="circle" width="90rpx" height="40rpx" size="22">预约</tui-button>
-                                </block>
-                            </block>
-                            <block wx:elif="{{courseLi.enrollstate==0}}">
-                                <tui-button plain margin="0 0 0 10rpx" type="warning" shape="circle" width="90rpx" height="40rpx" size="22">排队</tui-button>
-                            </block>
-                          </view>
-                        </view>
-
-                        <!--课程列表 END-->
-
+                      <view class="tag">
+                        <view wx:for="{{courseItem.label}}" wx:for-item="labelItem" wx:key="index" style="color: {{labelItem.fontcolor}};background:{{labelItem.bgcolor}};">{{labelItem.title}}</view>
                       </view>
                     </view>
-                  </block>
- 
-
+                    <view>
+                      <tui-button wx:if="{{courseItem.peoplenum - courseItem.registerednum>0 }}" bind:tap="yueClick" data-currid="{{courseItem.id}}" margin="0 0 0 10rpx" type="warning" shape="circle" width="150rpx" height="60rpx" size="24">{{courseItem.registerednum}}/{{courseItem.peoplenum}} 可预约</tui-button>
+                      <tui-button margin="0 0 0 10rpx" type="warning" shape="circle" width="150rpx" height="60rpx" size="24" wx:if="{{courseItem.peoplenum - courseItem.registerednum<=0}}">{{courseItem.registerednum}}/{{courseItem.peoplenum}} 已约满</tui-button>
+                      <!-- <tui-button wx:else bind:tap="yueClick" data-currid="{{courseItem.id}}" margin="0 0 0 10rpx" type="warning" plain shape="circle" width="120rpx" height="60rpx" size="22">排队</tui-button> -->
+                    </view>
+                  </view>
                 </view>
-
-                <!-- 开始列表END -->
-              </block>
-              <view class="tui-loading-more" wx:if="{{courseList.data.length>0}}">
-                <tui-loadmore wx:if="{{!loadingData&&courseList.isLoading}}" index="50"></tui-loadmore>
-                <tui-nomore wx:if="{{!loadingData&&courseList.pageIndex >= courseList.lastPage&&!courseList.isLoading}}" backgroundColor="#fafafa"></tui-nomore>
               </view>
-
-            </view>
-
+            </block>
           </view>
-          <!--内容部分 end 自定义可删除-->
-        </scroll-view>
-      </block>
+        </block>
+        
+
+        
+        <!-- <block wx:if="{{!isLoadingCourse&&!noDataCourse}}" wx:for="{{courseList}}" wx:for-item="courseItem" wx:for-key="courseIndex" wx:key="courseIndex">
+          <view class="tui-box-h">
+            <view class="tui-title-h">
+              <tui-section color="#ff591f" title="{{parse.secondToHm(courseItem.starttime)}} ~ {{parse.secondToHm(courseItem.endtime)}}" is-line background="#fff" line-color="#fe8e61" margin="0" size="24" font-weight="bold"></tui-section>
+              <text class="tui-person-h">已约 {{courseItem.registerednum}} / {{courseItem.peoplenum}}</text>
+            </view>
+            <view class="tui-course">
+
+              <view class="tui-course-item-h">
+                <image src="{{courseItem.listposter}}" class="tui-course-img-h"></image>
+                <view class="tui-course-info-h">
+                  <view class="tui-course_title word-break" style="-webkit-line-clamp: 2;">{{courseItem.title}}</view>
+                  <view class="tui-course_rate">
+                    <text class="tui-course_rate-txt">{{parse.formatNumber(courseItem.score)}} 分</text>
+                    <tui-rate margin="50rpx" current="{{courseItem.score}}" bindchange="change" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{16}}"></tui-rate>
+                  </view>
+                </view>
+                <view class="tui-course-button">
+                  <tui-button margin="0 30rpx 0 10rpx" type="default" shape="circle" width="98rpx" height="44rpx" size="24" data-id="{{courseItem.id}}" data-registerednum="{{courseItem.registerednum}}" data-peoplenum="{{courseItem.peoplenum}}" bindclick="groupShow">预约</tui-button>
+                </view>
+              </view>
+            </view>
+          </view>
+          
+        </block> -->
+        <!--课程列表 END-->
+        <view class="blogo" style="background-color:#fff;"></view>
+      </view>
+
     </view>
-    <!-- 右边 -->
+    <!-- 团课 END============ -->
+
   </view>
-  <!--下部两块 END -->
 
 </view>
 

@@ -95,18 +95,18 @@
     </view>
     <view class="tui-content-box" style="height:80vh;margin-bottom: 200rpx;">
       <!-- 旧版 /pages/user/level/index -->
-      <view class="tui-vip" data-url="/packageB/pages/Member/buyCard/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
+      <view class="tui-vip" data-firstbuy="{{user.isfirstBuyVip}}" data-isuser="{{user.isvip}}" data-url="" data-item="{{user}}" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
         <view class="tui-title">
           <!-- logo1240X685.svg -->
           <image src="https://ssl.aoben.yoga/miniprogram/20231127/logo2.svg?v=202311271721" mode="widthFix" class="tui-icon"></image>
           <!-- <text class="tui-name">瑜伽会员 </text> -->
           <tui-tag padding="5px 12px" width="" margin="0 0 0 0" size="22rpx" color="#469ea3" shape="circle" type="white">
-          {{user.vipExpireTime>0?'查看特权':'成为会员'}}
+          {{user.isvip!=0?'查看特权':'成为会员'}}
           
           </tui-tag>
         </view>
         <!-- <text class="tui-desc">{{user.vipExpireTime>0?'感谢成为会员':'开通会员'}}，随时随地开始健身</text> -->
-        <text class="tui-desc">{{user.vipExpireTime>0?'感谢成为会员':'开通会员'}}，让瑜伽更自由</text>
+        <text class="tui-desc">{{user.isvip!=0?'感谢成为会员':'开通会员'}}，让瑜伽更自由</text>
       </view>
       <!-- 今日运动和身体数据
     <view class="tui-sport">
@@ -179,7 +179,7 @@
             <!-- <image src="/static/urlimg/hqq/icon-grid-2.png" class="tui-tool-icon"></image> -->
             <ald-icon padding="0 0 0 0" size="65" unit="rpx" name="cart" color="#5f5f5f"></ald-icon>
           </view>
-          <view class="tui-tool-text">已购课程</view>
+          <view class="tui-tool-text">已购课卡</view>
         </view>
         <view class="tui-tool-item" data-url="/packageA/pages/order/list/index" data-navigate="{{true}}" data-islogin="{{false}}" bind:tap="topJump">
           <view class="tui-icon-box">
@@ -227,18 +227,17 @@
           <!-- <image src="https://ssl.aoben.yoga/miniprogram/20231127/buy-card.png?v=202311271721" class="buy-card-logo"></image> -->
         </view>
         <view class="buy-card-d">
-          <view class="card-d-item" data-cla="1" bindtap="detailShow">
-            
-            <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico1.png?v=202311271722" class="card-ico-img"></image></view>
+          <view wx:for="{{newarrList}}" wx:key="index" class="card-d-item" data-cla="{{item.id}}" data-packagetype="{{item.course_package_type_id}}" data-title="{{item.title}}" bindtap="detailShow">
+            <view class="card-ico"><image src="{{item.list_poster}}" class="card-ico-img"></image></view>
             <view class="card-des">
-                <view class="card-des-title">初阶团课</view>
-                <view class="card-des-ms">适合新手入门</view>
+                <view class="card-des-title">{{item.title}}</view>
+                <view class="card-des-ms">{{item.content}}</view>
             </view>
           </view>
-          <view class="card-d-item" data-cla="2" bindtap="detailShow">
+          <!-- <view class="card-d-item" data-cla="2" bindtap="detailShow">
             <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico2.png?v=202311271722" class="card-ico-img"></image></view>
             <view class="card-des">
-                <view class="card-des-title">进阶团课</view>
+                <view class="card-des-title">普拉提团课</view>
                 <view class="card-des-ms">有瑜伽基础人群</view>
             </view>
           </view>
@@ -252,14 +251,14 @@
           <view class="card-d-item" data-cla="4" bindtap="detailShow">
             <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico4.png?v=202311271722" class="card-ico-img"></image></view>
             <view class="card-des">
-                <view class="card-des-title">初阶私教</view>
+                <view class="card-des-title">精选私教</view>
                 <view class="card-des-ms">适合所有人群</view>
             </view>
           </view>
           <view class="card-d-item" data-cla="5" bindtap="detailShow">
             <view class="card-ico"><image src="https://ssl.aoben.yoga/miniprogram/20231127/card-ico5.png?v=202311271722" class="card-ico-img"></image></view>
             <view class="card-des">
-                <view class="card-des-title">进阶私教</view>
+                <view class="card-des-title">导师私教</view>
                 <view class="card-des-ms">轻松易练高效</view>
             </view>
           </view>
@@ -269,9 +268,9 @@
                 <view class="card-des-title">高级定制</view>
                 <view class="card-des-ms">轻松易练高效</view>
             </view>
-          </view>
+          </view> -->
         </view>
-      </view>
+      </view> 
       <!-- 购卡项END -->
 
       <!-- <view class="tui-box tui-order-list tui-redbag">
@@ -283,7 +282,7 @@
       </view> -->
 
 <view class="banner-box">
-<image src="https://aoben.kshot.com/miniprogram/url-img/banner.png?v=202311271721" mode="widthFix" class="banner-icon"></image>
+<image src="https://ssl.aoben.yoga/miniprogram/url-img/banner.png?v=202311271721" mode="widthFix" class="banner-icon"></image>
 
 </view>
 

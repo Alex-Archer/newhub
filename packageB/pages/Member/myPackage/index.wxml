@@ -1,0 +1,51 @@
+<wxs src="/wxs/date.wxs" module="date"/>
+<view class="container">
+  <scroll-view style="height: {{scrollViewHeight}}px;background: #efefef;" scroll-y>
+    <view class="coupon_min">
+      <view class="wrapInt" wx:if="{{couponList.length !==0}}">
+        <view class="coupons">
+          <block wx:for="{{couponList}}" wx:key="id">
+            <view class="item" data-idx="{{index}}">
+              <image src="/images/coupon_b.png" class="couponList_bac"></image>
+              <movable-area class="m_a">
+                <movable-view class="data_list" direction="horizontal" inertia="true" out-of-bounds="true">
+                  <view class="d_box">
+                    <view class="data">
+                      <view class="couponList_bac_on">
+                        ￥<text style="color:#fff;font-size:32rpx;font-weight: bold;">{{item.price/100}}</text>
+                      </view>
+                      <view class="couponList_bac_on_right">
+                        <view class="couponList_bac_on_right_title">{{item.title}}</view>
+                        <!-- <view class="couponList_bac_on_right_fanwei">
+                          <view>使用范围：</view>
+                          <view class="couponList_bac_on_spr">{{item.usage_scenarios}}</view>
+                        </view> -->
+												<view class="couponList_youxiaoqi">
+													<view class="couponList_bac_on_right_fanwei">
+                            <view>有效期： </view>
+                            <view>{{date.format(item.user_use_expire_time,'yyyy-MM-dd')}}</view>
+                          </view>
+                        </view>
+                        <!-- <view class="couponList_youxiaoqi">
+                            <view wx:if="{{item.rule&&item.rule!=''}}" class="using-rule" data-text="{{item.rule}}" bind:tap="showRule">
+                              规则＞
+                            </view>
+                          </view> -->
+                      </view>
+                    </view>
+                    <!-- <view class="del" bindtap="delete" data-id="{{item.id}}" data-index="{{index}}">删除</view> -->
+                  </view>
+                </movable-view>
+              </movable-area>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="notBox" wx:else>
+        <image src="/static/img/toast/img_noorder_3x.png"></image>
+        <view class="not">暂无优惠券</view>
+      </view>
+    </view>
+    <!-- <v-footer></v-footer> -->
+  </scroll-view>
+</view>

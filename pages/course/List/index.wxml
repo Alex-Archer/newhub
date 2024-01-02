@@ -6,7 +6,7 @@
     </view>
     <view class="cover-menu" style="height: {{navBarHeight}}rpx;line-height: {{navBarHeight}}rpx;">
       <view class="store-select" bind:tap="ToMapList">
-        <view class="select-title line-one">{{Location.title}}</view>
+        <view class="select-title line-one">{{branchname?branchname:Location.title}}</view>
         <view class="select-ico">
           <ald-icon size="22" customClass="" unit="rpx" margin="0 8rpx 0 0" name="down" color="#6b6b6b"></ald-icon>
         </view>

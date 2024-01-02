@@ -1,11 +1,10 @@
-
 <!-- <popup show="{{false}}" style="display: flex; width: 100%; height: 100%;">
     <view class="dialog">root-portal test</view>
 </popup> -->
 <page-container show="{{pageContainerShow }}" round="{{round}}" overlay="{{overlay}}" duration="{{duration}}" position="{{position}}" z-index="99999" close-on-slide-down="{{false}}" bindbeforeenter="onBeforeEnter" bindenter="onEnter" bindafterenter="onAfterEnter" bindbeforeleave="onBeforeLeave" bindleave="onLeave" bindafterleave="onAfterLeave" bindclickoverlay="onClickOverlay" custom-style="{{customStyle}}" overlay-style="{{overlayStyle}}">
-    <view class="detail-page">
-        <button type="primary" bindtap="exit">-</button>
-    </view>
+  <view class="detail-page">
+    <button type="primary" bindtap="exit">-</button>
+  </view>
 </page-container>
 <!-- 以上都是测试区 -->
 
@@ -44,7 +43,7 @@
 <view class="mask" wx:if="{{loadingMask}}" bind:tap="maskTapOnLoad">
   <view class="container_app">
     <view class="circle">
-		<image class="circle-img"  src="/static/img/loading.png" mode=""></image>
+      <image class="circle-img" src="/static/img/loading.png" mode=""></image>
     </view>
     <view class="dot"></view>
   </view>
@@ -54,152 +53,170 @@
 
 <!-- 压屏广告 要搞成把tabbar也隐掉 -->
 <tui-landscape show="{{showLandscape}}" position="{{positionLandscape}}" maskClosable="{{landscapeClosable}}" iconLeft="50rpx" iconRight="50rpx" bindclose="landscapeClose">
-    <image src="{{globalURL}}/miniprogram/url-img/img_invite_3x.png" mode="widthFix" style="width: 600rpx;" />
+  <image src="{{globalURL}}/miniprogram/url-img/img_invite_3x.png" mode="widthFix" style="width: 600rpx;" />
 </tui-landscape>
 
 <!-- pannel -->
 <view class="pannel" wx:if="{{!loadingMask}}">
-    <!-- gif背景效果 -->
-    <view class="pannel-inner">
+  <!-- gif背景效果 -->
+  <view class="pannel-inner">
 
-        <!-- <scroll-view style="min-height:100vh;" enhanced="{{true}}" show-scrollbar="{{false}}"	scroll-y refresher-enabled="{{false}}" 	 bind:scroll="indexScroll"  id="index-scroller"> -->
-       <scroller style="min-height:100vh;" isBackBtn="{{false}}" bind:loadmore="indexLoadmore" bind:scroll="indexScroll" bind:refresh="indexRefresh" bind:restore="indexRestore" id="index-scroller">
-             <refresh slot="refresh" config="{{gifSetting}}" type="diy" />
-            <!-- 内容开始 -->
-            <!-- <view class="container" style="background-image:url({{backgroundImage}});"> -->
-            <view class="container" style="padding: {{containerTop}} 0 0 0;">
-           
-
-                <!-- 定位 -->
-                <view class="locateHost" bind:tap="ToMapList">
-                    <!-- <view class="locateHost" style="{{scrollTop > 10 ? 'background-color: #fff;' : ''}}"> -->
-                    <view class="locate-ico">
-                        <tui-icon size="1" unit="rem" color="#fff" name="gps"></tui-icon>
-                    </view>
-                    <view class="locate-txt">
-                        <view class="locate-txt-t">
-                            <view class="locate-txt-text">{{Location.title}}</view>
-                            <!-- <tui-icon size="1.5" unit="rem" color="#fff" name="turningdown" margin="5rpx 1rpx 5rpx 0" ></tui-icon> -->
-                            <ald-icon margin="0" size="40" unit="rpx" name="down-triangle" color="#fff"></ald-icon>
-                        </view>
-                        <block wx:if="{{Location.address&&locationDistance=='0'}}">
-                          <view class="locate-txt-d" >{{Location.address}}</view>
-                        </block>
-                        <block wx:else>
-                          <view class="locate-txt-d" wx:if="{{locationDistance!='0'}}">距离您 {{locationDistance }}</view>
-                        </block>
-                        
-                    </view>
-                    <!-- <view class="locate-dorp-ico iconfont icon-xiala"></view> -->
-                </view>
+    <!-- <scroll-view style="min-height:100vh;" enhanced="{{true}}" show-scrollbar="{{false}}"	scroll-y refresher-enabled="{{false}}" 	 bind:scroll="indexScroll"  id="index-scroller"> -->
+    <scroller style="min-height:100vh;" isBackBtn="{{false}}" bind:loadmore="indexLoadmore" bind:scroll="indexScroll" bind:refresh="indexRefresh" bind:restore="indexRestore" id="index-scroller">
+      <refresh slot="refresh" config="{{gifSetting}}" type="diy" />
+      <!-- 内容开始 -->
+      <!-- <view class="container" style="background-image:url({{backgroundImage}});"> -->
+      <view class="container" style="padding: {{containerTop}} 0 0 0;">
 
 
-                <!-- banner -->
-                <!-- <view class="banner">
+        <!-- 定位 -->
+        <view class="locateHost" bind:tap="ToMapList">
+          <!-- <view class="locateHost" style="{{scrollTop > 10 ? 'background-color: #fff;' : ''}}"> -->
+          <view class="locate-ico">
+            <tui-icon size="1" unit="rem" color="#fff" name="gps"></tui-icon>
+          </view>
+          <view class="locate-txt">
+            <view class="locate-txt-t">
+              <view class="locate-txt-text">{{Location.title}}</view>
+              <!-- <tui-icon size="1.5" unit="rem" color="#fff" name="turningdown" margin="5rpx 1rpx 5rpx 0" ></tui-icon> -->
+              <ald-icon margin="0" size="40" unit="rpx" name="down-triangle" color="#fff"></ald-icon>
+            </view>
+            <block wx:if="{{Location.address&&locationDistance=='0'}}">
+              <view class="locate-txt-d">{{Location.address}}</view>
+            </block>
+            <block wx:else>
+              <view class="locate-txt-d" wx:if="{{locationDistance!='0'}}">距离您 {{locationDistance }}</view>
+            </block>
+
+          </view>
+          <!-- <view class="locate-dorp-ico iconfont icon-xiala"></view> -->
+        </view>
+
+
+        <!-- banner -->
+        <!-- <view class="banner">
                     <image src="{{bannerImage}}" mode="widthFix"></image>
                 </view> -->
 
-  <!-- 广告 -->
-  <view class="top-banner">
-    <!-- <image class="adv-top-img" src="{{globalURL}}/miniprogram/url-img/banner/course/2.jpg" mode="widthFix"></image> -->
-    <swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" previous-margin="0" next-margin="0">
-        <swiper-item wx:for="{{topBanner}}" wx:key="index" class="top-banner-item">
-          <image src="{{item}}" class="top-slide-image"/>
-        </swiper-item>
-      </swiper>
-  </view>
-  <!-- 广告END -->
+        <!-- 广告 -->
+        <view class="top-banner">
+          <!-- <image class="adv-top-img" src="{{globalURL}}/miniprogram/url-img/banner/course/2.jpg" mode="widthFix"></image> -->
+          <swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" previous-margin="0" next-margin="0">
+            <swiper-item bind:tap="tiaoClick" wx:for="{{topBanner}}" wx:key="index" class="top-banner-item">
+              <image src="{{item}}" class="top-slide-image" />
+            </swiper-item>
+          </swiper>
+        </view>
+        <!-- 广告END -->
 
 
-                <!-- menu -->
-                <view class="tui-flex-box menu-li radius26">
-                    <view class="tui-flex">
-                        <view class="tui-center tui-col-3"  bind:tap="ToMapList">
-                            <image class="menu-img" src="{{baseURL}}/miniprogram/url-img/menu/index/menu1.png"></image>
-                            <view class="menu-title">寻场馆</view>
-                        </view>
-                        <!-- 找教练 -->
-                        <view class="tui-center  tui-col-3" bind:tap="navPage" data-url="/pages/course/List/index">
-                            <image class="menu-img" src="{{baseURL}}/miniprogram/url-img/menu/index/menu2.png"></image>
-                            <view class="menu-title">找教练</view>
-                        </view>
-                        <!--约课程 -->
-                        <!-- <view class="tui-center tui-col-3" bind:tap="goToPage" data-url="/pages/course/index/index"> -->
-                        <!-- <view class="tui-center tui-col-3" bind:tap="navPage" data-url="/packageA/pages/listCourse/index?tab=2">-->
-                          <view  class="tui-center tui-col-3" bind:tap="ToPakeList"> 
-                            <image class="menu-img" src="{{baseURL}}/miniprogram/url-img/menu/index/menu3.png" ></image>
-                            <view class="menu-title">约课程</view>
-                        </view>
-                        <!-- 原navScan -->
-                        <view class="tui-center tui-col-3" bind:tap="accountClick">
-                            <image class="menu-img"  src="{{baseURL}}/miniprogram/url-img/menu/index/menu4.png" ></image>
-                            <view class="menu-title" >购卡项</view>
-                        </view>
-                    </view>
+        <!-- menu -->
+        <view class="tui-flex-box menu-li radius26">
+          <view class="tui-flex">
+            <view class="tui-center tui-col-3" bind:tap="ToMapList">
+              <image class="menu-img" src="{{baseURL}}/miniprogram/url-img/menu/index/menu1.png"></image>
+              <view class="menu-title">寻场馆</view>
+            </view>
+            <!-- 找教练 -->
+            <view class="tui-center  tui-col-3" bind:tap="navPage" data-url="/pages/course/List/index">
+              <image class="menu-img" src="{{baseURL}}/miniprogram/url-img/menu/index/menu2.png"></image>
+              <view class="menu-title">找教练</view>
+            </view>
+            <!--约课程 -->
+            <!-- <view class="tui-center tui-col-3" bind:tap="goToPage" data-url="/pages/course/index/index"> -->
+            <!-- <view class="tui-center tui-col-3" bind:tap="navPage" data-url="/packageA/pages/listCourse/index?tab=2">-->
+            <view class="tui-center tui-col-3" bind:tap="ToPakeList">
+              <image class="menu-img" src="{{baseURL}}/miniprogram/url-img/menu/index/menu3.png"></image>
+              <view class="menu-title">约课程</view>
+            </view>
+            <!-- 原navScan -->
+            <view class="tui-center tui-col-3" bind:tap="accountClick">
+              <image class="menu-img" src="{{baseURL}}/miniprogram/url-img/menu/index/menu4.png"></image>
+              <view class="menu-title">购卡项</view>
+            </view>
+          </view>
 
-                    <view class="caper-box">
-                    <view class="caper-l">
-                        <view class="caper-l-t">
-                            <image class="caper-l-t-img"  src="https://ssl.aoben.yoga/miniprogram/20231127/caper-l-t.png?v=202311272032" ></image>
-                        </view>
-                        <view class="caper-l-d">
-                            <image class="caper-l-d-img"  src="https://ssl.aoben.yoga/miniprogram/20231127/caper-l-d.png?v=202311272032" ></image>
-                        </view>
-                    </view>
-                    <view class="caper-r">
-                        <view class="caper-r-t">
-                            <image class="caper-r-img"  src="https://ssl.aoben.yoga/miniprogram/20231127/caper-rt-img.png?v=202311272032"  data-href="/packageB/pages/form/ApplyToCoach/index" bind:tap="NavigateTo"></image>
-                        </view>
-                        <view class="caper-r-d">
-                            <image class="caper-r-img"  src="https://ssl.aoben.yoga/miniprogram/20231127/caper-rd-img.png?v=202311272032"  data-href="/packageB/pages/form/joinUS/index" bind:tap="NavigateTo"></image>
-                        </view>
-                    </view>
-                    </view>
-<!-- 新手指南 -->
-                    <view class="newu-box">
-                        <image class="new-user"  src="https://ssl.aoben.yoga/miniprogram/20231127/newu.png?v=202311272032" ></image>
-                    </view>
-                </view>
+          <view class="caper-box">
+            <view class="caper-l" bind:tap="tiaoClick">
+              <view class="caper-l-t">
+                <image class="caper-l-t-img" src="https://ssl.aoben.yoga/miniprogram/20231127/caper-l-t.png?v=202311272032"></image>
+              </view>
+              <view class="caper-l-d">
+                <image class="caper-l-d-img" src="https://ssl.aoben.yoga/miniprogram/20231127/caper-l-d.png?v=202311272032"></image>
+              </view>
+            </view>
+            <view class="caper-r">
+              <view class="caper-r-t">
+                <image class="caper-r-img" src="https://ssl.aoben.yoga/miniprogram/20231127/caper-rt-img.png?v=202311272032" data-href="/packageB/pages/form/ApplyToCoach/index" bind:tap="NavigateTo"></image>
+              </view>
+              <view class="caper-r-d">
+                <image class="caper-r-img" src="https://ssl.aoben.yoga/miniprogram/20231127/caper-rd-img.png?v=202311272032" data-href="/packageB/pages/form/joinUS/index" bind:tap="NavigateTo"></image>
+              </view>
+            </view>
+          </view>
+          <!-- 新手指南 -->
+          <view class="newu-box" bind:tap="newuser">
+            <image class="new-user" src="https://ssl.aoben.yoga/miniprogram/20231127/newu.png?v=202311272032"></image>
+          </view>
+        </view>
 
-                
-                
+        <view class="tui-flex-box menu-li radius26 margin-top40">
+          <view class="video-box">
+            <view class="video-box-title">
+              <view class="video-box-logo">
+                <image class="video-vlog" src="https://ssl.aoben.yoga/miniprogram/20231127/vlog.png?v=202311272032"></image>
+              </view>
+              <view class="video-box-des">
+                <view class="des-t">奥本瑜伽官方视频号</view>
+                <view class="des-d" bindtap="test">爱瑜伽 爱分享</view>
+              </view>
+            </view>
+            <view class="video-box-li">
+              <view class="video-item">
+                <image class="video-img" src="https://ssl.aoben.yoga/miniprogram/20231127/v.png?v=202311272032"></image>
+              </view>
+              <view class="video-item">
+                <image class="video-img" src="https://ssl.aoben.yoga/miniprogram/20231127/v.png?v=202311272032"></image>
+              </view>
+            </view>
 
-                <view class="tui-flex-box menu-li radius26 margin-top40">
-                  <view class="video-box">
-                    <view class="video-box-title">
-                      <view class="video-box-logo">
-                        <image class="video-vlog" src="https://ssl.aoben.yoga/miniprogram/20231127/vlog.png?v=202311272032"></image>
-                      </view>
-                      <view class="video-box-des">
-                        <view class="des-t">奥本瑜伽官方视频号</view>
-                        <view class="des-d" bindtap="test">爱瑜伽 爱分享</view>
-                      </view>
-                    </view>
-                    <view class="video-box-li">
-                      <view class="video-item">
-                        <image class="video-img" src="https://ssl.aoben.yoga/miniprogram/20231127/v.png?v=202311272032"></image>
-                      </view>
-                      <view class="video-item">
-                        <image class="video-img" src="https://ssl.aoben.yoga/miniprogram/20231127/v.png?v=202311272032"></image>
-                      </view>
-                    </view>
-                
-                  </view>
-                </view>
-                
-                <!-- banner-two -->
-                <!-- <view class="tui-flex-box banner-two">
-                    <view class="tui-flex">
-                        <view class="tui-left tui-col-2" bind:tap="hideHomeBotton">
-                            <image src="/static/img/banner-two-01.png" mode="widthFix"></image>
-                        </view>
-                        <view class="tui-right tui-col-2" bind:tap="showHomeBotton">
-                            <image src="/static/img/banner-two-02.png" mode="widthFix"></image>
-                        </view>
-                    </view>
-                </view> -->
-                <!-- menu-two -->
-                <!-- <view class="tui-flex-box menu-two">
+          </view>
+        </view>
+        <view class="bottm_flx">
+          <view class="font_flx">
+            <image class="img" src="{{globalURL}}/miniprogram/20231127/branch.png?v=202311272032" mode=""/>
+            <view class="font_big">全国直营连锁</view>
+            <view class="font_small">全国15家直营连锁门店开放加盟，欢迎入驻</view>
+          </view>
+          <view class="font_flx">
+            <image class="img" src="{{globalURL}}/miniprogram/20231127/teach.png?v=202311272032" mode=""/>
+            <view class="font_big">超百位国际认证导师</view>
+            <view class="font_small">奥本导师团队平均带课指导时长超4000h</view>
+          </view>
+          <view class="font_flx">
+            <image class="img" src="{{globalURL}}/miniprogram/20231127/vip.png?v=202311272032" mode=""/>
+            <view class="font_big">量身定制</view>
+            <view class="font_small">为10万+会员定制美学方案</view>
+          </view>
+          <view class="font_flx">
+            <image class="img" src="{{globalURL}}/miniprogram/20231127/course.png?v=202311272032" mode=""/>
+            <view class="font_big">王牌课程体系</view>
+            <view class="font_small">独创8大课程体系和6大课程板块</view>
+          </view>
+        </view>
+        <!-- banner-two -->
+        <!-- <view class="tui-flex-box banner-two">
+          <view class="tui-flex">
+            <view class="tui-left tui-col-2" bind:tap="hideHomeBotton">
+              <image src="https://ssl.aoben.yoga/miniprogram/20231127/vlog.png?v=202311272032" mode="widthFix"></image>
+            </view>
+            <view class="tui-right tui-col-2" bind:tap="showHomeBotton">
+              <image src="https://ssl.aoben.yoga/miniprogram/20231127/vlog.png?v=202311272032" mode="widthFix"></image>
+            </view>
+          </view>
+        </view> -->
+        <!-- menu-two -->
+        <!-- <view class="tui-flex-box menu-two">
                     <view class="tui-flex">
                         <view class="tui-center tui-col-5">
                             <image src="/static/img/menu-two-01.png" mode="widthFix"></image>
@@ -219,12 +236,12 @@
                         </view>
                     </view>
                 </view> -->
-                <!-- banner-top -->
-                <!-- <view class="banner-top">
+        <!-- banner-top -->
+        <!-- <view class="banner-top">
                     <image src="/static/img/banner-top.png" mode="widthFix" bind:tap="sb"></image>
                 </view> -->
-                <!-- 新手入门必看 -->
-                <!-- <view class="menu-help">
+        <!-- 新手入门必看 -->
+        <!-- <view class="menu-help">
                     <view class="menu-help-l">
                         <view class="menu-help-title">新手入门指南必看</view>
                         <view class="menu-help-des">你好，新朋友，瑜伽之旅开始啦</view>
@@ -234,16 +251,18 @@
                         <image src="/static/img/index/bg01.jpg" mode="widthFix"></image>
                     </view>
                 </view> -->
-                <!-- 新手入门必看END -->
-            <view class="blogo"><image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/blogo.png?v=202311272032"></image></view>
+        <!-- 新手入门必看END -->
+        <view class="blogo">
+          <image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/blogo.png?v=202311272032"></image>
+        </view>
 
-            </view>
-            <!-- 内容结束 END -->
+      </view>
+      <!-- 内容结束 END -->
 
 
-        </scroller>
-        <!-- </scroll-view> -->
-    </view>
+    </scroller>
+    <!-- </scroll-view> -->
+  </view>
 </view>
 <!-- pannel END -->
 
@@ -256,34 +275,34 @@
       <image class="kf-img" src="https://ssl.aoben.yoga/miniprogram/20231127/kf.png?v=202311272032"></image>
     </button>
   </view>
-  <view  class="qr-code"  wx:if="{{!qrShow}}" style="background-image:url('{{globalURL}}/miniprogram/url-img/qr-code.jpg');" bind:tap="showQR"></view>
+  <view class="qr-code" wx:if="{{!qrShow}}" style="background-image:url('{{globalURL}}/miniprogram/url-img/qr-code.jpg');" bind:tap="showQR"></view>
 </view>
 <tui-landscape show="{{qrShow}}" position="{{1}}" maskClosable="{{true}}" iconLeft="60rpx" iconRight="60rpx" bindclose="qrClose">
-    <view class="qr-box">
-        <image src="{{globalURL}}/miniprogram/url-img/qr.png?v=20231114" show-menu-by-longpress="true" mode="widthFix" style="width: 300rpx;height: 300rpx;" />
-        <view class="qr-box-des">长按识别关注公众号</view>
-    </view>
-    
+  <view class="qr-box">
+    <image src="{{globalURL}}/miniprogram/url-img/qr.png?v=20231114" show-menu-by-longpress="true" mode="widthFix" style="width: 300rpx;height: 300rpx;" />
+    <view class="qr-box-des">长按识别关注公众号</view>
+  </view>
+
 </tui-landscape>
 <wxs module="parse">
-    module.exports = {
-        //新版的不用计算了 直接带m km了
-        getDistance: function (_addressDistan) {
+  module.exports = {
+    //新版的不用计算了 直接带m km了
+    getDistance: function (_addressDistan) {
 
-            return _addressDistan;
+      return _addressDistan;
 
-            var distance = _addressDistan || 0;
+      var distance = _addressDistan || 0;
 
-            var result = '';
+      var result = '';
 
-            if (distance < 1000) {
-                result = distance + ' m';
-            } else {
-                result = (distance / 1000).toFixed(2) + ' km';
-            }
+      if (distance < 1000) {
+        result = distance + ' m';
+      } else {
+        result = (distance / 1000).toFixed(2) + ' km';
+      }
 
-            return result;
-        }
+      return result;
     }
+  }
 
 </wxs>

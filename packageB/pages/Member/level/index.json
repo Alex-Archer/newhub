@@ -1,12 +1,4 @@
 {
-    "navigationBarTitleText": "会员等级",
-     "navigationBarTextStyle": "white",
-     "backgroundTextStyle": "dark",
-     "navigationBarBackgroundColor": "#ffffff",
-     
-     "enablePullDownRefresh": false,
-     "onReachBottomDistance": 100,
-     "navigationStyle": "custom",
    
      "usingComponents": {
        "tui-banner-arc": "/components/thorui/tui-banner-arc/tui-banner-arc",

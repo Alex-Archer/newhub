@@ -1,0 +1,20 @@
+<!-- 定位 -->
+<view class="locateHost" bind:tap="ToMapList">
+  <view class="locate-ico">
+    <tui-icon size="1" unit="rem" name="gps"></tui-icon>
+  </view>
+  <view class="locate-txt">
+    <view class="locate-txt-t">
+      <view class="locate-txt-text">{{Location.title}}</view>
+      <ald-icon margin="0" size="40" unit="rpx" name="down-triangle"></ald-icon>
+    </view>
+    <block wx:if="{{Location.address&&locationDistance=='0'}}">
+      <view class="locate-txt-d">{{Location.address}}</view>
+    </block>
+    <block wx:else>
+      <view class="locate-txt-d" wx:if="{{locationDistance!='0'}}">距离您 {{locationDistance }}</view>
+    </block>
+
+  </view>
+  <!-- <view class="locate-dorp-ico iconfont icon-xiala"></view> -->
+</view>

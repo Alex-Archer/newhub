@@ -7,6 +7,11 @@ var util = require('../../../utils/util.js')
 var apis = require('../../../utils/apis.js')
 Page({
   data: {
+    teach:'', // 从教练列表跳过来的
+    tiao: '', // 从私教跳过来的 
+    teachid: '', // 从私教跳过来的 
+    typeid: '', // 从团课跳过来的 
+    editid: '', // 课程详情id 
     loading: true,
     pageIndex: 1,
     pageSize: 10,
@@ -210,9 +215,12 @@ Page({
     this.data.qqmapsdk = new QQMapWX({
       key: this.data.key
     });
-
-
     that.setData({
+      teach: options.teach, // 教练列表调转
+      tiao: options.tiao, // 判断是从哪里跳转的1是团课,2是私教
+      editid: options.editid, //团课跳转带的课程id
+      typeid: options.typeid, // 什么类型的课程 // 1是团课,2是私教
+      teachid: options.uid, // 老师id
       keywords: options.key || '',
       Location: wx.getStorageSync('Location'),
 
@@ -460,19 +468,46 @@ Page({
   //列表显示门店
   toViewStore(e) {
     let _clickData = e.currentTarget.dataset;
-    this.setData({
-      dropdownShow: this.data.dropdownShow && false,
-
-    }, () => {
-      let _id = _clickData.id;
-      if (util.isNull(_id)) {
-        util.toast("参数有误");
-        return;
-      }
-      wx.navigateTo({
-        url: '/pages/store/show/index?storeID=' + _id,
+    let _teachid = this.data.teachid
+    let _typeid = this.data.typeid
+    let _editid = this.data.editid
+    // 之前的,可能后续不需要
+    if(this.data.tiao == 2){
+      wx.redirectTo({
+        url: `/pages/coach/index/index?branchid=${_clickData.id}&uid=${_teachid}`,
       })
-    })
+    }else if(this.data.tiao == 1){
+      wx.redirectTo({
+        url: `/pages/newpage/detail/index?typeid=${_typeid}&editid=${_editid}`,
+      })
+      // 选门店的操作,1是从团课来的
+    }else if(_typeid == 1){
+      wx.redirectTo({
+        url: `/pages/course/group/index?branchid=${_clickData.id}&title=${_clickData.title}`,
+      })
+      // 2是从私教来的
+    }else if(_typeid == 2){
+      wx.redirectTo({
+        url: `/pages/course/personal/index?branchid=${_clickData.id}&title=${_clickData.title}`,
+      })
+    }else if(this.data.teach == 1){
+      wx.redirectTo({
+        url: `/pages/course/List/index?storid=${_clickData.id}&title=${_clickData.title}`,
+      })
+    }else{
+      this.setData({
+        dropdownShow: this.data.dropdownShow && false,
+      }, () => {
+        let _id = _clickData.id;
+        if (util.isNull(_id)) {
+          util.toast("参数有误");
+          return;
+        }
+        wx.navigateTo({
+          url: '/pages/store/show/index?storeID=' + _id,
+        })
+      })
+    }
 
 
   },
@@ -550,6 +585,7 @@ Page({
       let prePage = pages[pages.length - 2];
       //调用上一个页面实例对象的方法
       //prePage.changeLocation("昆山市城西选择店","森林公园南门正门口","99");
+      console.log(prePage);
       prePage.changeLocation(locationJson, _distanc);
       //返回上一个页面
       wx.navigateBack();

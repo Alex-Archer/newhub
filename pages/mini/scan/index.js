@@ -66,23 +66,6 @@ Page({
           key:this.data.form_param,
           FKEY: md5util.md5(_uid + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
         }
-        this.pageController("https://aoben.kshot.com/api/Door/qrCode",config,false).then(val=>{
-          that.setData({
-            openID:resOpenID,
-            openDoorHtml:"开门成功",
-            returnHtml:"CODE1正常："+JSON.stringify(val)
-          });
-        },function(err)
-        {
-          that.setData({
-            openID:resOpenID,
-            openDoorHtml:"开门失败",
-            openErrMessage:'这是失败原因',
-            returnHtml:"CODE 0出错："+JSON.stringify(err)
-          });
-  
-        })
-  
         
       })
     })
@@ -110,8 +93,8 @@ Page({
         })
         return;
 	}
-	console.log
     const q = decodeURIComponent(query.q) // 获取到二维码原始链接内容
+    console.log(q);
     //查看是否大写,如果不是大写就跳过
     const arrUrl=app.globalData.scanURL;
     if(q.indexOf("HTTPS://") < 0||q.indexOf(arrUrl) <0){
@@ -126,11 +109,59 @@ Page({
 
     let _returnHtml='';
     let _param =util.getURLParam(q,"param");
+    console.log(_param);
+    let _timestamp = (new Date()).valueOf();
+    let _uid = wx.getStorageSync('USERID')||resOpenID;
+    let config = {
+      userID: _uid,
+      TIMESTAMP: _timestamp,
+      key: _param,
+      FKEY: md5util.md5(_uid + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
+    }
+    
     switch(_action)
     {
         case "door"://开门 https://yoga.aoben.yoga/s=door&param=mac
             _returnHtml="去服务器验证门、用户、时间匹配后开门";
             _actionTitle="开门动作";
+            this.pageController("https://aoben.kshot.com/api/Door/qrCode",config,false).then(val=>{
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开门成功",
+                returnHtml:"CODE1正常："+JSON.stringify(val)
+              });
+            },function(err)
+            {
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开门失败",
+                openErrMessage:'这是失败原因',
+                returnHtml:"CODE 0出错："+JSON.stringify(err)
+              });
+      
+            })
+            break;
+        case "locker"://开柜 https://yoga.aoben.yoga/s=locker&param=mac
+            _returnHtml="去服务器验证柜子、用户、时间匹配后开柜";
+            _actionTitle="开柜动作";
+            logs.log("1111111111111",_param,true)
+            // https://aoben.kshot.com
+            this.pageController("https://ssl.aoben.yoga/api/Locker/qrCode",config,false).then(val=>{
+              console.log(val);
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开柜成功",
+                returnHtml:"CODE1正常："+JSON.stringify(val)
+              });
+            },function(err)
+            {
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开柜失败",
+                openErrMessage:'这是失败原因',
+                returnHtml:"CODE 0出错："+JSON.stringify(err)
+              });
+            })
             break;
         case "getpass"://获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
             _returnHtml="用户密码：123455555，验证门MAC、扫码用户存在，没有设置密码时跳转到用户中心去设置";

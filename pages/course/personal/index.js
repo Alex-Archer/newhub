@@ -1,18 +1,16 @@
 const app = getApp();
-const logs = require("../../../utils/logs");
+var moment = require('../../../libs/moment.min');
+var apis = require('../../../utils/apis.js')
 import _ from '../../../libs/we-lodash'
 import axios from '../../../libs/axios-miniprogram/axios-miniprogram.cjs';
 var util = require('../../../utils/util.js')
-var md5util = require('../../../utils/md5.js') 
+var md5util = require('../../../utils/md5.js')
 
 Page({
   data: {
+    coachBars: [],
     globalURL: app.globalData.globalURL,
-    
-    agreeClick:false, //隐私是点击过的，不管是否同意的
-
-
-
+    agreeClick: false, //隐私是点击过的，不管是否同意的
     //底部菜单
     flag: false, //首页加载动画
     tabbarShow: true, //底部菜单不与其它冲突默认关闭
@@ -23,24 +21,24 @@ Page({
     //底部按钮 在首页有效果时 与 indexPage合用,并把第一个首页隐掉
     tabBar: app.globalData.tabBar,
     safeAreaBottom: app.globalData.safeAreaBottom,
-
+    Location:'',
 
 
     //顶部类型选择
     typeScrollInto: '', //选择后运动到的位置
     tabTypeIndex: 2, //顶部大分类 默认认选择项
     typeBars: [{
-        name: '推荐',
+        name: '全部课程',
         id: "0",
-        path: '/pages/course/index/index',
+        path: '/pages/newpage/index/index',
       },
       {
-        name: '团课',
+        name: '约团课',
         id: "1",
         path: '/pages/course/group/index',
       },
       {
-        name: '私教',
+        name: '约私教',
         id: "2",
         path: '/pages/course/personal/index',
       },
@@ -49,52 +47,39 @@ Page({
       //   id: "3",
       //   path: '/pages/course/personalMon/index',
       // },
-      {
-        name: '集训营',
-        id: "4",
-        path: '/pages/course/camp/index',
-      }
+      // {
+      //   name: '集训营',
+      //   id: "4",
+      //   path: '/pages/course/camp/index',
+      // }
     ],
     //顶部类型选择END
 
-    difficultyListData:[], //3.关注的教练列表 首次在下拉时填充
-    thisDropIndex:0,//当前proDropData填充的是哪一个 0没有 1门店 2排序 3教练
-    proDropData: [], //3个菜单 共用体部份
-    dropShow: false,
-    dropHeaderShow:false,//下拉闪屏小鱼试解决
 
-    proDropIndex: -1,
+
+    // cacheTab: [],
+    dateScrollInto: '', //选择后运动到的位置
+    //日期选择块END
+
+
+    //小鱼下面抽整过来
+    storeListData: [], //1.门店列表 首次在下拉时填充
 
     scrollTop: 0,
-    dropdownShow: false,
-    popupShow: false,
-    
-    //右下角数据区
-    pulling: false,
-
-
-
-
 
     //吸顶区==================START
     //1.顶部类型选择
     typeNavTop: 0, //顶部距离
     isTypeNavFixed: false, //是否吸顶
-    //2.搜索框的定位
-    isSearchFixed: false,
-    searchNavTop: 0,
     //3.日期选择块
     isDataFixed: false,
     dataNavTop: 0,
-    //4.筛选
-    isDropdowFixed: false,
-    dropdowNavTop: 0,
     //吸顶区==================END
 
 
     //开始对接区=====================
-    loadingData: true, //数据加载中
-
+    teachLoading: false, //数据加载中
+    loadingData: true,
     courseList: {
       loadingText: '正在加载...',
       refreshing: false,
@@ -106,67 +91,165 @@ Page({
       total: 0
     },
     typeClass: 0,
-    pageSize: 10, //每页条数
+    cardid: '',
+    pageSize: 5, //每页条数
     pageIndex: 1, //当前页
-     orderSet: 0, // //三个排序 高分0，好评1、上课最多2
-
+    orderSet: 0, //排序方式 
+    lng: null, //经度坐标
+    lat: null, //纬度坐标
     word: '', //关健词搜
     typeId: 0, //指定课程类别
-
+    storeId: '', //指定门店ID
+    branchName: '', //门店名称
+    coachId: 0, //指定教练ID
+    dateTime: '', //日期，可以是时间戳，也可是具体的日期2023-08-22
+    //陈建给还有时分，暂时不用
     dateBars: [], //周日期选择
     tabDateIndex: 0, //周日期选择模块 日期默认选中项 今天
-
-    // 左边类型选择 TAB
-    tabLeftIndex: 0, //左边分类 默认选中 预设当前项的值
-    scrollViewId: "id_0", //左边TAB滚动到的位置 scroll-into-view
-    leftBars: [{
-        "id": "0",
-        "title": "全部课程",
-        "grade":-1
-      },
-      {
-        "id": "-1",
-        "title": "热门推荐",
-        "grade":-1
-      }
-    ],
-    // 左边类型选择 TAB end
-
-    // 搜索框
-    inputShowed: false,
-
-
   },
-    //1.排序
-    btnDropOrder(e) {
-        let index = Number(e.currentTarget.dataset.index || e.target.dataset.index);
-        if((index+1)==this.data.orderSet){//点击已选的 就取消
-            this.setData({
-              orderSet: 0,
-            },()=>{
-                this.initLoad();//重新加载
-            })
-        }else{
-            this.setData({
-              orderSet: index+1,
-            },()=>{
-                this.initLoad();//重新加载
-            })
-        }
+  branchClick(){
+    wx.navigateTo({
+      url: `/pages/map/pointListView/index?typeid=2`,
+    }) 
+  },
+  // 点击详情
+  contClick(e){
+    let _id = e.currentTarget.dataset.current
+    // let modelData = JSON.stringify(e.currentTarget.dataset.current)
+    wx.navigateTo({
+      url: `/pages/newpage/detail/index?editid=${_id}`,
+    })
+  },
+  goToStore() {
+    wx.navigateTo({
+      url: '/pages/store/show/index',
+    })
+  },
+  // 老师的列表
+  initLoad() {
+    const that = this;
+    this.getData().then(_data => {
+      let _courseList = that.data.courseList;
+      _.assign(_courseList, {
+        lastPage: _data.lastPage,
+        total: _data.total,
+        data: _data.data
+      });
+      that.setData({
+        coachBars: _courseList,
+      })
+    })
+  },
+  getCourseList(){
+    let that = this
+    let _courseList = that.data.courseList;
+    let _config = {
+      pageIndex: 6
+    };
+    that.setData({
+      loadingData: true
+    })
+    apis.gets('CoursePersonal/courseReferPub',_config).then(res =>{
+      console.log(res);
+      _.assign(_courseList, {
+        pageSize: res.lastPage,
+        total: res.total,
+        data: res.data
+      });
+      that.setData({
+        courseList: _courseList,
+      })
+    }).catch(err => {
 
-    },
-  agree(e){
+    })
+  },
+  cardClick(e) {
+    console.log(e.currentTarget.dataset);
+    let _detail = e.currentTarget.dataset
+    let _cardid = _detail.cardid;
+    let index = _detail.current;
+    this.setData({
+      cardid:_cardid
+    })
+    this.initLoad()
+  },
+  teachClick(e) {
+    console.log(e.currentTarget.dataset);
+    let _Location = wx.getStorageSync('Location');
+    let _branchid = this.data.storeId
+    let _branchName = this.data.branchName
+    if(_branchName == ''){
+      this.setData({
+        branchName: _Location.title
+      })
+    }
+    if(!_branchid){
+      _branchid = _Location.id||0
+    }
+    let uid = e.currentTarget.dataset.userid;
+    wx.navigateTo({
+      url: `/pages/coach/index/index?uid=${uid}&branchid=${_branchid}`,
+    }) 
+    // }else{
+    //   wx.navigateTo({
+    //     url: `/pages/map/pointListView/index?uid=${uid}&tiao=2`,
+    //   }) 
+  },
+  // 已购卡
+  getCardList(){
+    let _timestamp = (new Date()).valueOf();
+    let _coursePackageType = 2
+    let _config={
+      userID: wx.getStorageSync('USERID'),
+      coursePackageType: _coursePackageType.toString(),
+      TIMESTAMP: _timestamp,
+      FKEY: md5util.md5(wx.getStorageSync('USERID') + _timestamp.toString() + app.globalData.APP_INTF_SECRECT),
+    }
+    apis.get('/CardItemOrderApi/getUserCardItem',_config,{
+      "Content-Type": 'applciation/json'
+    },true).then(val => {
+      val.forEach(el => {
+        // 算出剩余多少节
+        el.remaining = el.course_quantity - el.course_used_quantity 
+      });
+      this.setData({
+        cardList:val
+      })
+    },function(err){
+      console.log(err);
+    })
+  },
+  yueClick(e) {
+    let _id = (e.currentTarget.dataset.currid)
+    wx.navigateTo({
+      url: `/pages/newpage/detail/index?editid=${_id}&typeid=1`,
+    })
+  },
+  // 选课程携带到下一个页面需要的参数，实现进页面展示当前卡项的参数
+  keClick(e) {
+    wx.redirectTo({
+      url: `/pages/newpage/index/index?clicknum=0`,
+    })
+  },
+  // 去购卡
+  addClick(e) {
+    wx.navigateTo({
+      // url: `/packageB/pages/card/detailShow/index?cla=1`,
+      url: `/packageB/pages/card/index/index`,
+    })
+  },
+  agree(e) {
     console.log("用户同意隐私授权, 接下来可以调用隐私协议中声明的隐私接口")
     const that = this;
     this.setData({
-        agreeClick:true //隐私是点击过的，不管是否同意的
-    },()=>{
-        //1.获取定位，并加载默认数据
-        wx.getLocation({
+      agreeClick: true //隐私是点击过的，不管是否同意的
+    }, () => {
+      //1.获取定位，并加载默认数据
+      wx.getLocation({
         type: 'gcj02',
         altitude: true,
         success(res) {
-          //1.1 已开启直接调用 
+          //1.1 已开启直接调用
           that.setData({
             lat: res.latitude,
             lng: res.longitude
@@ -182,130 +265,80 @@ Page({
 
 
   },
-  disagree(e){
+  disagree(e) {
     util.toast("您将以游客身份浏览！")
     const that = this;
     this.setData({
-        agreeClick:true //隐私是点击过的，不管是否同意的
-    },()=>{
-        that.initLoad();
+      agreeClick: true //隐私是点击过的，不管是否同意的
+    }, () => {
+      that.initLoad();
     })
 
   },
-  //整理搜索参数
-  initParam(_pageIndex = 1) {
-    let that = this;
-    let _timestamp = (new Date()).valueOf();
-    let config = {
-      userID: wx.getStorageSync('USERID'),
-      TIMESTAMP: _timestamp
-    };
-
-    _.assign(config, {
-      typeClass: that.data.typeClass 
-    });
-    _.assign(config, {
-      pageSize: that.data.pageSize
-    });
-    _.assign(config, {
-      //   pageIndex: that.data.pageIndex
-      pageIndex: _pageIndex
-    });
-    _.assign(config, {
-      orderSet: that.data.orderSet
-    });
-
-    
-    if (!util.isNull(that.data.word)) {
-      _.assign(config, {
-        word: that.data.word
-      });
-    }
-    _.assign(config, {
-      typeId: that.data.typeId
-    });
-    
-    //coachId  教练
-    let _difficultyListData = that.data.difficultyListData;
-    if(!util.isNull(_difficultyListData))
-    {
-      let  selectedIds = _.filter(_difficultyListData, item => item.selected).map(item => item.id).join(',');
-      _.assign(config, {
-        difficulty: selectedIds
-      });
-    }
-
-    return config;
-  },
   getData(page_index = 1) {
     let that = this;
-    let getConfig = this.initParam(page_index);
-    if(page_index==1){
-        that.setData({
-        loadingData: true
-        })
+    let teachArray = []
+    this.data.coachBars = []
+    let _Location = wx.getStorageSync('Location');
+    let _branchid = that.data.storeId
+    let _branchName = that.data.branchName
+    if(_branchName == ''){
+      this.setData({
+        branchName: _Location.title
+      })
     }
+    if(!_branchid){
+      _branchid = _Location.id||0
+    }
+    let getConfig = {
+      pageSize: that.data.pageSize,
+      storeId:_branchid,
+      orderSet:that.data.orderSet,
+      cardid:that.data.cardid
+    };
+    // if (page_index == 1) {
+      that.setData({
+        teachLoading: true
+      })
+    // }
     if (!util.isNull(page_index) && page_index > 1) {
       _.assign(getConfig, {
         pageIndex: page_index
       });
     }
     return new Promise((resolve, reject) => {
-      axios.get("CoursePersonal/courseReferPub", getConfig, {          
-        headers: {
-          "Content-Type": 'applciation/json',
-        },
-        interceptors: {
-          request: false, 
-          response: false 
-        },
-        
-        validateStatus(status) {
-          return status === 200;
-        },
-      }).then(res => {
-        if (res.data.code == 1) {
-          resolve(res.data.data);
-        } else {
-          reject([]);
-        }
-
-      }).catch((err) => {
-        reject([]);
-      });
+      apis.get("Coach/listPub", getConfig, {
+        "Content-Type": 'applciation/json'
+      }, false).then(val => {
+        wx.hideLoading()
+        val.data.forEach(el => {
+         if(_.head(el.goodat) != ''){
+          el.goodat = el.goodat.slice(0,2)
+         }
+          teachArray.push(el)
+        })
+        this.setData({
+          coachBars:teachArray,
+          teachLoading: false
+        })
+      }).catch(err => {
+        console.log(err);
+      })
     }).catch(err => {
       reject([]);
     })
 
   },
-
-  //初始状态
-  initLoad() {
-    const that = this;
-
-    this.getData().then(_data => {
-      let _courseList = that.data.courseList;
-      _.assign(_courseList, {
-        lastPage: _data.lastPage,
-        total: _data.total,
-        data: _data.data
-      });
-      //_.concat(array1, array2);
-      that.setData({
-        courseList: _courseList,
-        loadingData: false
-      })
-    })
+  onShow(){
+    this.initLoad()
   },
   //获取分页数据
   getList(index, refresh) {
     let that = this;
     let activeTab = this.data.courseList;
-
     let setPage = activeTab.pageIndex + 1;
-    let oldData = activeTab.data;
     this.getData(setPage).then(_data => {
-      activeTab.data = oldData.concat(_data.data);
+      activeTab.data = activeTab.data.concat(_data.data);
       activeTab.pageIndex++;
       activeTab.isLoading = false;
       //根据实际修改判断条件
@@ -313,11 +346,10 @@ Page({
         activeTab.loadingText = '没有更多了';
       }
 
-      that.setData({
-        [`courseList`]: activeTab,
-        //loadingData:false
+      this.setData({
+        [`courseList`]: activeTab
       })
-      
+
     })
   },
 
@@ -342,8 +374,6 @@ Page({
     });
   },
 
-
-
   //用户设置中查看定位功能是否打开
   getLocationSetting() {
     new Promise((resolve, reject) => {
@@ -362,7 +392,6 @@ Page({
                 });
               },
               fail: () => {
-                //this.openConfirm() //如果拒绝，在这里进行再次获取授权的操作
                 // 再次获取授权，引导客户手动授权
                 wx.showModal({
                   //content: '检测到您没打开此小程序的位置消息功能，是否去设置打开？',
@@ -404,39 +433,6 @@ Page({
       //#endregion 拉取用户是否开启了定位
     })
   },
-  //左菜单列表
-  getClassList(_type = 1) {
-    return new Promise((resolve, reject) => {
-      axios.get("Course/typePub", {
-        id: _type
-      }, {
-        headers: {
-          "Content-Type": 'applciation/json',
-        },
-        interceptors: {
-          request: false, 
-          response: false 
-        },
-        
-        validateStatus(status) {
-          return status === 200;
-        },
-      }).then(res => {
-
-        if (res.data.code == 1) {
-          resolve(res.data.data);
-        } else {
-          reject();
-        }
-
-      }).catch((err) => {
-        reject();
-      });
-    }).catch(err => {
-      reject();
-    })
-
-  },
   //4.菜单 - 门店列表
   getStoreList(_pagesize = 10) {
     /*
@@ -445,21 +441,21 @@ Page({
     const that = this;
     return new Promise((resolve, reject) => {
       axios.get("Store/indexPub", {
-        pageSize:_pagesize,//调用数量，在分页时则限制每页的数量
-        pageIndex:1,//分页调用，大于0时有效
-        orderSet:0,//排序方式
-        distance:0,//距离，单位:米
-        lng:that.data.lng,//经度坐标
-        lat:that.data.lat,//纬度坐标
+        pageSize: _pagesize, //调用数量，在分页时则限制每页的数量
+        pageIndex: 1, //分页调用，大于0时有效
+        orderSet: 0, //排序方式
+        distance: 0, //距离，单位:米
+        lng: that.data.lng, //经度坐标
+        lat: that.data.lat, //纬度坐标
       }, {
-      headers: {
-        "Content-Type": 'applciation/json',
-      },
-        interceptors: {
-          request: false, 
-          response: false 
+        headers: {
+          "Content-Type": 'applciation/json',
         },
-        
+        interceptors: {
+          request: false,
+          response: false
+        },
+
         validateStatus(status) {
           return status === 200;
         },
@@ -479,165 +475,199 @@ Page({
     })
 
   },
-  //4.菜单 - 关注的训练难度
-  getDifficultyList() {
-    const that = this;
-    return new Promise((resolve, reject) => {
-
-      let _timestamp = (new Date()).valueOf();
-      axios.get("CoursePersonal/difficultyLabelPub", {
-        TIMESTAMP: _timestamp,
-        userID: wx.getStorageSync('USERID')||"",//有用户返回关注教练，没有用户ID则返回空
-        FKEY: md5util.md5(wx.getStorageSync('USERID')||"" + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
-      }, {
-      headers: {
-        "Content-Type": 'applciation/json',
-      },
-        interceptors: {
-          request: false, 
-          response: false 
-        },
-        
-        validateStatus(status) {
-          return status === 200;
-        },
-      }).then(res => {
-
-        if (res.data.code == 1) {
-          resolve(res.data.data);
-        } else {
-          resolve([]);
-        }
-
-      }).catch((err) => {
-        reject();
-      });
-    });
-  },
   onLoad: function (options) {
+    wx.showLoading()
     let that = this;
-    wx.hideHomeButton(); //隐HOME
-
-    //3.获取左菜单
-    this.getClassList(2).then(res => {
-      let _leftBars = that.data.leftBars;
-      let mergedList = _.union(_leftBars, res);
-      that.setData({
-        leftBars: mergedList
+    if(options.branchid){
+      this.setData({
+        storeId:options.branchid,
+        branchName:options.title,
       })
-    }).catch(c => {})
-  },
+    }
+    this.getCourseList(); // 课程
+    this.getCardList();
+    wx.hideHomeButton(); //隐HOME
+    //2.获取周几菜单
+    new Promise((resolve, reject) => {
+      // const today = new Date();
+      const today = new Date(moment().format());
+      //测试获取 周几
+      let getNextSevenDays = this.getNextSevenDays();
 
+      that.setData({
+        dateBars: getNextSevenDays,
+        dateTime: today.toISOString().slice(0, 10),
+      }, () => {
+        resolve();
+      })
+    })
+
+  },
+  changeLocation: function (locationJson, LocationDistance) {
+    this.setData({
+      Location: locationJson,
+      locationDistance: LocationDistance
+    })
+    //地图定位选择操作区====================END
+  },
   // 底部菜单点击
   tabbarSwitch(e) {
-    let _action = e.detail.action||"";//scanCode 为调用扫码
-    let _navigate = e.detail.navigate||false;
+    //{"index":4,"pagePath":"/pages/my/my","verify":true}
+    let _action = e.detail.action || ""; //scanCode 为调用扫码
+    let _navigate = e.detail.navigate || false;
     let isLogin = false;
     //"coachPath":"/pages/coach/home/index/index",//教练中心地址，不为空则需要验证身份,暂时放在集训营中来测试
+    let that = this
+
     if (e.detail.verify && !isLogin) {
       wx.showToast({
         title: '您还未登录，请先登录',
         icon: "none"
       })
     } else {
-      if(_action=="scanCode")
-      {
-          //https://developers.weixin.qq.com/miniprogram/dev/api/device/scan/wx.scanCode.html
-          wx.scanCode({
-            onlyFromCamera: false, //禁止相册
-            scanType: ['qrCode'], //只识别二维码
-            success: (res) => {
-                wx.showLoading();
-                // 获取到扫描到的二维码内容
-                const qrCodeContent = res.result;
-                //https://yoga.aoben.yoga/s=door&param=mac
-                //1.必须有网址
-                //2.必须有参数s
-                //3.必须有参数param
-                     const arrUrl=app.globalData.scanURL;
-                const found = qrCodeContent.indexOf(arrUrl) > -1;
-                if(!found){
-                    wx.showToast({
-                        title: '啥都不是，不处理',
-                        icon: 'none'
-                    })
-                    return
-                }
-                let _action=util.getURLParam(qrCodeContent,"s");
-                let _actionTitle="";
-                switch(_action)
-                {
-                    case "door"://开门 https://yoga.aoben.yoga/s=door&param=mac
-                        _actionTitle="开门动作";
-                        break;
-                    case "getpass"://获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
-                        _actionTitle="获取用户密码";
-                        break;
-                    case "cabinet"://开柜 https://yoga.aoben.yoga/s=cabinet&param=mac
-                        _actionTitle="开柜";
-                        break;            
-                    case "coach"://教练分享 https://yoga.aoben.yoga/s=coach&param=2,str
-                        _actionTitle="教练分享码";
-                        break;
-                    case "sign"://用户签到 https://yoga.aoben.yoga/s=sign&param=2,str
-                        _actionTitle="用户签到";
-                        break;            
-                    default://啥都不是
-                        _actionTitle="啥都不是";
-                        break;
-                }
-
-                //联网去处理
-                wx.showToast({
-                    title: _actionTitle,
-                    icon: 'none'
-                })
-                return;
-
-            },
-            fail: (error) => {
-                console.log('扫描失败', error);
-
-                // 根据扫描到的内容跳转到对应的页面
-                wx.navigateTo({
-                    url: e.detail.pagePath,
-                    success: () => {
-                        console.log('跳转成功');
-                    },
-                    fail: (error) => {
-                        console.log('跳转失败', error);
-                        wx.showToast({
-                            title: '跳转失败，请稍后重试',
-                            icon: 'none'
-                        })
-                    }
-                });
+      if (_action == "scanCode") {
+        //https://developers.weixin.qq.com/miniprogram/dev/api/device/scan/wx.scanCode.html
+        wx.scanCode({
+          onlyFromCamera: false, //禁止相册
+          scanType: ['qrCode'], //只识别二维码
+          success: (res) => {
+            app.getOpenID(false).then(resOpenID => {
+            wx.showLoading();
+            // 获取到扫描到的二维码内容
+            const qrCodeContent = res.result;
+            //https://yoga.aoben.yoga/s=door&param=mac
+            //1.必须有网址
+            //2.必须有参数s
+            //3.必须有参数param
+            // const arrUrl="https://yoga.aoben.yoga";
+            const arrUrl = app.globalData.scanURL;
+            const found = qrCodeContent.indexOf(arrUrl) > -1;
+            if (!found) {
+              wx.showToast({
+                title: '啥都不是，不处理',
+                icon: 'none'
+              })
+              return
             }
+            let _action = util.getURLParam(qrCodeContent, "s");
+            let _actionTitle = "";
+            let _param =util.getURLParam(qrCodeContent,"param");
+            console.log(_param);
+            let _timestamp = (new Date()).valueOf();
+            let _uid = wx.getStorageSync('USERID')||resOpenID;
+            let config = {
+              userID: _uid,
+              TIMESTAMP: _timestamp,
+              key: _param,
+              FKEY: md5util.md5(_uid + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
+            }
+            switch (_action) {
+              case "door": //开门 https://yoga.aoben.yoga/s=door&param=mac
+              apis.gets("Door/qrCode",config,false).then(val=>{
+                that.setData({
+                  openID:resOpenID,
+                  openDoorHtml:"开门成功",
+                  returnHtml:"CODE1正常："+JSON.stringify(val)
+                });
+              },function(err)
+              {
+                that.setData({
+                  openID:resOpenID,
+                  openDoorHtml:"开门失败",
+                  openErrMessage:'这是失败原因',
+                  returnHtml:"CODE 0出错："+JSON.stringify(err)
+                });
+        
+              })
+              break;
+            case "locker"://开柜 https://yoga.aoben.yoga/s=locker&param=mac
+            _actionTitle="开柜动作";
+            // https://aoben.kshot.com
+            apis.gets("Locker/qrCode",config,false).then(val=>{
+              console.log(val);
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开柜成功",
+                returnHtml:"CODE1正常："+JSON.stringify(val)
+              });
+            },function(err)
+            {
+              that.setData({
+                openID:resOpenID,
+                openDoorHtml:"开柜失败",
+                openErrMessage:'这是失败原因',
+                returnHtml:"CODE 0出错："+JSON.stringify(err)
+              });
+            })
+            break;
+              case "getpass": //获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
+                _actionTitle = "获取用户密码";
+                break;
+              case "cabinet": //开柜 https://yoga.aoben.yoga/s=cabinet&param=mac
+                _actionTitle = "开柜";
+                break;
+              case "coach": //教练分享 https://yoga.aoben.yoga/s=coach&param=2,str
+                _actionTitle = "教练分享码";
+                break;
+              case "sign": //用户签到 https://yoga.aoben.yoga/s=sign&param=2,str
+                _actionTitle = "用户签到";
+                break;
+              default: //啥都不是
+                _actionTitle = "啥都不是";
+                break;
+            }
+            //联网去处理
+            wx.showToast({
+              title: _actionTitle,
+              icon: 'none'
+            })
+            return;
           })
+
+
+          },
+          fail: (error) => {
+            console.log('扫描失败', error);
+
+            // 根据扫描到的内容跳转到对应的页面
+            wx.navigateTo({
+              url: e.detail.pagePath,
+              success: () => {
+                console.log('跳转成功');
+              },
+              fail: (error) => {
+                console.log('跳转失败', error);
+                wx.showToast({
+                  title: '跳转失败，请稍后重试',
+                  icon: 'none'
+                })
+              }
+            });
+          }
+        })
         return;
       }
       //需要判断是否是教练
-      let _coachPath = e.detail.coachPath||"";//教练中心地址，不为空则需要验证身份,暂时放在集训营中来测试
-      if(!util.isNull(_coachPath)&&!util.isNull(wx.getStorageSync('ISCOACH')))
-      {
-          wx.reLaunch({
-            url: _coachPath
-          })
-          return;
+      let _coachPath = e.detail.coachPath || ""; //教练中心地址，不为空则需要验证身份,暂时放在集训营中来测试
+      if (!util.isNull(_coachPath) && !util.isNull(wx.getStorageSync('ISCOACH'))) {
+        wx.reLaunch({
+          url: _coachPath
+        })
+        return;
       }
-      
+
       //其它点击
       if (e.detail.index != this.data.current) {
         if (_navigate) {
-            wx.navigateTo({
-              url: e.detail.pagePath,
-            })
-  
-          } else {
-            wx.reLaunch({
-              url: e.detail.pagePath
-            })
-          }
+          wx.navigateTo({
+            url: e.detail.pagePath,
+          })
+
+        } else {
+          wx.reLaunch({
+            url: e.detail.pagePath
+          })
+        }
       }
     }
   },
@@ -653,14 +683,18 @@ Page({
     })
   },
 
-  popup: function () {
-    this.setData({
-      popupShow: !this.data.popupShow
-    })
+
+  //日期选择点击
+  tabClick(e) {
+    let index = e.target.dataset.current || e.currentTarget.dataset.current;
+    let today = e.currentTarget.dataset.day;
+    console.log(e);
+    this.switchTab(index);
   },
 
-  loadMore(e) {
 
+  // 右下角滚动 
+  loadMore(e) {
     let index = 0
     let activeTab = this.data.courseList;
 
@@ -678,7 +712,7 @@ Page({
       }, 300);
     }
   },
-  
+
   //页面滚动
   onPageScroll(e) {
     let scrollTop = parseInt(e.scrollTop);
@@ -686,8 +720,6 @@ Page({
     let isTypeNavFixed = scrollTop > this.data.typeNavTop;
     let isDataFixed = scrollTop > this.data.isDataFixed + 50;
 
-    // let isSearchFixed = scrollTop>=this.data.isSearchFixed;
-    // let isDropdowFixed = scrollTop>=this.data.isDropdowFixed;
     if (this.data.isTypeNavFixed != isTypeNavFixed) {
       this.setData({
         isTypeNavFixed
@@ -699,16 +731,6 @@ Page({
       })
     }
 
-    // if(this.data.isSearchFixed!=isSearchFixed){
-    //   this.setData({
-    //     isSearchFixed
-    //   })
-    // }
-    //  if(this.data.isDropdowFixed!=isDropdowFixed){
-    //   this.setData({
-    //     isDropdowFixed
-    //   })
-    // } 
   },
   onReady(e) {
     //获取节点到顶部的距离
@@ -752,236 +774,117 @@ Page({
 
   //#region  菜单点击区
 
-  //1.左边菜单
-  swichNav: function (e) {
+  //2.选择日期
+  switchTab(index) {
     let that = this;
-    let cur = e.currentTarget.dataset.current; //索引
-    let classID = e.currentTarget.dataset.id; //类ID
-    if (this.data.tabLeftIndex == cur) {
-      return false;
-    } else {
-      this.setData({
-        tabLeftIndex: cur,
-        typeId: classID
-      }, () => {
-        this.checkCor();
-        this.initLoad();
-      })
-    }
-  },
-  //判断当前滚动超过一屏时，设置tab标题滚动条。
-  checkCor: function () {
-    if (this.data.tabLeftIndex > 3) {
-      this.setData({
-        scrollViewId: `id_${this.data.tabLeftIndex - 2}`
-      })
-    } else {
-      this.setData({
-        scrollViewId: 'id_0'
-      })
-    }
-  },
- 
-  //3.搜索框动作 start=================
-  showInput() { //搜索框点击
+    console.log(index);
+    console.log(this.data.dateBars);
+    if (this.data.tabDateIndex === index) return;
+    
+    let switchDate = this.data.dateBars[index].date;
+    console.log(switchDate);
+
+    let dateScrollInto = index - 1 < 0 ? 0 : index - 1;
     this.setData({
-      inputShowed: true
+      tabDateIndex: index,
+      dateScrollInto: this.data.dateBars[dateScrollInto].id
     })
-  },
-  hideInput() { //取消搜索
-    this.setData({
-      word: '',
-      inputShowed: false
-    }, () => {
-      this.initLoad();
+    //重新获取数据
+    that.setData({
+      dateTime: switchDate
     })
-    wx.hideKeyboard(); //强行隐藏键盘
-  },
-  clearInput() { //清除搜索文字
-    this.setData({
-      word: ''
-    }, () => {
-      this.initLoad();
-    })
-  },
-  inputTyping: function (e) { //监听到当前输入框的值
-    this.setData({
-      word: e.detail.value
-    })
-  },
-  bindInput: function (e) { //确认搜索了
-    let that = this;
-    let keyWord = e.detail.value;
-    if (!util.isNull(keyWord)) {
-      if (that.data.word === keyWord) {
-        this.initLoad();
-      } else {
-        that.setData({
-          word: keyWord
-        }, () => {
-          this.initLoad();
-        })
-      }
-    }
+    this.initLoad();
+
 
   },
-  //搜索框动作 END
 
   //#endregion 菜单点击区
+  getWeekByDate(dates) {
+    let show_day = new Array('日', '一', '二', '三', '四', '五', '六');
+    let date = new Date(dates);
+    date.setDate(date.getDate());
+    let day = date.getDay();
+    return show_day[day];
+  },
 
+  getNextSevenDays() {
+    const result = [];
+
+    const today = moment();
+
+    // 今天
+    result.push({
+      name: today.format('D').toString(), //日期 天，如6、16，不补全0
+      id: today.format('D').toString(), //用 日期 天，如6、16 不补全0
+      date: today.format('YYYY-MM-DD'), //2023-12-26,
+      // weekday: today.toLocaleDateString('zh-CN', {weekday: 'long'}).replace('星期', '')
+      weekday: "今天",
+      number: 0,
+      dot: false,
+      allowClick: true, //允许点击,只有今天 明天 后天 3天可以点
+    });
+
+    // 明天
+    const tomorrow = today.clone().add(1, 'day'); //.clone()是解决today变异了，日期乱了，必须，不然就用moment().add()
+
+    result.push({
+      name: tomorrow.format('D').toString(), //日期 天，如6、16，不补全0
+      id: tomorrow.format('D').toString(), //用 日期 天，如6、16 不补全0
+      date: tomorrow.format('YYYY-MM-DD'), //2023-12-26,
+      weekday: "明天",
+      number: 0,
+      dot: false,
+      allowClick: true, //允许点击,只有今天 明天 后天 3天可以点
+    });
+    // 后天
+
+    const afterTomorrow = today.clone().add(2, 'day'); //.clone()是解决today变异了，日期乱了，必须，不然就用moment().add()
+    result.push({
+      name: afterTomorrow.format('D').toString(), //日期 天，如6、16，不补全0
+      id: afterTomorrow.format('D').toString(), //用 日期 天，如6、16 不补全0
+      date: afterTomorrow.format('YYYY-MM-DD'), //2023-12-26,
+      weekday: "后天",
+      number: 0,
+      dot: false,
+      allowClick: true, //允许点击,只有今天 明天 后天 3天可以点
+    });
+
+
+    // 第4天起
+    for (let i = 3; i < 7; i++) {
+      const nextDay = today.clone().add(i, 'day') //.clone()是解决today变异了，日期乱了，必须，不然就用moment().add()
+      result.push({
+        name: nextDay.format('D').toString(), //日期 天，如6、16，不补全0
+        id: nextDay.format('D').toString(), //用 日期 天，如6、16 不补全0
+        date: nextDay.format('YYYY-MM-DD'), //2023-12-26,
+
+        weekday: this.getWeekByDate(nextDay),
+        number: 0,
+        dot: false,
+        allowClick: false, //允许点击,只有今天 明天 后天 3天可以点
+      });
+    }
+
+
+    return result;
+  },
   //#region  下拉区
-  
-  //3.训练难度下拉
-  btnDropCoach(e) {
+  //1. 门店下拉
+  btnDropStore(e) {
     let that = this;
-    if (util.isNull(that.data.difficultyListData)) { //第一次获取的数据存起来 是否存在
-      that.getDifficultyList().then(res => {
+    if (util.isNull(that.data.storeListData)) { //第一次获取的数据存起来 是否存在
+      //4.获取全部门店
+      that.getStoreList(10).then(res => {
         that.setData({
-          difficultyListData: res, //第一次获取的数据存起来 
-          proDropData: res,
+          storeListData: res.data, //第一次获取的数据存起来 
+
           //proDropIndex: index,
-          dropShow: true,
-          dropHeaderShow:true,
-          
-          dropdownShow: false,
-          thisDropIndex:3,//当前proDropData填充的是哪一个 0没有 1门店 2排序 3教练
         })
-      }).catch(c => {
-
-
-      })
+      }).catch(c => {})
     } else {
       that.setData({
-        proDropData: that.data.difficultyListData,
-        dropShow: true,
-          dropHeaderShow:true,
-          
-        dropdownShow: false,
-        thisDropIndex:3,//当前proDropData填充的是哪一个 0没有 1门店 2排序 3教练
       })
     }
-  },
-  //弹窗 - 内容选择点击
-  btnSelected: function (e) {
-
-    let index = e.currentTarget.dataset.index;
-    if(this.data.thisDropIndex===2)//只能单选
-    {
-      let arr = this.data.proDropData;
-      for(let i=0;i<arr.length;i++)
-      {
-        if(i==index){
-          arr[i].selected = true;
-        }else{
-          arr[i].selected = false;
-        }
-      }
-      this.setData({
-        proDropData: arr
-      })
-
-    }else{//原来 多选
-      let obj = this.data.proDropData[index];
-      let key = `proDropData[${index}].selected`
-      this.setData({
-        [key]: !obj.selected
-      })
-    }
-
-
-    if(this.data.thisDropIndex===1){
-      this.setData({
-        storeListData:this.data.proDropData
-      })
-    }else if(this.data.thisDropIndex===2)
-    {
-      this.setData({
-        orderListData:this.data.proDropData
-      })
-    }
-    else if(this.data.thisDropIndex===3)
-    {
-      this.setData({
-        difficultyListData:this.data.proDropData
-      })
-    }
-
-
-  },
-  //弹窗 - 重置
-  reset() {
-    let arr = this.data.proDropData;
-    for (let item of arr) {
-      item.selected = false;
-    }
-    this.setData({
-      proDropData: arr
-    })
-
-  },
-  //弹窗 - 确认
-  btnCloseDrop() {
-
-    this.setData({
-        scrollTop: 0,
-        dropShow: false,
-        //proDropIndex: -1
-      },()=>{ //小鱼解决闪屏
-          setTimeout(() => {
-              this.setData({
-                  dropHeaderShow:false
-              })
-              
-          }, 200);
-      })
-
-    switch(this.data.thisDropIndex){
-      case 1:
-        this.setData({
-          storeListData:this.data.proDropData
-        })
-        break;
-      case 2:
-        this.setData({
-          orderListData:this.data.proDropData
-        })
-        break;
-      case 3:
-        this.setData({
-          difficultyListData:this.data.proDropData
-        })
-        break;
-      default:
-        break;
-    }
-    if(!util.isNull(this.data.proDropData)){
-    this.initLoad();//重新加载
-    }
-
-
-
-  },
-  goToStore() {
-    wx.navigateTo({
-      url: '/pages/store/show/index',
-    })
-
-  },
-  //课程详情
-  itemShow(e) {
-
-    let registerednum = e.currentTarget.dataset.registerednum||e.target.dataset.registerednum;//已报人数
-    let peoplenum = e.currentTarget.dataset.peoplenum||e.target.dataset.peoplenum;//报满人数
-
-    if(Number(registerednum)>=Number(peoplenum))
-    {
-        util.toast("该团课人数已满");
-        return;
-    }    
-    let currentID=e.currentTarget.dataset.id||e.target.dataset.id;
-    wx.navigateTo({
-      url: '/pages/course/personalShow/index?id='+currentID,
-    })
   },
   //#endregion  下拉区
 

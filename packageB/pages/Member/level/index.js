@@ -17,7 +17,6 @@ Page({
     statusBar: app.globalData.statusBar,
     customBar: app.globalData.customBar,
     navBarHeight: app.globalData.navBarHeight,
-
     //preventOnShow: true, 
     globalURL: app.globalData.globalURL,
     //地区选择
@@ -66,7 +65,7 @@ getApplyState(){
     type:_type,
     userID: wx.getStorageSync('USERID'),
     TIMESTAMP: _timestamp,
-    FKEY: md5util.md5(wx.getStorageSync('USERID') + _type.toString() + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
+    // FKEY: md5util.md5(wx.getStorageSync('USERID') + _type.toString() + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
   }, {
     headers: {
       "Content-Type": 'applciation/json',
@@ -285,7 +284,7 @@ getApplyState(){
              cityId:_cityId,
              userID: wx.getStorageSync('USERID'),
              TIMESTAMP: timestamp,
-             FKEY: md5util.md5(wx.getStorageSync('USERID') + _type.toString() +_cityId.toString()+_nickName.toString()+_mobile.toString()+ timestamp.toString() + app.globalData.APP_INTF_SECRECT)
+            //  FKEY: md5util.md5(wx.getStorageSync('USERID') + _type.toString() +_cityId.toString()+_nickName.toString()+_mobile.toString()+ timestamp.toString() + app.globalData.APP_INTF_SECRECT)
            },
          }, {
            headers: {
@@ -296,7 +295,7 @@ getApplyState(){
        )
        .then((res) => {
          const {data} = res;
-         logs.log("999999999",data,true);
+        //  logs.log("999999999",data,true);
          
          let _data = util.jsonTestParse(data);//解决返回为字符串型JSON问题
 
@@ -334,7 +333,7 @@ getApplyState(){
     })
   },
  onPageScroll(e) {
-    logs.log("【onPageScroll】")
+    // logs.log("【onPageScroll】")
     this.setData({
       scrollTop:e.scrollTop
     })
