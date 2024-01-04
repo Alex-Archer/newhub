@@ -19,12 +19,12 @@
             </view>
           </view>
         </view>
-        <tui-nomore backgroundColor="#fafafa"></tui-nomore>
+        <!-- <tui-nomore backgroundColor="#fafafa" ></tui-nomore> -->
       </block>
       <block wx:if="{{cardList.length == 0}}">
         <tui-no-data bindtap="gobuy" btnText="去购卡" backgroundColor="#ff7900" imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无课卡,快去购买吧!</tui-no-data>
       </block>
-      <view class="blogo" style="background: #FFF;"></view>
+      <view class="blogo" style="background: none;"></view>
     </scroll-view>
   </view>
 </view>

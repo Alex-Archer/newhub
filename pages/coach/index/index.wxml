@@ -43,15 +43,15 @@
   <view class="tui-content-box">
     <!--教练介绍-->
     <view class="tui-box teach_box" wx:if="{{listData.experience||goodat!=''||listData.good_feature||listData.style_preference||listData.introduce}}">
-      <tui-overflow-hidden type="{{2}}" height="300rpx" padding="30rpx 30rpx 0 30rpx" gradientColor="#f8f8f8" removeGradient="{{removeGradient}}">
         <view class="tui-title" style="justify-content: space-between;">
           <view class="title_flx">
             <image class="img" src="{{globalURL}}/miniprogram/sys_images/titleImg.png" mode="" />
             <text class="tui-title-text">导师资料</text>
           </view>
-          <view bind:tap="callPhone" class="flx"><text class="icon-dianhua iconfont"></text><text style="font-size: 26rpx;">电话</text>
-          </view>
+          <!-- <view bind:tap="callPhone" class="flx"><text class="icon-dianhua iconfont"></text><text style="font-size: 26rpx;">电话</text>
+          </view> -->
         </view>
+      <tui-overflow-hidden type="{{2}}" height="300rpx" padding="30rpx 30rpx 0 30rpx" gradientColor="#f8f8f8" removeGradient="{{removeGradient}}">
         <view wx:if="{{listData.experience}}">
           <view class="teach_title">
             <image src="{{globalURL}}/miniprogram/sys_images/working.png" class="little-img" data-page="3"></image> 从业经历
@@ -184,8 +184,7 @@
           <image class="img" src="{{globalURL}}/miniprogram/sys_images/titleImg.png" mode="" />
           <text class="tui-title-text">上课门店</text>
         </view>
-        <!-- <text bind:tap="openStoreList" class="tui-titie-more" style="font-size: 24rpx;">共2个 ></text> -->
-        <!-- <text class="tui-titie-more" style="font-size: 24rpx;">共 {{storeList.length}} 个</text> -->
+        <text bind:tap="openStoreList" class="tui-titie-more" style="font-size: 24rpx;">共 {{storeList.length}}个 ></text>
       </view>
       <view class="tui-course">
         <block wx:for="{{storeList}}" wx:for-item="storeItem" wx:key="storeindex">
@@ -314,13 +313,13 @@
                             <view class="time-box-li li-active0" data-index="{{index}}">{{item.start}}</view>
                           </block>
                           <block wx:elif="{{item.state==1}}">
-                            <view class="time-box-li {{tabIndex==index?'li-active':''}}" data-index="{{index}}" bind:tap="teachClick" data-stime="{{item.start}}">{{item.start}}</view>
+                            <view class="time-box-li {{timeIndex==index?'li-active':''}}" data-index="{{index}}" bind:tap="teachClick" data-stime="{{item.start}}">{{item.start}}</view>
                           </block>
-                          <!-- <block wx:else>
-                            <view class="time-box-li li-active-no" data-index="{{index}}" bind:tap="clickThisTime">
+                          <block wx:else>
+                            <view class="time-box-li li-active0" data-index="{{index}}">
                               {{item.start}}
                             </view>
-                          </block> -->
+                          </block>
                         </block>
                       </view>
                     </view>
@@ -331,15 +330,6 @@
               </swiper>
             </view>
           </tui-list-cell>
-          <!-- 可选课卡 -->
-          <!-- <view class="list_flx">
-            <view>可选课卡</view>
-            <view></view>
-            <tui-button plain link color="#333" bindtap="showPopup">
-              {{resulut}}
-              <tui-icon color="#333" size="40" unit="rpx" name="arrowright"></tui-icon>
-            </tui-button>
-          </view> -->
         </view>
 
         <!-- 团课的 -->
@@ -395,7 +385,7 @@
         <tui-button wx:if="{{cardList.length == 0}}" plain link color="#333">
         </tui-button>
         <tui-button wx:else plain link color="#333" bindtap="showPopup">
-          <view style="font-size: 28rpx;">{{resulut}}</view>
+          <view style="font-size: 28rpx;color: #333;">{{resulut}}</view>
           <tui-icon color="#333" size="40" unit="rpx" name="arrowright"></tui-icon>
         </tui-button>
         <!--  -->
@@ -424,7 +414,8 @@
 <tui-bottom-popup backgroundColor="#FFFFFF" height="{{600}}" show="{{popupShow}}" bindclose="hiddenPopup">
   <view class="pop_title">
     <view>我的课卡</view>
-    <view bind:tap="hiddenPopup" style="color: #ccc;">X</view>
+    <!-- <view bind:tap="hiddenPopup" style="color: #ccc;">X</view> -->
+      <tui-icon name="close-fill" color="#999" size="20" bind:tap="hiddenPopup"></tui-icon>
   </view>
   <scroll-view scroll-y class="store-popup-scroll" style="height: 540rpx;">
     <block wx:if="{{loadingData}}">
@@ -440,7 +431,7 @@
               <view class="xiao_title">有效期:{{item.months<0?0:item.months}}月 剩余节数:{{item.remaining}}节</view>
               </view>
             </view>
-            <radio color="#07c160" checked="true" value="{{item.order_number+'_'+item.title}}">
+            <radio color="#07c160" checked="" value="{{item.order_number+'_'+item.title}}">
             </radio>
           </view>
       </tui-label>
@@ -453,41 +444,49 @@
 <view id="xieyidialog" class="vanpop" wx:if="{{show}}">
   <view class="title">{{title==1?'会员卡协议':'约课协议'}}</view>
   <view style="height: 750rpx;overflow: scroll;">
-    <rich-text nodes="{{agreeContent}}"></rich-text>
+    <rich-text nodes="{{title==1?cardAgree:agreeContent}}"></rich-text>
   </view>
   <view>
     <button class="btn" type="primary" hover-class="none" disabled="{{countdown!=0}}" bindtap="handyue">已阅读<text>《{{title==1?'会员卡协议':'约课协议'}}》</text><text wx:if="{{countdown>0}}">{{countdown}}</text></button>
   </view>
 </view>
 
-
+<view class="flex-box">
+  <view class="flex-kfb">
+    <button class="kf-bottom" open-type="contact">
+      <image class="kf-img" src="https://ssl.aoben.yoga/miniprogram/20231127/kf.png?v=202311272032"></image>
+    </button>
+  </view>
+  <!-- <view class="qr-code" wx:if="{{!qrShow}}" style="background-image:url('{{globalURL}}/miniprogram/url-img/qr-code.jpg');" bind:tap="showQR"></view> -->
+</view>
+<!-- <tui-landscape show="{{qrShow}}" position="{{1}}" maskClosable="{{true}}" iconLeft="60rpx" iconRight="60rpx" bindclose="qrClose">
+  <view class="qr-box">
+    <image src="{{globalURL}}/miniprogram/url-img/qr.png?v=20231114" show-menu-by-longpress="true" mode="widthFix" style="width: 300rpx;height: 300rpx;" />
+    <view class="qr-box-des">长按识别关注公众号</view>
+  </view>
+</tui-landscape> -->
 <!-- 场地弹窗 -->
 <tui-bottom-popup show="{{storePopupShow}}" bindclose="hideStoreList">
   <view class="store-popup-box">
     <view class="store-popup-title">共有{{storeList.length}}个服务门店</view>
     <scroll-view scroll-y class="store-popup-scroll">
-      <!-- 门店列表 -->
-      <view class="tui-course-item">
-        <image src="{{globalURL}}/miniprogram/url-img/coach-home/course-2.png" class="tui-course-img"></image>
-        <view class="tui-course-info tui-area-info">
-          <view class="tui-course_title">
-            昆山市祖冲之路店 <text style="font-size: 24rpx; color: #555555;">12.12km</text>
+      <block wx:for="{{storeList}}" wx:for-item="storeItem" wx:key="storeindex">
+          <view class="tui-course-item" bind:tap="storeClick" data-branchid="{{storeItem.storeId}}">
+            <image src="{{storeItem.poster}} " class="tui-course-img"></image>
+            <view class="tui-course-info tui-area-info">
+              <view class="tui-course_title">
+                {{storeItem.title}}
+              </view>
+              <view class="flx">
+                <ald-icon size="1" customClass="" unit="rem" name="location" color="#555555" content="" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
+                <text class="flow">{{storeItem.address}}</text>
+              </view>
+              <view class="store-score">
+                <tui-rate current="{{storeItem.score}}" bindchange="change" disabled="{{true}}" normal="#ccc" active="#ff7900" size="{{14}}"></tui-rate>
+              </view>
+            </view>
           </view>
-          <ald-icon size="1" customClass="" unit="rem" name="location" color="#555555" content="祖冲之路1699号阳澄湖科技园" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
-        </view>
-      </view>
-      <!-- 门店列表END -->
-      <!-- 门店列表 -->
-      <view class="tui-course-item">
-        <image src="{{globalURL}}/miniprogram/url-img/coach-home/course-2.png" class="tui-course-img"></image>
-        <view class="tui-course-info tui-area-info">
-          <view class="tui-course_title">
-            昆山市祖冲之路店 <text style="font-size: 24rpx; color: #555555;">12.12km</text>
-          </view>
-          <ald-icon size="1" customClass="" unit="rem" name="location" color="#555555" content="祖冲之路1699号阳澄湖科技园" contentsize="{{24}}" contentunit="rpx" contentpadding="0 0 0 8rpx"></ald-icon>
-        </view>
-      </view>
-      <!-- 门店列表END -->
+        </block>
     </scroll-view>
     <view class="bottom-popup-close">
       <tui-icon name="close-fill" color="#999" size="20" bindclick="hideStoreList"></tui-icon>

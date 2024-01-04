@@ -2,7 +2,10 @@
 <view class="container"> 
     <!--头部背景色 -->
   <cover-image style="top: {{statusBar}}px;" class="tui-cover-back" src="/static/img/map/icon_back_3x.png" bind:tap="back" />
-  <view class="img-box">
+  <view class="onepop">
+    <image src="{{globalURL}}/miniprogram/20231127/packageB/level/img2.png" mode=""/>
+  </view>
+  <!-- <view class="img-box">
 
     <view class="img-box-li">
       <image class="box-img-base" style="min-height: 196rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_01.jpg" mode="widthFix"></image>
@@ -32,7 +35,7 @@
       <image class="box-img-base" style="min-height: 171rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_09.jpg" mode="widthFix"></image>
     </view>
     <view class="img-box-li">
-      <image class="box-img-base" style="min-height: 175rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_10.jpg" mode="widthFix"></image>
+      <image class="box-img-base" style="min-height: 175rpx;" src="/static/img/img10.png" mode="widthFix"></image>
     </view>
     <view class="img-box-li">
       <image class="box-img-base" style="min-height: 97rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_11.jpg" mode="widthFix"></image>
@@ -47,6 +50,6 @@
       <image class="box-img-base" style="min-height: 269rpx;" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/level/level_14.png" mode="widthFix"></image>
     </view>
     <view class="tui-safe-area"></view>
-  </view>
+  </view> -->
 
 </view>

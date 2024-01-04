@@ -30,9 +30,9 @@
 
       </view>
       <view class="card-bottom">
-        <view class="card-bottom-title">消费金额:</view>
-        <view class="card-bottom-price" wx:if="{{seen}}">{{userEdit.balance/100}}</view>
-        <view class="card-bottom-price" wx:else>******</view>
+        <view class="card-bottom-title">积分剩余:</view>
+        <view class="card-bottom-price" wx:if="{{seen}}">{{userEdit.integral}}</view>
+        <view class="card-bottom-price" wx:else>{{integral}}</view>
         <view bindtap='eyeStatus' class="card-bottom-view">
           <ald-icon  wx:if="{{seen}}" size="40" customClass="" unit="rpx" name="eye" content="" color="#fff"></ald-icon>
           <ald-icon wx:else margin="20rpx 0 0 0" size="36" customClass="" unit="rpx" name="eye-close" content="" color="#fff"></ald-icon>
@@ -132,9 +132,9 @@
           <view class="list-cell-ico">
             <image class="cell-ico-img" src="https://ssl.aoben.yoga/miniprogram/20231127/packageB/myRights/cell-ico-3.png" mode="widthFix"></image>
           </view>
-          <view class="list-cell-title">我的积分</view>
+          <view class="list-cell-title">瑜伽币</view>
         </view>
-        <view class="num">{{userEdit.integral}}</view>
+        <view class="num">{{userEdit.balance/100}}</view>
       </view> 
     </tui-list-cell>
 

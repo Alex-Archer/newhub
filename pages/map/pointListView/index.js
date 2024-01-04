@@ -7,7 +7,7 @@ var util = require('../../../utils/util.js')
 var apis = require('../../../utils/apis.js')
 Page({
   data: {
-    teach:'', // 从教练列表跳过来的
+    teach: '', // 从教练列表跳过来的
     tiao: '', // 从私教跳过来的 
     teachid: '', // 从私教跳过来的 
     typeid: '', // 从团课跳过来的 
@@ -29,7 +29,7 @@ Page({
     inputVal: '',
 
     qqmapsdk: app.globalData.MapQQ.MapSDK,
-    key: app.globalData.MapQQ.MapKey, 
+    key: app.globalData.MapQQ.MapKey,
     lat: app.globalData.MapQQ.lat,
     lng: app.globalData.MapQQ.lng, //默认市政府
     scale: 16, //地图默认级别
@@ -471,47 +471,102 @@ Page({
     let _teachid = this.data.teachid
     let _typeid = this.data.typeid
     let _editid = this.data.editid
+    const that = this;
     // 之前的,可能后续不需要
-    if(this.data.tiao == 2){
-      wx.redirectTo({
-        url: `/pages/coach/index/index?branchid=${_clickData.id}&uid=${_teachid}`,
-      })
-    }else if(this.data.tiao == 1){
-      wx.redirectTo({
-        url: `/pages/newpage/detail/index?typeid=${_typeid}&editid=${_editid}`,
-      })
-      // 选门店的操作,1是从团课来的
-    }else if(_typeid == 1){
-      wx.redirectTo({
-        url: `/pages/course/group/index?branchid=${_clickData.id}&title=${_clickData.title}`,
-      })
-      // 2是从私教来的
-    }else if(_typeid == 2){
-      wx.redirectTo({
-        url: `/pages/course/personal/index?branchid=${_clickData.id}&title=${_clickData.title}`,
-      })
-    }else if(this.data.teach == 1){
-      wx.redirectTo({
-        url: `/pages/course/List/index?storid=${_clickData.id}&title=${_clickData.title}`,
-      })
-    }else{
-      this.setData({
-        dropdownShow: this.data.dropdownShow && false,
-      }, () => {
-        let _id = _clickData.id;
-        if (util.isNull(_id)) {
-          util.toast("参数有误");
-          return;
-        }
-        wx.navigateTo({
-          url: '/pages/store/show/index?storeID=' + _id,
-        })
-      })
-    }
+    // if (this.data.tiao == 2) {
+    //   wx.redirectTo({
+    //     url: `/pages/coach/index/index?branchid=${_clickData.id}&uid=${_teachid}`,
+    //   })
+    // } else if (this.data.tiao == 1) {
+    //   wx.redirectTo({
+    //     url: `/pages/newpage/detail/index?typeid=${_typeid}&editid=${_editid}`,
+    //   })
+    //   // 选门店的操作,1是从团课来的
+    // } else if (_typeid == 1) {
+    //   wx.redirectTo({
+    //     url: `/pages/course/group/index?branchid=${_clickData.id}&title=${_clickData.title}`,
+    //   })
+    //   // 2是从私教来的
+    // } else if (_typeid == 2) {
+    //   wx.redirectTo({
+    //     url: `/pages/course/personal/index?branchid=${_clickData.id}&title=${_clickData.title}`,
+    //   })
+    // } else if (this.data.teach == 1) { // 这边的是必须的
+    //   wx.redirectTo({
+    //     url: `/pages/course/List/index?storid=${_clickData.id}&title=${_clickData.title}`,
+    //   })
 
+    // } else {
+
+    // }
+    let _selectID = e.currentTarget.dataset.id || e.target.dataset.id;
+      let _distanc = e.currentTarget.dataset.distanc || e.target.dataset.distanc;
+      let _title = e.currentTarget.dataset.title || e.target.dataset.title;
+      let _lat = e.currentTarget.dataset.lat || e.target.dataset.lat;
+      let _lng = e.currentTarget.dataset.lng || e.target.dataset.lng;
+      let _address = e.currentTarget.dataset.address || e.target.dataset.address;
+
+      let _Location = wx.getStorageSync('Location'); //用户保存的本地信息
+      if (!util.isNull(_Location.id) && _Location.id != 0 && _Location.id == _selectID) {
+        this.setData({
+          dropdownShow: this.data.dropdownShow && false,
+        }, () => {
+          let _id = _clickData.id;
+          if (util.isNull(_id)) {
+            util.toast("参数有误");
+            return;
+          }
+          wx.navigateTo({
+            url: '/pages/store/show/index?storeID=' + _id,
+          })
+        })
+        return
+      }
+      let locationJson = {
+        "id": _selectID,
+        "title": _title,
+        "lat": _lat,
+        "lng": _lng,
+        "address": _address
+      };
+      wx.setStorageSync('Location', locationJson);
+    //获取页面栈
+    let pages = getCurrentPages();
+    //检查页面栈
+    //判断页面栈中页面的数量是否有跳转(可以省去判断)
+    if (pages.length > 1) {
+      //获取上一个页面实例对象
+      let prePage = pages[pages.length - 2];
+      //调用上一个页面实例对象的方法
+      //prePage.changeLocation("昆山市城西选择店","森林公园南门正门口","99");
+      console.log(prePage);
+      prePage.changeLocation(locationJson, _distanc);
+      prePage.setData({  // 将我们想要传递的参数在这里直接setData。上个页面就会执行这里的操作。
+        storid:_clickData.id,
+        branchName:_clickData.title,
+        branchid:_clickData.id
+      })
+      //返回上一个页面
+      wx.navigateBack();
+    }
+    
+    // 去详情的
+    //   this.setData({
+    //     dropdownShow: this.data.dropdownShow && false,
+    //   }, () => {
+    //     let _id = _clickData.id;
+    //     if (util.isNull(_id)) {
+    //       util.toast("参数有误");
+    //       return;
+    //     }
+    //     wx.navigateTo({
+    //       url: '/pages/store/show/index?storeID=' + _id,
+    //     })
+    //   })
+    // }
 
   },
-  
+
   //搜索框动作 start=================
   //搜索框点击
   showInput() {
@@ -553,7 +608,6 @@ Page({
   //选择此门店
   switchLocation(e) {
     const that = this;
-    //data-poster="{{item.poster}}" data-index="{{index}}" data-distanc="{{parse.getDistance(addressDistanc,index) }}" data-score="{{item.score}}" data-title="{{item.title}}" data-lat="{{item.latitude}}" data-lng="{{item.longitude}}" data-id="{{item.id}}" data-address="{{item.address}}"
 
     let _selectID = e.currentTarget.dataset.id || e.target.dataset.id;
     let _distanc = e.currentTarget.dataset.distanc || e.target.dataset.distanc;

@@ -69,7 +69,9 @@
         <view class="tui-list">
             <block wx:for="{{address}}" wx:for-item="item" wx:key="index">
                <!-- 新版列表 -->
-                <view  class="store-list-cell {{Location.id == item.id ? 'select-location' : ''}} {{index == address.length - 1 ? 'tui-cell-last' : ''}}"  bind:tap="toViewStore" data-title="{{item.title}}" data-lat="{{item.location.lat}}" data-lng="{{item.location.lng}}" data-id="{{item.id}}">
+               <!-- bind:tap="toViewStore" -->
+                <view  class="store-list-cell {{Location.id == item.id ? 'select-location' : ''}} {{index == address.length - 1 ? 'tui-cell-last' : ''}}" 
+                data-poster="{{item.listPoster}}" data-index="{{index}}" data-distanc="{{parse.getDistance(item.distance) }}" data-score="{{item.score}}"  data-address="{{item.address}}" catchtap="toViewStore"  data-title="{{item.title}}" data-lat="{{item.location.lat}}" data-lng="{{item.location.lng}}" data-id="{{item.id}}">
                     <image src="{{item.listPoster}}" class="store-bg"></image>
                     <view class="store-select">
                     <!-- 选择框 -->

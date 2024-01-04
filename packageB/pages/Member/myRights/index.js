@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userEdit: '',
     //胶囊位置
     statusBar: app.globalData.statusBar,
     customBar: app.globalData.customBar,
@@ -99,9 +100,11 @@ Page({
   // 小眼睛点击
   eyeStatus() {
     let _seen = this.data.seen 
+    let _balance = (this.data.userEdit.integral).toString().replace(/[\S]/g,'*')
     _seen = !_seen;//小眼睛的变化
     this.setData({
-      seen:_seen
+      seen:_seen,
+      integral:_balance
     })
   },
   /**

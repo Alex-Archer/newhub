@@ -103,7 +103,7 @@ const apis = {
           let _data = util.jsonTestParse(res.data.data);
           resolve(_data);
         } else {
-          reject(res.data);
+          reject(res);
         }
       }).catch((err) => {
         reject();

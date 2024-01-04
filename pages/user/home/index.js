@@ -421,7 +421,11 @@ Page({
 
 
   },
-
+  tiaoClick(e) {
+    wx.navigateTo({
+      url: `/packageB/pages/Member/buyCard/index`,
+    })
+  },
   onClose() {
     let that = this;
     that.setData({
@@ -648,7 +652,7 @@ Page({
             const found = qrCodeContent.indexOf(arrUrl) > -1;
             if (!found) {
               wx.showToast({
-                title: '啥都不是，不处理',
+                title: '二维码错误',
                 icon: 'none'
               })
               return
@@ -668,40 +672,58 @@ Page({
             }
             switch (_action) {
               case "door"://开门 https://yoga.aoben.yoga/s=door&param=mac
-            _actionTitle="开门动作";
-            apis.gets("Door/qrCode",config,false).then(val=>{
+            // _actionTitle="开门动作";
+            apis.posts("Door/qrCode",config,false).then(val=>{
               that.setData({
                 openID:resOpenID,
                 openDoorHtml:"开门成功",
                 returnHtml:"CODE1正常："+JSON.stringify(val)
               });
+              let model = JSON.stringify(val);
+              wx.navigateTo({
+                url: `/pages/mini/scan/index?model=${model}`,
+              })
             },function(err)
             {
+              _actionTitle = err.data.message
+              wx.showToast({
+                title: _actionTitle,
+                icon: 'none'
+              })
               that.setData({
                 openID:resOpenID,
                 openDoorHtml:"开门失败",
-                openErrMessage:'这是失败原因',
+                openErrMessage:err.data.message,
                 returnHtml:"CODE 0出错："+JSON.stringify(err)
               });
       
             })
             break;
         case "locker"://开柜 https://yoga.aoben.yoga/s=locker&param=mac
-            _actionTitle="开柜动作";
+            // _actionTitle="开柜动作";
             // https://aoben.kshot.com
-            apis.gets("/Locker/qrCode",config,false).then(val=>{
+            apis.posts("/Locker/qrCode",config,false).then(val=>{
               console.log(val);
               that.setData({
                 openID:resOpenID,
                 openDoorHtml:"开柜成功",
                 returnHtml:"CODE1正常："+JSON.stringify(val)
               });
+              let model = JSON.stringify(val);
+              wx.navigateTo({
+                url: `/pages/mini/scan/index?model=${model}`,
+              })
             },function(err)
             {
+              _actionTitle = err.data.message
+              wx.showToast({
+                title: _actionTitle,
+                icon: 'none'
+              })
               that.setData({
                 openID:resOpenID,
                 openDoorHtml:"开柜失败",
-                openErrMessage:'这是失败原因',
+                openErrMessage:err.data.message,
                 returnHtml:"CODE 0出错："+JSON.stringify(err)
               });
             })
@@ -724,10 +746,10 @@ Page({
             }
 
             //联网去处理
-            wx.showToast({
-              title: _actionTitle,
-              icon: 'none'
-            })
+            // wx.showToast({
+            //   title: _actionTitle,
+            //   icon: 'none'
+            // })
             return;
 
           },

@@ -1,47 +1,113 @@
 @import "./index.skeleton.wxss";
+
 page {
   background-color: #f4f4f4;
 }
 
-.icon-dianhua{
+.flex-box {
+  width: 80rpx;
+  height: 200rpx;
+  position: fixed;
+  bottom: 240rpx;
+  right: 30rpx;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+}
+
+.kf-bottom {
+  background: transparent !important;
+  border: 0;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.flex-kf {
+  margin-bottom: 20rpx;
+  background: #319fa6;
+  border-radius: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+
+}
+
+.kf-img {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.qr-code {
+  /* background-color   : rgba(0, 0, 0, 0.6); */
+  /* background-size    : 45rpx; */
+  background-size: 80rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80rpx;
+  height: 100rpx;
+  /* position           : fixed;
+  bottom             : 240rpx;
+  right              : 30rpx; */
+  /* border-radius      : 100%; */
+
+  opacity: 0.6;
+}
+
+
+.icon-dianhua {
   color: #ED6E37;
 }
-.flow{
+
+.flow {
   max-width: 420rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.flx{
+
+.flx {
   display: flex;
   align-items: center;
 }
-.container{
+
+.container {
   padding-top: 0;
 }
-.img-box
-{
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+.img-box {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
 }
-.img-box-li
-{
-    width: 100%;
-    display: flex;
-    flex: 1;
+
+.img-box-li {
+  width: 100%;
+  display: flex;
+  flex: 1;
 }
-.box-img-base
-{
-    width: 100%;
-    height: 300px;
-    margin: 0;
-    display: block;
+
+.box-img-base {
+  width: 100%;
+  height: 300px;
+  margin: 0;
+  display: block;
 }
-.head_kuai{
+
+.head_kuai {
   background: #FFF;
   width: 100%;
   border-radius: 30rpx;
@@ -52,50 +118,60 @@ page {
   box-sizing: border-box;
   margin-top: -20rpx;
 }
-.teach_box{
-  padding: 10rpx 30rpx !important;
+
+.teach_box {
+  padding: 30rpx;
 }
-.head-box{
+
+.head-box {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.head_title{
+
+.head_title {
   font-size: 28rpx;
   color: #569ca1;
 }
-.teach_title{
+
+.teach_title {
   font-size: 28rpx;
   color: #000;
   margin: 20rpx 0;
   display: flex;
   align-items: center;
 }
-.teach_cont{
+
+.teach_cont {
   font-size: 24rpx;
   color: #333;
   padding-left: 50rpx;
   /* letter-spacing:-2rpx; */
 }
-.teach_cont:last-of-type{
+
+.teach_cont:last-of-type {
   margin-bottom: 20rpx;
 }
-.teach_cont .tag{
+
+.teach_cont .tag {
   background: #f4f4f4;
   padding: 5rpx;
   margin-right: 15rpx;
 }
-.little-img{
+
+.little-img {
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
   margin-right: 15rpx;
 }
+
 /* 绘制箭头 */
 .icon-share {
   position: relative;
 }
-.icon-share::after{
+
+.icon-share::after {
   content: "";
   width: 8rpx;
   height: 8rpx;
@@ -104,10 +180,11 @@ page {
   transform: translate(-50%, -50%) rotate(135deg);
   position: absolute;
   top: 18rpx;
-  right:-24rpx;
+  right: -24rpx;
 }
+
 /******头部*******/
-.tui-coachInfo{
+.tui-coachInfo {
   position: relative;
   width: 80%;
 
@@ -116,6 +193,7 @@ page {
   margin: -70rpx 10% 0 10%;
   min-height: 350rpx;
 }
+
 .tui-avatar {
   flex-shrink: 0;
   width: 128rpx;
@@ -124,16 +202,19 @@ page {
   display: block;
   border-radius: 50%;
 }
-.tui-coachInfo text{
+
+.tui-coachInfo text {
   line-height: 45rpx;
   display: block;
 }
-.tui-content-box{
+
+.tui-content-box {
   width: 100%;
   padding: 0 30rpx 30rpx 30rpx;
   box-sizing: border-box;
   /* margin-bottom: 180rpx; */
 }
+
 .tui-box {
   width: 100%;
   background: #fff;
@@ -145,7 +226,8 @@ page {
   min-height: 220rpx;
   padding: 30rpx 30rpx 10rpx 30rpx;
 }
-.tui-box .tui-title{
+
+.tui-box .tui-title {
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -153,33 +235,38 @@ page {
   font-size: 32rpx;
   font-weight: 600;
 }
-.title_flx{
+
+.title_flx {
   display: flex;
   align-items: center;
 }
-.tui-titie-more{
+
+.tui-titie-more {
   color: #515056;
   font-weight: normal;
 }
-.tui-box .tui-content-text{
+
+.tui-box .tui-content-text {
   padding: 10rpx 30rpx;
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  font-size: 26rpx; 
+  font-size: 26rpx;
   line-height: 45rpx;
   color: #514a63;
   /* height: 400rpx; */
-   /* 文字太长...号 */
-   word-break: break-all;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-box-orient: vertical;
-   -webkit-line-clamp: 8;/* 行数 */
+  /* 文字太长...号 */
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  /* 行数 */
 }
+
 /******banner图片切换*******/
 .tui-banner-box {
   width: 100%;
@@ -187,14 +274,17 @@ page {
   box-sizing: border-box;
   background: #fff;
 }
+
 .tui-banner-swiper {
   width: 100%;
   height: 242rpx;
 }
+
 .tui-banner-item {
   padding: 0 16rpx;
   box-sizing: border-box;
 }
+
 .tui-slide-image {
   width: 100%;
   height: 242rpx;
@@ -202,10 +292,12 @@ page {
   border-radius: 12rpx;
   transition: all 0.05s linear;
 }
+
 .tui-banner-scale {
   transform: scaleY(0.9);
   transform-origin: center center;
 }
+
 .tui-banner-swiper .wx-swiper-dot {
   width: 8rpx;
   height: 8rpx;
@@ -213,6 +305,7 @@ page {
   background: none;
   justify-content: space-between;
 }
+
 .tui-banner-swiper .wx-swiper-dot::before {
   content: '';
   flex-grow: 1;
@@ -220,86 +313,102 @@ page {
   border-radius: 16rpx;
   overflow: hidden;
 }
+
 .tui-banner-swiper .wx-swiper-dot-active::before {
   background: #fff;
 }
+
 .tui-banner-swiper .wx-swiper-dot.wx-swiper-dot-active {
   width: 16rpx;
 }
+
 /******课程*******/
-.tui-tag-fillet{
-    border-radius: 10rpx;
+.tui-tag-fillet {
+  border-radius: 10rpx;
 }
-.tui-course_tag{
-    display: flex;
-    align-items: center;
-    justify-content:left;
-    flex-shrink: 1;
-    overflow: hidden;
+
+.tui-course_tag {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-shrink: 1;
+  overflow: hidden;
 
 }
+
 .tui-course-item {
-	width: 100%;
-	display: flex;
-	align-items: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
   font-size: 26rpx;
   margin: 30rpx 0;
 
   padding-bottom: 30rpx;
   border-bottom: 1px dashed #ebebec;
 }
-.tui-course-item:last-child{
+
+.tui-course-item:last-child {
   border-bottom: none;
   padding-bottom: 0;
   margin-bottom: 0;
 }
+
 .tui-course-img {
-	width: 140rpx;
-	height: 140rpx;
-	flex-shrink: 0;
-    margin-right: 16rpx;
-    border-radius: 10rpx;
+  width: 140rpx;
+  height: 140rpx;
+  flex-shrink: 0;
+  margin-right: 16rpx;
+  border-radius: 10rpx;
 }
+
 .tui-course-info {
-	width: 80%;
-	/* height: 132rpx; */
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-content: space-between;
+  width: 80%;
+  /* height: 132rpx; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
 }
-.tui-course-info .tui-course_title{
+
+.tui-course-info .tui-course_title {
   font-size: 28rpx;
   font-weight: bold;
   color: #2a2929;
-  
+
 }
+
 .tui-course-button {
-	position: relative;
-	margin-left: auto;
-	flex-shrink: 0;
+  position: relative;
+  margin-left: auto;
+  flex-shrink: 0;
 }
-.tui-course-button .tui-course_price{
+
+.tui-course-button .tui-course_price {
   font-size: 28rpx;
   color: #fe8e60;
 }
-.tui-course-button .tui-course_price text{
+
+.tui-course-button .tui-course_price text {
   font-size: 32rpx;
   font-weight: bold;
 }
+
 /******上课场地*******/
-.tui-area-info{
+.tui-area-info {
   width: auto;
-	height: auto; 
+  height: auto;
 }
-.tui-area-info .tui-course_title{
+
+.tui-area-info .tui-course_title {
   margin-bottom: 15rpx;
 }
+
 /******可约时间*******/
-.tui-time .tui-time_circle{
+.tui-time .tui-time_circle {
   font-size: 24rpx;
 }
-.tui-time .tui-time_circle .tui-time_dot{
+
+.tui-time .tui-time_circle .tui-time_dot {
   width: 20rpx;
   height: 20rpx;
   border-radius: 50%;
@@ -307,35 +416,40 @@ page {
   margin-right: 10rpx;
   display: inline-block;
 }
-.tui-time .tui-time_number{
+
+.tui-time .tui-time_number {
   font-size: 24rpx;
   margin: 15rpx 0;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-between;   
+  justify-content: space-between;
 }
-.tui-time .tui-time_number .tui-time_dot{
+
+.tui-time .tui-time_number .tui-time_dot {
   width: 6rpx;
   height: 6rpx;
   border-radius: 50%;
   background-color: #000000;
 }
-.tui-time .tui-ptop{
+
+.tui-time .tui-ptop {
   margin-top: 20rpx;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.tui-time .tui-ptop .tui-ptop_day,.tui-time_number .tui-ptop_day{
+
+.tui-time .tui-ptop .tui-ptop_day,
+.tui-time_number .tui-ptop_day {
   font-size: 24rpx;
   margin-right: 20rpx;
   width: 70rpx;
   min-width: 70rpx;
 }
 
-.tui-time .tui-ptop .tui-progress{
+.tui-time .tui-ptop .tui-progress {
   flex: 1;
   height: 16rpx;
   background-color: #dddddd;
@@ -344,38 +458,38 @@ page {
 }
 
 /* 场地弹窗 */
-.store-popup-box{
+.store-popup-box {
   position: relative;
   padding: 30rpx 0 10rpx 0;
 }
 
-.bottom-popup-close
-{
+.bottom-popup-close {
   position: absolute;
   right: 30rpx;
   top: 30rpx;
-
 }
-.store-popup-title,.time-popup-title
-{
+
+.store-popup-title,
+.time-popup-title {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
 
   font-size: 32rpx;
   padding: 0 30rpx;
   box-sizing: border-box;
 }
-.store-popup-scroll
-{
+
+.store-popup-scroll {
   height: 400rpx;
   font-size: 26rpx;
   box-sizing: border-box;
-  padding: 30rpx 30rpx;
+  padding: 10rpx 30rpx;
 
 }
 
-.store-popup-bottom{/*底部按钮暂时未用*/
+.store-popup-bottom {
+  /*底部按钮暂时未用*/
   width: 100%;
   position: absolute;
   left: 0;
@@ -388,51 +502,52 @@ page {
   height: 100rpx;
   padding-top: 0;
 
-  
 
-    background: rgba(255, 255, 255, 0.98);
-    z-index: 10;
-    padding-bottom: env(safe-area-inset-bottom);
+
+  background: rgba(255, 255, 255, 0.98);
+  z-index: 10;
+  padding-bottom: env(safe-area-inset-bottom);
 }
-.store-popup-flex-1{
+
+.store-popup-flex-1 {
   flex: 1;
-    padding: 16rpx;
+  padding: 16rpx;
 }
+
 /* 场地弹窗END */
 
 /* 时间弹窗 */
-.time-popup-box{
+.time-popup-box {
   position: relative;
   padding: 30rpx 0 10rpx 0;
 }
-.time-popup-scroll
-{
+
+.time-popup-scroll {
   height: 400rpx;
   font-size: 26rpx;
   box-sizing: border-box;
   padding: 10rpx;
 }
+
 /* 时间弹窗END */
-.tui-course_item
-{
-    height: 46rpx;
-    line-height: 46rpx;
-    color: rgb(94, 94, 94);
-    font-size: 24rpx;
+.tui-course_item {
+  height: 46rpx;
+  line-height: 46rpx;
+  color: rgb(94, 94, 94);
+  font-size: 24rpx;
 }
-.store-score
-{
-    line-height: 55rpx;
+
+.store-score {
+  line-height: 55rpx;
 }
-.divide-list
-{
+
+.divide-list {
   min-height: 120rpx;
 }
 
 
 /* 可约时间段 */
-.time-title-dot
-{
+.time-title-dot {
   width: 14rpx;
   height: 14rpx;
   border-radius: 50%;
@@ -440,8 +555,8 @@ page {
   margin-right: 10rpx;
   display: inline-block;
 }
-.time-box
-{
+
+.time-box {
 
   display: block;
   flex-direction: column;
@@ -450,51 +565,50 @@ page {
   margin: 4rpx 10rpx;
   padding: 20rpx;
 }
-.time-box-circle
-{
+
+.time-box-circle {
   font-size: 24rpx;
 }
 
-.list-day-title
-{
+.list-day-title {
   width: 65rpx;
-   flex-shrink: 0;
-   font-size: 24rpx;
-   display: flex;
-   justify-content:left;
+  flex-shrink: 0;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: left;
 }
-.time-box-list
-{
+
+.time-box-list {
   height: 50rpx;
   line-height: 50rpx;
-display:flex;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
 
 }
-.list-day-time
-{
+
+.list-day-time {
   flex: 1;
   font-size: 20rpx;
   display: flex;
   align-items: center;
   justify-content: left;
-  
+
 }
-.list-day-view
-{
+
+.list-day-view {
   flex: 1;
   height: 8px;
   background-color: rgb(231, 231, 231);
-  
+
 }
-.list-day-view.active{
+
+.list-day-view.active {
   background: #569ca1;
 }
 
-.list-day-dot
-{
+.list-day-dot {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -502,345 +616,373 @@ justify-content: space-between;
 
 
 }
-.dot-circle
-{
+
+.dot-circle {
   width: 4rpx;
   height: 4rpx;
   border-radius: 50%;
-  background-color:black;
+  background-color: black;
 }
+
 /* 可约时间段END */
 
-.down-time-box
-{
+.down-time-box {
   min-height: 380rpx;
 }
 
 
-.buttom-this
-{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
+.buttom-this {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-.buttom-price{
-    width: 100%;
-    height: 30rpx;
-    font-size: 28rpx;
-    margin: 5rpx 0; 
+
+.buttom-price {
+  width: 100%;
+  height: 30rpx;
+  font-size: 28rpx;
+  margin: 5rpx 0;
 }
-.buttom-price-noop{
-    width: 100%;
-    font-size:30rpx;
+
+.buttom-price-noop {
+  width: 100%;
+  font-size: 30rpx;
 }
 
 /***********tabbar***************/
-.tui-tabbar{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    border-top: 1px solid #dddddd;
-  }
-  .tui-tabbar .clicked{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;   
-  }
-  .tui-tabbar .clicked view{
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    margin-right: 30rpx;
-    color: #000000;
-  }
-  .tui-tabbar .clicked text{
-    font-size: 28rpx;
-  }
-  .tui-tabbar_pay{
-    display: flex; 
-    align-items: flex-start;
-    justify-content: space-between; 
-    padding: 10px 60rpx;
-    color: #666666;
-  }
-  /* 返回箭头 */
-  .tui-cover-back {
-    width: 60rpx;
-    height: 60rpx;
-    position: fixed;
-    /* top: 60rpx; */
-    /* top: 100rpx; 移到动态获取*/
-    left: 30rpx;
-    z-index: 9999;
-  }
+.tui-tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #dddddd;
+}
+
+.tui-tabbar .clicked {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tui-tabbar .clicked view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 30rpx;
+  color: #000000;
+}
+
+.tui-tabbar .clicked text {
+  font-size: 28rpx;
+}
+
+.tui-tabbar_pay {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px 60rpx;
+  color: #666666;
+}
+
+/* 返回箭头 */
+.tui-cover-back {
+  width: 60rpx;
+  height: 60rpx;
+  position: fixed;
+  /* top: 60rpx; */
+  /* top: 100rpx; 移到动态获取*/
+  left: 30rpx;
+  z-index: 9999;
+}
+
 /* 类型选择 */
-  .tab-view {
-    display: flex;
-    flex-direction: column;
-    height: 86rpx;
-    position: relative;
-    border-bottom: 0.5px solid #EAEAEA;
-    background-color: white;
-  }
-  .tab-view .tabs {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .tab-view .tabs .tab {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 190rpx;
-    font-size: 26rpx;
-    color: #2c2c2c;
-  }
-  .tab-view .tabs .tab.typeactive {
-    font-weight: bold;
-    color: #EA5413;
-  }
-  .tab-view .line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 48rpx;
-    height: 2px;
-    background-color: #EA5413;
-    transition: 0.15s;
-  }
-  /* 课程列表 */
-  .courseBott{
-    border-bottom: 1rpx solid #e8e0e0;
-    padding-bottom: 10rpx;
-    box-sizing: border-box;
-    display:flex;
-    margin-top: 20rpx;
-  }
-  .courseBott .bottRight{
-    margin-left: 20rpx;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  .courseBott .bottRight .bottTitle{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .courseBott .bottRight .bottTitle .title{
-    font-size: 26rpx;
-    color: #333;
-  }
-  .courseBott .bottRight .bottTitle .title .keType,.jin{
-    font-size: 22rpx;
-    color: #ffffff;
-    padding: 0 10rpx;
-  }
-  .courseBott .bottRight .bottTitle .title .keType{
-    background: red;
-  }
-  .courseBott .bottRight .bottTitle .title .jin{
-    background: #ff7900;
-  }
-  .courseBott image{
-    width: 120rpx;
-    height: 120rpx;
-    border-radius: 50%;
-  }
-  .di_flx{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .courseBott .bottRight .futitle{
-    font-size: 20rpx;
-    margin-bottom: 10rpx;
-    color: #999;
-  }
-  .courseBott .bottRight .futitle .fu_time{
-    font-size: 28rpx;
-    color: #333;
-    margin-left: 30rpx;
-  }
-  
-  .courseBott .bottRight .tag{
-    display: flex;
-    align-items: center;
-    font-size: 20rpx;
-    color: #585858;
-  }
-  .courseBott .bottRight .tag .fist{
-    font-size: 20rpx;
-    color: #585858;
-    padding: 4rpx 10rpx;
-    border: 1px solid #ff7900;
-    background-color: #fff;
-  }
-  .courseBott .bottRight .tag view{
-    border-radius: 50rpx;
-    background-color: #EEF0F6;
-    padding: 4rpx 10rpx;
-    margin-right: 15rpx;
-  }
+.tab-view {
+  display: flex;
+  flex-direction: column;
+  height: 86rpx;
+  position: relative;
+  border-bottom: 0.5px solid #EAEAEA;
+  background-color: white;
+}
+
+.tab-view .tabs {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-view .tabs .tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 190rpx;
+  font-size: 26rpx;
+  color: #2c2c2c;
+}
+
+.tab-view .tabs .tab.typeactive {
+  font-weight: bold;
+  color: #EA5413;
+}
+
+.tab-view .line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 48rpx;
+  height: 2px;
+  background-color: #EA5413;
+  transition: 0.15s;
+}
+
+/* 课程列表 */
+.courseBott {
+  border-bottom: 1rpx solid #e8e0e0;
+  padding-bottom: 10rpx;
+  box-sizing: border-box;
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.courseBott .bottRight {
+  margin-left: 20rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.courseBott .bottRight .bottTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.courseBott .bottRight .bottTitle .title {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.courseBott .bottRight .bottTitle .title .keType,
+.jin {
+  font-size: 22rpx;
+  color: #ffffff;
+  padding: 0 10rpx;
+}
+
+.courseBott .bottRight .bottTitle .title .keType {
+  background: red;
+}
+
+.courseBott .bottRight .bottTitle .title .jin {
+  background: #ff7900;
+}
+
+.courseBott image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.di_flx {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.courseBott .bottRight .futitle {
+  font-size: 20rpx;
+  margin-bottom: 10rpx;
+  color: #999;
+}
+
+.courseBott .bottRight .futitle .fu_time {
+  font-size: 28rpx;
+  color: #333;
+  margin-left: 30rpx;
+}
+
+.courseBott .bottRight .tag {
+  display: flex;
+  align-items: center;
+  font-size: 20rpx;
+  color: #585858;
+}
+
+.courseBott .bottRight .tag .fist {
+  font-size: 20rpx;
+  color: #585858;
+  padding: 4rpx 10rpx;
+  border: 1px solid #ff7900;
+  background-color: #fff;
+}
+
+.courseBott .bottRight .tag view {
+  border-radius: 50rpx;
+  background-color: #EEF0F6;
+  padding: 4rpx 10rpx;
+  margin-right: 15rpx;
+}
 
 
 
-  /* 新得 */
+/* 新得 */
 
 .container {
-    /* display: flex; */
-    box-sizing: border-box;
-    /* flex-direction: column; */
+  /* display: flex; */
+  box-sizing: border-box;
+  /* flex-direction: column; */
 }
 
 ::-webkit-scrollbar {
-    width: 0 !important;
-    height: 0 !important;
-    color: transparent !important;
+  width: 0 !important;
+  height: 0 !important;
+  color: transparent !important;
 }
 
-.group-list
-{
+.group-list {
   width: 100%;
   box-sizing: border-box;
 }
+
 .tui-badge-item {
   position: relative;
-  margin-top: 20rpx; /* 不然角标出不来 */
+  margin-top: 20rpx;
+  /* 不然角标出不来 */
 }
-.tui-tab-item-week
-{
+
+.tui-tab-item-week {
   font-size: 12px;
   color: #888;
-	height: 30rpx;
-	line-height: 30rpx;
-	flex-wrap: nowrap;
+  height: 30rpx;
+  line-height: 30rpx;
+  flex-wrap: nowrap;
   white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.group-item{
+
+.group-item {
   width: 92%;
   box-sizing: border-box;
   margin: 20rpx 4%;
   /* border-top:1px solid rgba(172, 171, 171,.3); */
   /* min-height: 225rpx; */
-  
+
 }
-.course-nodata
-  {
-    font-size: 26rpx;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200rpx;
-    line-height: 110rpx;
-    color: #c2c2c2;
-    /* border-bottom: 1px solid #ececec; */
-  }
+
+.course-nodata {
+  font-size: 26rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200rpx;
+  line-height: 110rpx;
+  color: #c2c2c2;
+  /* border-bottom: 1px solid #ececec; */
+}
+
 /* ============日期选择模块===================== */
 .select-data {
-    height: 120rpx;
-    box-sizing: border-box;
-    width: 100%;
-    top: auto;
+  height: 120rpx;
+  box-sizing: border-box;
+  width: 100%;
+  top: auto;
 
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background-color: #fafafa;
-    /* height: 100%; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #fafafa;
+  /* height: 100%; */
 }
 
 .select-data .tui-scroll-h {
-    width: 100%;
-    height: 150rpx;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    white-space: nowrap;
-    padding: 0 3% 0 3%;
-    box-sizing: border-box;
+  width: 100%;
+  height: 150rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  padding: 0 3% 0 3%;
+  box-sizing: border-box;
 }
 
 .select-data .tui-line-h {
-    position: relative;
-    background-color: rgb(243, 243, 243);
-    height: 1rpx;
+  position: relative;
+  background-color: rgb(243, 243, 243);
+  height: 1rpx;
 }
 
 .select-data .tui-line-h::after {
-    content: '';
-    position: absolute;
-    border-bottom: 1rpx solid #eaeef1;
-    -webkit-transform: scaleY(0.5);
-    transform: scaleY(0.5);
-    bottom: 0;
-    right: 0;
-    left: 0;
-    transform-origin: 0 100%;
+  content: '';
+  position: absolute;
+  border-bottom: 1rpx solid #eaeef1;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transform-origin: 0 100%;
 }
 
 .select-data .tui-tab-item {
-    display: inline-block;
-    flex-wrap: nowrap;
-    padding: 0 22rpx;
+  display: inline-block;
+  flex-wrap: nowrap;
+  padding: 0 22rpx;
 
 }
 
 .select-data .tui-badge-item {
-    /* 角标 */
+  /* 角标 */
 
-    position: relative;
-    margin-top: 20rpx;
-    /* 不然角标出不来 */
+  position: relative;
+  margin-top: 20rpx;
+  /* 不然角标出不来 */
 }
 
 .select-data .tui-tab-item-week {
-    font-size: 12px;
-    color: #888;
-    height: 30rpx;
-    line-height: 30rpx;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-size: 12px;
+  color: #888;
+  height: 30rpx;
+  line-height: 30rpx;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .select-data .tui-tab-item-title {
-    color: #555;
-    font-size: 30rpx;
-    height: 60rpx;
-    width: 60rpx;
-    line-height: 60rpx;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    font-weight: bold;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10rpx 0 0 0;
+  color: #555;
+  font-size: 30rpx;
+  height: 60rpx;
+  width: 60rpx;
+  line-height: 60rpx;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  font-weight: bold;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10rpx 0 0 0;
 
 }
 
 .select-data .tui-tab-item-title-active {
-    /* 选中是圆形 */
-    color: #fff;
+  /* 选中是圆形 */
+  color: #fff;
 
-    background: #ff7900;
-    border-radius: 50%;
-    /* border-bottom: 6rpx solid #fe8e61; 
+  background: #ff7900;
+  border-radius: 50%;
+  /* border-bottom: 6rpx solid #fe8e61; 
     box-sizing: border-box;
     这是下划线*/
 }
@@ -850,19 +992,19 @@ justify-content: space-between;
 
 
 .active {
-    position: relative;
-    color: #000;
-    font-size: 26rpx;
-    font-weight: 600;
-    background: #fff;
+  position: relative;
+  color: #000;
+  font-size: 26rpx;
+  font-weight: 600;
+  background: #fff;
 }
 
 .active::before {
-    content: '';
-    position: absolute;
-    border-left: 8rpx solid#178188;
-    height: 30rpx;
-    left: 0;
+  content: '';
+  position: absolute;
+  border-left: 8rpx solid#178188;
+  height: 30rpx;
+  left: 0;
 }
 
 /* 左侧导航布局 end*/
@@ -870,47 +1012,47 @@ justify-content: space-between;
 
 /* 移动漂浮 */
 .select-data.fixed {
-    position: fixed;
-    left: 0;
-    top: 90rpx;
-    padding-top: 10rpx;
-    background-color: #fff;
-    z-index: 999;
-    height: 160rpx;
-    animation: select-data-move .1s linear;
-    /* 使用 move 动画，重复播放 */
+  position: fixed;
+  left: 0;
+  top: 90rpx;
+  padding-top: 10rpx;
+  background-color: #fff;
+  z-index: 999;
+  height: 160rpx;
+  animation: select-data-move .1s linear;
+  /* 使用 move 动画，重复播放 */
 }
 
 @keyframes select-data-move {
-    0% {
-        top: 200rpx;
-    }
+  0% {
+    top: 200rpx;
+  }
 
-    50% {
-        top: 150rpx;
-    }
+  50% {
+    top: 150rpx;
+  }
 
-    100% {
-        top: 90rpx;
-    }
+  100% {
+    top: 90rpx;
+  }
 }
 
 /* 移动漂浮 */
 
 .tui-course-button {
-    position: relative;
-    margin-left: auto;
-    flex-shrink: 0;
+  position: relative;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .tui-course-button .tui-course_price {
-    font-size: 28rpx;
-    color: #fe8e60;
+  font-size: 28rpx;
+  color: #fe8e60;
 }
 
 .tui-course-button .tui-course_price text {
-    font-size: 32rpx;
-    font-weight: bold;
+  font-size: 32rpx;
+  font-weight: bold;
 }
 
 /* 何青青部份 ==============END*/
@@ -939,43 +1081,49 @@ justify-content: space-between;
   border-radius: 50rpx;
 }
 
-.content_wrapper{
+.content_wrapper {
   flex: 1;
 }
-.navItemTitle{
+
+.navItemTitle {
   padding: 5rpx 20rpx;
 }
-.cell_flx{
-  display:flex;
+
+.cell_flx {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 30rpx;
 }
-.cell_flx .flex_view{
-  display:flex;
+
+.cell_flx .flex_view {
+  display: flex;
   align-items: center;
 }
-.img{
+
+.img {
   width: 40rpx;
   height: 40rpx;
   margin-right: 15rpx;
   border-radius: 50%;
 }
-.cell_flx .intro{
+
+.cell_flx .intro {
   color: #666;
   font-size: 26rpx;
   position: relative;
 }
-.cell_flx .intro::after{
+
+.cell_flx .intro::after {
   content: "";
   width: 12rpx;
   height: 12rpx;
-  border:  solid #666;
+  border: solid #666;
   border-width: 1px 0 0 1px;
   transform: translate(-50%, -50%) rotate(135deg);
   position: absolute;
   top: 18rpx;
-  right:-24rpx;
+  right: -24rpx;
 }
 
 /* 教练时间选择 */
@@ -1011,8 +1159,9 @@ justify-content: space-between;
   border-radius: 16rpx; */
   overflow: hidden;
 }
+
 .tui-cell-menu {
-  font-size:30rpx;
+  font-size: 30rpx;
   font-weight: bold;
   color: #ff7900;
   padding-right: 28rpx;
@@ -1021,26 +1170,28 @@ justify-content: space-between;
   justify-content: space-between;
   letter-spacing: 2rpx;
 }
-.menu-select-all{
+
+.menu-select-all {
   margin-right: 30rpx;
   color: #319fa6;
 }
-.menu-other{
+
+.menu-other {
   color: #319fa6;
 }
-.select-this
-{
-    font-size: 28rpx;
-    font-weight: bolder;
+
+.select-this {
+  font-size: 28rpx;
+  font-weight: bolder;
 }
 
 /* 日期2 */
 /* ============团课日期选择愉===================== */
 .tui-tabs {
-	/* flex: 1; */
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
+  /* flex: 1; */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background-color: #fafafa;
   /* height: 100%; */
   border-bottom: 1px solid #f8f8f8;
@@ -1052,32 +1203,33 @@ justify-content: space-between;
   background-color: rgb(243, 243, 243);
   height: 1rpx;
 }
+
 .tui-line-h::after {
-	content: '';
-	position: absolute;
-	border-bottom: 1rpx solid #eaeef1;
-	-webkit-transform: scaleY(0.5);
-	transform: scaleY(0.5);
-	bottom: 0;
-	right: 0;
-	left: 0;
-	transform-origin: 0 100%;
+  content: '';
+  position: absolute;
+  border-bottom: 1rpx solid #eaeef1;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transform-origin: 0 100%;
 }
 
 /* 角标 */
 
 .tui-badge-item {
   position: relative;
-  margin-top: 20rpx; /* 不然角标出不来 */
+  margin-top: 20rpx;
+  /* 不然角标出不来 */
 }
 
-.tui-tab-item-week
-{
+.tui-tab-item-week {
   font-size: 12px;
   color: #888;
-	height: 30rpx;
-	line-height: 30rpx;
-	flex-wrap: nowrap;
+  height: 30rpx;
+  line-height: 30rpx;
+  flex-wrap: nowrap;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -1086,17 +1238,19 @@ justify-content: space-between;
 
 
 .tui-swiper-box {
- flex: 1 !important;
- /* height: auto;  */
-min-height:620rpx;
+  flex: 1 !important;
+  /* height: auto;  */
+  min-height: 620rpx;
 }
+
 .swiper-box {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   padding: 0 30rpx 30rpx;
 }
-.timeTag{
+
+.timeTag {
   width: 16%;
   text-align: center;
   border-radius: 50rpx;
@@ -1105,32 +1259,34 @@ min-height:620rpx;
   margin-right: 20rpx;
   margin-bottom: 20rpx;
 }
-.xuan_active{
+
+.xuan_active {
   background: #EA5413;
   color: #FFF;
 }
+
 /* 日期2 END */
 
-.time-box-view{
+.time-box-view {
   width: 100%;
- padding: 0rpx 10rpx 250rpx 10rpx;
+  padding: 0rpx 10rpx 250rpx 10rpx;
   display: flex;
   align-items: center;
-  justify-content:flex-start;
+  justify-content: flex-start;
   box-sizing: border-box;
   flex-wrap: wrap;
   flex: 1 !important;
 
 }
 
-.time-box-li{
-/* flex: 1; */
-flex-basis: 15.8%;
-   width: 15.8%; 
+.time-box-li {
+  /* flex: 1; */
+  flex-basis: 15.8%;
+  width: 15.8%;
   box-sizing: border-box;
- margin: 15rpx 2%;
+  margin: 15rpx 2%;
   padding: 5rpx 0;
-  
+  border-radius: 50rpx;
   border: 1px solid #666;
   color: #666;
   /* margin: 15rpx 3% 0 0; */
@@ -1139,24 +1295,24 @@ flex-basis: 15.8%;
 
   text-align: center;
 }
-.li-active
-{
+
+.li-active {
   border: 1px solid #ff7900;
   color: #ff7900;
-  background-color:#ff7900;
+  background-color: #ff7900;
   color: #fff;
 }
-.li-active-no
-{
+
+.li-active-no {
   border: 1px solid #666;
-  color: #ff7900;
-  background-color:#fff;
-  color: #fff;
+  color: #333333;
+  background-color: #fff;
+  /* color: #fff; */
 }
-.li-active0
-{
+
+.li-active0 {
   border: none;
-  background-color:#ccc;
+  background-color: #ccc;
   color: #fff;
   opacity: 1;
 }
@@ -1172,9 +1328,12 @@ radio .wx-radio-input {
 }
 
 radio .wx-radio-input.wx-radio-input-checked::before {
-  border-radius: 50%; /* 圆角 */
-  width: 20rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-  height: 20rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  border-radius: 50%;
+  /* 圆角 */
+  width: 20rpx;
+  /* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 20rpx;
+  /* 选中后对勾大小，不要超过背景的尺寸 */
   line-height: 18rpx;
   display: flex;
   align-items: center;
@@ -1184,7 +1343,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 /* 课卡部分 */
 
-.list_flx{
+.list_flx {
   width: 100%;
   background: #FFF;
   /* padding: 10rpx 30rpx; */
@@ -1194,67 +1353,75 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border-radius: 30rpx;
   box-sizing: border-box;
 }
-.title_tap{
+
+.title_tap {
   color: #8A8A8A;
   font-size: 24rpx;
   margin-left: 20rpx;
   text-align: center;
 }
-.flx_title{
+
+.flx_title {
   font-size: 32rpx;
   margin-bottom: 30rpx;
   font-weight: bold;
   display: flex;
   align-items: center;
 }
-.flx_title image{
+
+.flx_title image {
   width: 40rpx;
   height: 40rpx;
   margin-right: 15rpx;
   border-radius: 50%;
 }
-.pop_title{
+
+.pop_title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
   padding: 30rpx;
 }
-.thorui-flex__between{
+
+.thorui-flex__between {
   margin: 20rpx 50rpx;
   background: #f4f4f4;
   border-radius: 30rpx;
   padding: 0 20rpx;
 }
-.radio_flx
-{
+
+.radio_flx {
   display: flex;
   align-items: center;
   /* justify-content: center; */
 }
-.radio_img{
+
+.radio_img {
   width: 100rpx;
   height: 100rpx;
   margin-right: 15rpx;
 }
-.radio_name{
+
+.radio_name {
   color: #38b138;
 }
-.xiao_title{
+
+.xiao_title {
   font-size: 26rpx;
 }
 
-.agree-label
-{
+.agree-label {
   display: flex;
   align-items: center;
   /* justify-content: center; */
   height: 60rpx;
   /* padding: 0 30rpx 20rpx; */
 }
+
 checkbox .wx-checkbox-input {
   width: 35rpx;
-  height:35rpx;
+  height: 35rpx;
   border-radius: 10rpx;
   /* border: 0px solid #CCCCCC !important; */
   display: inline-block;
@@ -1263,39 +1430,47 @@ checkbox .wx-checkbox-input {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
-checkbox .wx-checkbox-input.wx-checkbox-input-checked {/* 选中背景 */
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  /* 选中背景 */
   border-color: #EB0909;
   background-color: #EB0909;
   border: 0px solid #CCCCCC !important;
-  
+
 }
-checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {/* 选中后勾号 */
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  /* 选中后勾号 */
   color: #fff;
   font-size: 32rpx;
   font-weight: bold;
   border: 0px solid #CCCCCC !important;
 }
-.font_agree{
+
+.font_agree {
   font-size: 28rpx;
   position: relative;
   top: 2px;
 }
-.font_red{
-  color:red;
+
+.font_red {
+  color: red;
   font-weight: 600;
 }
+
 /* 弹框内容 */
-#xieyidialog{
+#xieyidialog {
   position: fixed;
   top: 16%;
   width: 80%;
   margin: 0 6%;
   padding: 30rpx;
-  background-color:#fff;
+  background-color: #fff;
   z-index: 9999;
   overflow: hidden;
   border-radius: 30rpx;
 }
+
 .xieyimodedialog {
   position: fixed;
   top: 0;
@@ -1308,24 +1483,28 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {/* 选中后勾�
   padding: 4vw;
   box-sizing: border-box;
 }
-.vanpop .kuai{
+
+.vanpop .kuai {
   padding: 30rpx;
   font-size: 25rpx;
   line-height: 40rpx;
 }
-.vanpop .title{
+
+.vanpop .title {
   font-weight: bold;
   text-align: center;
   font-size: 35rpx;
   margin-bottom: 20rpx;
 }
-.vanpop .bottom{
+
+.vanpop .bottom {
   /* position: fixed;
   bottom: 0; */
   background: #FFFFFF;
   width: 100%;
 }
-.vanpop .btn{
+
+.vanpop .btn {
   background: #F95938;
   color: #ffffff;
   border-radius: 50rpx;
@@ -1340,28 +1519,31 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {/* 选中后勾�
 .icon_up {
   position: relative;
 }
-.icon_up::after{
+
+.icon_up::after {
   content: "";
   width: 16rpx;
   height: 16rpx;
-  border:  solid #1985f1;
+  border: solid #1985f1;
   border-width: 1px 0 0 1px;
   transform: translate(-50%, -50%) rotate(225deg);
   position: absolute;
   top: 0rpx;
-  right:-24rpx;
+  right: -24rpx;
 }
+
 .icon_down {
   position: relative;
 }
-.icon_down::after{
+
+.icon_down::after {
   content: "";
   width: 16rpx;
   height: 16rpx;
-  border:  solid #1985f1;
+  border: solid #1985f1;
   border-width: 1px 0 0 1px;
   transform: translate(-50%, -50%) rotate(45deg);
   position: absolute;
   top: 0rpx;
-  right:-24rpx;
+  right: -24rpx;
 }

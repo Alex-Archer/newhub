@@ -12,6 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    qrShow: false,
     typetabs: [{
         key: 'tuan',
         value: '团课'
@@ -42,6 +43,7 @@ Page({
     groupEdit: false, //上面两个数组比较，来控制是否保存按钮可不可用
     tabTypeIndex: 0,
     tabIndex: 0,
+    timeIndex: null, // 时间的索引
 
     dateTime: '', //日期，可以是时间戳，也可是具体的日期2023-08-22
     dateBars: [], //周日期选择
@@ -68,15 +70,35 @@ Page({
     orderNumber: '', // 卡的订单编号(不懂为啥用这个传)
     popupShow: false, 
     agreeContent:'1.参与aoben shared yoga集训营的用户，具有完全的法律行为能力，同意遵守相关管理规章制度，应接受aoben shared yoga集训营的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守aoben shared yoga集训营的相关规定。1.参与aoben shared yoga集训营的用户，具有完全的法律行为能力，同意遵守相关管理规章制度，应接受aoben shared yoga集训营的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守aoben shared yoga集训营的相关规定。',
+    cardAgree:'',
     tabs: [
-      // {id:'', title:'全部'} // 暂时不要全部,后期不知道会不会加
+      // {id:'', title:'全部'} // 暂时不要全部,后期可能会加
     ],
     removeGradient: false,
     loadingData: true, // 展示数据
   },
+  // 公众号二维码
+  qrClose(e) {
+    this.setData({
+      qrShow: false,
+    })
+  },
+  showQR(e) {
+    this.setData({
+      qrShow: true,
+    })
+  },
+  // 点击展开
   readmore() {
     this.setData({
       removeGradient: !this.data.removeGradient
+    })
+  },
+  storeClick(e){
+    let _branchid = e.currentTarget.dataset.branchid
+    this.setData({
+      branchid:_branchid,
+      storePopupShow: false,
     })
   },
   // 私教课程列表
@@ -161,6 +183,7 @@ Page({
       TIMESTAMP: _timestamp,
       FKEY: md5util.md5(wx.getStorageSync('USERID') + _timestamp.toString() + app.globalData.APP_INTF_SECRECT),
     }
+    let _time = (new Date().getTime())
     apis.get('/CardItemOrderApi/getUserCardItem',_config,{
       "Content-Type": 'applciation/json'
     },true).then(val => {
@@ -678,7 +701,7 @@ Page({
     let _index = e.currentTarget.dataset.index;
     let _startTime = e.currentTarget.dataset.stime;
     this.setData({
-      tabIndex: _index,
+      timeIndex: _index,
       resTime:_startTime
     })
   },
@@ -703,14 +726,10 @@ Page({
   },
   dSubscribe(e) {
     let _typenum = e.currentTarget.dataset.typenum;
-    if(!this.data.agreecheckbox){
-      util.toast("请先阅读并接受会员卡协议",null,null,()=>{})
-      return
-    }
     let _timestamp = (new Date()).valueOf();
     let _orderNumber = this.data.orderNumber
     let _branchid = this.data.branchid
-    let _coachId = this.data.coachId
+    let _coachId = this.data.listData.coachId
     let _resTime = this.data.resTime
     let _coursePersonalReferId = this.data.coursePersonalReferId
     let _resDate = util.getNowDate()
@@ -724,17 +743,27 @@ Page({
       })
       return
     }
-    if(!_orderNumber){
+    if(!this.data.agreecheckbox){
+      util.toast("请先阅读并接受会员卡协议",null,null,()=>{})
+      return
+    }
+    if(_coursePersonalReferId == ''){
       wx.showToast({
-        title: '请选择课卡后进行预约',
+        title: '请选择课程',
         icon: 'none',
       })
       return
     }
-    
     if(_resTime == ''){
       wx.showToast({
         title: '请选择老师可约时间',
+        icon: 'none',
+      })
+      return
+    }
+    if(!_orderNumber){
+      wx.showToast({
+        title: '请选择课卡后进行预约',
         icon: 'none',
       })
       return
@@ -752,13 +781,18 @@ Page({
     }
     apis.posts('BookedClass/bookPersonalCourse',_config,true).then(res => {
       console.log(res);
+      wx.showToast({
+        title: res.message,
+        icon: 'none',
+      })
+
       wx.navigateTo({
         // url: '/packageA/pages/listCourse/index?tab=2',
         url: '/packageA/pages/myCourse/index/index',
       })
     }).catch(err => {
       wx.showToast({
-        title: err.message,
+        title: err.data.message,
         icon: 'none',
       })
     })

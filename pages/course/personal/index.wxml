@@ -81,8 +81,8 @@
               <view class="tui-teach-coach">
                 <image src="{{teachtab.headimgurl}}" bindtap="href" data-page="3"></image>
                 <view class="tui-teach-font">
-                  <view class="tui-teach-title">{{teachtab.nickName}} <text class="title_fen">{{teachtab.servicepoints}}分</text></view>
-                  <view class="hao">好评率:{{teachtab.favorrate}}</view>
+                  <view class="tui-teach-title">{{teachtab.nickName}} <text class="title_fen">{{teachtab.servicepoints/10}}分</text></view>
+                  <view class="hao">好评率:{{teachtab.servicepoints}}%</view>
                   <view class="tui-teach-tag" wx:if="{{teachtab.goodat.length > 0}}">
                     <view class="tui-teach-tag_view" wx:for="{{teachtab.goodat}}" wx:for-item="itemTag" wx:key="index" style="{{itemTag==''?'background:none':''}}">{{itemTag}}</view>
                   </view>

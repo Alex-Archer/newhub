@@ -536,7 +536,7 @@ onrefresh(e) {
                     const found = qrCodeContent.indexOf(arrUrl) > -1;
                     if(!found){
                         wx.showToast({
-                            title: '啥都不是，不处理',
+                            title: '二维码错误',
                             icon: 'none'
                         })
                         return

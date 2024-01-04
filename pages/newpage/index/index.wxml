@@ -37,7 +37,7 @@
   <view class="adv-top">
     <!-- <image class="adv-top-img" src="{{globalURL}}/miniprogram/url-img/banner/course/2.jpg" mode="widthFix"></image> -->
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" previous-margin="10rpx" next-margin="10rpx">
-      <swiper-item wx:for="{{banner}}" wx:key="index" class="tui-banner-item">
+      <swiper-item bind:tap="tiaoClick" wx:for="{{banner}}" wx:key="index" class="tui-banner-item">
         <image src="{{item}}" class="tui-slide-image" mode="scaleToFill" />
       </swiper-item>
     </swiper>
@@ -82,7 +82,7 @@
     <tui-no-data wx:else imgWidth="140" imgHeight="140" marginTop="90" fixed="{{false}}" imgUrl="/static/img/toast/img_noorder_3x.png" contentColor="#999" contentSize="24rpx">暂无课程</tui-no-data>
 
   </view>
-  <view class="blogo"><image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/blogo.png?v=202311272032"></image></view>
+  <view class="blogo"><image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/bottom-logo750X139.png?v=202311272032"></image></view>
 </view>
 
 <tui-tabbar paddingBottom="24rpx" wx:if="{{tabbarShow&&agreeClick}}" id="tui-tabbar" bind:goToTop="indexGoTop" indexPage="{{indexPage}}" tabBar="{{tabBar}}" isFixed="{{true}}" current="{{current}}" bind:click="tabbarSwitch"></tui-tabbar>

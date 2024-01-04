@@ -211,8 +211,9 @@
 
 .tui-price-right {
 	text-align: right;
-	font-size: 24rpx;
-	color: #888888;
+	font-size: 26rpx;
+  /* color: #888888; */
+  color: #377c00;
 	line-height: 30rpx;
 	padding-top: 20rpx;
 }

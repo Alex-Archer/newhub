@@ -37,7 +37,6 @@
                                         <view wx:else><tui-tag margin="0" padding="8rpx" type="btn-gray" size="" scaleMultiple="0.8">售后中</tui-tag></view>
                                     </block>
                                     <block wx:else>
-                                        
                                         <!--2.1.未支付-->
                                         <block wx:if="{{orderItem.paytime<=0}}">
                                             <!--2.1.1未过支付时间-->
@@ -64,12 +63,12 @@
                                 <view class="tui-goods-item">
                                     <image src="{{orderItem.poster}}" class="tui-goods-img"></image>
                                     <view class="tui-goods-center">
-                                        <view class="tui-goods-name">{{orderItem.title}}.{{orderItem.id}}</view>
+                                        <view class="tui-goods-name">{{orderItem.title}}</view>
                                         <view class="tui-goods-attr" style="text-decoration:line-through;">原价:￥{{parse.formatRMB(orderItem.originalprice)}}</view>
+                                        <view class="tui-goods-attr">共{{orderItem.quantity}}件商品</view>
                                     </view>
                                     <view class="tui-price-right">
-                                        <view>￥{{parse.formatRMB(orderItem.price)}}</view>
-                                        <view>x{{orderItem.quantity}}</view>
+                                        <view>{{orderItem.paytype}}</view>
                                     </view>
                                 </view>
                             </tui-list-cell>
@@ -93,13 +92,14 @@
                                     <view>退款原因:{{orderItem.state!=0}}</view>
                                 </view> 移到详情页了-->
                                 <view class="tui-goods-price">
-                                    <view>共{{orderItem.quantity}}件商品 合计：</view>
-                                    <view class="tui-size-24">￥</view>
-                                    <block wx:for="{{parse.formatDomRMB((orderItem.price*orderItem.quantity),'tui-price-large','tui-size-24')}}" wx:for-item="domItem" wx:for-index="indexDom" wx:key="indexDom">
+                                    <!-- <view>共{{orderItem.quantity}}件商品 合计：</view> -->
+                                    <view class="tui-size-24">已支付￥</view>
+                                    <block wx:for="{{parse.formatDomRMB((orderItem.payprice),'tui-price-large','tui-size-24')}}" wx:for-item="domItem" wx:for-index="indexDom" wx:key="indexDom">
                                         <view class="{{domItem.class}}">{{domItem.value}}</view>
                                     </block>
                                 </view>
                             </tui-list-cell>
+                            <!-- 暂无,后续添加 -->
                             <view class="tui-order-btn">
                                 <!-- <view class="tui-btn-ml">
                                     <tui-button type="black" plain width="152rpx" height="56rpx" size="26" shape="circle" bindclick="invoiceDetail">查看发票</tui-button>
@@ -114,39 +114,39 @@
                                 <!-- 按钮操作区 -->
 
                                 <!-- 1. 售后中的订单 -->
-                                <block wx:if="{{orderItem.state==1}}">
+                                <!-- <block wx:if="{{orderItem.state==1}}"> -->
                                     <!-- 正在申请退款 暂无此功能
                                     <view class="tui-btn-mr">
                                             <tui-button type="black" plain="{{true}}" width="152rpx" height="56rpx" size="26" shape="circle" bindclick="refund">撤销退款</tui-button>
                                     </view> -->
-                                </block>
-                                <block wx:elif="{{orderItem.state==2}}">
+                                <!-- </block> -->
                                     <!-- 2已完成退款 -->
-                                    <!-- <view class="tui-btn-mr">已完成退款</view> -->
-                                </block>
-                                <block wx:elif="{{orderItem.state==3}}">
+                                <!-- <block wx:elif="{{orderItem.state==2}}">
+                                    <view class="tui-btn-mr">已完成退款</view>
+                                </block> -->
                                     <!-- 3已处理代表禁止退款，不显任何操作按钮 -->
-                                </block>
+                                <!-- <block wx:elif="{{orderItem.state==3}}">
+                                </block> -->
                                 <!-- 2. 正常的订单 -->
-                                <block wx:else>
+                                <!-- <block wx:else> -->
                                     <!--2.1.未支付-->
-                                    <block wx:if="{{orderItem.paytime<=0}}">
+                                    <!-- <block wx:if="{{orderItem.paytime<=0}}"> -->
                                         <!--2.1.1未过支付时间-->
-                                        <view class="tui-btn-mr" wx:if="{{pageParse.getGapTime(orderItem.expirationtime)>0}}">
+                                        <!-- <view class="tui-btn-mr" wx:if="{{pageParse.getGapTime(orderItem.expirationtime)>0}}">
                                             <tui-button type="danger" plain="{{true}}" width="152rpx" height="56rpx" size="26" shape="circle"  data-index="{{index2}}"  data-id="{{orderItem.orderno}}"  data-source="{{orderItem.source}}" data-ac="1" bind:tap="actionButtons">立即支付</tui-button>
-                                        </view>
+                                        </view> -->
                                         <!--2.1.2已过支付时间-->
-                                        <view class="tui-btn-mr" wx:if="{{pageParse.getGapTime(orderItem.expirationtime)<=0}}">
+                                        <!-- <view class="tui-btn-mr" wx:if="{{pageParse.getGapTime(orderItem.expirationtime)<=0}}">
                                             <tui-button type="black" plain="{{true}}" width="152rpx" height="56rpx" size="26" shape="circle" data-index="{{index2}}"  data-id="{{orderItem.orderno}}"  data-source="{{orderItem.source}}" data-ac="0" bind:tap="actionButtons">删除订单</tui-button>
                                         </view>
-                                    </block>
+                                    </block> -->
                                     <!--2.2.已支付 bindclick="refund" -->
-                                    <block wx:else> 
+                                    <!-- <block wx:else> 
                                         <view class="tui-btn-mr" wx:if="{{orderItem.refund}}">
                                             <tui-button type="black" plain="{{true}}" width="152rpx" height="56rpx" size="26" shape="circle" data-index="{{index2}}"  data-id="{{orderItem.orderno}}"  data-source="{{orderItem.source}}" data-ac="2" bind:tap="actionButtons">申请退款</tui-button>
                                         </view>
-                                    </block>
-                                </block>
+                                    </block> -->
+                                <!-- </block> -->
                                 <!-- 按钮操作区END -->
                                 
                             </view>

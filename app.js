@@ -400,7 +400,7 @@ App({
             },
             {
                 // "pagePath": "/pages/course/index/index", // 老版本的
-                "pagePath": "/pages/newpage/index/index", // 最新的
+                "pagePath": "/pages/course/personal/index", // 最新的
                 "navigate": false,
                 "action": "",
                 "text": "课程",
@@ -413,7 +413,7 @@ App({
                 "icoSizeUnit": "rem",
             },
             {
-                "pagePath": "/pages/coach/home/door/index",
+                "pagePath": "/pages/mini/scan/index",
                 "navigate": true,
                 "action": "scanCode",
                 "text": "开门",
@@ -486,7 +486,7 @@ App({
             {
                 "action": "scanCode",
                 "navigate": false,
-                "pagePath": "/pages/coach/home/door/index",
+                "pagePath": "/pages/mini/scan/index",
                 "text": "开门",
                 "name": 'qr-code',
                 "activeName": 'qr-code',

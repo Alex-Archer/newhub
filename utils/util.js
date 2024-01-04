@@ -5,6 +5,20 @@
  * @FinalChanges Fisher 2023 04 02
  **/
 const utils = {
+  // 订阅消息
+  wxSubscribeMessage (tmplIds){
+    return new Promise( async (resolve, reject)  => {
+      wx.requestSubscribeMessage({
+        tmplIds: tmplIds,
+        success (res) { 
+          resolve(res);
+        },
+        fail(err) {
+          reject(err);
+        } 
+      })
+    })
+  },
   // 获取当前时间
   getNowDate () {
     let now = new Date();
@@ -544,6 +558,7 @@ const utils = {
   }
 }
 module.exports = {
+  wxSubscribeMessage: utils.wxSubscribeMessage,
   getNowDate: utils.getNowDate,
   fillZero: utils.fillZero,
   wxPayment: utils.wxPayment,

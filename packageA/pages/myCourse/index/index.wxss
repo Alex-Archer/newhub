@@ -200,6 +200,7 @@
 .state{
   color:#ED3737;
   font-size: 24rpx;
+  font-weight: normal;
 }
 .buttype{
   display: flex;

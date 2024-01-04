@@ -157,7 +157,8 @@
   <tui-bottom-popup backgroundColor="#FFFFFF" height="{{600}}" show="{{popupShow}}" bindclose="hiddenPopup">
     <view class="pop_title">
       <view>我的课卡</view>
-      <view bind:tap="hiddenPopup" style="color: #ccc;">X</view>
+      <!-- <view bind:tap="hiddenPopup" style="color: #ccc;">X</view> -->
+      <tui-icon name="close-fill" color="#999" size="20" bind:tap="hiddenPopup"></tui-icon>
     </view>
   <scroll-view scroll-y class="store-popup-scroll" style="height: 540rpx;">
     <block wx:if="{{loadingData}}">
@@ -173,7 +174,7 @@
               <view class="xiao_title">有效期:{{item.months<0?0:item.months}}月 剩余节数:{{item.remaining}}节</view>
             </view>
           </view>
-          <radio color="#07c160" checked="true" value="{{item.order_number+'_'+item.title}}">
+          <radio color="#07c160" checked="" value="{{item.order_number+'_'+item.title}}">
           </radio>
         </view>
       </tui-label>
@@ -185,7 +186,7 @@
 <view id="xieyidialog" class="vanpop" wx:if="{{show}}">
   <view class="title">{{title==1?'会员卡协议':'约课协议'}}</view>
   <view style="height: 750rpx;overflow: scroll;">
-    <rich-text nodes="{{agreeContent}}"></rich-text>
+    <rich-text nodes="{{title==1?cardAgreement:yueAgreement}}"></rich-text>
   </view>
   <view>
     <button class="btn" type="primary" hover-class="none" disabled="{{countdown!=0}}" bindtap="handyue">已阅读<text>《{{title==1?'会员卡协议':'约课协议'}}》</text><text wx:if="{{countdown>0}}">{{countdown}}</text></button>

@@ -101,8 +101,8 @@
         <view class="tui-bar-t">
           <view class="tui-black">实付金额: </view>
           <view class="tui-size-26">￥</view>
-          <view class="tui-price-large">{{nowmoney}}</view>
-          <!-- <view class="tui-size-26">.00</view> -->
+          <view class="tui-price-large">{{nowmoney}}<text wx:if="{{balanceNum}}" class="tui-size-26">-{{balanceNum}}</text></view>
+          
         </view>
         <view class="tui-bar-d">
           <view>次数：</view>

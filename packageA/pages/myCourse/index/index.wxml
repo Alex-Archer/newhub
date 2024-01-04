@@ -63,7 +63,7 @@
                 -->
                       <!-- wx:if="{{tabIndex==0&&orderItem.source==1&&orderItem.start_time>0&&orderItem.end_time>0&&!parseUtils.validateDateExpires((orderItem.start_date+orderItem.start_time)*1000)}}" -->
                       <block wx:if="{{status==0}}">
-                        <tui-button bindtap="actionButtons" type="warning" data-date="{{orderItem.start_date}}" data-stime="{{orderItem.start_time}}" data-id="{{orderItem.id}}" data-index="{{index2}}" width="152rpx" height="52rpx" size="26" shape="">取消预约</tui-button>
+                        <tui-button bindtap="actionButtons" type="warning" data-coursetype="{{orderItem.source}}" data-date="{{orderItem.start_date}}" data-stime="{{orderItem.start_time}}" data-id="{{orderItem.id}}" data-index="{{index2}}" width="152rpx" height="52rpx" size="26" shape="">取消预约</tui-button>
                       </block>
                       <!-- <block wx:if="{{tabIndex==0&&orderItem.source==1&&orderItem.start_time>0&&orderItem.end_time>0&&!parseUtils.validateDateExpires((orderItem.start_date+orderItem.start_time)*1000)}}">
                       <tui-button class="paidui" bindtap="actionButtons" data-date="{{orderItem.start_date}}" data-stime="{{orderItem.start_time}}" data-id="{{orderItem.id}}" data-index="{{index2}}" width="152rpx" height="52rpx" size="26" shape="circle">取消排队</tui-button>

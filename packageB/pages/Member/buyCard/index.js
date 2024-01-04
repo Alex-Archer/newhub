@@ -163,10 +163,11 @@ Page({
           })
         }
       }).catch((err) => {
-        wx.showToast({
-          title: err.message,
-          icon: 'none',
-        })
+        console.log(err);
+        // wx.showToast({
+        //   title: err.data.message,
+        //   icon: 'none',
+        // })
       });
   },
   //2.支付完，订单查询

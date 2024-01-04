@@ -31,6 +31,8 @@ Page({
     countdown: '06', // 倒计时时间
     show: false,
     time: 6,
+    cardAgreement: '',
+    yueAgreement: '',
   },
   
   btnyuyue(){
@@ -50,6 +52,7 @@ Page({
       })
       return
     }
+    let _orderNumber = this.data.orderNumber
     let _timestamp = (new Date()).valueOf();
     if(!_orderNumber){
       wx.showToast({
@@ -58,7 +61,6 @@ Page({
       })
       return
     }
-    let _orderNumber = this.data.orderNumber
     let _arrangeCourseId = this.data.editCourse.id
     let _resDate = this.getNowDate()
     let _resTime = this.getNowTime()
@@ -77,7 +79,7 @@ Page({
       })
     }).catch(err => {
       wx.showToast({
-        title: err.message,
+        title: err.data.message,
         icon: 'none',
       })
     })

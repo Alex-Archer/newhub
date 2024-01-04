@@ -107,7 +107,7 @@ Page({
     onHide: false,
     id: '', // 传递的id
   },
-  newuser(){
+  newuser() {
     wx.navigateTo({
       url: '/packageA/pages/Setting/help/index/index',
     })
@@ -342,15 +342,15 @@ Page({
 
 
   },
-  tiaoClick(e){
+  tiaoClick(e) {
     console.log(e);
     wx.navigateTo({
-      url: `/packageB/pages/Member/buyCard/index?id=${this.data.id}`,
+      url: `/packageB/pages/Member/buyCard/index`,
       // ?reduce=${this.data.reduce}&price=${this.data.price}
     })
   },
-  swipFunct(){
-    let _config ={}
+  swipFunct() {
+    let _config = {}
     let _topBanner = []
     apis.get('/CouponPackageGroup/getVipCouponPackagePub', _config, {
       "Content-Type": 'applciation/json'
@@ -444,7 +444,7 @@ Page({
             // logs.log("2222222是否有网址",found.toString(),true);
             if (!found) {
               wx.showToast({
-                title: '啥都不是，不处理',
+                title: '二维码错误',
                 icon: 'none'
               })
               return
@@ -452,10 +452,10 @@ Page({
             let _action = util.getURLParam(qrCodeContent, "s");
             let _actionTitle = "";
             let resOpenID = that.data.uOpenID;
-            let _param =util.getURLParam(qrCodeContent,"param");
+            let _param = util.getURLParam(qrCodeContent, "param");
             console.log(_param);
             let _timestamp = (new Date()).valueOf();
-            let _uid = wx.getStorageSync('USERID')||resOpenID;
+            let _uid = wx.getStorageSync('USERID') || resOpenID;
             let config = {
               userID: _uid,
               TIMESTAMP: _timestamp,
@@ -463,46 +463,53 @@ Page({
               FKEY: md5util.md5(_uid + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
             }
             switch (_action) {
-              case "door"://开门 https://yoga.aoben.yoga/s=door&param=mac
-            _actionTitle="开门动作";
-            apis.gets("/Door/qrCode",config,false).then(val=>{
-              that.setData({
-                openID:resOpenID,
-                openDoorHtml:"开门成功",
-                returnHtml:"CODE1正常："+JSON.stringify(val)
-              });
-            },function(err)
-            {
-              that.setData({
-                openID:resOpenID,
-                openDoorHtml:"开门失败",
-                openErrMessage:'这是失败原因',
-                returnHtml:"CODE 0出错："+JSON.stringify(err)
-              });
-      
-            })
-            break;
-        case "locker"://开柜 https://yoga.aoben.yoga/s=locker&param=mac
-            _actionTitle="开柜动作";
-            // https://aoben.kshot.com
-            apis.gets("/Locker/qrCode",config,false).then(val=>{
-              console.log(val);
-              that.setData({
-                openID:resOpenID,
-                openDoorHtml:"开柜成功",
-                returnHtml:"CODE1正常："+JSON.stringify(val)
-              });
-            },function(err)
-            {
-              that.setData({
-                openID:resOpenID,
-                openDoorHtml:"开柜失败",
-                openErrMessage:'这是失败原因',
-                returnHtml:"CODE 0出错："+JSON.stringify(err)
-              });
-            })
-            break;
-          case "getpass"://获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
+              case "door": //开门 https://yoga.aoben.yoga/s=door&param=mac
+                apis.posts("/Door/qrCode", config, false).then(val => {
+                  that.setData({
+                    openID: resOpenID,
+                    openDoorHtml: "开门成功",
+                    returnHtml: "CODE1正常：" + JSON.stringify(val)
+                  });
+                  let model = JSON.stringify(val);
+                  wx.navigateTo({
+                    url: `/pages/mini/scan/index?model=${model}`,
+                  })
+                }, function (err) {
+                  _actionTitle = err.data.message;
+                  util.toast(_actionTitle);
+                  that.setData({
+                    openID: resOpenID,
+                    openDoorHtml: "开门失败",
+                    openErrMessage: err.data.message,
+                    returnHtml: "CODE 0出错：" + JSON.stringify(err)
+                  });
+                })
+                break;
+              case "locker": //开柜 https://yoga.aoben.yoga/s=locker&param=mac
+                // https://aoben.kshot.com
+                apis.posts("/Locker/qrCode", config, false).then(val => {
+                  that.setData({
+                    openID: resOpenID,
+                    openDoorHtml: "开柜成功",
+                    returnHtml: "CODE1正常：" + JSON.stringify(val)
+                  });
+                  let model = JSON.stringify(val);
+                  wx.navigateTo({
+                    url: `/pages/mini/scan/index?model=${model}`,
+                  })
+                }, function (err) {
+                  _actionTitle = err.data.message;
+                  util.toast(_actionTitle);
+                  that.setData({
+                    openID: resOpenID,
+                    openDoorHtml: "开柜失败",
+                    openErrMessage: err.data.message,
+                    returnHtml: "CODE 0出错：" + JSON.stringify(err)
+                  });
+
+                })
+                break;
+              case "getpass": //获取用户密码 https://yoga.aoben.yoga/s=getpass&param=MAC
                 _actionTitle = "获取用户密码";
                 break;
               case "cabinet": //开柜 https://yoga.aoben.yoga/s=cabinet&param=mac
@@ -518,13 +525,8 @@ Page({
                 _actionTitle = "啥都不是";
                 break;
             }
-                //联网去处理
-              // wx.showToast({
-              //     title: _actionTitle,
-              //     icon: 'none'
-              // })
-              util.toast(_actionTitle);
-              return;
+            // util.toast(_actionTitle);
+            return;
 
           },
           fail: (error) => {

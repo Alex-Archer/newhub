@@ -77,11 +77,11 @@ Page({//订单中心不允许登录后查看，不然过不了
         let _source =  e.currentTarget.dataset.source || e.target.dataset.source||0;//0为修正数字时获取不到
         let _id = e.currentTarget.dataset.id || e.target.dataset.id;
         // let _idx = e.currentTarget.dataset.idx || e.target.dataset.idx;//索引，用于详情页操作后返回
-        if (!util.isNull(_id) && util.isNumber(_id)) {
-            wx.navigateTo({
-                url: '../show/index?source='+_source+'&detailID=' + _id,
-            })
-        }
+        // if (!util.isNull(_id) && util.isNumber(_id)) {
+        //     wx.navigateTo({
+        //         url: '../show/index?source='+_source+'&detailID=' + _id,
+        //     })
+        // }
 
     },
     //查看发票
@@ -156,13 +156,14 @@ Page({//订单中心不允许登录后查看，不然过不了
             payState: _payType, //0全部 1待支付 2已支付 3售后
             pageSize: 10,
             pageIndex: _pageIndex,
+            course_package_id:'-1',
 
             userID: wx.getStorageSync('USERID'),
             TIMESTAMP: _timestamp,
             FKEY: md5util.md5(wx.getStorageSync('USERID') + _payType.toString() + _timestamp.toString() + app.globalData.APP_INTF_SECRECT)
         };
         return new Promise((resolve, reject) => {
-            axios.get("OrderIndex/index", config, {
+            axios.get("OrderIndex/cardIndex", config, {
                 headers: {
                     "Content-Type": 'applciation/json',
                 },

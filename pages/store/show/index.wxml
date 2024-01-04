@@ -37,7 +37,7 @@
           <text class="box-text-address">{{storeInfo.address}}</text>
           <text class="box-text-distance">距离{{locationDistance}}</text>
         </view>
-        <view class="tui-text-border" bind:tap="openLocation" data-lat="{{storeInfo.lat}}" data-lng="{{storeInfo.lng}}" data-title="{{storeInfo.title}}" data-address="{{storeInfo.introduce}}">
+        <view class="tui-text-border" bind:tap="openLocation" data-lat="{{storeInfo.lat}}" data-lng="{{storeInfo.lng}}" data-title="{{storeInfo.title}}" data-address="{{storeInfo.address}}">
           <ald-icon size="30" customClass="share" unit="rpx" name="share" color="#ff7900" content="导航" contentsize="{{26}}" contentunit="rpx" contentpadding="0 0 0 0"></ald-icon>
         </view>
       </view>
@@ -173,7 +173,7 @@
       </view>
       <!-- 门店详情 -->
       <tui-overflow-hidden type="{{2}}" padding="0rpx 30rpx 30rpx" gradientColor="#f8f8f8" removeGradient>
-        <rich-text class="des-content" nodes="{{content}}"></rich-text>
+        <rich-text class="des-content" nodes="{{storeInfo.introduce}}"></rich-text>
       </tui-overflow-hidden>
 
       <!-- 门店详情 END -->

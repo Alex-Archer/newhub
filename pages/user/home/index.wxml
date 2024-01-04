@@ -101,12 +101,12 @@
           <image src="https://ssl.aoben.yoga/miniprogram/20231127/logo2.svg?v=202311271721" mode="widthFix" class="tui-icon"></image>
           <!-- <text class="tui-name">瑜伽会员 </text> -->
           <tui-tag padding="5px 12px" width="" margin="0 0 0 0" size="22rpx" color="#469ea3" shape="circle" type="white">
-          {{user.isvip!=0?'查看特权':'成为会员'}}
+          {{user.isvip==1?'查看特权':'成为会员'}}
           
           </tui-tag>
         </view>
         <!-- <text class="tui-desc">{{user.vipExpireTime>0?'感谢成为会员':'开通会员'}}，随时随地开始健身</text> -->
-        <text class="tui-desc">{{user.isvip!=0?'感谢成为会员':'开通会员'}}，让瑜伽更自由</text>
+        <text class="tui-desc">{{user.isvip==1?'感谢成为会员':'开通会员'}}，让瑜伽更自由</text>
       </view>
       <!-- 今日运动和身体数据
     <view class="tui-sport">
@@ -281,7 +281,7 @@
         <image src="{{globalURL}}/miniprogram/url-img/hqq/icon-2.png" mode="widthFix" class="tui-redbag-icon"></image>
       </view> -->
 
-<view class="banner-box">
+<view class="banner-box" bind:tap="tiaoClick">
 <image src="https://ssl.aoben.yoga/miniprogram/url-img/banner.png?v=202311271721" mode="widthFix" class="banner-icon"></image>
 
 </view>
@@ -416,7 +416,7 @@
       
 
     </view>
-    <view class="blogo"><image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/blogo.png?v=202311272032"></image></view>
+    <view class="blogo"><image class="blogo-img" src="https://ssl.aoben.yoga/miniprogram/20231127/bottom-logo750X139.png?v=202311272032"></image></view>
   </view>
   </scroller>
 

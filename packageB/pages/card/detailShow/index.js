@@ -21,6 +21,7 @@ Page({
     listData:[], // 列表信息
     messData: '', // 支付时使用的信息
     nowmoney: '', // 最后付钱金额
+    inputNowMoney: '', // 金额
     selected: '', // 是否选中
     couponShow: false, 
     cuponPrice: '',
@@ -165,18 +166,22 @@ Page({
   // 获取瑜伽币
   inputMoney(e) {
     let _balanceNum = Number(e.detail)
+    let _nowmoney = this.data.nowmoney
     let zongBalance = Number(this.data.objData.balance/100)
     if(_balanceNum>zongBalance){
       _balanceNum = zongBalance
     }
-    let _nowmoney = this.getyoga(this.data.nowmoney,_balanceNum)
+    let _inputNowMoney = this.getyoga(_nowmoney,_balanceNum)
     this.setData({
-      nowmoney:_nowmoney,
+      inputNowMoney:_inputNowMoney,
       balanceNum: _balanceNum,
     })
   },
   //支付按钮
   btnPay(){
+    // this.setData({
+    //   nowmoney: this.data.inputNowMoney
+    // })
     if(!this.data.agreecheckbox)
     {
       util.toast("请先阅读并接受会员卡协议",null,null,()=>{})
@@ -218,7 +223,7 @@ Page({
       }
     }).catch(err=>{
       console.log(err);
-      util.toast(err.message,null,null)
+      // util.toast(err.data.message,null,null)
     })
   },
   // 订单支付完的查询
@@ -337,7 +342,7 @@ Page({
         loading: false, // 骨架屏
       })
       this.getuserLV();
-      // this.getuserPackage();
+      this.getuserPackage();
     }else{
       wx.showToast({
         title: '请刷新页面后重试',

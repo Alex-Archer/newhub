@@ -32,6 +32,7 @@ Page({
 
     openDoorHtml:'',//开门说明
     openErrMessage:'',
+    qrdata: '',
 
 
   },
@@ -86,6 +87,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(query) {
+    let model = query.model;
+    if(model){
+      this.setData({
+        qrdata:JSON.parse(model)	
+      })
+    }
     //如果有隐藏一次就去首页吧
     if(this.data.onHide){
         wx.reLaunch({
@@ -126,6 +133,7 @@ Page({
             _actionTitle="开门动作";
             this.pageController("https://aoben.kshot.com/api/Door/qrCode",config,false).then(val=>{
               that.setData({
+                qrdata:val,
                 openID:resOpenID,
                 openDoorHtml:"开门成功",
                 returnHtml:"CODE1正常："+JSON.stringify(val)
@@ -135,7 +143,7 @@ Page({
               that.setData({
                 openID:resOpenID,
                 openDoorHtml:"开门失败",
-                openErrMessage:'这是失败原因',
+                openErrMessage:err.data.message,
                 returnHtml:"CODE 0出错："+JSON.stringify(err)
               });
       
@@ -149,6 +157,7 @@ Page({
             this.pageController("https://ssl.aoben.yoga/api/Locker/qrCode",config,false).then(val=>{
               console.log(val);
               that.setData({
+                qrdata:val,
                 openID:resOpenID,
                 openDoorHtml:"开柜成功",
                 returnHtml:"CODE1正常："+JSON.stringify(val)
@@ -158,7 +167,7 @@ Page({
               that.setData({
                 openID:resOpenID,
                 openDoorHtml:"开柜失败",
-                openErrMessage:'这是失败原因',
+                openErrMessage:err.data.message,
                 returnHtml:"CODE 0出错："+JSON.stringify(err)
               });
             })
@@ -258,7 +267,7 @@ Page({
   pageController(_url,_config,_interceptors=true) {
 
     return new Promise((resolve, reject) => {
-        axios.post(_url, _config, {
+        axios.posts(_url, _config, {
             headers: {
                 "Content-Type": 'applciation/json',
             },
